@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="javadoc">
+<target name="javadoc">
+<javadoc access="public" author="true" classpath="\dashboard\bin" destdir="Doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="entity" source="1.5" sourcefiles="source/TestEntity.java" sourcepath="source" splitindex="true" use="true" version="true">
+<link href="file:/F:/Program Files/eclipse/workspace/dashboard/Doc/"/>
+</javadoc>
+</target>
+</project>

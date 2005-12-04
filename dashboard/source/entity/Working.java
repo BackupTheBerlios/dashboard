@@ -1,153 +1,163 @@
 package entity;
-/*
- *  Java class "Working.java" generated from Poseidon for UML.
- *  Poseidon for UML is developed by <A HREF="http://www.gentleware.com">Gentleware</A>.
- *  Generated with <A HREF="http://jakarta.apache.org/velocity/">velocity</A> template engine.
- */
+
+
 
 /**
- * <p></p>
+ * <p>this class represent the association beetween a participant(Resource) and a WorkBreakdown Element </p>
+ * @docRoot dashboard
  */
+
 public class Working {
-
-  ///////////////////////////////////////
-  // attributes
-
-
-/**
- * <p>Represents ...</p>
- */
-    private Double workAmount = null; 
-    private String id;
-    private String name;
-
-
-   ///////////////////////////////////////
-   // associations
-
-/**
- * <p></p>
- * 
- * @poseidon-type Resource
- */
-    public Resource resource; // of type Resource
-/**
- * <p></p>
- * 
- * @poseidon-type WorkBreakDowElement
- */
-    public WorkBreakDownElement workBreakDownElement; // of type WorkBreakDowElement
-    
-
-
-
-
-/**
- * @param workAmount
- * @param id
- * @param name
- */
-public Working( String id, String name, Double workAmount) {
-	super();
-	// TODO Auto-generated constructor stub
-	this.workAmount = workAmount;
-	this.id = id;
-	this.name = name;
-}
-
-
-
-/**
- * @param workAmount
- * @param id
- */
-public Working( String id, Double workAmount) {
-	super();
-	// TODO Auto-generated constructor stub
-	this.workAmount = workAmount;
-	this.id = id;
-}
-
-
-
-/**
- * @return Returns the id.
- */
-public String getId() {
-	return id;
-}
-
-
-/**
- * @return Returns the resource.
- */
-public Resource getResource() {
-	return resource;
-}
-/**
- * @return Returns the workAmount.
- */
-public Double getWorkAmount() {
-	return workAmount;
-}
-/**
- * @return Returns the workBreakDowElement.
- */
-public WorkBreakDownElement getWorkBreakDownElement() {
-	return workBreakDownElement;
-}
-/**
- * @param resource The resource to set.
- */
-public void setResource(Resource resource) {
-	this.resource = resource;
-}
-/**
- * @param workAmount The workAmount to set.
- */
-public void setWorkAmount(Double workAmount) {
-	this.workAmount = workAmount;
-}
-/**
- * @param workBreakDowElement The workBreakDowElement to set.
- */
-public void setWorkBreakDownElement(WorkBreakDownElement workBreakDownElement) {
-	this.workBreakDownElement = workBreakDownElement;
-}
-
-
-
-
-/**
- * @return Returns the name.
- */
-public String getName() {
-	return name;
-}
-
-
-
-
-/**
- * @param name The name to set.
- */
-public void setName(String name) {
-	this.name = name;
-}
-
-
-
-/* (non-Javadoc)
- * @see java.lang.String#equals(java.lang.Object)
- */
-public boolean equals(Object workin) {
 	
-	return (workin instanceof Working) && ((Working)workin).getId().equals(this.getId());
-}
+	///////////////////////////////////////
+	// attributes
+	
+	
+	/**
+	 * <p>Represents the workamount that will be used to estimate workBreakdownElement consommation </p>
+	 */
+	private Double workAmount = null; 
+	
+	/**
+	 * <p>Represents the working identificator </p>
+	 */
+	private String id;
+	
+	/**
+	 * <p>Represents the working name </p>
+	 */
+	private String name;
+	
+	
+	///////////////////////////////////////
+	// associations
+	
+	/**
+	 * <p>Represents Resource link to access to the associate resource </p>
+	 * 
+	 * @link Resource
+	 */
+	public Resource resource; // of type Resource
+	
+	
+	/**
+	 * <p>Represents WBE link to access to the associate WorkBreakDownElement </p>
+	 * 
+	 * @link WorkBreakDownElement
+	 */
+	public WorkBreakDownElement workBreakDownElement; // of type WorkBreakDowElement
+	
+	
+	
+	
+	
+	/**
+	 * <p>Constructor taken 3 parameters the String id, the String name and the Double workAmount  </p>
+	 * @param pid the workAmount 
+	 * @param pname the Working identificator
+	 * @param pworkAmount the Working name
+	 */
+	public Working( String pid, String pname, Double pworkAmount) {
+		
+		this.workAmount = pworkAmount;
+		this.id = pid;
+		this.name = pname;
+	}
+	
+	
+	/** 
+	 * <p>Constructor taken 2 parameters the String id and the Double workAmount  </p>
+	 * @param pid the Working identificator
+	 * @param pworkAmount the Working name
+	 */
+	public Working( String pid, Double pworkAmount) {
+		this.workAmount = pworkAmount;
+		this.id = pid;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * @return Returns the id.
+	 */
+	public String getId() {
+		return id;
+	}
+	
+	
+	/**
+	 * 
+	 * @return Returns this Working name.
+	 */
+	public String getName() {
+		return name;
+	}
 
 
+	/***
+	 * 
+	 * @return Returns the workAmount.
+	 */
+	public Double getWorkAmount() {
+		return workAmount;
+	}
 
 
+	/**
+	 * 
+	 * @return Returns the resource.
+	 */
+	public Resource getResource() {
+		return resource;
+	}
+	
+	
+	/**
+	 * 
+	 * @return Returns the workBreakDowElement associate.
+	 */
+	public WorkBreakDownElement getWorkBreakDownElement() {
+		return workBreakDownElement;
+	}
+	
+	/**
+	 *  
+	 * @param pname The name to set.
+	 */
+	public void setName(String pname) {
+		this.name = pname;
+	}
+
+
+	/**
+	 *  étienne ALLOGO
+	 * @param pworkAmount The workAmount to set.
+	 */
+	public void setWorkAmount(Double pworkAmount) {
+		this.workAmount = pworkAmount;
+	}
+
+
+	/**
+	 * 
+	 * @param presource The resource associate to set.
+	 */
+	public void setResource(Resource presource) {
+		this.resource = presource;
+	}
+	
+	
+	/**
+	 * 
+	 * @param pworkBreakDownElement The workBreakDowElement associate to set.
+	 */
+	public void setWorkBreakDownElement(WorkBreakDownElement pworkBreakDownElement) {
+		this.workBreakDownElement = pworkBreakDownElement;
+	}
+	
+	
+	
 } // end Working
 
 

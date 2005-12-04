@@ -2,9 +2,7 @@ import java.util.HashMap;
 
 import entity.*;
 
-/* CVStest pour OLivier*/
-
-/**
+/*
  * 
  */
 

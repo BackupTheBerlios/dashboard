@@ -21,14 +21,10 @@ public class WorkBreakDownElement extends Plannable {
 	 */
 	private String name; 
 	private String id;
+	
 	///////////////////////////////////////
 	// associations
 	
-	/**
-	 * <p></p>
-	 * 
-	 * @poseidon-type Working
-	 */
 	
 	public java.util.Collection<Working> workings = new java.util.ArrayList<Working>(); // of type Working
 	/**
@@ -38,7 +34,7 @@ public class WorkBreakDownElement extends Plannable {
 	/**
 	 * <p></p>
 	 */
-	public WBESet wBESet; 
+	public WBESet wBESet = null; 
 	
 	
 	///////////////////////////////////////
@@ -78,9 +74,9 @@ public class WorkBreakDownElement extends Plannable {
 	 * @return 
 	 */
 	public Double getPrevisionsDelais() {        
-		// your code here
+		
 		return null;
-	} // end getPrevisionsDelais        
+	}       
 	
 	/**
 	 * <p>Does ...</p>
@@ -89,9 +85,8 @@ public class WorkBreakDownElement extends Plannable {
 	 * @return 
 	 */
 	public Double getPrevisionsCharges() {        
-		// your code here
 		return null;
-	} // end getPrevisionsCharges        
+	}       
 	
 	/**
 	 * @return Returns the activity.

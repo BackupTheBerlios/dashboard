@@ -7,7 +7,7 @@ import entity.*;
  */
 
 /**
- * @author étienne
+ * @author étienne ALLOGO
  *
  */
 public class TestEntity {

@@ -9,32 +9,32 @@ package entity;
  * <p></p>
  */
 public interface IIndicator {
-
-  ///////////////////////////////////////
-  // operations
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * @return 
- */
-    public  Double getTresholdMax();
-/**
- * <p>Does ...</p>
- * 
- * 
- * @return 
- */
-    public  Double getTresholdMin();
-/**
- * <p>Does ...</p>
- * 
- * 
- * @return 
- */
-    public  IndicatorState compute();
-
+	
+	///////////////////////////////////////
+	// operations
+	
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public  Double getTresholdMax();
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public  Double getTresholdMin();
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public  IndicatorState compute();
+	
 } // end IIndicator
 
 

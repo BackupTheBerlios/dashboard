@@ -11,69 +11,85 @@ package entity;
  * <p></p>
  */
 public class WBESet {
+	
+	///////////////////////////////////////
+	// attributes
+	private String id;
+	
+	/**
+	 * <p>Represents ...</p>
+	 */
+	private String name; 
+	
+	///////////////////////////////////////
+	// associations
+	
+	/**
+	 * <p></p>
+	 * 
+	 * @poseidon-type WorkBreakDowElement
+	 */
+	private java.util.Collection<WorkBreakDownElement> workBreakDowElements = new java.util.TreeSet<WorkBreakDownElement>(); // of type WorkBreakDowElement
+	
+	/**
+	 * @param id
+	 * @param name
+	 */
+	public WBESet(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  ///////////////////////////////////////
-  // attributes
+	/**
+	 * @return Returns the id.
+	 */
+	public String getId() {
+		return id;
+	}
 
-
-/**
- * <p>Represents ...</p>
- */
-    private String name; 
-
-   ///////////////////////////////////////
-   // associations
-
-/**
- * <p></p>
- * 
- * @poseidon-type WorkBreakDowElement
- */
-    private java.util.Collection<WorkBreakDownElement> workBreakDowElements = new java.util.TreeSet<WorkBreakDownElement>(); // of type WorkBreakDowElement
-
-/**
- * @return Returns the name.
- */
-public String getName() {
-	return name;
-}
-
-/**
- * @param name The name to set.
- */
-public void setName(String name) {
-	this.name = name;
-}
-
-/* (non-Javadoc)
- * @see java.util.Collection#add(E)
- */
-public boolean add(WorkBreakDownElement workBreakDownElement) {
-	return workBreakDowElements.add(workBreakDownElement);
-}
-
-/* (non-Javadoc)
- * @see java.util.Collection#contains(java.lang.Object)
- */
-public boolean contains(Object workBreakDownElement) {
-	return workBreakDowElements.contains(workBreakDownElement);
-}
-
-/* (non-Javadoc)
- * @see java.util.Collection#isEmpty()
- */
-public boolean isEmpty() {
-	return workBreakDowElements.isEmpty();
-}
-
-/* (non-Javadoc)
- * @see java.util.Collection#size()
- */
-public int size() {
-	return workBreakDowElements.size();
-}
-
- } // end WBESet
+	/**
+	 * @return Returns the name.
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * @param name The name to set.
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.util.Collection#add(E)
+	 */
+	public boolean add(WorkBreakDownElement workBreakDownElement) {
+		return workBreakDowElements.add(workBreakDownElement);
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.util.Collection#contains(java.lang.Object)
+	 */
+	public boolean contains(Object workBreakDownElement) {
+		return workBreakDowElements.contains(workBreakDownElement);
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.util.Collection#isEmpty()
+	 */
+	public boolean isEmpty() {
+		return workBreakDowElements.isEmpty();
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.util.Collection#size()
+	 */
+	public int size() {
+		return workBreakDowElements.size();
+	}
+	
+} // end WBESet
 
 
 

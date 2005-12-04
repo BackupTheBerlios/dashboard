@@ -11,47 +11,47 @@ package entity;
  * <p></p>
  */
 public class RealizationPercentageIndicator implements IIndicator {
-
-  ///////////////////////////////////////
-  // operations
-
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * @return 
- */
-    public  Double getTresholdMax() {
+	
+	///////////////////////////////////////
+	// operations
+	
+	
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public  Double getTresholdMax() {
 		return null;   
 		
-        // your code here
-        
-    } // end getTresholdMax        
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * @return 
- */
-    public Double getTresholdMin() {        
-        // your code here
-        return null;
-    } // end getTresholdMin        
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * @return 
- */
-    public  IndicatorState compute() {        
-        // your code here
-        return null;
-    } // end compute        
-
- } // end RealizationPercentage_Indicator
+		// your code here
+		
+	} // end getTresholdMax        
+	
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public Double getTresholdMin() {        
+		// your code here
+		return null;
+	} // end getTresholdMin        
+	
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public  IndicatorState compute() {        
+		// your code here
+		return null;
+	} // end compute        
+	
+} // end RealizationPercentage_Indicator
 
 
 

@@ -131,7 +131,7 @@ public class Working {
 
 
 	/**
-	 *  étienne ALLOGO
+	 *  
 	 * @param pworkAmount The workAmount to set.
 	 */
 	public void setWorkAmount(Double pworkAmount) {

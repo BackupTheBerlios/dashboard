@@ -10,20 +10,20 @@ package entity;
  * <p></p>
  */
 public class ControlDDB {
-
-  ///////////////////////////////////////
-  // operations
-
-
-/**
- * <p>Does ...</p>
- * 
- */
-    public void calcIndic() {        
-        // your code here
-    } // end calcIndic        
-
- } // end ControlDDB
+	
+	///////////////////////////////////////
+	// operations
+	
+	
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 */
+	public void calcIndic() {        
+		// your code here
+	} // end calcIndic        
+	
+} // end ControlDDB
 
 
 

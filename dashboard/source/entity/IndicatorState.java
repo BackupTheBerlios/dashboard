@@ -10,21 +10,49 @@ package entity;
  * <p></p>
  */
 public class IndicatorState {
+	
+	///////////////////////////////////////
+	// attributes
+	
+	
+	/**
+	 * <p>Represents ...</p>
+	 */
+	private int led; 
+	
+	/**
+	 * <p>Represents ...</p>
+	 */
+	private Double value;
 
-  ///////////////////////////////////////
-  // attributes
+	/**
+	 * @return Returns the led.
+	 */
+	public int getLed() {
+		return led;
+	}
 
+	/**
+	 * @return Returns the value.
+	 */
+	public Double getValue() {
+		return value;
+	}
 
-/**
- * <p>Represents ...</p>
- */
-    //private int led; 
+	/**
+	 * @param led The led to set.
+	 */
+	public void setLed(int led) {
+		this.led = led;
+	}
 
-/**
- * <p>Represents ...</p>
- */
-    //private Double value; 
- } // end IndicatorState
+	/**
+	 * @param value The value to set.
+	 */
+	public void setValue(Double value) {
+		this.value = value;
+	} 
+} // end IndicatorState
 
 
 

@@ -1,4 +1,7 @@
 package view;
+
+import entity.*;
+
 import java.awt.*;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -6,6 +9,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
+import javax.swing.tree.*;
 import javax.swing.WindowConstants;
 
 
@@ -21,7 +25,9 @@ import javax.swing.WindowConstants;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class ProjectWindow extends javax.swing.JInternalFrame {
+public class ProjectWindow extends javax.swing.JInternalFrame 
+{
+	private Project mProject;
 	private JSplitPane jSplitPane1;
 	private JTree jTree1;
 	private JPanel jPanel1;
@@ -54,7 +60,67 @@ public class ProjectWindow extends javax.swing.JInternalFrame {
 	public ProjectWindow() {
 		super();
 		initGUI();
+		updateProjectTree(null);
 	}
+	
+	public ProjectWindow(Project p) {
+		super();
+		initGUI();
+		updateProjectTree(p);
+	}
+	
+	
+	private void updateProjectTree(Project p)
+	{
+		if(p == null)
+		{			
+			DefaultMutableTreeNode root = new DefaultMutableTreeNode("Empty") ;
+			DefaultTreeModel lModel= new DefaultTreeModel(root);
+			jTree1.setModel(lModel);
+		}
+		else
+		{
+			DefaultMutableTreeNode root = new DefaultMutableTreeNode("Project " + p.getName()) ;
+			int i;
+			java.util.Collection<Activity> lAcs = p.getActivities();
+			for(i=0; i<lAcs.size(); i++)
+			{
+				Activity lAc = (Activity)lAcs.toArray()[i];
+				DefaultMutableTreeNode lAcNode = new DefaultMutableTreeNode("Activity " + lAc.getName()) ;
+				updateActivityNode(lAcNode, lAc);
+				root.add(lAcNode);
+			}
+			DefaultTreeModel lModel= new DefaultTreeModel(root);
+			jTree1.setModel(lModel);
+		}
+		
+	}
+	
+	
+private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
+{	
+	int i;
+	java.util.Collection<Activity> lAcs = pAc.getActivities();
+	for(i=0; i<lAcs.size(); i++)
+	{
+		Activity lAc = (Activity)lAcs.toArray()[i];
+		DefaultMutableTreeNode lAcNode = new DefaultMutableTreeNode("Activity " + lAc.getName()) ;
+		updateActivityNode(lAcNode, lAc);
+		pNode.add(lAcNode);
+	}
+	
+	java.util.Collection<WorkBreakDownElement> lWBEs = pAc.getWorkBreakDownElements();
+	for(i=0; i<lWBEs.size(); i++)
+	{
+		WorkBreakDownElement lWBE = (WorkBreakDownElement)lWBEs.toArray()[i];
+		DefaultMutableTreeNode lWBENode = new DefaultMutableTreeNode("WBE " + lWBE.getName()) ;
+		pNode.add(lWBENode);
+	}
+	
+}
+
+
+
 	
 	private void initGUI() {
 		try {

@@ -1,6 +1,6 @@
 package view ;
 
-
+import test.*;
 import javax.swing.* ;
 import java.awt.* ;
 import java.awt.event.* ;
@@ -66,7 +66,7 @@ public class MainWindow extends javax.swing.JFrame
 
     public void doNewFile ()
     {
-        ProjectWindow pw = new ProjectWindow () ;
+        ProjectWindow pw = new ProjectWindow (TestEntity.createTestProject()) ;
         jDesktopPane1.add (pw) ;
         try
         {

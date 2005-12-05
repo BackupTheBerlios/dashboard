@@ -1,3 +1,4 @@
+package test;
 import java.util.HashMap;
 
 import entity.*;
@@ -15,7 +16,7 @@ public class TestEntity {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static Project createTestProject() {
 		Project projet = new Project("2DB");
 		HashMap<String,Activity>  activities= new HashMap<String,Activity> ();
 		HashMap<String,WorkBreakDownElement>  workBreakDownElements = new HashMap<String,WorkBreakDownElement> ();
@@ -166,9 +167,7 @@ public class TestEntity {
 		 //System.out.println(workings);
 		 //System.out.println(resources.get("2").getWorkings());
 		 projet.addAllActivities(activities.values());
-		 System.out.println(projet.getActivities());
-
-		
+		 return projet;		
 	}
 
 }

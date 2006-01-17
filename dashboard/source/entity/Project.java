@@ -25,6 +25,7 @@ public class Project extends Plannable {
 	
 	private java.util.Collection<Activity> activities = new java.util.ArrayList<Activity>();// of type Activity 
 	private java.util.Collection<WBESet> wbeSets = new java.util.ArrayList<WBESet>();
+	private java.util.Collection<Resource> resources = new java.util.ArrayList<Resource>();
 	
 	///////////////////////////////////////
 	// associations
@@ -33,6 +34,7 @@ public class Project extends Plannable {
 	 * <p>Represents ...</p>
 	 */
 	private String name;
+	private String id;
 	
 	
 	///////////////////////////////////////
@@ -40,12 +42,20 @@ public class Project extends Plannable {
 	
 	
 	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	/**
 	 */
-	public Project(String name) {
+	public Project(String id) {
 		super();
 		// TODO Auto-generated constructor stub
-		this.name = name;
+		this.id = id;
 	}
 	
 	/**
@@ -151,6 +161,28 @@ public class Project extends Plannable {
 	 */
 	public int ActivitiesSize() {
 		return activities.size();
+	}
+
+	public java.util.Collection<Resource> getResources() {
+		return resources;
+	}
+
+	public void setResources(java.util.Collection<Resource> resources) {
+		this.resources = resources;
+	}
+
+	public boolean addResource(Resource arg0) {
+		return resources.add(arg0);
+	}
+
+	public Resource getResource(String idResource) {
+		Resource resource = null;
+		for(Resource r : this.getResources()){
+	  	     if(idResource.equals(r.getId())){
+	  	    	 return r;
+	  	     }
+	  	}
+		return resource;
 	}
 	
 	

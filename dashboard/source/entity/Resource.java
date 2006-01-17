@@ -55,6 +55,13 @@ public class Resource {
 		this.name = name;
 	}
 	
+	public Resource(String id) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.id = id;
+		this.name = null;
+	}
+	
 	/**
 	 * @return Returns the name.
 	 */

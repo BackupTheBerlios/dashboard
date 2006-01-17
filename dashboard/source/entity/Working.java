@@ -77,6 +77,11 @@ public class Working {
 	
 	
 	
+	public Working(String id) {
+		this.id = id;
+	}
+
+
 	/**
 	 * 
 	 * @return Returns the id.

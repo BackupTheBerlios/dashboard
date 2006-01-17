@@ -51,6 +51,25 @@ public class Activity extends Plannable {
 	// operations
 	
 	
+	public Activity() {
+		super();
+		this.name = null;
+		this.id = null;
+		project = null;
+	}
+	
+	/**
+	 * @param name
+	 * @param id
+	 */
+	public Activity(String id) {
+		super();
+		this.name = null;
+		this.id = id;
+		project = null;
+	}
+	
+	
 	/**
 	 * @param name
 	 * @param id
@@ -62,6 +81,7 @@ public class Activity extends Plannable {
 		project = null;
 	}
 	
+
 	/**
 	 * @return Returns the id.
 	 */
@@ -173,17 +193,26 @@ public class Activity extends Plannable {
 	}
 	
 	public String toString() {
-		String work = "<";
+		String work = "";
+		Iterator it2 = null;
 		Iterator it= workBreakDownElements.iterator();
+		
 		WorkBreakDownElement act= null;
-		int i = 0;
+		Working wk = null;
+		
 		while(it.hasNext()){
 			act = (WorkBreakDownElement) it.next();
-			work += ((i==0)?"wbe":", wbe") + act.getId()  ;
-			i++;
+			work +="\n\t<wbe " + act.getName() +" ,";
+			it2 = act.getWorkings().iterator();
+			while(it2.hasNext()){
+				wk = (Working) it2.next();
+				work += "\n\t\t<wking " + wk.getName() + ", " + wk.getWorkAmount()+ ">";
+			}
+			work += "\n\t>";
+			
 		}
-		work += ">";
-		return "<A" + id + "," + work+ ">";
+		
+		return "<A " + this.getName() + "," + work+ "\n>";
 	}
 	
 	/**

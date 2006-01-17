@@ -51,6 +51,12 @@ public class WorkBreakDownElement extends Plannable {
 		this.name = name;
 	}
 	
+	public WorkBreakDownElement(String id) {
+		super();
+		this.id = id;
+		this.name = null;
+	}
+
 	/**
 	 * @return Returns the workings.
 	 */

@@ -88,6 +88,15 @@ public class WBESet {
 	public int size() {
 		return workBreakDowElements.size();
 	}
+
+	public java.util.Collection<WorkBreakDownElement> getWorkBreakDowElements() {
+		return workBreakDowElements;
+	}
+
+	public void setWorkBreakDowElements(
+			java.util.Collection<WorkBreakDownElement> workBreakDowElements) {
+		this.workBreakDowElements = workBreakDowElements;
+	}
 	
 } // end WBESet
 

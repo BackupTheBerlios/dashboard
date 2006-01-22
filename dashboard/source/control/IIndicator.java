@@ -1,4 +1,6 @@
-package entity;
+package control;
+
+
 /*
  *  Java interface "IIndicator.java" generated from Poseidon for UML.
  *  Poseidon for UML is developed by <A HREF="http://www.gentleware.com">Gentleware</A>.

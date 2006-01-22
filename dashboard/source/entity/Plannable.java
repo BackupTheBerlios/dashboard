@@ -29,8 +29,12 @@ public abstract class Plannable {
 	/**
 	 * <p>Represents ...</p>
 	 */
-	protected Double previsions ; 
+	protected Double estime ; 
 	
+	/**
+	 * <p>Represents ...</p>
+	 */
+	protected Double reel ;
 	///////////////////////////////////////
 	// operations
 	
@@ -68,8 +72,8 @@ public abstract class Plannable {
 	/**
 	 * @return Returns the previsions.
 	 */
-	public Double getPrevisions() {
-		return previsions;
+	public Double getEstime() {
+		return estime ;
 	}
 	
 	/**
@@ -89,8 +93,17 @@ public abstract class Plannable {
 	/**
 	 * @param previsions The previsions to set.
 	 */
-	public void setPrevisions(Double previsions) {
-		this.previsions = previsions;
+	public void setEstime(Double previsions) {
+		this.estime = previsions;
+	}
+
+	public Double getReel() {
+		return reel;
+	}
+	
+ 
+	public void setReel(Double reel) {
+		this.reel = reel;
 	}
 	
 } // end Plannable

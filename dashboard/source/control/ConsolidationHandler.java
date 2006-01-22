@@ -17,16 +17,15 @@ public class ConsolidationHandler {
 	 * <p>Methode permettant de generer les indicateurs pour la vue ByResourceView.</p>
 	 * 
 	 * 
-	 * @param WBEsets 
-	 * @return 
+	 * @param WBEset
+	 * @return HashMap<String idResource, workAmount Double>
 	 */
-    public HashMap<String,Double> getChargeByResources(WBESet groupeActivite) {  
+    public HashMap<String, IndicatorState> getChargeByResources(WBESet groupeActivite) {  
     	
     	//Map contenant les id et les charges pour chaque resource
-    	HashMap<String,Double> resultForView = new HashMap<String,Double>();
-    	HashMap<String,Resource> resources = new HashMap<String,Resource>();
+    	HashMap<String, IndicatorState> resultForView = new HashMap<String, IndicatorState>();
     	String idResource = null;
-    	Double temp;
+    	IndicatorState tempIndicState = null;
     	
     	//Pour chaque workBreakDownElemnt du WBEset
     	for( WorkBreakDownElement wbe : groupeActivite.getWorkBreakDowElements()){
@@ -34,17 +33,20 @@ public class ConsolidationHandler {
     		//Pour chaque working contenu dans le workBreakDownElemnt 
     		for(Working working : wbe.getWorkings() ){
     			
-    			//ajouter la charge du working à la valeur(charge)
-    			//associé à la valeur de la ressource dans la Map
+    			//on verifie s'il ya une ressource attachée
     			if((working.getResource().getId() != null) && (working.getResource().getId().length()!=0)){
+    				//ajouter la charge du working à la valeur(charge)
+        			//associée à la valeur de la ressource dans la Map
     				idResource = working.getResource().getId();
     				if(resultForView.containsKey(idResource)){
-    					temp = resultForView.get(idResource);
-    					temp += working.getWorkAmount();
+    					
+    					resultForView.get(idResource).plusValue(working.getWorkAmount());
     				}
-    				//si la resource n'est pas referencé dans la map, on l'ajoute. 
+    				//si la resource n'est pas referencée dans la map, on l'ajoute. 
     				else{
-    					resultForView.put(idResource, working.getWorkAmount());
+    					tempIndicState = new IndicatorState();
+    					
+    					resultForView.put(idResource,tempIndicState);
     				}
     			}
 
@@ -58,7 +60,7 @@ public class ConsolidationHandler {
 	 * 
 	 * 
 	 * @param WBEsets 
-	 * @return 
+	 * @return HashMap<String idResource, workAmount Double>
 	 */
 	public HashMap<String,Double> getByWBEViewIndicators(ArrayList<WBESet> WBEsets) { 
 		HashMap<String,Double> resultForView = new HashMap<String,Double>();

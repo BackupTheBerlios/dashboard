@@ -14,6 +14,7 @@ public class IndicatorState {
 	///////////////////////////////////////
 	// attributes
 	
+	String name;
 	
 	/**
 	 * <p>Represents ...</p>
@@ -51,6 +52,22 @@ public class IndicatorState {
 	 */
 	public void setValue(Double value) {
 		this.value = value;
+	}
+	
+	/**
+	 * @param value The value to set.
+	 */
+	public void plusValue(Double value) {
+		this.value = this.value + value;
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	} 
 } // end IndicatorState
 

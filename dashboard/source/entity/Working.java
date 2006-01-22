@@ -16,7 +16,7 @@ public class Working {
 	/**
 	 * <p>Represents the workamount that will be used to estimate workBreakdownElement consommation </p>
 	 */
-	private Double workAmount = null; 
+	private Double workAmount = 0.0; 
 	
 	/**
 	 * <p>Represents the working identificator </p>

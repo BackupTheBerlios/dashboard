@@ -64,15 +64,7 @@ public class WorkBreakDownElement extends Plannable {
 		return workings;
 	}
 	
-	/**
-	 *
-	 * @return the wbElement consommation
-	 */
-	public Double getReal() {        
-		
-		return null;
-	} // end getReal        
-	
+
 	/**
 	 * <p>Does ...</p>
 	 * 

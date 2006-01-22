@@ -75,11 +75,11 @@ public class Activity extends Plannable {
 	 * @param name
 	 * @param id
 	 */
-	public Activity(String id, String name, String dur) {
+	public Activity(String id, String name) {
 		super();
 		this.name = name;
 		this.id = id;
-		this.duration=dur;
+	
 		project = null;
 	}
 	

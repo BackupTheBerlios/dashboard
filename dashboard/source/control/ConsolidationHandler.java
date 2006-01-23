@@ -67,7 +67,7 @@ public class ConsolidationHandler {
 	 * @param WBEsets 
 	 * @return HashMap<String idResource, workAmount Double>
 	 */
-	public Collection<IndicatorState> getByWBEViewIndicators(ArrayList<WBESet> wBEsets) { 
+	public Collection<IndicatorState> getChargeForAllWbe(Collection<WBESet> wBEsets) { 
     	//Map contenant les id et les charges pour chaque resource
     	ArrayList<IndicatorState> resultForView = new ArrayList<IndicatorState>();
     	IndicatorState tempIndicState = null;

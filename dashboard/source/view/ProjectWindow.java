@@ -3,6 +3,9 @@ package view;
 import entity.*;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -11,7 +14,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.tree.*;
 import javax.swing.WindowConstants;
-
+import javax.swing.*;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -28,8 +31,8 @@ import javax.swing.WindowConstants;
 public class ProjectWindow extends javax.swing.JInternalFrame 
 {
 	private Project mProject;
-	private JSplitPane jSplitPane1;
-	private JTree jTree1;
+	public static JSplitPane jSplitPane1;
+	public static JTree jTree1;
 	private JPanel jPanel1;
 
 	{
@@ -135,9 +138,11 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 				getContentPane().add(jSplitPane1, BorderLayout.CENTER);
 				{
 					jTree1 = new JTree();
+					jTree1.addMouseListener (new MouseEventclic ());
 					jSplitPane1.add(jTree1, JSplitPane.LEFT);
 					jPanel1 = new JPanel();
 					jSplitPane1.add(jPanel1, JSplitPane.RIGHT);
+					
 					
 				}
 			}
@@ -147,4 +152,67 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 		}
 	}
 
+
+
+	public class MouseEventclic implements MouseListener {
+		
+	   	public void mousePressed(MouseEvent e) {
+	 
+	    }
+
+	    public void mouseReleased(MouseEvent e) {
+	    
+	    }
+
+	    public void mouseEntered(MouseEvent e) {
+	    
+	    }
+
+	    public void mouseExited(MouseEvent e) {
+	      
+	    }
+
+	    public void mouseClicked (MouseEvent ev)
+	    {
+	    	int j []=ProjectWindow.jTree1.getSelectionRows();
+	    	int i=j[0];
+	    	if(i==0)
+	    	{
+		    	JLabel label = new JLabel("Voici l'indicateur qui permet de voir le rapport : 25");
+		    	JPanel jPanel2=new JPanel();
+		    	jPanel2.setLayout(new BorderLayout());
+		    	label.setMaximumSize(label.getPreferredSize());
+		    	jPanel2.add(label,BorderLayout.NORTH);
+				JProgressBar Jbar=new JProgressBar(1,99);
+				Jbar.setBackground(Color.red);
+				Jbar.setValue(50);
+				Jbar.setMaximumSize(Jbar.getPreferredSize());
+				JPanel jPanel3=new JPanel();
+				jPanel3.setLayout(new BorderLayout());
+				JPanel jPanel4=new JPanel();
+				JLabel label2 = new JLabel("Voila la barre indiquant l'avancement :");
+				jPanel4.add(label2);
+				jPanel4.add(Jbar);
+				jPanel3.add(jPanel4,BorderLayout.NORTH);
+				JProgressBar Jbar2=new JProgressBar(1,99);
+				Jbar2.setMaximumSize(Jbar2.getPreferredSize());
+				//Jbar2.setBackground(Color.BLUE);
+				Jbar2.setValue(25);
+				JPanel jPanel5=new JPanel();
+				JLabel label3 = new JLabel("Voila la barre indiquant le budget :");
+				jPanel5.add(label3);
+				jPanel5.add(Jbar2);
+				jPanel3.add(jPanel5,BorderLayout.WEST);
+				jPanel2.add(jPanel3,BorderLayout.WEST);
+				ProjectWindow.jSplitPane1.add(jPanel2,JSplitPane.RIGHT);
+			}
+	    	else
+	    	{
+	    		JPanel jPanel2=new JPanel();
+	    		ProjectWindow.jSplitPane1.add(jPanel2,JSplitPane.RIGHT);
+	    	}
+	    	
+	    }
+	}
 }
+

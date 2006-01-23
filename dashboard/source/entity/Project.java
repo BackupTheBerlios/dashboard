@@ -56,6 +56,7 @@ public class Project extends Plannable {
 		super();
 		// TODO Auto-generated constructor stub
 		this.id = id;
+		this.name=id;
 	}
 	
 	/**

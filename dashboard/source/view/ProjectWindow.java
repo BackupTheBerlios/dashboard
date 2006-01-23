@@ -194,7 +194,7 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 				jPanel4.add(label2);
 				jPanel4.add(Jbar);
 				jPanel3.add(jPanel4,BorderLayout.NORTH);
-				JProgressBar Jbar2=new JProgressBar(1,99);
+				JProgressBar Jbar2=new JProgressBar();
 				Jbar2.setMaximumSize(Jbar2.getPreferredSize());
 				//Jbar2.setBackground(Color.BLUE);
 				Jbar2.setValue(25);

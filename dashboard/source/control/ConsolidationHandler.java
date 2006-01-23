@@ -19,7 +19,7 @@ public class ConsolidationHandler {
 	 * 
 	 * 
 	 * @param WBEset
-	 * @return HashMap<String idResource, workAmount Double>
+	 * @return Collection<IndicatorState> indicateur à afficher
 	 */
     public Collection<IndicatorState> getChargeByResources(WBESet groupeActivite) {  
     	
@@ -65,7 +65,7 @@ public class ConsolidationHandler {
 	 * 
 	 * 
 	 * @param WBEsets 
-	 * @return HashMap<String idResource, workAmount Double>
+	 * @return Collection<IndicatorState> indicateur à afficher
 	 */
 	public Collection<IndicatorState> getChargeForAllWbe(Collection<WBESet> wBEsets) { 
     	//Map contenant les id et les charges pour chaque resource

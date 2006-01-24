@@ -1,13 +1,17 @@
-package test;
+package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -21,7 +25,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-public class ChartExample extends JFrame
+public class V_VariationIndicator extends JFrame
 {
   /**
 	 * 
@@ -31,15 +35,17 @@ public class ChartExample extends JFrame
   public static final int XY_CHART = 1;
   public static final int CATEGORY_CHART = 2;
 
-  public static void main(String[] args) throws Exception
-  {
-    ChartExample chartExample = new ChartExample(CATEGORY_CHART );
-    
+  
+  
+  public static void main(String[] args) throws IOException  
+  {  
+  V_VariationIndicator exemple= new V_VariationIndicator(); 
   }
-
-  public ChartExample(int chartType) throws Exception
+  
+  
+  public V_VariationIndicator() throws IOException  
   {
-    JFreeChart chart = createChart(chartType);
+    JFreeChart chart = createChart(2);
 
     // write chart as JPEG file
     ChartUtilities.saveChartAsJPEG(new File("chart.jpg"), chart, 500,300);
@@ -54,10 +60,22 @@ public class ChartExample extends JFrame
     String[] data = {"one", "two", "three", "four"};
     JComboBox dataList = new JComboBox(data);
     
-     
+    JRadioButton rbt1= new JRadioButton("week");
+ 
+    /*
+    dataList.addActionListener(new ActionListener ()
+                        {
+                            public void actionPerformed (ActionEvent ev)
+                            {
+                            	
+                            	
+                                
+                            }
+                        }); */
     this.getContentPane().setLayout(new BorderLayout());
     this.getContentPane().add(lblChart, BorderLayout.CENTER);
     this.getContentPane().add(dataList, BorderLayout.SOUTH);
+    this.getContentPane().add(rbt1,BorderLayout.WEST);
     this.setSize(600,400);
     this.setVisible(true);
 
@@ -67,39 +85,9 @@ public class ChartExample extends JFrame
                 }});
   }
 
-  private JFreeChart createChart(int chartType) throws Exception
+  private JFreeChart createChart(int k)  
   {
-    switch (chartType)
-    {
-      case 0:
-        DefaultPieDataset pieDataset = new DefaultPieDataset();
-        pieDataset.setValue("JavaWorld", new Integer(75));
-        pieDataset.setValue("Other", new Integer(25));
-
-        return ChartFactory.createPieChart("Sample Pie Chart",
-                                            pieDataset,
-                                            true ,// show legend
-                                            false,
-                                            false
-                                          );
-      case 1:
-        XYSeries series = new XYSeries("Average Size");
-        series.add(20.0, 10.0);
-        series.add(40.0, 20.0);
-        series.add(70.0, 50.0);
-        XYDataset xyDataset = new XYSeriesCollection(series);
-
-        return ChartFactory.createXYAreaChart("Sample XY Chart",
-                                              "Height",
-                                              "Weight",
-                                              xyDataset,
-                                              PlotOrientation.VERTICAL,
-                                              true, // show legend
-                                              false,
-                                              false
-                                              
-                                             );
-      case 2:
+  
     	  /*
         String[] seriesNames = new String[] {"2001", "2002"};
         String[] categoryNames = new String[] {"First Quater",
@@ -112,12 +100,12 @@ public class ChartExample extends JFrame
         */
         DefaultCategoryDataset categoryDataset = new DefaultCategoryDataset();
         //DatasetGroup set = new DatasetGroup();
-     
-        categoryDataset.addValue(12.3,"estimé","it1"); 
-        categoryDataset.addValue(13.0,"réel","1t1");
         
-        categoryDataset.addValue(16.3,"estimé","it2"); 
-        categoryDataset.addValue(10.0,"réel","1t2");
+        categoryDataset.addValue(12.3*k,"estimé","it1"); 
+        categoryDataset.addValue(13.0*k,"réel","1t1");
+        
+        categoryDataset.addValue(16.3*k,"estimé","it2"); 
+        categoryDataset.addValue(10.0*k,"réel","1t2");
         // Comparable 
         //categoryDataset.getV//seriesNames,
                 //categoryNames,
@@ -133,9 +121,8 @@ public class ChartExample extends JFrame
                                                      false
                                                     );
       
-      default:
-        throw new Exception("Please try 0, 1");
+       
     }
-  }
 }
+
 

@@ -1,4 +1,4 @@
-package test;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
@@ -21,7 +21,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-public class ChartExample extends JFrame
+public class V_VariationIndicator extends JFrame
 {
   /**
 	 * 
@@ -33,11 +33,11 @@ public class ChartExample extends JFrame
 
   public static void main(String[] args) throws Exception
   {
-    ChartExample chartExample = new ChartExample(CATEGORY_CHART );
+    V_VariationIndicator chartExample = new V_VariationIndicator(CATEGORY_CHART );
     
   }
 
-  public ChartExample(int chartType) throws Exception
+  public V_VariationIndicator(int chartType) throws Exception
   {
     JFreeChart chart = createChart(chartType);
 

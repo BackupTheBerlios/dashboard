@@ -1,4 +1,4 @@
-package entity;
+package control;
 
 public class objVariation
 {

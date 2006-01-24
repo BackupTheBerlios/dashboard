@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.* ;
+
 import java.awt.* ;
 import java.util.*;
 import org.jfree.chart.*;
@@ -9,8 +10,14 @@ import org.jfree.data.category.*;
 import org.jfree.chart.axis.*;
 import org.jfree.chart.renderer.category.*;
 
-import entity.objVariation;
+import control.objVariation;
 
+
+
+/*
+ * Classe créant un histogramme montrant un indicateur de variation d'un projet à partir de données fournies en entrée
+ * auteur : Yoann Lopes
+ */
 public class ViewProjectVariation extends JFrame
 {
 
@@ -20,6 +27,33 @@ public class ViewProjectVariation extends JFrame
 		Container container = this.getRootPane() ;
 		container.setLayout(new BorderLayout());
 		
+		//Panel contenant les boutons de paramétrage du graphique
+		JPanel haut = new JPanel() ;
+		haut.setLayout(new GridLayout(1,2)) ;
+		
+	    String[] data = {"Groupe", "Ressource 1", "Ressource 2", "Ressource 3"};
+	    JComboBox comboRessource = new JComboBox(data);
+	    JPanel panneauListe = new JPanel() ;
+	    panneauListe.setLayout(new GridLayout(2,1)) ;
+	    panneauListe.add(comboRessource) ;
+	    haut.add(panneauListe) ;
+	    
+	    JRadioButton rbtIteration= new JRadioButton("Par itérations");
+	    JRadioButton rbtSemaine= new JRadioButton("Par semaines");
+	    ButtonGroup group = new ButtonGroup() ;
+	    rbtIteration.setSelected(true) ;
+	    group.add(rbtIteration) ;
+	    group.add(rbtSemaine) ;
+	    JPanel panneauRadio = new JPanel() ;
+	    panneauRadio.setLayout(new GridLayout(2,1)) ;
+	    panneauRadio.add(rbtIteration) ;
+	    panneauRadio.add(rbtSemaine) ;
+	    haut.add(panneauRadio) ;
+	    
+	    container.add(haut,BorderLayout.NORTH) ;
+		
+		
+		// Partie concernant la création du graphique
 		DefaultCategoryDataset dataset = this.extractDataSet(vectObjVar) ;
 		JFreeChart chart = ChartFactory.createBarChart("Project Variation","Itérations","Heures",dataset,PlotOrientation.VERTICAL,true,false,false);
 		
@@ -41,8 +75,9 @@ public class ViewProjectVariation extends JFrame
 		
 		ChartPanel p = new ChartPanel(chart) ;
 		
-		container.add(p) ;
+		container.add(p,BorderLayout.CENTER) ;
 		
+	
 		this.setSize(600,600) ;
 		this.setVisible(true);
 		

@@ -11,7 +11,10 @@ import control.ProjectControl;
 
 public class ProjectView {
 
-	ProjectControl pc = new ProjectControl();
+	// Récupérer le nom du projet lors de la sélection par l'utilisateur
+	String name;
+	
+	ProjectControl pc = new ProjectControl(name);
 	/*
 	 * pc permet de récupérer les indicateurs calculés 
 	 * dans la classe control: ProjectControl

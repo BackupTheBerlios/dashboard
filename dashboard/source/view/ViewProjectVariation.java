@@ -3,6 +3,8 @@ package view;
 import javax.swing.* ;
 
 import java.awt.* ;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.*;
@@ -20,10 +22,11 @@ import control.objVariation;
  */
 public class ViewProjectVariation extends JFrame
 {
-
+	private Vector<objVariation> v; 
 	public	ViewProjectVariation(Vector<objVariation> vectObjVar,String params)
 	{
 		super("Project Variation");
+		v=vectObjVar;
 		Container container = this.getRootPane() ;
 		container.setLayout(new BorderLayout());
 		
@@ -32,19 +35,25 @@ public class ViewProjectVariation extends JFrame
 		haut.setLayout(new GridLayout(1,2)) ;
 		
 	    Vector<String> data = new Vector<String>();
-	    data.add("Group");
+	    data.add("group");
 	    int i=0;
 	    while(!vectObjVar.get(i).getRessource().equals("group"))
 	    {
 	    	data.add(vectObjVar.get(i).getRessource());
 	    	i++;
 	    }
-	    JComboBox comboRessource = new JComboBox(data);
+	    final JComboBox comboRessource = new JComboBox(data);
 	    JPanel panneauListe = new JPanel() ;
 	    panneauListe.setLayout(new GridLayout(2,1)) ;
 	    panneauListe.add(comboRessource) ;
 	    haut.add(panneauListe) ;
-	    //comboRessource.
+	    comboRessource.addActionListener(new ActionListener ()
+                        {
+                            public void actionPerformed (ActionEvent ev)
+                            {
+                                 refresh (  comboRessource.getSelectedItem().toString()) ;
+                            }
+                        });
 	    
 	    JRadioButton rbtIteration= new JRadioButton("Par itérations");
 	    JRadioButton rbtSemaine= new JRadioButton("Par semaines");
@@ -95,7 +104,10 @@ public class ViewProjectVariation extends JFrame
                 }});
 	}
 	
-
+	public void refresh(String p)
+	{
+		ViewProjectVariation test = new ViewProjectVariation(v,p) ;
+	}
 	public DefaultCategoryDataset extractDataSet(Vector<objVariation> vect,String params)
 	{
 		DefaultCategoryDataset dcd = new DefaultCategoryDataset();

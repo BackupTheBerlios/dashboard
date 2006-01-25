@@ -33,24 +33,40 @@ public class C_ObjVariation {
 		 int i;
 		 for(i=0;i<taile;i++)
 		 {
-			 allWBE.addAll(extractWBEFromActivity(p.getActivities().toArray()[i]<Activity>));
+			 allWBE.addAll(extractWBEFromActivity(p.getActivities().toArray()[i]<Activity> ));
 		 }
 	 }
 	 private Vector<objVariation> wbesToObjVariation (String params)
 	 {
 		 Vector<objVariation> res = new Vector<objVariation>() ;
-		 WorkBreakDownElement[] tab=allWBE.toArray(); 
-		 int i;
+		 WorkBreakDownElement[] tab=(WorkBreakDownElement[]) allWBE.toArray(); 
+		 int i,k;
 		 for(i=0;i<tab.length;i++)
 		 {
-			 if(params.equals("Group"))
-			 {
+			  
 				 java.util.Collection <Working> wk=tab[i].getWorkings();
-				 if(wk.size()=1)// one ressource working
+				 Object[] tabWk = wk.toArray();
+				 if(tabWk.length==1)// one ressource working
 				 {
-					 objVariation data=new objVariation(tab[i].getActivity().getDuration(),tab[i].getEstime(),tab[i].getReel(),tab[i].)
+					 objVariation data=new objVariation(tab[i].getActivity().getDuration(),
+							 tab[i].getEstime(),
+							 tab[i].getReel(),
+							 tabWk[1].getName(),0);// num week not implement for the moment
+					 res.add(data);
 				 }
-			 }
+				 else
+				 	{
+					 for(k=0;k<tabWk.length;k++)
+					 {
+						 objVariation data=new objVariation(tab[i].getActivity().getDuration(),
+								 tab[i].getEstime(),
+								 tab[i].getReel(),
+								 tabWk[k].getName(),0);// num week not implement for the moment
+						 res.add(data);
+					 }
+				 	}
+			 
 		 }
+		 
 	 }
 } // end 

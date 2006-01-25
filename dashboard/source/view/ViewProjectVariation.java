@@ -21,7 +21,7 @@ import control.objVariation;
 public class ViewProjectVariation extends JFrame
 {
 
-	public	ViewProjectVariation(Vector<objVariation> vectObjVar)
+	public	ViewProjectVariation(Vector<objVariation> vectObjVar,String params)
 	{
 		super("Project Variation");
 		Container container = this.getRootPane() ;
@@ -31,12 +31,20 @@ public class ViewProjectVariation extends JFrame
 		JPanel haut = new JPanel() ;
 		haut.setLayout(new GridLayout(1,2)) ;
 		
-	    String[] data = {"Groupe", "Ressource 1", "Ressource 2", "Ressource 3"};
+	    Vector<String> data = new Vector<String>();
+	    data.add("Group");
+	    int i=0;
+	    while(!vectObjVar.get(i).getRessource().equals("group"))
+	    {
+	    	data.add(vectObjVar.get(i).getRessource());
+	    	i++;
+	    }
 	    JComboBox comboRessource = new JComboBox(data);
 	    JPanel panneauListe = new JPanel() ;
 	    panneauListe.setLayout(new GridLayout(2,1)) ;
 	    panneauListe.add(comboRessource) ;
 	    haut.add(panneauListe) ;
+	    //comboRessource.
 	    
 	    JRadioButton rbtIteration= new JRadioButton("Par itérations");
 	    JRadioButton rbtSemaine= new JRadioButton("Par semaines");
@@ -54,7 +62,7 @@ public class ViewProjectVariation extends JFrame
 		
 		
 		// Partie concernant la création du graphique
-		DefaultCategoryDataset dataset = this.extractDataSet(vectObjVar) ;
+		DefaultCategoryDataset dataset = this.extractDataSet(vectObjVar,params) ;
 		JFreeChart chart = ChartFactory.createBarChart("Project Variation","Itérations","Heures",dataset,PlotOrientation.VERTICAL,true,false,false);
 		
 		CategoryPlot plo = chart.getCategoryPlot() ;
@@ -88,7 +96,7 @@ public class ViewProjectVariation extends JFrame
 	}
 	
 
-	public DefaultCategoryDataset extractDataSet(Vector<objVariation> vect)
+	public DefaultCategoryDataset extractDataSet(Vector<objVariation> vect,String params)
 	{
 		DefaultCategoryDataset dcd = new DefaultCategoryDataset();
 		int vectorLength = vect.size() ;
@@ -96,8 +104,11 @@ public class ViewProjectVariation extends JFrame
 		for (int i=0 ; i<vectorLength ; i++)
 		{
 			ov = vect.get(i) ;
-			dcd.addValue(ov.getTempsEstime(),"Estimé",ov.getIteration()) ;
-			dcd.addValue(ov.getTempsReel(),"Réel",ov.getIteration()) ;
+			if(ov.getRessource().equals(params))
+			{	
+				dcd.addValue(ov.getTempsEstime(),"Estimé",ov.getIteration()) ;
+				dcd.addValue(ov.getTempsReel(),"Réel",ov.getIteration()) ;
+			}
 		}
 		return dcd ;
 	}
@@ -109,16 +120,34 @@ public class ViewProjectVariation extends JFrame
 	{
 		Vector<objVariation> vect = new Vector<objVariation>() ;
 		
-		objVariation obj1 = new objVariation("it1",4.4,6,"Yoann",2) ;
-		vect.add(obj1) ;
+		objVariation obj11 = new objVariation("it1",4,6,"Yoann",2);
+		vect.add(obj11) ;
 		
-		objVariation obj2 = new objVariation("it2",15,7,"Yoann",3) ;
-		vect.add(obj2) ;
+		objVariation obj12 = new objVariation("it1",4,5,"kamil",2);
+		vect.add(obj12) ;
 		
-		objVariation obj3 = new objVariation("it3",12,20,"Yoann",5) ;
-		vect.add(obj3) ;
+		objVariation objSum1 = new objVariation("it1",8,11,"group",2);
+		vect.add(objSum1) ;
 		
-		ViewProjectVariation test = new ViewProjectVariation(vect) ;
+		objVariation obj21 = new objVariation("it2",15,7,"Yoann",3) ;
+		vect.add(obj21) ;
+		
+		objVariation obj22 = new objVariation("it2",17,7,"kamil",3) ;
+		vect.add(obj22) ;
+		
+		objVariation objSum2 = new objVariation("it2",32,14,"group",2);
+		vect.add(objSum2) ;
+		
+		objVariation obj31 = new objVariation("it3",12,20,"Yoann",5) ;
+		vect.add(obj31) ;
+		
+		objVariation obj32 = new objVariation("it3",14,20,"kamil",5) ;
+		vect.add(obj32);
+		
+		objVariation objSum3 = new objVariation("it3",26,40,"group",2);
+		vect.add(objSum3) ;
+		
+		ViewProjectVariation test = new ViewProjectVariation(vect,"group") ;
 	}
 
 }

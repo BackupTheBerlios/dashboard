@@ -9,7 +9,9 @@ import java.awt.event.MouseListener;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.tree.*;
@@ -34,6 +36,7 @@ public class ProjectWindow extends javax.swing.JInternalFrame
 	public static JSplitPane jSplitPane1;
 	public static JTree jTree1;
 	private JPanel jPanel1;
+	
 
 	{
 		//Set Look & Feel
@@ -153,8 +156,7 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 	}
 
 
-
-	public class MouseEventclic implements MouseListener {
+public class MouseEventclic implements MouseListener {
 		
 	   	public void mousePressed(MouseEvent e) {
 	 
@@ -178,7 +180,7 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 	    	int i=j[0];
 	    	if(i==0)
 	    	{
-		    	JLabel label = new JLabel("Voici l'indicateur qui permet de voir le rapport : 25");
+		    	JLabel label = new JLabel("Avancement du projet : 2DB");
 		    	JPanel jPanel2=new JPanel();
 		    	jPanel2.setLayout(new BorderLayout());
 		    	label.setMaximumSize(label.getPreferredSize());
@@ -190,7 +192,7 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 				JPanel jPanel3=new JPanel();
 				jPanel3.setLayout(new BorderLayout());
 				JPanel jPanel4=new JPanel();
-				JLabel label2 = new JLabel("Voila la barre indiquant l'avancement :");
+				JLabel label2 = new JLabel("Avancement :");
 				jPanel4.add(label2);
 				jPanel4.add(Jbar);
 				jPanel3.add(jPanel4,BorderLayout.NORTH);
@@ -199,7 +201,7 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 				Jbar2.setBackground(Color.GREEN);
 				Jbar2.setValue(25);
 				JPanel jPanel5=new JPanel();
-				JLabel label3 = new JLabel("Voila la barre indiquant le budget :");
+				JLabel label3 = new JLabel("Budget :");
 				jPanel5.add(label3);
 				jPanel5.add(Jbar2);
 				jPanel3.add(jPanel5,BorderLayout.WEST);
@@ -214,5 +216,6 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 	    	
 	    }
 	}
+
 }
 

@@ -1,5 +1,15 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JSplitPane;
+
 import control.ProjectControl;
 
 /* Cette classe permet d'obtenir une vision globale sur l'avancement du projet
@@ -23,5 +33,5 @@ public class ProjectView {
 		this.pc = pc;
 	}
 	
-	
+
 }

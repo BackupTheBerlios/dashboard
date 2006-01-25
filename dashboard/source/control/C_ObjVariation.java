@@ -1,4 +1,10 @@
 package control;
+
+ 
+import java.util.Iterator;
+import java.util.Vector;
+
+import entity.*;
 /**
  * <p>Classe permettant de fournir un sous ensemble de vues données pour le calcul de l'indicateur : Variation estimations/réalisations </p>
  * @author Kamil Guenatri
@@ -6,33 +12,45 @@ package control;
  */
 public class C_ObjVariation {
 
-	private String duration; // duration name 
-	private String worker; // worker name
-	private double estimation; // estimation tume
-	private double realisation; // realisation time
-	
-	public C_ObjVariation(String dur,String work,double est,double real)
-	{
-		duration=dur;
-		worker=work;
-		estimation=est;
-		realisation=real;
-	}
-
-	public String getDuration() {
-		return duration;
-	}
-
-	public double getEstimation() {
-		return estimation;
-	}
-
-	public double getRealisation() {
-		return realisation;
-	}
-
-	public String getWorker() {
-		return worker;
-	}
-
+	 private Project p;
+	 private java.util.Collection<WorkBreakDownElement> allWBE = new java.util.ArrayList<WorkBreakDownElement>(); // of type WorkBreakDownElement 
+	 
+	 public C_ObjVariation(Project pp)
+	 {
+		 p=pp;
+		 allWBE=null;
+	 }
+	 
+	 private java.util.Collection<WorkBreakDownElement> extractWBEFromActivity(Activity a)
+	 {
+		 
+		return a.getWorkBreakDownElements();
+		 	
+	 } 
+	 public void extractWbes()
+	 {
+		 int taille=p.ActivitiesSize();
+		 int i;
+		 for(i=0;i<taile;i++)
+		 {
+			 allWBE.addAll(extractWBEFromActivity(p.getActivities().toArray()[i]<Activity>));
+		 }
+	 }
+	 private Vector<objVariation> wbesToObjVariation (String params)
+	 {
+		 Vector<objVariation> res = new Vector<objVariation>() ;
+		 WorkBreakDownElement[] tab=allWBE.toArray(); 
+		 int i;
+		 for(i=0;i<tab.length;i++)
+		 {
+			 if(params.equals("Group"))
+			 {
+				 java.util.Collection <Working> wk=tab[i].getWorkings();
+				 if(wk.size()=1)// one ressource working
+				 {
+					 objVariation data=new objVariation(tab[i].getActivity().getDuration(),tab[i].getEstime(),tab[i].getReel(),tab[i].)
+				 }
+			 }
+		 }
+	 }
 } // end 

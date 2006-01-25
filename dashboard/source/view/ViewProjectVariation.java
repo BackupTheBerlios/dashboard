@@ -50,7 +50,7 @@ public class ViewProjectVariation extends JFrame
 	    panneauRadio.add(rbtSemaine) ;
 	    haut.add(panneauRadio) ;
 	    
-	    container.add(haut,BorderLayout.NORTH) ;
+	    container.add(haut,BorderLayout.SOUTH) ;
 		
 		
 		// Partie concernant la création du graphique

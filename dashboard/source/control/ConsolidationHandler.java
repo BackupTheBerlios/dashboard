@@ -14,6 +14,7 @@ import entity.*;
  *
  */
 public class ConsolidationHandler {
+	
 	/**
 	 * <p>Methode permettant de generer les indicateurs pour la vue ByResourceView.</p>
 	 * 
@@ -21,10 +22,14 @@ public class ConsolidationHandler {
 	 * @param WBEset
 	 * @return Collection<IndicatorState> indicateur à afficher
 	 */
-    public Collection<IndicatorState> getChargeByResources(WBESet groupeActivite) {  
+	
+	private HashMap<String,WBESet> collectionOfWbeSets = new HashMap<String, WBESet>();
+	
+    public Collection<IndicatorState> getChargeByResources(String wbesetId) {  
     	
+    	WBESet groupeActivite = collectionOfWbeSets.get(wbesetId);
     	//Map contenant les id et les charges pour chaque resource
-    	HashMap<String, IndicatorState> resultForView = new HashMap<String, IndicatorState>();
+    	HashMap<String, IndicatorState> indicatorStatesHashMap = new HashMap<String, IndicatorState>();
     	String idResource = null;
     	IndicatorState tempIndicState = null;
     	
@@ -39,9 +44,9 @@ public class ConsolidationHandler {
     				//ajouter la charge du working à la valeur(charge) associée à la valeur de la ressource dans la Map
     				idResource = working.getResource().getId();
     				//si la resource est pas referencée dans la map. 
-    				if(resultForView.containsKey(idResource)){
+    				if(indicatorStatesHashMap.containsKey(idResource)){
     					//on ajoute la charge du working au total pour la ressource
-    					resultForView.get(idResource).plusValue(working.getWorkAmount());
+    					indicatorStatesHashMap.get(idResource).plusValue(working.getWorkAmount());
     				}
     				else{
     					//on crée le nouvel indicateur et on l'initialise les valeurs
@@ -50,14 +55,14 @@ public class ConsolidationHandler {
     					tempIndicState.setValue(working.getWorkAmount());
     					
     					//on le rajoute à la Map
-    					resultForView.put(idResource,tempIndicState);
+    					indicatorStatesHashMap.put(idResource,tempIndicState);
     				}
     			}
 
     		}
     	}
     	
-    	return resultForView.values(); //collection d'indicateur state
+    	return indicatorStatesHashMap.values(); //collection d'indicateur state
     } 
 
 	/**
@@ -67,13 +72,13 @@ public class ConsolidationHandler {
 	 * @param WBEsets 
 	 * @return Collection<IndicatorState> indicateur à afficher
 	 */
-	public Collection<IndicatorState> getChargeForAllWbe(Collection<WBESet> wBEsets) { 
+	public Collection<IndicatorState> getChargeForAllWbe() { 
     	//Map contenant les id et les charges pour chaque resource
     	ArrayList<IndicatorState> resultForView = new ArrayList<IndicatorState>();
     	IndicatorState tempIndicState = null;
     	
     	//Pour chaque workBreakDownElemnt du WBEset
-    	for( WBESet wbeSet : wBEsets){
+    	for( WBESet wbeSet : this.collectionOfWbeSets.values()){
     		
     		//Pour chaque working contenu dans le workBreakDownElemnt 
     		for(WorkBreakDownElement wbe : wbeSet.getWorkBreakDowElements()){

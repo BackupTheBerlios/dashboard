@@ -196,7 +196,7 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 				jPanel3.add(jPanel4,BorderLayout.NORTH);
 				JProgressBar Jbar2=new JProgressBar();
 				Jbar2.setMaximumSize(Jbar2.getPreferredSize());
-				//Jbar2.setBackground(Color.BLUE);
+				Jbar2.setBackground(Color.GREEN);
 				Jbar2.setValue(25);
 				JPanel jPanel5=new JPanel();
 				JLabel label3 = new JLabel("Voila la barre indiquant le budget :");

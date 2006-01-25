@@ -4,28 +4,54 @@ import entity.*;
 
 public class ProjectControl {
 
-	//Ces deux variables contiennent les calculs des indicateurs
-	private int avancement;
+	/* Indicateurs globaux du projet sur le tps(avancement) et le budget
+	 * 	ils mettent en relation l'estimation par rapport à la réalisation
+	 */
+	private String nameP;
+	
+	private int tps;
 	private int budget;
 	
 	//Ces deux tableaux contiennent les données du projet: Temps/Budget 
 	private int estimation[] = new int [2];
 	private int realisation[] = new int [2];
 	
-
-	public ProjectControl(String name){
+	/*
+	 * Référence vers le projet, afin de récupérer les données 
+	 * nécessaires aux calculs des indicateurs
+	 */
+	Project p ;
+	
+	public ProjectControl(Project p) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.p = p;
 		
-		Project p = new Project(name);
-		/*récupérer du package entity toutes les données utiles(estimées et effectives)
-		 * au calcul des indicateurs sur le projet
-		 */
+		//Récupération du nom du projet
+		this.nameP=this.p.getName();
+		
+		//Récupération des données
+		this.estimation[0]=p.getTpsEstime();
+		this.estimation[1]=p.getBudgetEstime();
+		
+		this.realisation[0]=p.getTpsEffectif();
+		this.realisation[1]=p.getBudgeteffectif();
+		
+		//Calcul des indicateurs
+		this.cTps(this.estimation[0],this.realisation[0]);
+		this.cBudget(this.estimation[1],this.realisation[1]);
 	}
+	
+	
 	/*
 	 * Getteurs de la classe
 	 */
+	public String getNameP() {
+		return nameP;
+	}
 	
-	public int getAvancement() {
-		return avancement;
+	public int getTps() {
+		return tps;
 	}
 
 	public int getBudget() {
@@ -43,9 +69,12 @@ public class ProjectControl {
 	/*
 	 * Setteurs de la classe
 	 */
+	public void setNameP(String nameP) {
+		this.nameP = nameP;
+	}
 	
-	public void setAvancement(int avancement) {
-		this.avancement = avancement;
+	public void setTps(int tps) {
+		this.tps = tps;
 	}
 
 	public void setBudget(int budget) {
@@ -68,9 +97,9 @@ public class ProjectControl {
 	 * l'avancement du projet en fonction des estimations 
 	 * et du temps effectif attribuée à la réalisation du projet. 
 	 */
-	public void cAvancement(int Testime, int Tconsomme ){
+	public void cTps(int Testime, int Tconsomme ){
 		
-		this.avancement = (Tconsomme*100)/Testime;
+		this.tps = (Tconsomme*100)/Testime;
 	}
 	
 	
@@ -81,5 +110,5 @@ public class ProjectControl {
 		
 		this.budget = (Bconsomme*100)/Bestime;
 	}
-		
+	
 }

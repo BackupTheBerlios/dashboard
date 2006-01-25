@@ -17,6 +17,15 @@ public class Project extends Plannable {
 	// attributes
 	
 	
+	/*
+	 * Déclaration d'attribut pour la revue du 27/01
+	 */
+	
+	private int tpsEstime;
+	private int tpsEffectif;
+	private int budgetEstime;
+	private int budgeteffectif;
+	
 	/**
 	 * <p></p>
 	 * 
@@ -184,6 +193,43 @@ public class Project extends Plannable {
 	  	     }
 	  	}
 		return resource;
+	}
+
+	
+	/*
+	 * Getteurs et Setteurs utiles à la revue du 27/01
+	 */
+	
+	public int getBudgeteffectif() {
+		return budgeteffectif;
+	}
+
+	public void setBudgeteffectif(int budgeteffectif) {
+		this.budgeteffectif = budgeteffectif;
+	}
+
+	public int getBudgetEstime() {
+		return budgetEstime;
+	}
+
+	public void setBudgetEstime(int budgetEstime) {
+		this.budgetEstime = budgetEstime;
+	}
+
+	public int getTpsEffectif() {
+		return tpsEffectif;
+	}
+
+	public void setTpsEffectif(int tpsEffectif) {
+		this.tpsEffectif = tpsEffectif;
+	}
+
+	public int getTpsEstime() {
+		return tpsEstime;
+	}
+
+	public void setTpsEstime(int tpsEstime) {
+		this.tpsEstime = tpsEstime;
 	}
 	
 	

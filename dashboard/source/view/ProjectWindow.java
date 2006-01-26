@@ -1,7 +1,6 @@
 package view;
 
 import entity.*;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -204,7 +203,15 @@ public class MouseEventclic implements MouseListener {
 				JLabel label3 = new JLabel("Budget :");
 				jPanel5.add(label3);
 				jPanel5.add(Jbar2);
+				JPanel jPanel6=new JPanel();
+				Object[][] donnees = {{"Budget", "", ""},
+									{"Temps", "", ""}}; 
+				String[] nomsColonnes = {"", "Estimé", "Effectif"};  
+				JTable table = new JTable(donnees, nomsColonnes);
+				jPanel6.add(table);
+				
 				jPanel3.add(jPanel5,BorderLayout.WEST);
+				jPanel2.add(jPanel6,BorderLayout.CENTER);
 				jPanel2.add(jPanel3,BorderLayout.WEST);
 				ProjectWindow.jSplitPane1.add(jPanel2,JSplitPane.RIGHT);
 				
@@ -222,13 +229,10 @@ public class MouseEventclic implements MouseListener {
 				 jPanel_bouton.add(Biteration);
 				 jPanel_bouton.add(Bactivite);
 				 jPanel_bouton.add(Bressources);
-				 jPanel2.add(jPanel_bouton,BorderLayout.NORTH);
+				 jPanel2.add(jPanel_bouton,BorderLayout.AFTER_LINE_ENDS);
 				 jPanel_bouton.setVisible(true);
 			/* Fin Panel 3 boutons*/
-				
-			
-			
-			}
+				}
 	    	else
 	    	{
 	    		JPanel jPanel2=new JPanel();

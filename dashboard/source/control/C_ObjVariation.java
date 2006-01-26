@@ -31,21 +31,21 @@ public class C_ObjVariation {
 	 {
 		 int taille=p.ActivitiesSize();
 		 int i;
-		 for(i=0;i<taile;i++)
+		 for(i=0;i<taille;i++)
 		 {
-			 allWBE.addAll(extractWBEFromActivity(p.getActivities().toArray()[i]<Activity> ));
+			 allWBE.addAll(extractWBEFromActivity( ((Activity[])p.getActivities().toArray()[i]);
 		 }
 	 }
 	 private Vector<objVariation> wbesToObjVariation (String params)
 	 {
 		 Vector<objVariation> res = new Vector<objVariation>() ;
-		 WorkBreakDownElement[] tab=(WorkBreakDownElement[]) allWBE.toArray(); 
+		 WorkBreakDownElement[] tab=  (WorkBreakDownElement[]) allWBE.toArray(); 
 		 int i,k;
 		 for(i=0;i<tab.length;i++)
 		 {
 			  
 				 java.util.Collection <Working> wk=tab[i].getWorkings();
-				 Object[] tabWk = wk.toArray();
+				 Working[] tabWk = (Working[]) wk.toArray();
 				 if(tabWk.length==1)// one ressource working
 				 {
 					 objVariation data=new objVariation(tab[i].getActivity().getDuration(),
@@ -67,6 +67,6 @@ public class C_ObjVariation {
 				 	}
 			 
 		 }
-		 
+		 return res;
 	 }
 } // end 

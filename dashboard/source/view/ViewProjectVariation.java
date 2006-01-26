@@ -22,11 +22,18 @@ import control.objVariation;
  */
 public class ViewProjectVariation extends JFrame
 {
+	/**
+	 * 
+	 */
+	
+	private static final long serialVersionUID = 1L;
 	private Vector<objVariation> v; 
-	public	ViewProjectVariation(final String params)
+	private String params;
+	public	ViewProjectVariation(final String param)
 	{
 		super("Project Variation ");
 		
+		params=param;
 		Vector<objVariation> vect = new Vector<objVariation>() ;
 		
 		objVariation obj11 = new objVariation("it1",4,6,"Yoann",2);
@@ -57,7 +64,9 @@ public class ViewProjectVariation extends JFrame
 		vect.add(objSum3) ;
 		v=vect;
 		
-		Container container = this.getRootPane() ;
+		//JDesktopPane jdp = new JDesktopPane();
+		//Container container = new Container(;)
+		Container container = this.getContentPane() ;
 		container.setLayout(new BorderLayout());
 		
 		//Panel contenant les boutons de paramétrage du graphique
@@ -129,19 +138,23 @@ public class ViewProjectVariation extends JFrame
 		
 		container.add(p,BorderLayout.CENTER) ;
 		
-	
+		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setSize(400,400) ;
-		this.setVisible(true);
 		
+		this.setVisible(true);
+		/*
 		this.addWindowListener(new java.awt.event.WindowAdapter(){
             public void windowClosing(java.awt.event.WindowEvent e){
                         System.exit(0);
                 }});
+                */
 	}
 	
 	public void refresh(String p)
 	{
-		ViewProjectVariation test = new ViewProjectVariation(p) ;
+	 
+    	ViewProjectVariation test = new ViewProjectVariation(p) ;
+    	 
 	}
 	public DefaultCategoryDataset extractDataSet(Vector<objVariation> vect,String params)
 	{
@@ -165,8 +178,6 @@ public class ViewProjectVariation extends JFrame
 	 */
 	public static void main(String[] args)
 	{
-		
-		
 		
 	}
 

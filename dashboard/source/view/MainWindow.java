@@ -2,6 +2,7 @@ package view ;
 
 import test.*;
 import javax.swing.* ;
+
 import java.awt.* ;
 import java.awt.event.* ;
 import java.beans.PropertyVetoException ;
@@ -88,7 +89,9 @@ public class MainWindow extends javax.swing.JFrame
 
     public void doIndicator()
     {
+    	 
     	ViewProjectVariation test = new ViewProjectVariation("group") ;
+     
     }
     private void initGUI ()
     {

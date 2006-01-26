@@ -207,6 +207,27 @@ public class MouseEventclic implements MouseListener {
 				jPanel3.add(jPanel5,BorderLayout.WEST);
 				jPanel2.add(jPanel3,BorderLayout.WEST);
 				ProjectWindow.jSplitPane1.add(jPanel2,JSplitPane.RIGHT);
+				
+			/* Panel avec les 3 boutons */	 
+				 JPanel jPanel_bouton=new JPanel();
+				 jPanel_bouton.setLayout(new FlowLayout());  
+				 JButton Biteration = new JButton("Itération");
+				 JButton Bactivite = new JButton("Activité");
+				 JButton Bressources = new JButton("Ressources");
+				 
+				 Biteration.setPreferredSize(Bressources.getPreferredSize());
+				 Bactivite.setPreferredSize(Bressources.getPreferredSize());
+				 Bressources.setPreferredSize(Bressources.getPreferredSize());
+				 
+				 jPanel_bouton.add(Biteration);
+				 jPanel_bouton.add(Bactivite);
+				 jPanel_bouton.add(Bressources);
+				 jPanel2.add(jPanel_bouton,BorderLayout.NORTH);
+				 jPanel_bouton.setVisible(true);
+			/* Fin Panel 3 boutons*/
+				
+			
+			
 			}
 	    	else
 	    	{

@@ -425,7 +425,7 @@ public class ConsolidationView extends javax.swing.JFrame  {
 			 workings.put(working.getId(),working);
 			 working = new Working("21","réaliser le diagramme d'architecture",546.8);
 			 workings.put(working.getId(),working);
-			 
+			            
 			 activities.get("1").addWorkBreakDownElement(workBreakDownElements.get("1"));
 			 activities.get("1").addWorkBreakDownElement(workBreakDownElements.get("2"));
 			 activities.get("1").addWorkBreakDownElement(workBreakDownElements.get("3"));

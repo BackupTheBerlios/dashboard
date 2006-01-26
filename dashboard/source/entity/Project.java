@@ -232,8 +232,15 @@ public class Project extends Plannable {
 		this.tpsEstime = tpsEstime;
 	}
 	
-	
-	
+	public java.util.Collection<Activity> findByLevel(int level)
+	{
+		
+	}
+	 
+	public int [] getLevels()
+	{
+		
+	}
 } // end Project
 
 

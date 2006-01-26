@@ -13,12 +13,17 @@ import entity.*;
 public class C_ObjVariation {
 
 	 private Project p;
-	 private java.util.Collection<WorkBreakDownElement> allWBE = new java.util.ArrayList<WorkBreakDownElement>(); // of type WorkBreakDownElement 
+	 Resource[] allRessources ; // of type WorkBreakDownElement 
+	 int [] allLevels;
+	
 	 
 	 public C_ObjVariation(Project pp)
 	 {
 		 p=pp;
-		 allWBE=null;
+		 allRessources=(Resource[]) p.getResources().toArray();
+		 allLevels=p.getLevels();
+		 
+		 //allWBE=null;
 	 }
 	 
 	 private java.util.Collection<WorkBreakDownElement> extractWBEFromActivity(Activity a)
@@ -26,47 +31,86 @@ public class C_ObjVariation {
 		 
 		return a.getWorkBreakDownElements();
 		 	
-	 } 
-	 public void extractWbes()
-	 {
-		 int taille=p.ActivitiesSize();
-		 int i;
-		 for(i=0;i<taille;i++)
-		 {
-			 allWBE.addAll(extractWBEFromActivity( ((Activity[])p.getActivities().toArray()[i]);
-		 }
 	 }
-	 private Vector<objVariation> wbesToObjVariation (String params)
+	 public Vector <objVariation> getDataVariation()
 	 {
-		 Vector<objVariation> res = new Vector<objVariation>() ;
-		 WorkBreakDownElement[] tab=  (WorkBreakDownElement[]) allWBE.toArray(); 
-		 int i,k;
-		 for(i=0;i<tab.length;i++)
+		 int i,j,k,l,longVect ;
+		 
+		 Vector <objVariation> res = new Vector<objVariation>() ;
+		 int nbrRs=allRessources.length;
+		 int nbrLv=allLevels.length;
+		 
+		 longVect =(nbrRs+1)*nbrLv;
+		 
+		 for(i=0;i<longVect;i++)
 		 {
-			  
-				 java.util.Collection <Working> wk=tab[i].getWorkings();
-				 Working[] tabWk = (Working[]) wk.toArray();
-				 if(tabWk.length==1)// one ressource working
+			 objVariation obj= new objVariation("",0.0,0.0,"","",0);
+			 res.add(obj);
+		 }
+		 for(i=0;i<allLevels.length;i++)// pour chaque level
+		 {
+			 //recuperer les activités
+			 Activity[] act = (Activity[]) p.findByLevel(i).toArray();
+			 java.util.Collection<WorkBreakDownElement> aux = new java.util.ArrayList<WorkBreakDownElement>();
+			 for(k=0;k<act.length;k++)
+			 {
+				 aux.addAll(extractWBEFromActivity(act[i]));
+			 }
+			 WorkBreakDownElement[] wbes=(WorkBreakDownElement[]) aux.toArray();
+			 for(j=0;j<allRessources.length;j++)// pour chaque ressource
+			 {
+				 for(k=0;k<wbes.length;k++)
 				 {
-					 objVariation data=new objVariation(tab[i].getActivity().getDuration(),
-							 tab[i].getEstime(),
-							 tab[i].getReel(),
-							 tabWk[1].getName(),0);// num week not implement for the moment
-					 res.add(data);
-				 }
-				 else
-				 	{
-					 for(k=0;k<tabWk.length;k++)
+					 Working[] wk =(Working[]) wbes[k].getWorkings().toArray();
+					 for(l=0;l<wk.length;l++)
 					 {
-						 objVariation data=new objVariation(tab[i].getActivity().getDuration(),
-								 tab[i].getEstime(),
-								 tab[i].getReel(),
-								 tabWk[k].getName(),0);// num week not implement for the moment
-						 res.add(data);
-					 }
-				 	}
-			 
+						 if(allRessources[j].getId().equals(wk[l].getResource().getId()))
+						 {
+							 int coord=(i*nbrRs)+j;
+							 String lev="level"+wbes[k].getActivity().getDuration();
+							 double est=res.get(coord).getTempsEstime()+wbes[k].getEstime();
+							 double reel=res.get(coord).getTempsReel()+wbes[k].getReel();
+							 String rs=allRessources[j].getName();
+							 String idRs=allRessources[j].getId();
+							 int numSem=0;//not implement for the moment
+							
+							 res.get(coord).setIteration(lev);
+							 res.get(coord).setTempsEstime(est);
+							 res.get(coord).setTempsReel(reel);
+							 res.get(coord).setRessource(rs);
+							 res.get(coord).setIdRessource(idRs);
+							 res.get(coord).setNumSemaine(numSem);
+						 }
+					 }// enf for l
+					  
+				 } //end for k
+			 }// end for j
+		  }//end for i
+		 
+		 // calcul du total de chaque level
+		 for(i=0;i<nbrLv;i++)
+		 {
+			 int coord=(nbrLv*nbrRs)+i;
+			 String lev=res.get(i*nbrRs).getIteration();
+			 double est=0.0;
+			 double reel=0.0;
+			 String rs="group";
+			 String idRs=p.getId();
+			 int numSem=0;
+			 for(j=0;j<nbrRs;j++)
+			 {
+				 int xy=(i*nbrRs)+j;
+				 est+=res.get(xy).getTempsEstime();
+				 reel+=res.get(xy).getTempsReel();
+			 }
+			 res.get(coord).setIteration(lev);
+			 res.get(coord).setTempsEstime(est);
+			 res.get(coord).setTempsReel(reel);
+			 res.get(coord).setRessource(rs);
+			 res.get(coord).setIdRessource(idRs);
+			 res.get(coord).setNumSemaine(numSem);
 		 }
 		 return res;
 	 }
+	 
 } // end 

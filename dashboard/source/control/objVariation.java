@@ -6,14 +6,16 @@ public class objVariation
 	private double tempsEstime ;
 	private double tempsReel ;
 	private String ressource ;
+	private String idRessource; 
 	private int	numSemaine ;
 	
-	public objVariation(String it, double estim, double reel, String ress, int num)
+	public objVariation(String it, double estim, double reel, String ress,String id, int num)
 	{
 		this.iteration = it ;
 		this.tempsEstime = estim ;
 		this.tempsReel = reel ;
 		this.ressource = ress ;
+		this.idRessource=id;
 		this.numSemaine = num ;
 	}
 	
@@ -65,5 +67,13 @@ public class objVariation
 	public void setNumSemaine(int num)
 	{
 		this.numSemaine = num ;
+	}
+
+	public String getIdRessource() {
+		return idRessource;
+	}
+
+	public void setIdRessource(String idRessource) {
+		this.idRessource = idRessource;
 	}
 }

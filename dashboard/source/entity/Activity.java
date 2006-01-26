@@ -24,7 +24,7 @@ public class Activity extends Plannable {
 	 */
 	private String name; 
 	private String id;
-	private String duration;
+	private int duration;
 	
 	///////////////////////////////////////
 	// associations
@@ -234,11 +234,11 @@ public class Activity extends Plannable {
 	/**
 	 * @param duration of activiry to set and get.
 	 */
-	public String getDuration() {
+	public int getDuration() {
 		return duration;
 	}
 
-	public void setDuration(String duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 	

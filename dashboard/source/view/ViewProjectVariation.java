@@ -36,32 +36,51 @@ public class ViewProjectVariation extends JFrame
 		params=param;
 		Vector<objVariation> vect = new Vector<objVariation>() ;
 		
-		objVariation obj11 = new objVariation("it1",4,6,"Yoann",2);
+		objVariation obj11 = new objVariation("level1",16,17,"Tankoano Olivier","tt",2);
 		vect.add(obj11) ;
 		
-		objVariation obj12 = new objVariation("it1",4,5,"kamil",2);
+		objVariation obj12 = new objVariation("level1",16,15,"Allogo Etienne","aa",2);
 		vect.add(obj12) ;
 		
-		objVariation objSum1 = new objVariation("it1",8,11,"group",2);
+		objVariation obj13 = new objVariation("level1",20,22,"Heidy Baubant","bb",2);
+		vect.add(obj13) ;
+		
+		objVariation obj14 = new objVariation("level1",16,15,"Guenatri Kamil","kk",2);
+		vect.add(obj14) ;
+		
+		objVariation objSum1 = new objVariation("level1",68,69,"group","gr",2);
 		vect.add(objSum1) ;
 		
-		objVariation obj21 = new objVariation("it2",15,7,"Yoann",3) ;
+		objVariation obj21 = new objVariation("level2",24,20,"Tankoano Olivier","tt",2);
 		vect.add(obj21) ;
 		
-		objVariation obj22 = new objVariation("it2",17,7,"kamil",3) ;
+		objVariation obj22 = new objVariation("level2",24,21,"Allogo Etienne","aa",2);
 		vect.add(obj22) ;
 		
-		objVariation objSum2 = new objVariation("it2",32,14,"group",2);
-		vect.add(objSum2) ;
+		objVariation obj23 = new objVariation("level2",30,26,"Heidy Baubant","bb",2);
+		vect.add(obj23) ;
 		
-		objVariation obj31 = new objVariation("it3",12,20,"Yoann",5) ;
+		objVariation obj24 = new objVariation("level2",24,22,"Guenatri Kamil","kk",2);
+		vect.add(obj24) ;
+		
+		objVariation objSum2 = new objVariation("level2",102,89,"group","gr",2);
+		vect.add(objSum2) ; 
+		
+		objVariation obj31 = new objVariation("level3",24,33,"Tankoano Olivier","tt",2);
 		vect.add(obj31) ;
 		
-		objVariation obj32 = new objVariation("it3",14,20,"kamil",5) ;
-		vect.add(obj32);
+		objVariation obj32 = new objVariation("level3",24,30,"Allogo Etienne","aa",2);
+		vect.add(obj32) ;
 		
-		objVariation objSum3 = new objVariation("it3",26,40,"group",2);
+		objVariation obj33 = new objVariation("level3",30,31,"Heidy Baubant","bb",2);
+		vect.add(obj33) ;
+		
+		objVariation obj34 = new objVariation("level3",24,32,"Guenatri Kamil","kk",2);
+		vect.add(obj34) ;
+		
+		objVariation objSum3 = new objVariation("level3",102,126,"group","gr",2);
 		vect.add(objSum3) ;
+		
 		v=vect;
 		
 		//JDesktopPane jdp = new JDesktopPane();
@@ -99,8 +118,8 @@ public class ViewProjectVariation extends JFrame
                             }
                         });
 	    
-	    JRadioButton rbtIteration= new JRadioButton("Par itérations");
-	    JRadioButton rbtSemaine= new JRadioButton("Par semaines");
+	    JRadioButton rbtIteration= new JRadioButton("By level");
+	    JRadioButton rbtSemaine= new JRadioButton("By week");
 	    ButtonGroup group = new ButtonGroup() ;
 	    rbtIteration.setSelected(true) ;
 	    group.add(rbtIteration) ;
@@ -116,11 +135,11 @@ public class ViewProjectVariation extends JFrame
 		
 		// Partie concernant la création du graphique
 		DefaultCategoryDataset dataset = this.extractDataSet(vect,params) ;
-		JFreeChart chart = ChartFactory.createBarChart("Project Variation"  ,"Itérations","Heures",dataset,PlotOrientation.VERTICAL,true,false,false);
+		JFreeChart chart = ChartFactory.createBarChart("Project Variation"  ,"Levels","Hours",dataset,PlotOrientation.VERTICAL,true,false,false);
 		
 		CategoryPlot plo = chart.getCategoryPlot() ;
 		NumberAxis timeAxis = new NumberAxis("Heures"); 
-		NumberTickUnit ntu = new NumberTickUnit(1);
+		NumberTickUnit ntu = new NumberTickUnit(10);
 		timeAxis.setTickUnit(ntu);
 		plo.setRangeAxis(timeAxis);
 		

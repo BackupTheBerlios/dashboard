@@ -23,8 +23,23 @@ public class ConsolidationHandler {
 	 * @return Collection<IndicatorState> indicateur à afficher
 	 */
 	
-	private HashMap<String,WBESet> collectionOfWbeSets = new HashMap<String, WBESet>();
 	
+	private HashMap<String,WBESet> collectionOfWbeSets = new HashMap<String, WBESet>();
+	private String projectName;
+	
+	public ConsolidationHandler(Collection<WBESet> collection, String projectName) {
+		super();
+		System.out.println("mapcoll"+ collection.size());
+		this.projectName = projectName;
+		
+		for(WBESet wbeset : collection){
+			this.collectionOfWbeSets.put(wbeset.getId(), wbeset);
+			System.out.println("map"+ collectionOfWbeSets.values().size() + " " + wbeset.getId() );
+		}
+		System.out.println("map"+ collectionOfWbeSets.values().size());
+		
+	}
+
     public Collection<IndicatorState> getChargeByResources(String wbesetId) {  
     	
     	WBESet groupeActivite = collectionOfWbeSets.get(wbesetId);
@@ -92,7 +107,81 @@ public class ConsolidationHandler {
     	}
     	
     	return resultForView; //collection d'indicateur state
-	} 
+	}
+
+
+	
+	public String[][] getWbeSetsIdAndName(){
+		
+		String[][] names = new String[this.collectionOfWbeSets.size()][2];
+		int i = 0;
+		for( WBESet wbeSet : this.collectionOfWbeSets.values()){
+			names[i][0] = wbeSet.getId();
+			names[i][1] = wbeSet.getName();	
+			i++;
+		}
+	
+		return names;
+		
+	}
+
+	public String[][] getResourcesIdAndName() {
+		
+    
+    	//Map contenant les id et les charges pour chaque resource
+    	HashMap<String, String[]> resources = new HashMap<String, String[]>();
+    	String idResource = null;
+    	String nameResource = null;
+    	String[] name;
+		
+		for( WBESet wbeSet : this.collectionOfWbeSets.values()){
+    	//Pour chaque workBreakDownElemnt du WBEset
+    	for( WorkBreakDownElement wbe : wbeSet.getWorkBreakDowElements()){
+    		
+    		//Pour chaque working contenu dans le workBreakDownElemnt 
+    		for(Working working : wbe.getWorkings() ){
+    			
+    			//on verifie s'il ya une ressource attachée
+    			if((working.getResource().getId() != null) && (working.getResource().getId().length()!=0)){
+    				//ajouter la charge du working à la valeur(charge) associée à la valeur de la ressource dans la Map
+    				idResource = working.getResource().getId();
+    				nameResource = working.getResource().getName();
+    				//si la resource est pas referencée dans la map. 
+    				if(!(resources.containsKey(idResource))){
+    					//on crée le nouvel indicateur et on l'initialise les valeurs
+    					name = new String[2];
+    					name[0] = idResource;
+    					name[1] = nameResource;    					
+    					//on le rajoute à la Map
+    					resources.put(idResource,name);
+    				}
+    			}
+
+    		}
+    	}
+    	
+    	
+		}
+		
+		String[][] names = new String[resources.size()][2];
+		System.out.println(""+ resources.size());
+		int i = 0;
+		for( String[]nameAndId : resources.values()){
+			names[i] = nameAndId;
+			i++;
+		}
+	
+		return names;
+		
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
 
 
 }

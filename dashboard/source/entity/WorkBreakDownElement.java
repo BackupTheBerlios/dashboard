@@ -197,6 +197,15 @@ public class WorkBreakDownElement extends Plannable {
 		return workings.size();
 	}
 	
+	public Double getReel() {
+		Double reel = 0.0;
+		for(Working working: this.getWorkings()){
+			reel += working.getWorkAmount();
+		}
+		return reel;
+	}
+	
+	
 } // end WorkBreakDowElement
 
 

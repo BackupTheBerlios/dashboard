@@ -16,20 +16,11 @@ import java.beans.PropertyVetoException ;
  * licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS
  * CODE CANNOT BE USED LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
+
+
 public class MainWindow extends javax.swing.JFrame
 {
-    {
-        // Set Look & Feel
-        try
-        {
-            javax.swing.UIManager
-                .setLookAndFeel ("com.sun.java.swing.plaf.windows.WindowsLookAndFeel") ;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace () ;
-        }
-    }
+
     private JMenuItem    helpMenuItem ;
     private JMenu        jMenu5 ;
     private JMenuItem    ImportPSIMenuItem ;
@@ -95,6 +86,18 @@ public class MainWindow extends javax.swing.JFrame
     }
     private void initGUI ()
     {
+        {
+            // Set Look & Feel
+            try
+            {
+                javax.swing.UIManager
+                    .setLookAndFeel (javax.swing.UIManager.getSystemLookAndFeelClassName()) ;
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace () ;
+            }
+        }
         try
         {
             setSize (550, 400) ;

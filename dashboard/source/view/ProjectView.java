@@ -22,6 +22,7 @@ import control.ProjectControl;
 
 public class ProjectView extends javax.swing.JInternalFrame{
 
+
 	/*
 	 * Référence vers le controlleur du projet, afin de récupérer
 	 * les indicateurs

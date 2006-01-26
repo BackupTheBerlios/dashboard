@@ -161,12 +161,7 @@ public class ViewProjectVariation extends JFrame
 		this.setSize(400,400) ;
 		
 		this.setVisible(true);
-		/*
-		this.addWindowListener(new java.awt.event.WindowAdapter(){
-            public void windowClosing(java.awt.event.WindowEvent e){
-                        System.exit(0);
-                }});
-                */
+
 	}
 	
 	public void refresh(String p)

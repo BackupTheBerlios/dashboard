@@ -16,6 +16,8 @@ public class IndicatorState {
 	
 	String name;
 	
+	String id;
+	
 	/**
 	 * <p>Represents ...</p>
 	 */
@@ -24,7 +26,7 @@ public class IndicatorState {
 	/**
 	 * <p>Represents ...</p>
 	 */
-	private Double value;
+	private Double value = new Double(0.0);
 
 	/**
 	 * @return Returns the led.
@@ -68,6 +70,14 @@ public class IndicatorState {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	} 
 } // end IndicatorState
 

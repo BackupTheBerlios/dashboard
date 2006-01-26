@@ -29,15 +29,11 @@ public class ConsolidationHandler {
 	
 	public ConsolidationHandler(Collection<WBESet> collection, String projectName) {
 		super();
-		System.out.println("mapcoll"+ collection.size());
 		this.projectName = projectName;
 		
 		for(WBESet wbeset : collection){
 			this.collectionOfWbeSets.put(wbeset.getId(), wbeset);
-			System.out.println("map"+ collectionOfWbeSets.values().size() + " " + wbeset.getId() );
-		}
-		System.out.println("map"+ collectionOfWbeSets.values().size());
-		
+		}				
 	}
 
     public Collection<IndicatorState> getChargeByResources(String wbesetId) {  
@@ -202,7 +198,6 @@ public Collection<IndicatorState> getChargeByWbeSet(String idResource) {
 		}
 		
 		String[][] names = new String[resources.size()][2];
-		System.out.println(""+ resources.size());
 		int i = 0;
 		for( String[]nameAndId : resources.values()){
 			names[i] = nameAndId;

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
@@ -19,7 +18,6 @@ import javax.swing.tree.DefaultTreeModel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultIntervalCategoryDataset;
@@ -94,7 +92,6 @@ public class ConsolidationView extends javax.swing.JFrame  {
 		noeudPere = new DefaultMutableTreeNode(new TreeObjectElement("groupes d'activités", TreeObjectElement.TYPE_ALLWSETS, null));
 		
 		String[][] wbeSets = this.controller.getWbeSetsIdAndName();
-		System.out.println(""+ wbeSets.length);
 		for( int i = 0; i < wbeSets.length ; i++  ){
 			etiquette = new TreeObjectElement(wbeSets[i][1],TreeObjectElement.TYPE_WBESET,wbeSets[i][0]);
 			noeudFils = new DefaultMutableTreeNode(etiquette);
@@ -280,7 +277,7 @@ public class ConsolidationView extends javax.swing.JFrame  {
 	private  JFreeChart createWbesetChart(String idWbeSet, String nameWbeSet)
     {
 			
-        JFreeChart jfreechart = ChartFactory.createPieChart3D("Répartition des charge pour le groupe d'activité : " + nameWbeSet, this.createWbesetDataset(idWbeSet), true, false, false);
+        JFreeChart jfreechart = ChartFactory.createPieChart3D("Répartition des charges pour le groupe d'activité : " + nameWbeSet, this.createWbesetDataset(idWbeSet), true, false, false);
         jfreechart.setBackgroundPaint(Color.WHITE);
         return jfreechart;
     }
@@ -376,7 +373,6 @@ public class ConsolidationView extends javax.swing.JFrame  {
 			wbeset.add(wbe);
 			
 			collection.add(wbeset);
-			System.out.println("collection"+ collection.size());
 			
 			 resource = new Resource("1", "Tankoano Olivier");
 			 resources.put(resource.getId(),resource);

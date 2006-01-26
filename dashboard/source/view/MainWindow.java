@@ -86,7 +86,10 @@ public class MainWindow extends javax.swing.JFrame
         dispose () ;
     }
 
-
+    public void doIndicator()
+    {
+    	ViewProjectVariation test = new ViewProjectVariation("group") ;
+    }
     private void initGUI ()
     {
         try
@@ -166,6 +169,13 @@ public class MainWindow extends javax.swing.JFrame
                         indicsMenuItem = new JMenuItem () ;
                         jMenu4.add (indicsMenuItem) ;
                         indicsMenuItem.setText ("Indicators...") ;
+                        indicsMenuItem.addActionListener(new ActionListener ()
+                        {
+                            public void actionPerformed (ActionEvent ev)
+                            {
+                                doIndicator() ;
+                            }
+                        });
                     }
                 }
                 {

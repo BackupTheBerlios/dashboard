@@ -1,6 +1,8 @@
 package view;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,6 +19,7 @@ import javax.swing.tree.DefaultTreeModel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultIntervalCategoryDataset;
@@ -166,9 +169,16 @@ public class ConsolidationView extends javax.swing.JFrame  {
 
 	 	   this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	 	   this.setSize(800,600);
+	 	   // On récupère la taille de l'écran (la résolution)
 	 	   
-	 	   this.pack();
-	 	   this.setVisible(true);
+	 	 Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+	 	  
+	 	  // et on place notre fenêtre au milieu
+	 	   
+	 	  this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
+	 	  this.pack();
+	 	   
+	 	  this.setVisible(true);
 	}
 
 

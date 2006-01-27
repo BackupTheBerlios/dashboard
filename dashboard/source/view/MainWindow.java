@@ -252,7 +252,13 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void indicsMenuActionPerformed(java.awt.event.ActionEvent evt) {
-    	ViewProjectVariation test = new ViewProjectVariation("group") ;
+    	
+    	int index = jList1.getSelectedIndex();
+		if(index >= 0)
+		{
+			ViewProjectVariation test = new ViewProjectVariation("group",envC.getProjects().get(index)) ;
+		}
+    	//
     }
 
     private void quitMenuActionPerformed(java.awt.event.ActionEvent evt) {

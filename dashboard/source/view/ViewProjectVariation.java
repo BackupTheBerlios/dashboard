@@ -13,6 +13,7 @@ import org.jfree.chart.axis.*;
 import org.jfree.chart.renderer.category.*;
 
 import control.objVariation;
+import entity.Project;
 
 
 
@@ -29,13 +30,18 @@ public class ViewProjectVariation extends JFrame
 	private static final long serialVersionUID = 1L;
 	private Vector<objVariation> v; 
 	private String params;
-	public	ViewProjectVariation(final String param)
+	private Project Pj;
+	
+	public	ViewProjectVariation(final String param, Project pp)
 	{
-		super("Project Variation ");
+		super("Project Variation for "+pp.getId());
 		
+		Pj=pp;
 		params=param;
 		Vector<objVariation> vect = new Vector<objVariation>() ;
 		
+		if (Pj.getId().equals("2DB"))
+		{	
 		objVariation obj11 = new objVariation("It1",16,17,"Tankoano Olivier","tt",2);
 		vect.add(obj11) ;
 		
@@ -65,7 +71,38 @@ public class ViewProjectVariation extends JFrame
 		
 		objVariation objSum2 = new objVariation("It2",102,89,"group","gr",2);
 		vect.add(objSum2) ; 
-		
+		}
+		else {// PSI
+			objVariation obj11 = new objVariation("It1",16,19,"Conde Mickael","tt",2);
+			vect.add(obj11) ;
+			
+			objVariation obj12 = new objVariation("It1",16,16,"Kanaye Kurvin","aa",2);
+			vect.add(obj12) ;
+			
+			objVariation obj13 = new objVariation("It1",20,21,"Badaoui Kassem","bb",2);
+			vect.add(obj13) ;
+			
+			objVariation obj14 = new objVariation("It1",16,15,"Avetisian Gohar","kk",2);
+			vect.add(obj14) ;
+			
+			objVariation objSum1 = new objVariation("It1",68,71,"group","gr",2);
+			vect.add(objSum1) ;
+			
+			objVariation obj21 = new objVariation("It2",24,28,"Conde Mickael","tt",2);
+			vect.add(obj21) ;
+			
+			objVariation obj22 = new objVariation("It2",24,21,"Kanaye Kurvin","aa",2);
+			vect.add(obj22) ;
+			
+			objVariation obj23 = new objVariation("It2",30,22,"Badaoui Kassem","bb",2);
+			vect.add(obj23) ;
+			
+			objVariation obj24 = new objVariation("It2",24,20,"Avetisian Gohar","kk",2);
+			vect.add(obj24) ;
+			
+			objVariation objSum2 = new objVariation("It2",102,91,"group","gr",2);
+			vect.add(objSum2) ; 
+		}
 		 
 		
 		v=vect;
@@ -154,7 +191,7 @@ public class ViewProjectVariation extends JFrame
 	public void refresh(String p)
 	{
 	 
-    	ViewProjectVariation test = new ViewProjectVariation(p) ;
+    	ViewProjectVariation test = new ViewProjectVariation(p,Pj ) ;
     	 
 	}
 	public DefaultCategoryDataset extractDataSet(Vector<objVariation> vect,String params)
@@ -179,7 +216,7 @@ public class ViewProjectVariation extends JFrame
 	 */
 	public static void main(String[] args)
 	{
-		ViewProjectVariation test = new ViewProjectVariation("group") ;
+		//ViewProjectVariation test = new ViewProjectVariation("group",Pj) ;
 	}
 
 }

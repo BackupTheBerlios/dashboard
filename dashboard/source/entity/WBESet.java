@@ -64,8 +64,9 @@ public class WBESet {
 	/* (non-Javadoc)
 	 * @see java.util.Collection#add(E)
 	 */
-	public boolean add(WorkBreakDownElement workBreakDownElement) {
-		return workBreakDowElements.add(workBreakDownElement);
+	public void add(WorkBreakDownElement workBreakDownElement) {
+		workBreakDowElements.add(workBreakDownElement);
+		workBreakDownElement.getWbeSets().add(this);
 	}
 	
 	/* (non-Javadoc)

@@ -70,12 +70,17 @@ public class WorkBreakDownElement extends Plannable {
 	///////////////////////////////////////
 	// associations
 	
-	
-	private java.util.ArrayList<Working> workings = new java.util.ArrayList<Working>(); // of type Working
 	/**
 	 * <p></p>
 	 */
-
+	private java.util.ArrayList<Working> workings = new java.util.ArrayList<Working>(); // of type Working
+	
+	
+	/**
+	 * <p></p>
+	 */
+	private java.util.ArrayList<WBESet> wbeSets = new java.util.ArrayList<WBESet>(); // of type Working
+	
 	/**
 	 * @param id
 	 * @param name
@@ -237,6 +242,22 @@ public class WorkBreakDownElement extends Plannable {
 			}
 		}
 		throw new Exception("Unknown Working Id!");
+	}
+
+
+	/**
+	 * @return Returns the wbeSets.
+	 */
+	public java.util.ArrayList<WBESet> getWbeSets() {
+		return wbeSets;
+	}
+
+
+	/**
+	 * @param wbeSets The wbeSets to set.
+	 */
+	public void setWbeSets(java.util.ArrayList<WBESet> wbeSets) {
+		this.wbeSets = wbeSets;
 	}
 	
 } // end WorkBreakDowElement

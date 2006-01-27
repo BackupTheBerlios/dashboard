@@ -22,7 +22,7 @@ public class C_ObjVariation {
 		 p=pp;
 		 allRessources=(Resource[]) p.getResources().toArray();
 		 allLevels=p.getImportNumbers();
-		 
+		
 		 //allWBE=null;
 	 }
 	 
@@ -62,13 +62,13 @@ public class C_ObjVariation {
 			 {
 				 for(k=0;k<wbes.length;k++)
 				 {
-					 Working[] wk =(Working[]) wbes[k].getWorkings().toArray();
+					 Working [] wk =(Working[]) wbes[k].getWorkings().toArray();
 					 for(l=0;l<wk.length;l++)
 					 {
 						 if(allRessources[j].getId().equals(wk[l].getResource().getId()))
 						 {
 							 int coord=(i*nbrRs)+j;
-							 String lev="level"+p.findParentActivity(wbes[k]).getImportNumber();
+							 String lev="level"+allLevels[i];
 							 double est=res.get(coord).getTempsEstime()+wbes[k].getPrevWorkAmount();
 							 double reel=res.get(coord).getTempsReel()+wbes[k].getRealWorkAmount();
 							 String rs=allRessources[j].getName();

@@ -179,7 +179,16 @@ public class Project extends Activity {
 		this.realBudget = realBudget;
 	}
 	
-	
+	public int []getImportNumbers()
+	{
+		int [] res= new int[this.getSubActivities().size()];
+		int i;
+		for(i=0;i<this.getSubActivities().size();i++)
+		{
+			res[i]=i+1;
+		}
+		return res;
+	}
 	
 } // end Project
 

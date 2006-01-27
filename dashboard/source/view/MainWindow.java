@@ -394,6 +394,7 @@ public class MainWindow extends javax.swing.JFrame {
 			);
 			infoPanel.updateUI();
 		}
+		/*
 		else
 		if(obj instanceof Activity )
 		{
@@ -405,6 +406,7 @@ public class MainWindow extends javax.swing.JFrame {
 			);
 			infoPanel.updateUI();
 		}
+		*/
 	}
     
 	

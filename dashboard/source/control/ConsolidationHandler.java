@@ -2,6 +2,7 @@
 package control;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 
 import entity.*;
@@ -27,13 +28,28 @@ public class ConsolidationHandler {
 	private HashMap<String,WBESet> collectionOfWbeSets = new HashMap<String, WBESet>();
 	private String projectName;
 	
-	public ConsolidationHandler(Collection<WBESet> collection, String projectName) {
-		super();
-		this.projectName = projectName;
+	public ConsolidationHandler(Project projet , String projectName) {
 		
-		for(WBESet wbeset : collection){
-			this.collectionOfWbeSets.put(wbeset.getId(), wbeset);
-		}				
+		super();
+		this.projectName = projet.getName();
+		
+		Collection<WorkBreakDownElement> works =  projet.getWbesRecursive();
+		
+		WBESet temp = null;
+		WorkBreakDownElement tempwbe = null;
+		for(WorkBreakDownElement wbe :  works){
+			 tempwbe = new WorkBreakDownElement(wbe.getId(), wbe.getName(), wbe.getPrevStartDate(), wbe.getPrevEndDate() , wbe.getPrevWorkAmount(),wbe.getRealStartDate(), wbe.getRealEndDate() , wbe.getRealWorkAmount());
+			for(WBESet wbeset:  wbe.getWbeSets() ){
+				if(! this.collectionOfWbeSets.containsKey(wbeset.getId())){
+					temp = new WBESet(wbeset.getId(), wbeset.getName());
+					this.collectionOfWbeSets.put(temp.getId() , temp);
+				}
+				
+				this.collectionOfWbeSets.get(wbeset.getId()).add(tempwbe);
+
+			}
+		}
+		
 	}
 
     public Collection<IndicatorState> getChargeByResources(String wbesetId) {  

@@ -9,6 +9,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
 import control.ConsolidationHandler;
@@ -17,10 +18,12 @@ import control.PlannableControl;
 import control.ProjectControl;
 import entity.Plannable;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -450,17 +453,14 @@ public class MainWindow extends javax.swing.JFrame {
 	
 	private JPanel getProjectView(ProjectControl pc)
 	{
-		String affich = "Avancement du projet :";
-		affich.concat(pc.getNameP());
-		
-    	JLabel label = new JLabel(affich);
+		JLabel label = new JLabel("Avancement du projet : 2DB");
     	JPanel jPanel2=new JPanel();
     	jPanel2.setLayout(new BorderLayout());
     	label.setMaximumSize(label.getPreferredSize());
     	jPanel2.add(label,BorderLayout.NORTH);
 		JProgressBar Jbar=new JProgressBar(1,99);
-		Jbar.setBackground(Color.red);
-		Jbar.setValue(((int)Double.doubleToLongBits(pc.getTps())));
+		Jbar.setForeground(Color.red);
+		Jbar.setValue(50);
 		Jbar.setMaximumSize(Jbar.getPreferredSize());
 		JPanel jPanel3=new JPanel();
 		jPanel3.setLayout(new BorderLayout());
@@ -471,14 +471,40 @@ public class MainWindow extends javax.swing.JFrame {
 		jPanel3.add(jPanel4,BorderLayout.NORTH);
 		JProgressBar Jbar2=new JProgressBar();
 		Jbar2.setMaximumSize(Jbar2.getPreferredSize());
-		Jbar2.setBackground(Color.GREEN);
-		Jbar2.setValue(((int)Double.doubleToLongBits(pc.getBudget())));
+		Jbar2.setForeground(Color.GREEN);
+		Jbar2.setValue(25);
 		JPanel jPanel5=new JPanel();
 		JLabel label3 = new JLabel("Budget :");
 		jPanel5.add(label3);
 		jPanel5.add(Jbar2);
+		JPanel jPanel6=new JPanel();
+		Object[][] donnees = {{"Budget", "3", "5"},
+							{"Temps", "6", "8"}}; 
+		String[] nomsColonnes = {"b", "Estimé", "Effectif"};  
+		JTable table = new JTable(donnees, nomsColonnes);
+		jPanel6.add(table);
+		
 		jPanel3.add(jPanel5,BorderLayout.WEST);
+		jPanel2.add(jPanel6,BorderLayout.CENTER);
 		jPanel2.add(jPanel3,BorderLayout.WEST);
+				
+	/* Panel avec les 3 boutons */	 
+		 JPanel jPanel_bouton=new JPanel();
+		 jPanel_bouton.setLayout(new FlowLayout());  
+		 JButton Biteration = new JButton("Itération");
+		 JButton Bactivite = new JButton("Activité");
+		 JButton Bressources = new JButton("Ressources");
+		 
+		 Biteration.setPreferredSize(Bressources.getPreferredSize());
+		 Bactivite.setPreferredSize(Bressources.getPreferredSize());
+		 Bressources.setPreferredSize(Bressources.getPreferredSize());
+		 
+		 jPanel_bouton.add(Biteration);
+		 jPanel_bouton.add(Bactivite);
+		 jPanel_bouton.add(Bressources);
+		 jPanel2.add(jPanel_bouton,BorderLayout.SOUTH);
+		 jPanel_bouton.setVisible(true);
+	/* Fin Panel 3 boutons*/
 		return jPanel2;		
 	}
 	

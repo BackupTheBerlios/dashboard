@@ -14,6 +14,7 @@ import control.*;
 public class TestEntity {
 
 	private static WBESet wsDocs = new WBESet("wsDocs", "documents");
+	private static WBESet wsGes = new WBESet("wsGes", "gestion de projet");
 	
 	/**
 	 * @param args
@@ -21,6 +22,7 @@ public class TestEntity {
 	public static Environment createEnvironment() {
 		Environment env = new Environment();
 		env.getWbeSets().add(wsDocs);
+		env.getWbeSets().add(wsGes);
 		env.getProjects().add(create2DBTestProject());
 		env.getProjects().add(createPSITestProject());
 		return env;
@@ -55,6 +57,7 @@ public class TestEntity {
 							.stringToDate("25-09-2005"), Utils
 							.stringToDate("12-10-2005"), new Double(15));
 			it1.getWbes().add(wbe1);
+			wsGes.add(wbe1);
 			
 			WorkBreakDownElement wbe2 = new WorkBreakDownElement("wbe2",
 					"Recueillir les exigences", Utils
@@ -65,7 +68,7 @@ public class TestEntity {
 
 			);
 			it1.getWbes().add(wbe2);
-			
+			wsGes.add(wbe2);			
 			
 			WorkBreakDownElement wbe3 = new WorkBreakDownElement("wbe3",
 					"Rédiger les documents", Utils.stringToDate("20-10-2005"),
@@ -182,14 +185,14 @@ public class TestEntity {
 					"Coder un prototype", Utils.stringToDate("20-11-2005"),
 					Utils.stringToDate("29-11-2005"), new Double(15), Utils
 							.stringToDate("25-11-2005"), Utils
-							.stringToDate("28-11-2005"), new Double(15)
+							.stringToDate("29-11-2005"), new Double(15)
 
 			);
 			it2.getWbes().add(wbe4);
 			
 			WorkBreakDownElement wbe5 = new WorkBreakDownElement("wbe5",
 					"Mettre à jour les documents", Utils
-							.stringToDate("30-11-2005"), Utils
+							.stringToDate("29-11-2005"), Utils
 							.stringToDate("30-11-2005"), new Double(15), Utils
 							.stringToDate("29-11-2005"), Utils
 							.stringToDate("03-12-2005"), new Double(15)

@@ -3,9 +3,6 @@ package control;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -205,7 +202,7 @@ public class ParserHandler extends DefaultHandler{
       	 }else if(baliseNiveauCourant.equals("workbreakdownelement")){
     		 wbe.setName(lecture);	
       	 }else if(baliseNiveauCourant.equals("working")){
-    		 working.setName(lecture);	
+    		 //working.setName(lecture);	
       	 }else if(baliseNiveauCourant.equals("resource")){
     		 resource.setName(lecture);	
     		 project.getResources().add(resource);
@@ -214,19 +211,19 @@ public class ParserHandler extends DefaultHandler{
          working.setWorkAmount(new Double(lecture));	
       }else if(inDateDebutEff){
     	  try {
-			plannable.setDateDebutEff(dateFormat.parse(lecture)) ;
+		//	plannable.setDateDebutEff(dateFormat.parse(lecture)) ;
 			System.out.println(plannable.getRealStartDate() + " : ");
 			
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			throw new SAXException(lecture+": mauvais format de date.");
 			
 		}	
       }else if(inDateFinEff){
     	  try {
-  			plannable.setDateFinEff(dateFormat.parse(lecture)) ;
-  			System.out.println(plannable.getRealERndDate() + " : ");
+  			//plannable.setDateFinEff(dateFormat.parse(lecture)) ;
+  			System.out.println(plannable.getRealEndDate() + " : ");
   			
-  		} catch (ParseException e) {
+  		} catch (Exception e) {
   			throw new SAXException(lecture+": mauvais format de date.");
   			
   		}	
@@ -240,7 +237,7 @@ public class ParserHandler extends DefaultHandler{
    public void endDocument() throws SAXException {
    	  System.out.println("Fin du parsing");
    	  System.out.println("Resultats du parsing");
-   	  for(Activity a : project.getActivities()){
+   	  for(Activity a : project.getSubActivities()){
    	     System.out.println(a);
    	  }
    	for(Resource r : project.getResources()){

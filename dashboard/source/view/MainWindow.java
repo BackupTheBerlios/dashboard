@@ -26,6 +26,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import entity.Activity;
 import entity.Project;
@@ -414,44 +415,46 @@ public class MainWindow extends javax.swing.JFrame {
 	
 	private void showSelectedPlannable(javax.swing.event.TreeSelectionEvent evt)
 	{		
-		DefaultMutableTreeNode node 
-		= (DefaultMutableTreeNode)jTree1.getSelectionPath().getLastPathComponent();
-		Object obj = node.getUserObject();
-		
-		if(obj instanceof Project)
+		TreePath tp = jTree1.getSelectionPath();
+		if(tp!=null)
 		{
-			Project p = (Project)obj;
-			infoPanel.removeAll();
-			infoPanel.add(
-					getProjectView(new ProjectControl(p)),
-					java.awt.BorderLayout.CENTER
-			);
-			infoPanel.updateUI();
+			DefaultMutableTreeNode node = (DefaultMutableTreeNode)tp.getLastPathComponent();
+			Object obj = node.getUserObject();
+			
+			if(obj instanceof Project)
+			{
+				Project p = (Project)obj;
+				infoPanel.removeAll();
+				infoPanel.add(
+						getProjectView(new ProjectControl(p)),
+						java.awt.BorderLayout.CENTER
+				);
+				infoPanel.updateUI();
+			}
+			else
+			if(obj instanceof Activity )
+			{
+				Activity a = (Activity)obj;
+				infoPanel.removeAll();
+				infoPanel.add(
+						new PlannableView(new PlannableControl(a)),
+						java.awt.BorderLayout.CENTER
+				);
+				infoPanel.updateUI();
+			}
+			else
+			if(obj instanceof WorkBreakDownElement )
+			{
+				WorkBreakDownElement w = (WorkBreakDownElement)obj;
+				infoPanel.removeAll();
+				infoPanel.add(
+						new PlannableView(new PlannableControl(w)),
+						java.awt.BorderLayout.CENTER
+				);
+				infoPanel.updateUI();
+			}	
+			
 		}
-		else
-		if(obj instanceof Activity )
-		{
-			Activity a = (Activity)obj;
-			infoPanel.removeAll();
-			infoPanel.add(
-					new PlannableView(new PlannableControl(a)),
-					java.awt.BorderLayout.CENTER
-			);
-			infoPanel.updateUI();
-		}
-		else
-		if(obj instanceof WorkBreakDownElement )
-		{
-			WorkBreakDownElement w = (WorkBreakDownElement)obj;
-			infoPanel.removeAll();
-			infoPanel.add(
-					new PlannableView(new PlannableControl(w)),
-					java.awt.BorderLayout.CENTER
-			);
-			infoPanel.updateUI();
-		}		
-		
-		
 	}
     
 	

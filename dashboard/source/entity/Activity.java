@@ -342,7 +342,6 @@ public class Activity extends Plannable {
 			}
 		}
 		return l;
-	}
-	
+	}	
 } // end Activity
 

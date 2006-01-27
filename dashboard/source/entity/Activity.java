@@ -1,6 +1,6 @@
- package entity;
+package entity;
 
-import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 
 /*
@@ -9,243 +9,323 @@ import java.util.Iterator;
  * Generated with <A HREF="http://jakarta.apache.org/velocity/">velocity</A> template engine.
  */
 
-
 /**
- * <p></p>
+ * <p>
+ * </p>
  */
 public class Activity extends Plannable {
-	
-	///////////////////////////////////////
-	// attributes
-	
-	
-	/**
-	 * <p>Represents ...</p>
-	 */
-	private String name; 
-	private String id;
-	private int duration;
-	
-	///////////////////////////////////////
-	// associations
-	
-	/**
-	 * <p></p>
-	 * 
-	 * @poseidon-type WorkBreakDownElement
-	 */
-	private java.util.Collection<WorkBreakDownElement> workBreakDownElements = new java.util.ArrayList<WorkBreakDownElement>(); // of type WorkBreakDownElement
-	/**
-	 * <p></p>
-	 */
-	private java.util.Collection<Activity> activities= new java.util.ArrayList<Activity>(); 
-	
-	
-	/**
-	 * <p></p>
-	 */
-	private Project project; 
 
-	
-	
-	///////////////////////////////////////
-	// operations
-	
-	
-	public Activity() {
-		super();
-		this.name = null;
-		this.id = null;
-		project = null;
-	}
-	
+	// /////////////////////////////////////
+	// attributes
+
 	/**
-	 * @param name
-	 * @param id
+	 * <p>
+	 * Represents ...
+	 * </p>
 	 */
-	public Activity(String id) {
-		super();
-		this.name = null;
-		this.id = id;
-		project = null;
-	}
-	
-	
+	private String name;
+
 	/**
-	 * @param name
+	 * <p>
+	 * Represents ...
+	 * </p>
+	 */
+	private String id;
+
+	// /////////////////////////////////////
+	// associations
+	// WorkBreakDownElement
+
+	/**
+	 * <p>
+	 * </p>
+	 */
+	private java.util.ArrayList<Activity> subActivities = new java.util.ArrayList<Activity>();
+
+	/**
+	 * <p>
+	 * </p>
+	 */
+	private java.util.ArrayList<WorkBreakDownElement> wbes = new java.util.ArrayList<WorkBreakDownElement>();
+
+	/**
 	 * @param id
+	 * @param name
 	 */
 	public Activity(String id, String name) {
-		super();
-		this.name = name;
+		// TODO Auto-generated constructor stub
 		this.id = id;
-	
-		project = null;
+		this.name = name;
 	}
-	
 
+	
+	public Activity() {
+		// TODO Auto-generated constructor stub
+		this.id = null;
+		this.name = null;
+	}
+
+	
+	
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see entity.Plannable#getPrevEndDate()
+	 */
+	@Override
+	public Date getPrevEndDate() {
+		//the PrevEndDate will be the PrevEndDate of the lattest subActivity		
+		Date res = null;
+		if (!subActivities.isEmpty()) {
+			res = subActivities.iterator().next().getPrevEndDate();
+			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
+				Activity ac = it.next();
+				if (res.after(ac.getPrevEndDate())) {
+					res = ac.getPrevEndDate();
+				}
+			}
+		}
+		if ((res == null)&& !wbes.isEmpty()) {
+			res = wbes.iterator().next().getPrevEndDate();
+			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
+				WorkBreakDownElement wbe = it.next();
+				if (res.after(wbe.getPrevEndDate())) {
+					res = wbe.getPrevEndDate();
+				}
+			}
+		}
+		return res;
+	}
+
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see entity.Plannable#getPrevStartDate()
+	 */
+	@Override
+	public Date getPrevStartDate() {
+		//the PrevStartDate will be the PrevStartDate of the first subActivity		
+		Date res = null;
+		if (!subActivities.isEmpty()) {
+			res = subActivities.iterator().next().getPrevStartDate();
+			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
+				Activity ac = it.next();
+				if (res.before(ac.getPrevStartDate())) {
+					res = ac.getPrevStartDate();
+				}
+			}
+		}
+		if ((res == null)&& !wbes.isEmpty()) {
+			res = wbes.iterator().next().getPrevStartDate();
+			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
+				WorkBreakDownElement wbe = it.next();
+				if (res.before(wbe.getPrevStartDate())) {
+					res = wbe.getPrevStartDate();
+				}
+			}
+		}
+		return res;
+
+	}
+
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see entity.Plannable#getPrevWorkAmount()
+	 */
+	@Override
+	public Double getPrevWorkAmount() {
+		double amount = 0;
+		for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
+			Activity ac = it.next();
+			amount = amount + ac.getPrevWorkAmount();
+		}
+		for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
+			WorkBreakDownElement wbe = it.next();
+			amount = amount + wbe.getPrevWorkAmount();
+		}
+		return new Double(amount);
+	}
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see entity.Plannable#getRealEndDate()
+	 */
+	@Override
+	public Date getRealEndDate() {
+		//the RealEndDate will be the RealEndDate of the lattest subActivity		
+		Date res = null;
+		if (!subActivities.isEmpty()) {
+			res = subActivities.iterator().next().getRealEndDate();
+			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
+				Activity ac = it.next();
+				if (res.after(ac.getRealEndDate())) {
+					res = ac.getRealEndDate();
+				}
+			}
+		}
+		if ((res == null)&& !wbes.isEmpty()) {
+			res = wbes.iterator().next().getRealEndDate();
+			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
+				WorkBreakDownElement wbe = it.next();
+				if (res.after(wbe.getRealEndDate())) {
+					res = wbe.getRealEndDate();
+				}
+			}
+		}
+		return res;
+	}
+
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see entity.Plannable#getRealStartDate()
+	 */
+	@Override
+	public Date getRealStartDate() {
+		//the RealStartDate will be the RealStartDate of the first subActivity		
+		Date res = null;
+		if (!subActivities.isEmpty()) {
+			res = subActivities.iterator().next().getRealStartDate();
+			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
+				Activity ac = it.next();
+				if (res.before(ac.getRealStartDate())) {
+					res = ac.getRealStartDate();
+				}
+			}
+		}
+		if ((res == null)&& !wbes.isEmpty()) {
+			res = wbes.iterator().next().getRealStartDate();
+			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
+				WorkBreakDownElement wbe = it.next();
+				if (res.before(wbe.getRealStartDate())) {
+					res = wbe.getRealStartDate();
+				}
+			}
+		}
+		return res;
+
+	}
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see entity.Plannable#getRealWorkAmount()
+	 */
+	@Override
+	public Double getRealWorkAmount() {
+		double amount = 0;
+		for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
+			Activity ac = it.next();
+			amount = amount + ac.getRealWorkAmount();
+		}
+		for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
+			WorkBreakDownElement wbe = it.next();
+			amount = amount + wbe.getRealWorkAmount();
+		}
+		return new Double(amount);
+	}
 
 	/**
 	 * @return Returns the id.
 	 */
 	public String getId() {
-		return id ;
+		return id;
 	}
-	
+
+	/**
+	 * @param id
+	 *            The id to set.
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	/**
 	 * @return Returns the name.
 	 */
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
-	public Double getPrevisionsCharges() {        
-		return null;
-	}       
-	
-	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
-	public Double getPrevisionsDelais() {        
-		return null;
-	}     
-	
-	/**
-	 * @return Returns the activities.
-	 */
-	public java.util.Collection getActivities() {
-		return activities;
-	}
-	
-	/**
-	 * @return Returns the workBreakDownElements.
-	 */
-	public java.util.Collection<WorkBreakDownElement> getWorkBreakDownElements() {
-		return workBreakDownElements;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#isEmpty()
-	 */
-	public boolean isWbesEmpty() {
-		return workBreakDownElements.isEmpty();
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#size()
-	 */
-	public int sizeOfWbes() {
-		return workBreakDownElements.size();
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#iterator()
-	 */
-	public Iterator<WorkBreakDownElement> iteratorOnWbes() {
-		return workBreakDownElements.iterator();
-	}
-	
-	/**
-	 * @param activities The activities to set.
-	 */
-	public void setActivities(java.util.Collection<Activity> activities) {
-		this.activities = activities;
-	}
-	
-	/**
-	 * @param name The name to set.
+	 * @param name
+	 *            The name to set.
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
-	 * @param workBreakDownElements The workBreakDownElements to set.
+	 * @return Returns the subActivities.
 	 */
-	public void setWorkBreakDownElements(java.util.Collection<WorkBreakDownElement> workBreakDownElements) {
-		this.workBreakDownElements = workBreakDownElements;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#add(E)
-	 */
-	public boolean addWorkBreakDownElement(WorkBreakDownElement arg) {
-		arg.setActivity(this);
-		return workBreakDownElements.add(arg);
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#addAll(java.util.Collection)
-	 */
-	public boolean addWorkBreakDownElementsAll(Collection<? extends WorkBreakDownElement> workBreakDownElements) {
-		WorkBreakDownElement work = null;
-		for(Iterator<? extends WorkBreakDownElement> i= workBreakDownElements.iterator(); i.hasNext(); work = i.next()){
-			work.setActivity(this);
-		}
-		
-		return this.workBreakDownElements.addAll(workBreakDownElements);
-	}
-	
-	public String toString() {
-		String work = "";
-		Iterator it2 = null;
-		Iterator it= workBreakDownElements.iterator();
-		
-		WorkBreakDownElement act= null;
-		Working wk = null;
-		
-		while(it.hasNext()){
-			act = (WorkBreakDownElement) it.next();
-			work +="\n\t<wbe " + act.getName() +" ,";
-			it2 = act.getWorkings().iterator();
-			while(it2.hasNext()){
-				wk = (Working) it2.next();
-				work += "\n\t\t<wking " + wk.getName() + ", " + wk.getWorkAmount()+ ">";
-			}
-			work += "\n\t>";
-			
-		}
-		
-		return "<A " + this.getName() + "," + work+ "\n>";
-	}
-	
-	/**
-	 * @return Returns the project.
-	 */
-	public Project getProject() {
-		return project;
-	}
-	
-	/**
-	 * @param project The project to set.
-	 */
-	public void setProject(Project project) {
-		this.project = project;
-	}
-	/**
-	 * @param duration of activiry to set and get.
-	 */
-	public int getDuration() {
-		return duration;
+	public java.util.ArrayList<Activity> getSubActivities() {
+		return subActivities;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	/**
+	 * @param subActivities
+	 *            The subActivities to set.
+	 */
+	public void setSubActivities(java.util.ArrayList<Activity> subActivities) {
+		this.subActivities = subActivities;
+	}
+
+	/**
+	 * @return Returns the wbes.
+	 */
+	public java.util.ArrayList<WorkBreakDownElement> getWbes() {
+		return wbes;
+	}
+
+	/**
+	 * @param wbes The wbes to set.
+	 */
+	public void setWbes(java.util.ArrayList<WorkBreakDownElement> wbes) {
+		this.wbes = wbes;
+	}
+
+	/**
+	 * @param 
+	 */
+	public Activity findActivityById(java.lang.String pId) throws Exception
+	{		
+		Iterator<Activity> it;		
+		for(it = subActivities.iterator(); it.hasNext();)
+		{
+			Activity a = it.next();
+			if(a.getId().equals(pId))
+			{
+				return a;
+			}
+		}
+		throw new Exception("Unknown activity Id!");
+	}
+	
+	
+	public WorkBreakDownElement findWbeById(java.lang.String pId) throws Exception
+	{		
+		Iterator<WorkBreakDownElement> it;		
+		for(it = wbes.iterator(); it.hasNext();)
+		{
+			WorkBreakDownElement w = it.next();
+			if(w.getId().equals(pId))
+			{
+				return w;
+			}
+		}
+		throw new Exception("Unknown WorkBreakDownElement Id!");
 	}
 	
 } // end Activity
-
-
-
-
-
 

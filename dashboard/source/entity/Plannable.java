@@ -19,22 +19,7 @@ public abstract class Plannable {
 	/**
 	 * <p>Represents ...</p>
 	 */
-	protected Date dateDebutEff; 
 	
-	/**
-	 * <p>Represents ...</p>
-	 */
-	protected Date dateFinEff; 
-	
-	/**
-	 * <p>Represents ...</p>
-	 */
-	protected Double estime ; 
-	
-	/**
-	 * <p>Represents ...</p>
-	 */
-	protected Double reel ;
 	///////////////////////////////////////
 	// operations
 	
@@ -45,7 +30,7 @@ public abstract class Plannable {
 	 * 
 	 * @return 
 	 */
-	public abstract Double getPrevisionsDelais();
+	public abstract Double getPrevWorkAmount();
 	
 	/**
 	 * <p>Does ...</p>
@@ -53,58 +38,71 @@ public abstract class Plannable {
 	 * 
 	 * @return 
 	 */
-	public abstract Double getPrevisionsCharges();
+	public abstract Double getRealWorkAmount();
 	
 	/**
-	 * @return Returns the dateDebutEff.
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
 	 */
-	public Date getDateDebutEff() {
-		return dateDebutEff;
-	}
+	public abstract Date getRealStartDate();
 	
 	/**
-	 * @return Returns the dateFinEff.
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
 	 */
-	public Date getDateFinEff() {
-		return dateFinEff;
-	}
+	public abstract Date getRealEndDate();
 	
 	/**
-	 * @return Returns the previsions.
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
 	 */
-	public Double getEstime() {
-		return estime ;
-	}
+	public abstract Date getPrevStartDate();
+	
 	
 	/**
-	 * @param dateDebutEff The dateDebutEff to set.
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
 	 */
-	public void setDateDebutEff(Date dateDebutEff) {
-		this.dateDebutEff = dateDebutEff;
-	}
-	
-	/**
-	 * @param dateFinEff The dateFinEff to set.
-	 */
-	public void setDateFinEff(Date dateFinEff) {
-		this.dateFinEff = dateFinEff;
-	}
-	
-	/**
-	 * @param previsions The previsions to set.
-	 */
-	public void setEstime(Double previsions) {
-		this.estime = previsions;
-	}
+	public abstract Date getPrevEndDate();
 
-	public Double getReel() {
-		return reel;
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public abstract String getName();
+	
+
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public abstract String getId();
+	
+	
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public String toString()
+	{
+		return getId() + " - " + getName();
 	}
 	
- 
-	public void setReel(Double reel) {
-		this.reel = reel;
-	}
+	
 	
 } // end Plannable
 

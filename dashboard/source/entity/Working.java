@@ -21,12 +21,12 @@ public class Working {
 	/**
 	 * <p>Represents the working identificator </p>
 	 */
-	private String id;
+	private String id = null;
 	
 	/**
 	 * <p>Represents the working name </p>
 	 */
-	private String name;
+	private String description = null;
 	
 	
 	///////////////////////////////////////
@@ -37,31 +37,38 @@ public class Working {
 	 * 
 	 * @link Resource
 	 */
-	public Resource resource; // of type Resource
+	public Resource resource = null; // of type Resource
+	
+	
 	
 	
 	/**
-	 * <p>Represents WBE link to access to the associate WorkBreakDownElement </p>
-	 * 
-	 * @link WorkBreakDownElement
+	 * @param id
+	 * @param description
+	 * @param workAmount
+	 * @param resource
+	 * @param workBreakDownElement
 	 */
-	public WorkBreakDownElement workBreakDownElement; // of type WorkBreakDowElement
-	
-	
-	
-	
-	
+	public Working(String pid, String pdescription, Double pworkAmount, Resource presource) {
+		// TODO Auto-generated constructor stub
+		this.id = pid;
+		this.description = pdescription;
+		this.workAmount = pworkAmount;
+		this.resource = presource;		
+	}
+
+
 	/**
 	 * <p>Constructor taken 3 parameters the String id, the String name and the Double workAmount  </p>
 	 * @param pid the workAmount 
 	 * @param pname the Working identificator
 	 * @param pworkAmount the Working name
 	 */
-	public Working( String pid, String pname, Double pworkAmount) {
+	public Working( String pid, String pDesc, Double pworkAmount) {
 		
 		this.workAmount = pworkAmount;
 		this.id = pid;
-		this.name = pname;
+		this.description = pDesc;
 	}
 	
 	
@@ -91,15 +98,6 @@ public class Working {
 	}
 	
 	
-	/**
-	 * 
-	 * @return Returns this Working name.
-	 */
-	public String getName() {
-		return name;
-	}
-
-
 	/***
 	 * 
 	 * @return Returns the workAmount.
@@ -119,23 +117,6 @@ public class Working {
 	
 	
 	/**
-	 * 
-	 * @return Returns the workBreakDowElement associate.
-	 */
-	public WorkBreakDownElement getWorkBreakDownElement() {
-		return workBreakDownElement;
-	}
-	
-	/**
-	 *  
-	 * @param pname The name to set.
-	 */
-	public void setName(String pname) {
-		this.name = pname;
-	}
-
-
-	/**
 	 *  
 	 * @param pworkAmount The workAmount to set.
 	 */
@@ -153,12 +134,20 @@ public class Working {
 	}
 	
 	
+
 	/**
-	 * 
-	 * @param pworkBreakDownElement The workBreakDowElement associate to set.
+	 * @return Returns the description.
 	 */
-	public void setWorkBreakDownElement(WorkBreakDownElement pworkBreakDownElement) {
-		this.workBreakDownElement = pworkBreakDownElement;
+	public String getDescription() {
+		return description;
+	}
+
+
+	/**
+	 * @param description The description to set.
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

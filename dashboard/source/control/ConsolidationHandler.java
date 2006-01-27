@@ -28,7 +28,7 @@ public class ConsolidationHandler {
 	private HashMap<String,WBESet> collectionOfWbeSets = new HashMap<String, WBESet>();
 	private String projectName;
 	
-	public ConsolidationHandler(Project projet , String projectName) {
+	public ConsolidationHandler(Project projet) {
 		
 		super();
 		this.projectName = projet.getName();

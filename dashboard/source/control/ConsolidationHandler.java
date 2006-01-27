@@ -39,6 +39,7 @@ public class ConsolidationHandler {
 		WorkBreakDownElement tempwbe = null;
 		for(WorkBreakDownElement wbe :  works){
 			 tempwbe = new WorkBreakDownElement(wbe.getId(), wbe.getName(), wbe.getPrevStartDate(), wbe.getPrevEndDate() , wbe.getPrevWorkAmount(),wbe.getRealStartDate(), wbe.getRealEndDate() , wbe.getRealWorkAmount());
+			 tempwbe.setWorkings(wbe.getWorkings());
 			for(WBESet wbeset:  wbe.getWbeSets() ){
 				if(! this.collectionOfWbeSets.containsKey(wbeset.getId())){
 					temp = new WBESet(wbeset.getId(), wbeset.getName());

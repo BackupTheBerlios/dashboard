@@ -327,5 +327,22 @@ public class Activity extends Plannable {
 		throw new Exception("Unknown WorkBreakDownElement Id!");
 	}
 	
+	public java.util.ArrayList<WorkBreakDownElement> getWbesRecursive()
+	{
+		java.util.ArrayList<WorkBreakDownElement> l = wbes;
+		for(Activity ac:subActivities)
+		{
+			java.util.ArrayList<WorkBreakDownElement> subL = ac.getWbesRecursive();
+			for(WorkBreakDownElement w:subL)
+			{
+				if(!l.contains(w))
+				{
+					l.add(w);
+				}
+			}
+		}
+		return l;
+	}
+	
 } // end Activity
 

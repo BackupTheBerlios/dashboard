@@ -1,6 +1,7 @@
 package control;
 
  
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -13,14 +14,14 @@ import entity.*;
 public class C_ObjVariation {
 
 	 private Project p;
-	 Resource[] allRessources ; // of type WorkBreakDownElement 
+	 ArrayList<Resource> allRessources ; // of type WorkBreakDownElement 
 	 int [] allLevels;
 	
 	 
 	 public C_ObjVariation(Project pp)
 	 {
 		 p=pp;
-		 allRessources=(Resource[]) p.getResources().toArray();
+		 allRessources= p.getResources();
 		 allLevels=p.getImportNumbers();
 		
 		 //allWBE=null;
@@ -37,12 +38,14 @@ public class C_ObjVariation {
 	 {
 		 int i,j,k,l,longVect ;
 		 
+		 //System.out.println(allLevels.toString());
 		 Vector <objVariation> res = new Vector<objVariation>() ;
-		 int nbrRs=allRessources.length;
+		 int nbrRs=allRessources.size();
 		 int nbrLv=allLevels.length;
 		 
 		 longVect =(nbrRs+1)*nbrLv;
 		 
+		 System.out.println("rs "+allRessources.get(0).getName() );
 		 for(i=0;i<longVect;i++)
 		 {
 			 objVariation obj= new objVariation("",0.0,0.0,"","",0);
@@ -51,28 +54,28 @@ public class C_ObjVariation {
 		 for(i=0;i<allLevels.length;i++)// pour chaque level
 		 {
 			 //recuperer les activités
-			 Activity[] act = (Activity[]) p.findByImportNumber(i).toArray();
-			 java.util.Collection<WorkBreakDownElement> aux = new java.util.ArrayList<WorkBreakDownElement>();
-			 for(k=0;k<act.length;k++)
+			 ArrayList <Activity> act =  p.getSubActivities();
+			 java.util.Collection<WorkBreakDownElement> wbes = new java.util.ArrayList<WorkBreakDownElement>();
+			 for(k=0;k<act.size();k++)
 			 {
-				 aux.addAll(extractWBEFromActivity(act[i]));
+				 wbes.addAll(extractWBEFromActivity(act.get(k)));
 			 }
-			 WorkBreakDownElement[] wbes=(WorkBreakDownElement[]) aux.toArray();
-			 for(j=0;j<allRessources.length;j++)// pour chaque ressource
+			// ArrayList <WorkBreakDownElement> wbes=  aux ;
+			 for(j=0;j<allRessources.size();j++)// pour chaque ressource
 			 {
-				 for(k=0;k<wbes.length;k++)
+				 for(k=0;k<wbes.size();k++)
 				 {
-					 Working [] wk =(Working[]) wbes[k].getWorkings().toArray();
-					 for(l=0;l<wk.length;l++)
+					 ArrayList <Working> wk =  ((ArrayList<WorkBreakDownElement>) wbes).get(k).getWorkings() ;
+					 for(l=0;l<wk.size();l++)
 					 {
-						 if(allRessources[j].getId().equals(wk[l].getResource().getId()))
+						 if(allRessources.get(j).getId().equals(wk.get(l).getResource().getId()))
 						 {
 							 int coord=(i*nbrRs)+j;
-							 String lev="level"+allLevels[i];
-							 double est=res.get(coord).getTempsEstime()+wbes[k].getPrevWorkAmount();
-							 double reel=res.get(coord).getTempsReel()+wbes[k].getRealWorkAmount();
-							 String rs=allRessources[j].getName();
-							 String idRs=allRessources[j].getId();
+							 String lev="iteration"+allLevels[i];
+							 double est=res.get(coord).getTempsEstime()+((ArrayList<WorkBreakDownElement>) wbes).get(k).getPrevWorkAmount();
+							 double reel=res.get(coord).getTempsReel()+((ArrayList<WorkBreakDownElement>) wbes).get(k).getRealWorkAmount();
+							 String rs=allRessources.get(j).getName();
+							 String idRs=allRessources.get(j).getId();
 							 int numSem=0;//not implement for the moment
 							
 							 res.get(coord).setIteration(lev);
@@ -113,5 +116,10 @@ public class C_ObjVariation {
 		 }
 		 return res;
 	 }
+
+
+	public ArrayList<Resource> getAllRessources() {
+		return allRessources;
+	}
 	 
 } // end 

@@ -12,6 +12,7 @@ import org.jfree.data.category.*;
 import org.jfree.chart.axis.*;
 import org.jfree.chart.renderer.category.*;
 
+import control.C_ObjVariation;
 import control.objVariation;
 import entity.Project;
 
@@ -28,7 +29,7 @@ public class ViewProjectVariation extends JFrame
 	 */
 	
 	private static final long serialVersionUID = 1L;
-	private Vector<objVariation> v; 
+	private Vector<objVariation> vect; 
 	private String params;
 	private Project Pj;
 	
@@ -38,8 +39,8 @@ public class ViewProjectVariation extends JFrame
 		
 		Pj=pp;
 		params=param;
-		Vector<objVariation> vect = new Vector<objVariation>() ;
-		
+		 
+		/*
 		if (Pj.getId().equals("2DB"))
 		{	
 		objVariation obj11 = new objVariation("It1",16,17,"Tankoano Olivier","tt",2);
@@ -103,9 +104,10 @@ public class ViewProjectVariation extends JFrame
 			objVariation objSum2 = new objVariation("It2",102,91,"group","gr",2);
 			vect.add(objSum2) ; 
 		}
+		 */
+		C_ObjVariation var = new C_ObjVariation(pp);
 		 
-		
-		v=vect;
+		vect=var.getDataVariation();
 		
 		//JDesktopPane jdp = new JDesktopPane();
 		//Container container = new Container(;)
@@ -119,10 +121,9 @@ public class ViewProjectVariation extends JFrame
 	    Vector<String> data = new Vector<String>();
 	    data.add("group");
 	    int i=0;
-	    while(!vect.get(i).getRessource().equals("group"))
+	    for(i=0;i<var.getAllRessources().size();i++)
 	    {
-	    	data.add(vect.get(i).getRessource());
-	    	i++;
+	    	data.add(var.getAllRessources().get(i).getName());
 	    }
 	    
 	    final JComboBox comboRessource = new JComboBox(data);

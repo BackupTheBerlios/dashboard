@@ -160,6 +160,7 @@ public class TestEntity {
 							.stringToDate("26-09-2005"), Utils
 							.stringToDate("10-10-2005"), new Double(7));
 			it1.getWbes().add(wbe1);
+		
 			wsGes.add(wbe1);
 			
 			WorkBreakDownElement wbe2 = new WorkBreakDownElement("wbe2",

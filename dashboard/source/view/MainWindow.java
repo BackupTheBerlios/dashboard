@@ -252,7 +252,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void indicsMenuActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    	ViewProjectVariation test = new ViewProjectVariation("group") ;
     }
 
     private void quitMenuActionPerformed(java.awt.event.ActionEvent evt) {

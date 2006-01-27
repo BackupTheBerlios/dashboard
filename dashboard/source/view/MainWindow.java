@@ -45,6 +45,11 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         updateProjectList();
         updateProjectTree(null);
+        
+        this.setSize(800,600); 
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 	 
+        
     }
     
     /** This method is called from within the constructor to
@@ -226,12 +231,11 @@ public class MainWindow extends javax.swing.JFrame {
         setJMenuBar(jMenuBar2);
         
         
-        this.setSize(800,600); 
-        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
-	 	 
         pack();
     }
+    
+    
+    
     
     private void consoMenuActionPerformed(java.awt.event.ActionEvent evt) 
     {
@@ -399,28 +403,7 @@ public class MainWindow extends javax.swing.JFrame {
 		DefaultMutableTreeNode node 
 		= (DefaultMutableTreeNode)jTree1.getSelectionPath().getLastPathComponent();
 		Object obj = node.getUserObject();
-		if(obj instanceof WorkBreakDownElement )
-		{
-			WorkBreakDownElement w = (WorkBreakDownElement)obj;
-			infoPanel.removeAll();
-			infoPanel.add(
-					new PlannableView(new PlannableControl(w)),
-					java.awt.BorderLayout.CENTER
-			);
-			infoPanel.updateUI();
-		}		
-		else
-		if(obj instanceof Activity )
-		{
-			Activity a = (Activity)obj;
-			infoPanel.removeAll();
-			infoPanel.add(
-					new PlannableView(new PlannableControl(a)),
-					java.awt.BorderLayout.CENTER
-			);
-			infoPanel.updateUI();
-		}		
-		else
+		
 		if(obj instanceof Project)
 		{
 			Project p = (Project)obj;
@@ -431,6 +414,30 @@ public class MainWindow extends javax.swing.JFrame {
 			);
 			infoPanel.updateUI();
 		}
+		else
+		if(obj instanceof Activity )
+		{
+			Activity a = (Activity)obj;
+			infoPanel.removeAll();
+			infoPanel.add(
+					new PlannableView(new PlannableControl(a)),
+					java.awt.BorderLayout.CENTER
+			);
+			infoPanel.updateUI();
+		}
+		else
+		if(obj instanceof WorkBreakDownElement )
+		{
+			WorkBreakDownElement w = (WorkBreakDownElement)obj;
+			infoPanel.removeAll();
+			infoPanel.add(
+					new PlannableView(new PlannableControl(w)),
+					java.awt.BorderLayout.CENTER
+			);
+			infoPanel.updateUI();
+		}		
+		
+		
 	}
     
 	

@@ -53,7 +53,7 @@ public class ProjectView extends javax.swing.JInternalFrame{
 		    	jPanel2.add(label,BorderLayout.NORTH);
 				JProgressBar Jbar=new JProgressBar(1,99);
 				Jbar.setBackground(Color.red);
-				Jbar.setValue(pc.getTps());
+				Jbar.setValue(((int)Double.doubleToLongBits(pc.getTps())));
 				Jbar.setMaximumSize(Jbar.getPreferredSize());
 				JPanel jPanel3=new JPanel();
 				jPanel3.setLayout(new BorderLayout());
@@ -65,7 +65,7 @@ public class ProjectView extends javax.swing.JInternalFrame{
 				JProgressBar Jbar2=new JProgressBar();
 				Jbar2.setMaximumSize(Jbar2.getPreferredSize());
 				Jbar2.setBackground(Color.GREEN);
-				Jbar2.setValue(pc.getBudget());
+				Jbar2.setValue(((int)Double.doubleToLongBits(pc.getBudget())));
 				JPanel jPanel5=new JPanel();
 				JLabel label3 = new JLabel("Budget :");
 				jPanel5.add(label3);

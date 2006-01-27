@@ -87,7 +87,7 @@ public class ProjectWindow extends javax.swing.JInternalFrame
 		{
 			DefaultMutableTreeNode root = new DefaultMutableTreeNode("Project " + p.getName()) ;
 			int i;
-			java.util.Collection<Activity> lAcs = p.getActivities();
+			java.util.Collection<Activity> lAcs = p.getSubActivities();
 			for(i=0; i<lAcs.size(); i++)
 			{
 				Activity lAc = (Activity)lAcs.toArray()[i];
@@ -105,7 +105,7 @@ public class ProjectWindow extends javax.swing.JInternalFrame
 private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 {	
 	int i;
-	java.util.Collection<Activity> lAcs = pAc.getActivities();
+	java.util.Collection<Activity> lAcs = pAc.getSubActivities();
 	for(i=0; i<lAcs.size(); i++)
 	{
 		Activity lAc = (Activity)lAcs.toArray()[i];
@@ -114,7 +114,7 @@ private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc)
 		pNode.add(lAcNode);
 	}
 	
-	java.util.Collection<WorkBreakDownElement> lWBEs = pAc.getWorkBreakDownElements();
+	java.util.Collection<WorkBreakDownElement> lWBEs = pAc.getWbes();
 	for(i=0; i<lWBEs.size(); i++)
 	{
 		WorkBreakDownElement lWBE = (WorkBreakDownElement)lWBEs.toArray()[i];

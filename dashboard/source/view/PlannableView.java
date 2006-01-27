@@ -344,8 +344,7 @@ public class PlannableView extends javax.swing.JPanel {
 
 		jPanel1.add(contentPanel, java.awt.BorderLayout.CENTER);
 
-		add(jPanel1, java.awt.BorderLayout.CENTER);
-
+		
 		txtPrevStartDate.setEditable(false);
 		txtPrevEndDate.setEditable(false);
 		txtRealStartDate.setEditable(false);
@@ -360,6 +359,9 @@ public class PlannableView extends javax.swing.JPanel {
 		txtStartOffset2.setEditable(false);
 		txtDurationOffset2.setEditable(false);
 		txtGlobalOffset2.setEditable(false);
+
+		this.setLayout(new java.awt.BorderLayout(2, 2));
+		this.add(jPanel1, java.awt.BorderLayout.CENTER);
 
 	}
 

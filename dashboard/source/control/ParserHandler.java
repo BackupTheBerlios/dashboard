@@ -34,7 +34,6 @@ public class ParserHandler extends DefaultHandler{
 	private boolean inDateDebutEff = false;
 	private boolean inDateFinEff = false;
 	private String baliseNiveauCourant = null;
-	private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	private Plannable plannable = null;
 	
 
@@ -61,7 +60,8 @@ public class ParserHandler extends DefaultHandler{
            	String id = attributes.getValue("id");
            	if(id == null )
            		throw new Exception("id projet non précisé");
-              project = new Project(id);
+              project = new Project();
+              project.setId(id);
               plannable = project;
               System.out.println("project id: " + project.getId());
            }catch(Exception e){
@@ -76,7 +76,8 @@ public class ParserHandler extends DefaultHandler{
          	String id = attributes.getValue("id");
          	if(id == null )
            		throw new Exception("id activité non précisé");
-            activity = new Activity(id);
+            activity = new Activity();
+            activity.setId(id);
             plannable = activity;
          }catch(Exception e){
          	//attribut manquant
@@ -91,7 +92,8 @@ public class ParserHandler extends DefaultHandler{
           	System.out.println("wbe id: " + id);
           	if(id == null )
            		throw new Exception("id wbe non précisé");
-          	wbe = new WorkBreakDownElement(id);
+          	wbe = new WorkBreakDownElement();
+          	wbe.setId(id);
           	plannable = wbe;
           }catch(Exception e){
           	//attribut manquant
@@ -130,7 +132,7 @@ public class ParserHandler extends DefaultHandler{
             	String id = attributes.getValue("id");
             	if(id == null )
              		throw new Exception("id working non précisé");
-            	working.setResource(project.getResource(id));
+            	working.setResource(project.findResourceById(id));
             }catch(Exception e){
             	//attribut manquant
                throw new SAXException(e);
@@ -160,14 +162,14 @@ public class ParserHandler extends DefaultHandler{
                 throws SAXException{
       if(qName.equals("project")){
       }else if(qName.equals("activity")){
-      	 project.addActivity(activity);
+      	 project.getSubActivities().add(activity);
       	 activity = null;
 
       }else if(qName.equals("workbreakdownelement")){
-    	 activity.addWorkBreakDownElement(wbe);
+    	 activity.getWbes().add(wbe);
          
       }else if(qName.equals("working")){
-    	 wbe.addWorking(working);
+    	 wbe.getWorkings().add(working);
          
       }else if(qName.equals("resource")){
 	
@@ -206,14 +208,14 @@ public class ParserHandler extends DefaultHandler{
     		 working.setName(lecture);	
       	 }else if(baliseNiveauCourant.equals("resource")){
     		 resource.setName(lecture);	
-    		 project.addResource(resource);
+    		 project.getResources().add(resource);
       	 }
       }else if(inAmount){
          working.setWorkAmount(new Double(lecture));	
       }else if(inDateDebutEff){
     	  try {
 			plannable.setDateDebutEff(dateFormat.parse(lecture)) ;
-			System.out.println(plannable.getDateDebutEff() + " : ");
+			System.out.println(plannable.getRealStartDate() + " : ");
 			
 		} catch (ParseException e) {
 			throw new SAXException(lecture+": mauvais format de date.");
@@ -222,7 +224,7 @@ public class ParserHandler extends DefaultHandler{
       }else if(inDateFinEff){
     	  try {
   			plannable.setDateFinEff(dateFormat.parse(lecture)) ;
-  			System.out.println(plannable.getDateFinEff() + " : ");
+  			System.out.println(plannable.getRealERndDate() + " : ");
   			
   		} catch (ParseException e) {
   			throw new SAXException(lecture+": mauvais format de date.");

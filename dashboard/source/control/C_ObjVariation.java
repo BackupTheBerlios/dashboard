@@ -21,17 +21,18 @@ public class C_ObjVariation {
 	 {
 		 p=pp;
 		 allRessources=(Resource[]) p.getResources().toArray();
-		 allLevels=p.getLevels();
+		 allLevels=p.getImportNumbers();
 		 
 		 //allWBE=null;
 	 }
 	 
+	 
 	 private java.util.Collection<WorkBreakDownElement> extractWBEFromActivity(Activity a)
-	 {
-		 
-		return a.getWorkBreakDownElements();
-		 	
+	 {		 
+		return a.getWbes();		 	
 	 }
+	 
+	 
 	 public Vector <objVariation> getDataVariation()
 	 {
 		 int i,j,k,l,longVect ;
@@ -50,7 +51,7 @@ public class C_ObjVariation {
 		 for(i=0;i<allLevels.length;i++)// pour chaque level
 		 {
 			 //recuperer les activités
-			 Activity[] act = (Activity[]) p.findByLevel(i).toArray();
+			 Activity[] act = (Activity[]) p.findByImportNumber(i).toArray();
 			 java.util.Collection<WorkBreakDownElement> aux = new java.util.ArrayList<WorkBreakDownElement>();
 			 for(k=0;k<act.length;k++)
 			 {
@@ -67,9 +68,9 @@ public class C_ObjVariation {
 						 if(allRessources[j].getId().equals(wk[l].getResource().getId()))
 						 {
 							 int coord=(i*nbrRs)+j;
-							 String lev="level"+wbes[k].getActivity().getDuration();
-							 double est=res.get(coord).getTempsEstime()+wbes[k].getEstime();
-							 double reel=res.get(coord).getTempsReel()+wbes[k].getReel();
+							 String lev="level"+p.findParentActivity(wbes[k]).getImportNumber();
+							 double est=res.get(coord).getTempsEstime()+wbes[k].getPrevWorkAmount();
+							 double reel=res.get(coord).getTempsReel()+wbes[k].getRealWorkAmount();
 							 String rs=allRessources[j].getName();
 							 String idRs=allRessources[j].getId();
 							 int numSem=0;//not implement for the moment

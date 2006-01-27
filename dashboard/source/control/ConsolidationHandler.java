@@ -133,7 +133,7 @@ public Collection<IndicatorState> getChargeByWbeSet(String idResource) {
     		for(WorkBreakDownElement wbe : wbeSet.getWorkBreakDowElements()){
     			//on crée le nouvel indicateur et on l'initialise les valeurs
 				
-    			tempIndicState.plusValue(wbe.getReel());
+    			tempIndicState.plusValue(wbe.getRealWorkAmount());
     			
 
     		}

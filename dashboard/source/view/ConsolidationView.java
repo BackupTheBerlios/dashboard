@@ -108,52 +108,48 @@ public class ConsolidationView extends javax.swing.JFrame  {
 	   
 	   this.arbreMenu.addTreeSelectionListener(
 
-	     new TreeSelectionListener(){
+			   new TreeSelectionListener(){
 
-			 public void valueChanged(TreeSelectionEvent e){
+			              public void valueChanged(TreeSelectionEvent e){
 
-			 DefaultMutableTreeNode leNoeud = 
-				 (DefaultMutableTreeNode) arbreMenu.getLastSelectedPathComponent();
- 	  
-			 if(leNoeud != null){     
-			        Object objet = leNoeud.getUserObject();
-			        
-			        if(objet instanceof TreeObjectElement){
-			            TreeObjectElement selectElt = (TreeObjectElement) objet; 
-			            JFreeChart chart = null;
-			             switch(selectElt.type){
-			                     case TreeObjectElement.TYPE_PROJECT :
-			                     case TreeObjectElement.TYPE_ALLWSETS :
-			                    	    
-			                    	 chart = createProjectChart();
-			                    	    break;
+			            	  DefaultMutableTreeNode leNoeud = (DefaultMutableTreeNode)
+
+			                             arbreMenu.getLastSelectedPathComponent();
+			            	  
+			            	  Object objet = leNoeud.getUserObject();
+			                       
+			                       
+			                    	   
+			                    	   
+			                 if(objet instanceof TreeObjectElement){
+			            	  TreeObjectElement selectElt = (TreeObjectElement) objet; 
+			                    	   JFreeChart chart = null;
+			                    	   switch(selectElt.type){
+			                    	         case TreeObjectElement.TYPE_PROJECT :
+			                    	         case TreeObjectElement.TYPE_ALLWSETS :
+			                    	        	 chart = createProjectChart();
+			                    	        	 break;
 			                    	        	 
-			                     case TreeObjectElement.TYPE_ALLRESOURCES :
-			                    	        	 
-			                    	 chart = createallResourcesChart();
-			                    	 break;
-			                    	         
-			                     case TreeObjectElement.TYPE_RESOURCE :
-			                    	
-			                    	 chart = createResourceChart(selectElt.getId(), selectElt.getName());
-			                    	 break;
-			                     
-			                     case TreeObjectElement.TYPE_WBESET :
-			                    	        	 
-			                    	 chart = createWbesetChart(selectElt.getId(), selectElt.getName());
-			                    	 break;
+			                    	         case TreeObjectElement.TYPE_ALLRESOURCES :
+			                    	        	 chart = createallResourcesChart();
+			                    	        	 break;
+			                    	         case TreeObjectElement.TYPE_RESOURCE :
+			                    	        	 chart = createResourceChart(selectElt.getId(), selectElt.getName());
+			                    	        	 break;
+			                    	         case TreeObjectElement.TYPE_WBESET :
+			                    	        	 chart = createWbesetChart(selectElt.getId(), selectElt.getName());
+			                    	        	 break;
 			                    	      
-			             }
-			            panelGraphic.setChart(chart);
+			                    	   }
+			                    	   panelGraphic.setChart(chart);
 	                    	        	 
 			                    	   
 			                    	   
-			        }
+			                       }
 
-			 	}
-			 }
+			                 }
 
-			 });
+			              });
 
 		//construction du chartPanel
 	   this.panelGraphic = new ChartPanel(this.createProjectChart());
@@ -162,13 +158,13 @@ public class ConsolidationView extends javax.swing.JFrame  {
 	 	   this.getContentPane().add(new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane, this.panelGraphic));
 
 	 	   this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-	 	   
+	 	   this.setSize(800,600);
 	 	   // On récupère la taille de l'écran (la résolution)
 	 	   
 	 	 Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 	 	  
 	 	  // et on place notre fenêtre au milieu
-	 	  this.setSize(900,650); 
+	 	   
 	 	  this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
 	 	  this.pack();
 	 	   
@@ -293,8 +289,6 @@ public class ConsolidationView extends javax.swing.JFrame  {
                );
 		chart.setBackgroundPaint(Color.WHITE);
         return chart;
-    }
-    
-    
-
+    }    
+	 
 }

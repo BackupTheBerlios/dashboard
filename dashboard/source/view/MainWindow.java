@@ -8,6 +8,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import control.ConsolidationHandler;
 import control.EnvironmentControl;
@@ -222,7 +224,12 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuBar2.add(helpMenu);
 
         setJMenuBar(jMenuBar2);
-
+        
+        
+        this.setSize(800,600); 
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
+	 	 
         pack();
     }
     
@@ -401,8 +408,7 @@ public class MainWindow extends javax.swing.JFrame {
 					java.awt.BorderLayout.CENTER
 			);
 			infoPanel.updateUI();
-		}
-		/*
+		}		
 		else
 		if(obj instanceof Activity )
 		{
@@ -413,8 +419,7 @@ public class MainWindow extends javax.swing.JFrame {
 					java.awt.BorderLayout.CENTER
 			);
 			infoPanel.updateUI();
-		}
-		*/
+		}		
 		else
 		if(obj instanceof Project)
 		{

@@ -62,7 +62,14 @@ public class PlannableControl {
 	
 	public Long getStartOffset()
 	{
-		return Utils.subDates(plannable.getRealStartDate(),plannable.getPrevStartDate());	
+		if((plannable.getRealStartDate()!=null) && (plannable.getPrevStartDate()!=null))
+		{
+			return Utils.subDates(plannable.getRealStartDate(),plannable.getPrevStartDate());
+		}
+		else
+		{			
+			return null;
+		}
 	}
 	
 	
@@ -70,7 +77,14 @@ public class PlannableControl {
 	
 	public Long getDurationOffset()
 	{
-		return getGlobalOffset() - getStartOffset();	
+		if((getGlobalOffset()!=null) &&( getStartOffset()!=null))
+		{
+			return getGlobalOffset() - getStartOffset();
+		}
+		else
+		{
+			return null;
+		}		
 	}
 	
 	
@@ -78,7 +92,14 @@ public class PlannableControl {
 	
 	public Long getGlobalOffset()
 	{
-		return Utils.subDates(plannable.getRealEndDate(),plannable.getPrevEndDate());	
+		if((plannable.getRealEndDate()!=null) && (plannable.getPrevEndDate()!=null))
+		{
+			return Utils.subDates(plannable.getRealEndDate(),plannable.getPrevEndDate());
+		}
+		else
+		{
+			return null;
+		}		
 	}
 	
 	
@@ -86,29 +107,55 @@ public class PlannableControl {
 	
 	public Double getStartOffsetPrct()
 	{
-		return getStartOffset().doubleValue() / getPrevDuration() *100;		
+		if((getStartOffset()!=null) && ( getPrevDuration()!=null))
+		{
+			return getStartOffset().doubleValue() / getPrevDuration() *100;
+		}
+		else
+		{
+			return null;
+		}
 	}
 	
 	
 	
 	public Double getDurationOffsetPrct()
 	{
-		return getDurationOffset().doubleValue() / getPrevDuration() *100;	
+		if((getDurationOffset()!=null) && (getPrevDuration()!=null))
+		{
+			return getDurationOffset().doubleValue() / getPrevDuration() *100;
+		}
+		else
+		{
+			return null;
+		}		
 	}
-	
-	
 	
 	
 	public Double getGlobalOffsetPrct()
 	{
-		return getGlobalOffset().doubleValue() / getPrevDuration() *100;	
+		if((getGlobalOffset()!=null) && (getPrevDuration()!=null))
+		{
+			return getGlobalOffset().doubleValue() / getPrevDuration() *100;
+		}
+		else
+		{
+			return null;
+		}			
 	}
 	
 	
 	
 	public Long getRealDuration()
 	{
-		return Utils.subDates(plannable.getRealEndDate(),plannable.getRealStartDate());	
+		if((plannable.getRealEndDate()!=null) && (plannable.getRealStartDate()!=null))
+		{
+			return Utils.subDates(plannable.getRealEndDate(),plannable.getRealStartDate());
+		}
+		else
+		{
+			return null;
+		}			
 	}
 	
 
@@ -116,7 +163,14 @@ public class PlannableControl {
 	
 	public Long getPrevDuration()
 	{
-		return Utils.subDates(plannable.getPrevEndDate(),plannable.getPrevStartDate());	
+		if((plannable.getPrevEndDate()!=null) && (plannable.getPrevStartDate()!=null))
+		{
+			return Utils.subDates(plannable.getPrevEndDate(),plannable.getPrevStartDate());
+		}
+		else
+		{
+			return null;
+		}			
 	}
 	
 

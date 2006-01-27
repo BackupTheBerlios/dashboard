@@ -33,65 +33,108 @@ public class PlannableView extends javax.swing.JPanel {
 
 	private PlannableControl plannableC;
 
-//	 Variables declaration - do not modify
-    private javax.swing.JButton bResUsg;
-    private javax.swing.JPanel buttonsPanel;
-    private ChartPanel chartPanel;
-    private javax.swing.JPanel contentPanel;
-    private javax.swing.JPanel datesPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JPanel offsetsPanel;
-    private javax.swing.JPanel startOffsetPanel;
-    private javax.swing.JPanel startOffsetPanel1;
-    private javax.swing.JPanel startOffsetPanel2;
-    private javax.swing.JPanel textsPanel;
-    private javax.swing.JPanel titlePanel;
-    private javax.swing.JTextField txtDurationOffset;
-    private javax.swing.JTextField txtDurationOffset2;
-    private javax.swing.JTextField txtGlobalOffset;
-    private javax.swing.JTextField txtGlobalOffset2;
-    private javax.swing.JTextField txtPrevDuration;
-    private javax.swing.JTextField txtPrevEndDate;
-    private javax.swing.JTextField txtPrevStartDate;
-    private javax.swing.JTextField txtRealDuration;
-    private javax.swing.JTextField txtRealEndDate;
-    private javax.swing.JTextField txtRealStartDate;
-    private javax.swing.JTextField txtStartOffset;
-    private javax.swing.JTextField txtStartOffset2;
-    private javax.swing.JLabel txtTitle;
-    // End of variables declaration
-    
-    
+	// Variables declaration - do not modify
+	private javax.swing.JButton bResUsg;
+
+	private javax.swing.JPanel buttonsPanel;
+
+	private ChartPanel chartPanel;
+
+	private javax.swing.JPanel contentPanel;
+
+	private javax.swing.JPanel datesPanel;
+
+	private javax.swing.JLabel jLabel1;
+
+	private javax.swing.JLabel jLabel10;
+
+	private javax.swing.JLabel jLabel11;
+
+	private javax.swing.JLabel jLabel12;
+
+	private javax.swing.JLabel jLabel13;
+
+	private javax.swing.JLabel jLabel14;
+
+	private javax.swing.JLabel jLabel15;
+
+	private javax.swing.JLabel jLabel2;
+
+	private javax.swing.JLabel jLabel3;
+
+	private javax.swing.JLabel jLabel4;
+
+	private javax.swing.JLabel jLabel5;
+
+	private javax.swing.JLabel jLabel6;
+
+	private javax.swing.JLabel jLabel7;
+
+	private javax.swing.JLabel jLabel8;
+
+	private javax.swing.JLabel jLabel9;
+
+	private javax.swing.JPanel jPanel1;
+
+	private javax.swing.JPanel jPanel10;
+
+	private javax.swing.JPanel jPanel11;
+
+	private javax.swing.JPanel jPanel2;
+
+	private javax.swing.JPanel jPanel7;
+
+	private javax.swing.JPanel jPanel8;
+
+	private javax.swing.JPanel jPanel9;
+
+	private javax.swing.JPanel offsetsPanel;
+
+	private javax.swing.JPanel startOffsetPanel;
+
+	private javax.swing.JPanel startOffsetPanel1;
+
+	private javax.swing.JPanel startOffsetPanel2;
+
+	private javax.swing.JPanel textsPanel;
+
+	private javax.swing.JPanel titlePanel;
+
+	private javax.swing.JTextField txtDurationOffset;
+
+	private javax.swing.JTextField txtDurationOffset2;
+
+	private javax.swing.JTextField txtGlobalOffset;
+
+	private javax.swing.JTextField txtGlobalOffset2;
+
+	private javax.swing.JTextField txtPrevDuration;
+
+	private javax.swing.JTextField txtPrevEndDate;
+
+	private javax.swing.JTextField txtPrevStartDate;
+
+	private javax.swing.JTextField txtRealDuration;
+
+	private javax.swing.JTextField txtRealEndDate;
+
+	private javax.swing.JTextField txtRealStartDate;
+
+	private javax.swing.JTextField txtStartOffset;
+
+	private javax.swing.JTextField txtStartOffset2;
+
+	private javax.swing.JLabel txtTitle;
+
+	// End of variables declaration
+
 	/** Creates new form PlannableView */
 	public PlannableView(PlannableControl p) {
 		plannableC = p;
 		initComponents();
-		updateTextFields();		
+		updateTextFields();
 	}
 
-	
-	
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,201 +142,202 @@ public class PlannableView extends javax.swing.JPanel {
 	 */
 	private void initComponents() {
 		jPanel1 = new javax.swing.JPanel();
-        titlePanel = new javax.swing.JPanel();
-        txtTitle = new javax.swing.JLabel();
-        contentPanel = new javax.swing.JPanel();
-        textsPanel = new javax.swing.JPanel();
-        datesPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtPrevStartDate = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtRealStartDate = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtPrevEndDate = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtRealEndDate = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        txtPrevDuration = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        txtRealDuration = new javax.swing.JTextField();
-        offsetsPanel = new javax.swing.JPanel();
-        startOffsetPanel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        txtStartOffset = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        txtStartOffset2 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        startOffsetPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        txtDurationOffset = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        txtDurationOffset2 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        startOffsetPanel2 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        txtGlobalOffset = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        txtGlobalOffset2 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        updateChart();
-        buttonsPanel = new javax.swing.JPanel();
-        bResUsg = new javax.swing.JButton();
+		titlePanel = new javax.swing.JPanel();
+		txtTitle = new javax.swing.JLabel();
+		contentPanel = new javax.swing.JPanel();
+		textsPanel = new javax.swing.JPanel();
+		datesPanel = new javax.swing.JPanel();
+		jLabel1 = new javax.swing.JLabel();
+		txtPrevStartDate = new javax.swing.JTextField();
+		jLabel4 = new javax.swing.JLabel();
+		txtRealStartDate = new javax.swing.JTextField();
+		jLabel2 = new javax.swing.JLabel();
+		txtPrevEndDate = new javax.swing.JTextField();
+		jLabel3 = new javax.swing.JLabel();
+		txtRealEndDate = new javax.swing.JTextField();
+		jLabel15 = new javax.swing.JLabel();
+		txtPrevDuration = new javax.swing.JTextField();
+		jLabel14 = new javax.swing.JLabel();
+		txtRealDuration = new javax.swing.JTextField();
+		offsetsPanel = new javax.swing.JPanel();
+		startOffsetPanel = new javax.swing.JPanel();
+		jLabel5 = new javax.swing.JLabel();
+		jPanel2 = new javax.swing.JPanel();
+		txtStartOffset = new javax.swing.JTextField();
+		jLabel6 = new javax.swing.JLabel();
+		jPanel7 = new javax.swing.JPanel();
+		txtStartOffset2 = new javax.swing.JTextField();
+		jLabel7 = new javax.swing.JLabel();
+		startOffsetPanel1 = new javax.swing.JPanel();
+		jLabel8 = new javax.swing.JLabel();
+		jPanel8 = new javax.swing.JPanel();
+		txtDurationOffset = new javax.swing.JTextField();
+		jLabel9 = new javax.swing.JLabel();
+		jPanel9 = new javax.swing.JPanel();
+		txtDurationOffset2 = new javax.swing.JTextField();
+		jLabel10 = new javax.swing.JLabel();
+		startOffsetPanel2 = new javax.swing.JPanel();
+		jLabel11 = new javax.swing.JLabel();
+		jPanel10 = new javax.swing.JPanel();
+		txtGlobalOffset = new javax.swing.JTextField();
+		jLabel12 = new javax.swing.JLabel();
+		jPanel11 = new javax.swing.JPanel();
+		txtGlobalOffset2 = new javax.swing.JTextField();
+		jLabel13 = new javax.swing.JLabel();
+		updateChart();
+		buttonsPanel = new javax.swing.JPanel();
+		bResUsg = new javax.swing.JButton();
 
-        jPanel1.setLayout(new java.awt.BorderLayout(2, 5));
+		jPanel1.setLayout(new java.awt.BorderLayout(2, 5));
 
-        titlePanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        titlePanel.add(txtTitle);
+		titlePanel.setBorder(new javax.swing.border.SoftBevelBorder(
+				javax.swing.border.BevelBorder.RAISED));
+		titlePanel.add(txtTitle);
 
-        jPanel1.add(titlePanel, java.awt.BorderLayout.NORTH);
+		jPanel1.add(titlePanel, java.awt.BorderLayout.NORTH);
 
-        contentPanel.setLayout(new java.awt.BorderLayout(2, 2));
+		contentPanel.setLayout(new java.awt.BorderLayout(2, 2));
 
-        textsPanel.setLayout(new java.awt.BorderLayout(2, 2));
+		textsPanel.setLayout(new java.awt.BorderLayout(2, 2));
 
-        datesPanel.setLayout(new java.awt.GridLayout(3, 4, 2, 2));
+		datesPanel.setLayout(new java.awt.GridLayout(3, 4, 2, 2));
 
-        jLabel1.setText("Previsionnal start date");
-        datesPanel.add(jLabel1);
+		jLabel1.setText("Previsionnal start date");
+		datesPanel.add(jLabel1);
 
-        txtPrevStartDate.setPreferredSize(new java.awt.Dimension(100, 20));
-        datesPanel.add(txtPrevStartDate);
+		txtPrevStartDate.setPreferredSize(new java.awt.Dimension(100, 20));
+		datesPanel.add(txtPrevStartDate);
 
-        jLabel4.setText("Real start date");
-        datesPanel.add(jLabel4);
+		jLabel4.setText("Real start date");
+		datesPanel.add(jLabel4);
 
-        txtRealStartDate.setPreferredSize(new java.awt.Dimension(100, 20));
-        
-        datesPanel.add(txtRealStartDate);
+		txtRealStartDate.setPreferredSize(new java.awt.Dimension(100, 20));
 
-        jLabel2.setText("Previsionnal end date");
-        datesPanel.add(jLabel2);
+		datesPanel.add(txtRealStartDate);
 
-        txtPrevEndDate.setPreferredSize(new java.awt.Dimension(100, 20));
-        
-        datesPanel.add(txtPrevEndDate);
+		jLabel2.setText("Previsionnal end date");
+		datesPanel.add(jLabel2);
 
-        jLabel3.setText("Real end date");
-        datesPanel.add(jLabel3);
+		txtPrevEndDate.setPreferredSize(new java.awt.Dimension(100, 20));
 
-        txtRealEndDate.setPreferredSize(new java.awt.Dimension(100, 20));
-        datesPanel.add(txtRealEndDate);
+		datesPanel.add(txtPrevEndDate);
 
-        jLabel15.setText("Previsionnal duration");
-        datesPanel.add(jLabel15);
+		jLabel3.setText("Real end date");
+		datesPanel.add(jLabel3);
 
-        txtPrevDuration.setPreferredSize(new java.awt.Dimension(100, 20));
-        datesPanel.add(txtPrevDuration);
+		txtRealEndDate.setPreferredSize(new java.awt.Dimension(100, 20));
+		datesPanel.add(txtRealEndDate);
 
-        jLabel14.setText("Real duration");
-        datesPanel.add(jLabel14);
+		jLabel15.setText("Previsionnal duration");
+		datesPanel.add(jLabel15);
 
-        txtRealDuration.setPreferredSize(new java.awt.Dimension(100, 20));
-        datesPanel.add(txtRealDuration);
+		txtPrevDuration.setPreferredSize(new java.awt.Dimension(100, 20));
+		datesPanel.add(txtPrevDuration);
 
-        textsPanel.add(datesPanel, java.awt.BorderLayout.NORTH);
+		jLabel14.setText("Real duration");
+		datesPanel.add(jLabel14);
 
-        offsetsPanel.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
+		txtRealDuration.setPreferredSize(new java.awt.Dimension(100, 20));
+		datesPanel.add(txtRealDuration);
 
-        startOffsetPanel.setLayout(new java.awt.GridLayout(1, 3));
+		textsPanel.add(datesPanel, java.awt.BorderLayout.NORTH);
 
-        jLabel5.setText("Start offset");
-        startOffsetPanel.add(jLabel5);
+		offsetsPanel.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
 
-        jPanel2.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
+		startOffsetPanel.setLayout(new java.awt.GridLayout(1, 3));
 
-        txtStartOffset.setPreferredSize(new java.awt.Dimension(100, 20));
-        jPanel2.add(txtStartOffset);
+		jLabel5.setText("Start offset");
+		startOffsetPanel.add(jLabel5);
 
-        jLabel6.setText("days");
-        jPanel2.add(jLabel6);
+		jPanel2.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
 
-        startOffsetPanel.add(jPanel2);
+		txtStartOffset.setPreferredSize(new java.awt.Dimension(100, 20));
+		jPanel2.add(txtStartOffset);
 
-        jPanel7.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
+		jLabel6.setText("days");
+		jPanel2.add(jLabel6);
 
-        txtStartOffset2.setPreferredSize(new java.awt.Dimension(100, 20));
-        jPanel7.add(txtStartOffset2);
+		startOffsetPanel.add(jPanel2);
 
-        jLabel7.setText("%");
-        jPanel7.add(jLabel7);
+		jPanel7.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
 
-        startOffsetPanel.add(jPanel7);
+		txtStartOffset2.setPreferredSize(new java.awt.Dimension(100, 20));
+		jPanel7.add(txtStartOffset2);
 
-        offsetsPanel.add(startOffsetPanel);
+		jLabel7.setText("%");
+		jPanel7.add(jLabel7);
 
-        startOffsetPanel1.setLayout(new java.awt.GridLayout(1, 3));
+		startOffsetPanel.add(jPanel7);
 
-        jLabel8.setText("Duration offset");
-        startOffsetPanel1.add(jLabel8);
+		offsetsPanel.add(startOffsetPanel);
 
-        jPanel8.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
+		startOffsetPanel1.setLayout(new java.awt.GridLayout(1, 3));
 
-        txtDurationOffset.setPreferredSize(new java.awt.Dimension(100, 20));
-        jPanel8.add(txtDurationOffset);
+		jLabel8.setText("Duration offset");
+		startOffsetPanel1.add(jLabel8);
 
-        jLabel9.setText("days");
-        jPanel8.add(jLabel9);
+		jPanel8.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
 
-        startOffsetPanel1.add(jPanel8);
+		txtDurationOffset.setPreferredSize(new java.awt.Dimension(100, 20));
+		jPanel8.add(txtDurationOffset);
 
-        jPanel9.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
+		jLabel9.setText("days");
+		jPanel8.add(jLabel9);
 
-        txtDurationOffset2.setPreferredSize(new java.awt.Dimension(100, 20));
-        jPanel9.add(txtDurationOffset2);
+		startOffsetPanel1.add(jPanel8);
 
-        jLabel10.setText("%");
-        jPanel9.add(jLabel10);
+		jPanel9.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
 
-        startOffsetPanel1.add(jPanel9);
+		txtDurationOffset2.setPreferredSize(new java.awt.Dimension(100, 20));
+		jPanel9.add(txtDurationOffset2);
 
-        offsetsPanel.add(startOffsetPanel1);
+		jLabel10.setText("%");
+		jPanel9.add(jLabel10);
 
-        startOffsetPanel2.setLayout(new java.awt.GridLayout(1, 3));
+		startOffsetPanel1.add(jPanel9);
 
-        jLabel11.setText("Global offset");
-        startOffsetPanel2.add(jLabel11);
+		offsetsPanel.add(startOffsetPanel1);
 
-        jPanel10.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
+		startOffsetPanel2.setLayout(new java.awt.GridLayout(1, 3));
 
-        txtGlobalOffset.setPreferredSize(new java.awt.Dimension(100, 20));
-        jPanel10.add(txtGlobalOffset);
+		jLabel11.setText("Global offset");
+		startOffsetPanel2.add(jLabel11);
 
-        jLabel12.setText("days");
-        jPanel10.add(jLabel12);
+		jPanel10.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
 
-        startOffsetPanel2.add(jPanel10);
+		txtGlobalOffset.setPreferredSize(new java.awt.Dimension(100, 20));
+		jPanel10.add(txtGlobalOffset);
 
-        jPanel11.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
+		jLabel12.setText("days");
+		jPanel10.add(jLabel12);
 
-        txtGlobalOffset2.setPreferredSize(new java.awt.Dimension(100, 20));
-        jPanel11.add(txtGlobalOffset2);
+		startOffsetPanel2.add(jPanel10);
 
-        jLabel13.setText("%");
-        jPanel11.add(jLabel13);
+		jPanel11.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
 
-        startOffsetPanel2.add(jPanel11);
+		txtGlobalOffset2.setPreferredSize(new java.awt.Dimension(100, 20));
+		jPanel11.add(txtGlobalOffset2);
 
-        offsetsPanel.add(startOffsetPanel2);
+		jLabel13.setText("%");
+		jPanel11.add(jLabel13);
 
-        textsPanel.add(offsetsPanel, java.awt.BorderLayout.SOUTH);
+		startOffsetPanel2.add(jPanel11);
 
-        contentPanel.add(textsPanel, java.awt.BorderLayout.NORTH);
+		offsetsPanel.add(startOffsetPanel2);
 
-        contentPanel.add(chartPanel, java.awt.BorderLayout.CENTER);
+		textsPanel.add(offsetsPanel, java.awt.BorderLayout.SOUTH);
 
-        bResUsg.setText("Resource usage...");
-        bResUsg.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bResUsgMouseClicked(evt);
-            }
-        });
-        
+		contentPanel.add(textsPanel, java.awt.BorderLayout.NORTH);
+
+		contentPanel.add(chartPanel, java.awt.BorderLayout.CENTER);
+
+		bResUsg.setText("Resource usage...");
+		bResUsg.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				bResUsgMouseClicked(evt);
+			}
+		});
+
 		buttonsPanel.add(bResUsg);
 
 		contentPanel.add(buttonsPanel, java.awt.BorderLayout.SOUTH);
@@ -302,58 +346,173 @@ public class PlannableView extends javax.swing.JPanel {
 
 		add(jPanel1, java.awt.BorderLayout.CENTER);
 
+		txtPrevStartDate.setEditable(false);
+		txtPrevEndDate.setEditable(false);
+		txtRealStartDate.setEditable(false);
+		txtRealEndDate.setEditable(false);
+		txtPrevDuration.setEditable(false);
+		txtRealDuration.setEditable(false);
+
+		txtStartOffset.setEditable(false);
+		txtDurationOffset.setEditable(false);
+		txtGlobalOffset.setEditable(false);
+
+		txtStartOffset2.setEditable(false);
+		txtDurationOffset2.setEditable(false);
+		txtGlobalOffset2.setEditable(false);
+
 	}
 
 	private void bResUsgMouseClicked(java.awt.event.MouseEvent evt) {
 		// TODO add your handling code here:
 	}
 
+	private void updateTextFields() 
+	{
+		if(plannableC.getName() != null)
+		{
+			txtTitle.setText(plannableC.getName());
+		}
+		else
+		{			
+			txtTitle.setText("n/a");
+		}
+		
+		if(plannableC.getPrevStartDate() != null)
+		{
+			txtPrevStartDate.setText(Utils.dateToString(plannableC.getPrevStartDate()));
+		}
+		else
+		{			
+			txtPrevStartDate.setText("n/a");
+		}
+		
+		if(plannableC.getPrevEndDate() != null)
+		{
+			txtPrevEndDate.setText(Utils.dateToString(plannableC.getPrevEndDate()));
+		}
+		else
+		{			
+			txtPrevEndDate.setText("n/a");
+		}
+		
+		if(plannableC.getRealStartDate() != null)
+		{
+			txtRealStartDate.setText(Utils.dateToString(plannableC.getRealStartDate()));
+		}
+		else
+		{			
+			txtRealStartDate.setText("n/a");
+		}
+		
+		if(plannableC.getRealEndDate() != null)
+		{
+			txtRealEndDate.setText(Utils.dateToString(plannableC.getRealEndDate()));
+		}
+		else
+		{			
+			txtRealEndDate.setText("n/a");
+		}
+		
+		if(plannableC.getPrevDuration() != null)
+		{
+			txtPrevDuration.setText(plannableC.getPrevDuration().toString());
+		}
+		else
+		{			
+			txtPrevDuration.setText("n/a");
+		}
+		
+		if(plannableC.getRealDuration() != null)
+		{
+			txtRealDuration.setText(plannableC.getRealDuration().toString());		
+		}
+		else
+		{			
+			txtRealDuration.setText("n/a");
+		}
+		
+		if(plannableC.getStartOffset() != null)
+		{
+			txtStartOffset.setText(plannableC.getStartOffset().toString());
+		}
+		else
+		{			
+			txtStartOffset.setText("n/a");
+		}
+		
+		if(plannableC.getDurationOffset() != null)
+		{
+			txtDurationOffset.setText(plannableC.getDurationOffset().toString());
+		}
+		else
+		{			
+			txtDurationOffset.setText("n/a");
+		}
+		
+		if(plannableC.getGlobalOffset() != null)
+		{
+			txtGlobalOffset.setText(plannableC.getGlobalOffset().toString());		
+		}
+		else
+		{			
+			txtGlobalOffset.setText("n/a");
+		}
+		
+		if(plannableC.getStartOffsetPrct() != null)
+		{
+			txtStartOffset2.setText(Utils.doubleToString(plannableC.getStartOffsetPrct()));
+		}
+		else
+		{			
+			txtStartOffset2.setText("n/a");
+		}		
+		
+		if(plannableC.getDurationOffsetPrct() != null)
+		{
+			txtDurationOffset2.setText(Utils.doubleToString(plannableC.getDurationOffsetPrct()));
+		}
+		else
+		{			
+			txtDurationOffset2.setText("n/a");
+		}
+		
+		if(plannableC.getGlobalOffsetPrct() != null)
+		{
+			txtGlobalOffset2.setText(Utils.doubleToString(plannableC.getGlobalOffsetPrct()));
+		}
+		else
+		{			
+			txtGlobalOffset2.setText("n/a");
+		}
+	}	
 	
 	
-	
-	private void updateTextFields() {
-		txtTitle.setText(plannableC.getId() + ": " + plannableC.getName());
-		
-		txtPrevStartDate.setText(Utils.dateToString(plannableC.getPrevStartDate()));
-		txtPrevEndDate.setText(Utils.dateToString(plannableC.getPrevEndDate()));
-		txtRealStartDate.setText(Utils.dateToString(plannableC.getRealStartDate()));
-		txtRealEndDate.setText(Utils.dateToString(plannableC.getRealEndDate()));
-		txtPrevDuration.setText(plannableC.getPrevDuration().toString());
-		txtRealDuration.setText(plannableC.getRealDuration().toString());
 		
 		
-		txtStartOffset.setText(plannableC.getStartOffset().toString());
-		txtDurationOffset.setText(plannableC.getDurationOffset().toString());
-		txtGlobalOffset.setText(plannableC.getGlobalOffset().toString());
 		
-		txtStartOffset2.setText(Utils.doubleToString(plannableC.getStartOffsetPrct()));
-		txtDurationOffset2.setText(Utils.doubleToString(plannableC.getDurationOffsetPrct()));
-		txtGlobalOffset2.setText(Utils.doubleToString(plannableC.getGlobalOffsetPrct()));
-	}
-
-	
 	private void updateChart() 
 	{
 		TaskSeriesCollection dataset = new TaskSeriesCollection();
 		TaskSeries tsR = new TaskSeries("Realization");
 		TaskSeries tsP = new TaskSeries("Prevision");
-		try {			
-			tsP.add(new Task("", new SimpleTimePeriod(
-					plannableC.getPrevStartDate(), plannableC.getPrevEndDate())));
-			tsR.add(new Task("", new SimpleTimePeriod(
-					plannableC.getRealStartDate(), plannableC.getRealEndDate())));
-			
+		try {
+			tsP.add(new Task("", new SimpleTimePeriod(plannableC
+					.getPrevStartDate(), plannableC.getPrevEndDate())));
+			tsR.add(new Task("", new SimpleTimePeriod(plannableC
+					.getRealStartDate(), plannableC.getRealEndDate())));
+
 		} catch (Exception e) {
 			assert true;
 		}
 		dataset.add(tsP);
-		dataset.add(tsR);		
-		JFreeChart chart = ChartFactory.createGanttChart("",
-				"", "Dates", dataset, true, false, false);
+		dataset.add(tsR);
+		JFreeChart chart = ChartFactory.createGanttChart("", "", "Dates",
+				dataset, true, false, false);
 		chartPanel = new ChartPanel(chart);
 
-		
 	}
+
 	/**
 	 * @param args
 	 *            the command line arguments
@@ -361,21 +520,17 @@ public class PlannableView extends javax.swing.JPanel {
 	public static void main(String args[]) {
 		JFrame f = new JFrame();
 		WorkBreakDownElement wbe1 = null;
-		try
-		{
+		try {
 			wbe1 = new WorkBreakDownElement("wbe1",
-					"Mettre en place le projet",
-					Utils.stringToDate("01-09-2005"), Utils
+					"Mettre en place le projet", Utils
+							.stringToDate("01-09-2005"), Utils
 							.stringToDate("20-09-2005"), new Double(15), Utils
 							.stringToDate("05-09-2005"), Utils
 							.stringToDate("15-09-2005"), new Double(16));
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
+
 		f.getContentPane().add(new PlannableView(new PlannableControl(wbe1)));
 		f.setVisible(true);
 	}

@@ -82,7 +82,7 @@ public class Activity extends Plannable {
 			res = subActivities.iterator().next().getPrevEndDate();
 			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 				Activity ac = it.next();
-				if (res.after(ac.getPrevEndDate())) {
+				if (res.before(ac.getPrevEndDate())) {
 					res = ac.getPrevEndDate();
 				}
 			}
@@ -91,7 +91,7 @@ public class Activity extends Plannable {
 			res = wbes.iterator().next().getPrevEndDate();
 			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 				WorkBreakDownElement wbe = it.next();
-				if (res.after(wbe.getPrevEndDate())) {
+				if (res.before(wbe.getPrevEndDate())) {
 					res = wbe.getPrevEndDate();
 				}
 			}
@@ -114,7 +114,7 @@ public class Activity extends Plannable {
 			res = subActivities.iterator().next().getPrevStartDate();
 			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 				Activity ac = it.next();
-				if (res.before(ac.getPrevStartDate())) {
+				if (res.after(ac.getPrevStartDate())) {
 					res = ac.getPrevStartDate();
 				}
 			}
@@ -123,7 +123,7 @@ public class Activity extends Plannable {
 			res = wbes.iterator().next().getPrevStartDate();
 			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 				WorkBreakDownElement wbe = it.next();
-				if (res.before(wbe.getPrevStartDate())) {
+				if (res.after(wbe.getPrevStartDate())) {
 					res = wbe.getPrevStartDate();
 				}
 			}
@@ -166,7 +166,7 @@ public class Activity extends Plannable {
 			res = subActivities.iterator().next().getRealEndDate();
 			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 				Activity ac = it.next();
-				if (res.after(ac.getRealEndDate())) {
+				if (res.before(ac.getRealEndDate())) {
 					res = ac.getRealEndDate();
 				}
 			}
@@ -175,7 +175,7 @@ public class Activity extends Plannable {
 			res = wbes.iterator().next().getRealEndDate();
 			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 				WorkBreakDownElement wbe = it.next();
-				if (res.after(wbe.getRealEndDate())) {
+				if (res.before(wbe.getRealEndDate())) {
 					res = wbe.getRealEndDate();
 				}
 			}
@@ -198,7 +198,7 @@ public class Activity extends Plannable {
 			res = subActivities.iterator().next().getRealStartDate();
 			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 				Activity ac = it.next();
-				if (res.before(ac.getRealStartDate())) {
+				if (res.after(ac.getRealStartDate())) {
 					res = ac.getRealStartDate();
 				}
 			}
@@ -207,7 +207,7 @@ public class Activity extends Plannable {
 			res = wbes.iterator().next().getRealStartDate();
 			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 				WorkBreakDownElement wbe = it.next();
-				if (res.before(wbe.getRealStartDate())) {
+				if (res.after(wbe.getRealStartDate())) {
 					res = wbe.getRealStartDate();
 				}
 			}

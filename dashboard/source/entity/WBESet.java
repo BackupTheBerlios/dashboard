@@ -29,7 +29,7 @@ public class WBESet {
 	 * 
 	 * @poseidon-type WorkBreakDowElement
 	 */
-	private java.util.Collection<WorkBreakDownElement> workBreakDowElements = new java.util.TreeSet<WorkBreakDownElement>(); // of type WorkBreakDowElement
+	private java.util.Collection<WorkBreakDownElement> workBreakDowElements = new java.util.ArrayList<WorkBreakDownElement>(); // of type WorkBreakDowElement
 	
 	/**
 	 * @param id
@@ -97,6 +97,12 @@ public class WBESet {
 			java.util.Collection<WorkBreakDownElement> workBreakDowElements) {
 		this.workBreakDowElements = workBreakDowElements;
 	}
+
+	public String toString() {
+		return id.toString() +  "\n"  +  this.getWorkBreakDowElements();
+	}
+	
+	
 	
 } // end WBESet
 

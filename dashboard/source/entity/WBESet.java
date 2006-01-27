@@ -97,10 +97,6 @@ public class WBESet {
 			java.util.Collection<WorkBreakDownElement> workBreakDowElements) {
 		this.workBreakDowElements = workBreakDowElements;
 	}
-
-	public String toString() {
-		return id.toString() +  "\n"  +  this.getWorkBreakDowElements();
-	}
 	
 	
 	

@@ -6,11 +6,19 @@
 
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+
 import control.ConsolidationHandler;
 import control.EnvironmentControl;
 import control.PlannableControl;
+import control.ProjectControl;
 import entity.Plannable;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JSplitPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -407,9 +415,54 @@ public class MainWindow extends javax.swing.JFrame {
 			infoPanel.updateUI();
 		}
 		*/
+		else
+		if(obj instanceof Project)
+		{
+			Project p = (Project)obj;
+			infoPanel.removeAll();
+			infoPanel.add(
+					getProjectView(new ProjectControl(p)),
+					java.awt.BorderLayout.CENTER
+			);
+			infoPanel.updateUI();
+		}
 	}
     
 	
+	
+	private JPanel getProjectView(ProjectControl pc)
+	{
+		String affich = "Avancement du projet :";
+		affich.concat(pc.getNameP());
+		
+    	JLabel label = new JLabel(affich);
+    	JPanel jPanel2=new JPanel();
+    	jPanel2.setLayout(new BorderLayout());
+    	label.setMaximumSize(label.getPreferredSize());
+    	jPanel2.add(label,BorderLayout.NORTH);
+		JProgressBar Jbar=new JProgressBar(1,99);
+		Jbar.setBackground(Color.red);
+		Jbar.setValue(((int)Double.doubleToLongBits(pc.getTps())));
+		Jbar.setMaximumSize(Jbar.getPreferredSize());
+		JPanel jPanel3=new JPanel();
+		jPanel3.setLayout(new BorderLayout());
+		JPanel jPanel4=new JPanel();
+		JLabel label2 = new JLabel("Avancement :");
+		jPanel4.add(label2);
+		jPanel4.add(Jbar);
+		jPanel3.add(jPanel4,BorderLayout.NORTH);
+		JProgressBar Jbar2=new JProgressBar();
+		Jbar2.setMaximumSize(Jbar2.getPreferredSize());
+		Jbar2.setBackground(Color.GREEN);
+		Jbar2.setValue(((int)Double.doubleToLongBits(pc.getBudget())));
+		JPanel jPanel5=new JPanel();
+		JLabel label3 = new JLabel("Budget :");
+		jPanel5.add(label3);
+		jPanel5.add(Jbar2);
+		jPanel3.add(jPanel5,BorderLayout.WEST);
+		jPanel2.add(jPanel3,BorderLayout.WEST);
+		return jPanel2;		
+	}
 	
 	
     /**

@@ -242,8 +242,13 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void consoMenuActionPerformed(java.awt.event.ActionEvent evt) 
     {
-    	ConsolidationHandler controler = new ConsolidationHandler(envC.getWbeSets() , "azerty");
-        new ConsolidationView(controler);        
+    	int index = jList1.getSelectedIndex();
+		if(index >= 0)
+		{			
+			ConsolidationHandler controler = new ConsolidationHandler(envC.getProjects().get(index));
+	        new ConsolidationView(controler);
+		}
+    	        
     }
     
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -460,7 +465,7 @@ public class MainWindow extends javax.swing.JFrame {
     	jPanel2.add(label,BorderLayout.NORTH);
 		JProgressBar Jbar=new JProgressBar(1,99);
 		Jbar.setForeground(Color.red);
-		Jbar.setValue(50);
+		Jbar.setValue(((int)Double.doubleToLongBits(pc.getTps())));
 		Jbar.setMaximumSize(Jbar.getPreferredSize());
 		JPanel jPanel3=new JPanel();
 		jPanel3.setLayout(new BorderLayout());
@@ -472,15 +477,15 @@ public class MainWindow extends javax.swing.JFrame {
 		JProgressBar Jbar2=new JProgressBar();
 		Jbar2.setMaximumSize(Jbar2.getPreferredSize());
 		Jbar2.setForeground(Color.GREEN);
-		Jbar2.setValue(25);
+		Jbar2.setValue(((int)Double.doubleToLongBits(pc.getBudget())));
 		JPanel jPanel5=new JPanel();
 		JLabel label3 = new JLabel("Budget :");
 		jPanel5.add(label3);
 		jPanel5.add(Jbar2);
 		JPanel jPanel6=new JPanel();
-		Object[][] donnees = {{"Budget", "3", "5"},
-							{"Temps", "6", "8"}}; 
-		String[] nomsColonnes = {"b", "Estimé", "Effectif"};  
+		Object[][] donnees = {{"Budget", pc.getEstimation()[1], pc.getRealisation()[1]},
+							{"Time", pc.getEstimation()[0], pc.getRealisation()[0]}}; 
+		String[] nomsColonnes = {"b", "Prevision", "Realization"};  
 		JTable table = new JTable(donnees, nomsColonnes);
 		jPanel6.add(table);
 		

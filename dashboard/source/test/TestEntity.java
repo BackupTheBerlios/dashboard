@@ -55,16 +55,16 @@ public class TestEntity {
 							.stringToDate("20-09-2005"), Utils
 							.stringToDate("05-10-2005"), new Double(15), Utils
 							.stringToDate("25-09-2005"), Utils
-							.stringToDate("12-10-2005"), new Double(15));
+							.stringToDate("12-10-2005"), new Double(30));
 			it1.getWbes().add(wbe1);
 			wsGes.add(wbe1);
 			
 			WorkBreakDownElement wbe2 = new WorkBreakDownElement("wbe2",
 					"Recueillir les exigences", Utils
 							.stringToDate("05-10-2005"), Utils
-							.stringToDate("20-10-2005"), new Double(15), Utils
+							.stringToDate("20-10-2005"), new Double(4), Utils
 							.stringToDate("12-10-2005"), Utils
-							.stringToDate("29-10-2005"), new Double(15)
+							.stringToDate("29-10-2005"), new Double(12)
 
 			);
 			it1.getWbes().add(wbe2);
@@ -72,9 +72,9 @@ public class TestEntity {
 			
 			WorkBreakDownElement wbe3 = new WorkBreakDownElement("wbe3",
 					"Rédiger les documents", Utils.stringToDate("20-10-2005"),
-					Utils.stringToDate("28-10-2005"), new Double(15), Utils
+					Utils.stringToDate("28-10-2005"), new Double(27), Utils
 							.stringToDate("29-10-2005"), Utils
-							.stringToDate("05-11-2005"), new Double(15)
+							.stringToDate("05-11-2005"), new Double(30)
 
 			);
 			it1.getWbes().add(wbe3);
@@ -82,7 +82,7 @@ public class TestEntity {
 			
 			WorkBreakDownElement wbe4 = new WorkBreakDownElement("wbe4",
 					"Coder un prototype", Utils.stringToDate("28-10-2005"),
-					Utils.stringToDate("20-11-2005"), new Double(15), Utils
+					Utils.stringToDate("20-11-2005"), new Double(50), Utils
 							.stringToDate("05-11-2005"), Utils
 							.stringToDate("25-11-2005"), new Double(15)
 
@@ -92,9 +92,9 @@ public class TestEntity {
 			WorkBreakDownElement wbe5 = new WorkBreakDownElement("wbe5",
 					"Mettre à jour les documents", Utils
 							.stringToDate("20-11-2005"), Utils
-							.stringToDate("30-11-2005"), new Double(15), Utils
+							.stringToDate("30-11-2005"), new Double(5), Utils
 							.stringToDate("25-11-2005"), Utils
-							.stringToDate("12-12-2005"), new Double(15)
+							.stringToDate("12-12-2005"), new Double(7)
 
 			);
 			it2.getWbes().add(wbe5);
@@ -156,26 +156,28 @@ public class TestEntity {
 			WorkBreakDownElement wbe1 = new WorkBreakDownElement("wbe1",
 					"Mettre en place le projet", Utils
 							.stringToDate("25-09-2005"), Utils
-							.stringToDate("01-10-2005"), new Double(15), Utils
+							.stringToDate("01-10-2005"), new Double(41), Utils
 							.stringToDate("26-09-2005"), Utils
-							.stringToDate("10-10-2005"), new Double(15));
+							.stringToDate("10-10-2005"), new Double(7));
 			it1.getWbes().add(wbe1);
+			wsGes.add(wbe1);
 			
 			WorkBreakDownElement wbe2 = new WorkBreakDownElement("wbe2",
 					"Recueillir les exigences", Utils
 							.stringToDate("01-10-2005"), Utils
-							.stringToDate("27-10-2005"), new Double(15), Utils
+							.stringToDate("27-10-2005"), new Double(10), Utils
 							.stringToDate("10-10-2005"), Utils
-							.stringToDate("29-10-2005"), new Double(15)
+							.stringToDate("29-10-2005"), new Double(13)
 
 			);
 			it1.getWbes().add(wbe2);
+			wsGes.add(wbe2);			
 			
 			WorkBreakDownElement wbe3 = new WorkBreakDownElement("wbe3",
 					"Rédiger les documents", Utils.stringToDate("27-10-2005"),
-					Utils.stringToDate("20-11-2005"), new Double(15), Utils
+					Utils.stringToDate("20-11-2005"), new Double(17), Utils
 							.stringToDate("29-10-2005"), Utils
-							.stringToDate("25-11-2005"), new Double(15)
+							.stringToDate("25-11-2005"), new Double(25)
 
 			);
 			it1.getWbes().add(wbe3);
@@ -183,9 +185,9 @@ public class TestEntity {
 			
 			WorkBreakDownElement wbe4 = new WorkBreakDownElement("wbe4",
 					"Coder un prototype", Utils.stringToDate("20-11-2005"),
-					Utils.stringToDate("29-11-2005"), new Double(15), Utils
+					Utils.stringToDate("29-11-2005"), new Double(1), Utils
 							.stringToDate("25-11-2005"), Utils
-							.stringToDate("29-11-2005"), new Double(15)
+							.stringToDate("29-11-2005"), new Double(35)
 
 			);
 			it2.getWbes().add(wbe4);
@@ -195,7 +197,7 @@ public class TestEntity {
 							.stringToDate("29-11-2005"), Utils
 							.stringToDate("30-11-2005"), new Double(15), Utils
 							.stringToDate("29-11-2005"), Utils
-							.stringToDate("03-12-2005"), new Double(15)
+							.stringToDate("03-12-2005"), new Double(10)
 
 			);
 			it2.getWbes().add(wbe5);

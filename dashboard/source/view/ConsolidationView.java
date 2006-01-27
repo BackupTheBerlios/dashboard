@@ -161,13 +161,14 @@ public class ConsolidationView extends javax.swing.JFrame  {
 	 	   this.setSize(800,600);
 	 	   // On récupère la taille de l'écran (la résolution)
 	 	   
+	 	this.pack();
+	 	   
 	 	 Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 	 	  
 	 	  // et on place notre fenêtre au milieu
 	 	   
 	 	  this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
-	 	  this.pack();
-	 	   
+	 	  
 	 	  this.setVisible(true);
 	}
 

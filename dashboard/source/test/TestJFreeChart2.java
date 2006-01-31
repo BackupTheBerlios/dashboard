@@ -1,25 +1,16 @@
 package test;
 import javax.swing.* ;
-import java.awt.* ;
-import java.awt.event.* ;
-import java.beans.PropertyVetoException ;
 import java.util.*;
 import java.text.*;
 
 import org.jfree.chart.*;
-import org.jfree.data.*;
-import org.jfree.data.xy.*;
-import org.jfree.data.gantt.*;
-import org.jfree.data.category.*;
-import org.jfree.data.time.*;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 public class TestJFreeChart2  extends javax.swing.JFrame {
     
     
-    private static Date makeDate(String sDate) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.parse(sDate);
-    }
     
     
     public TestJFreeChart2() {

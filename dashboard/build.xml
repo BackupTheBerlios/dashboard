@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="DashBoard" default="run" basedir=".">
+
+	<property name="debug.dir" value="false"/>
+	<property name="src.dir" value="source"/>
+	<property name="build.dir" value="bin"/>
+	<property name="doc.dir " value="DocGeneree"/>
+	<property name="dist.dir " value="dist"/>
+	<property name="lib.dir " value="source/infrastructure"/>
+	<property name="name" value="2db"/>
+
+	
+
+	<target name="init" description="Initialize the project">
+	<tstamp/> <!--declare and initialize the DSTAMP variable-->
+	
+	<mkdir dir="${dist.dir }"/>
+	<mkdir dir="${doc.dir }"/>	
+    <mkdir dir="${build.dir}"/>
+	</target>
+
+	<target name="compile" depends="init" description="compile the sources">
+	<javac
+	srcdir="${src.dir}"
+	destdir="${build.dir}">
+		<classpath>
+		<pathelement path="${build.dir}" />
+		<fileset dir="${lib.dir }">
+		<include name="**/**.jar"/>
+		</fileset>
+		</classpath>
+	</javac>
+	</target>
+
+	<target name="doc" depends="compile" description="generate the documentation">
+	<javadoc
+	destdir="${doc.dir }"
+		author="true" version="true" use="true" package="true">
+		      <fileset dir = "${src.dir}">
+		        <include name="**/*.java"/>
+		        <exclude name="**/*Test*"/>
+		      </fileset>
+		</javadoc>
+	</target>
+
+	<target name="dist" depends="compile" description="Generate a jar file">
+		<unjar src="${lib.dir }/jfreechart-1.0.0/lib/jfreechart-1.0.0.jar"
+		       dest="${build.dir}">
+		</unjar>
+		<unjar src="${lib.dir }/jfreechart-1.0.0/lib/jcommon-1.0.0.jar"
+				       dest="${build.dir}">
+				</unjar>
+		 <jar destfile="${dist.dir }/${name}-${DSTAMP}.jar">
+		    <fileset dir="${build.dir}"/>
+		    <manifest>
+		        <attribute name="Main-Class" value="view.MainWindow"/>
+		        <attribute name="Built-By" value="${user.name}"/>
+		    </manifest>
+
+		  </jar>
+	</target>
+
+	<target
+	name="run" 
+	depends="dist"
+	description="Start up application">
+
+	<java jar="${dist.dir }/${name}-${DSTAMP}.jar"
+	fork="true" >
+
+	</java>
+	</target>
+
+	<target name="clean">
+	<delete dir="${build.dir}"/>
+	<delete dir="${doc.dir}"/>
+	<delete dir="${dist.dir}"/>
+	</target>
+
+	</project>

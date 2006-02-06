@@ -1,0 +1,13 @@
+checklist
+---------
+
+1- Toute classe obsolete doit etre deplacee dans le repertoire "trash"
+2- Toutes le code depose sur le depot cvs doit compiler
+3- Les classes de vue ne peuvent importer que les classes controlleurs
+ et les classes de controlleurs ne peuvent importer que les classes entites.
+4- Toutes les classes et leurs methodes doivent etre commentees
+(surtout les classes entites et controlleurs)
+5- Les classes vues devront se terminer par "View".
+Ex: MainView, ProjectView
+
+NB: Chaque membre du projet est responsable des classes qu'il a lui meme creees.

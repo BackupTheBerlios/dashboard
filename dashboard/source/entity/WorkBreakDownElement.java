@@ -17,37 +17,37 @@ public class WorkBreakDownElement extends Plannable {
 	
 	
 	/**
-	 * <p>Represents ...</p>
+	 * <p>Represents the name of the WBE</p>
 	 */
 	private String name; 
 		
 	/**
-	 * <p>Represents ...</p>
+	 * <p>Represents the id of the WBE</p>
 	 */
 	private String id;
 
 
 	/**
-	 * <p>Represents ...</p>
+	 * <p>Represents the start date of the WBE</p>
 	 */
 	private Date realStartDate;
 
 
 	/**
-	 * <p>Represents ...</p>
+	 * <p>Represents the end date of the WBE</p>
 	 */
 	private Date realEndDate;
 
 
 	/**
-	 * <p>Represents ...</p>
+	 * <p>Represents the previsionnal start date of the WBE</p>
 	 */
 	private Date prevStartDate;
 	
 
 
 	/**
-	 * <p>Represents ...</p>
+	 * <p>Represents the previsionnal end date of the WBE</p>
 	 */
 	private Date prevEndDate;
 	
@@ -71,13 +71,13 @@ public class WorkBreakDownElement extends Plannable {
 	// associations
 	
 	/**
-	 * <p></p>
+	 * <p>list of working for a WBE</p>
 	 */
 	private java.util.ArrayList<Working> workings = new java.util.ArrayList<Working>(); // of type Working
 	
 	
 	/**
-	 * <p></p>
+	 * <p>list of WBE set for a WBE</p>
 	 */
 	private java.util.ArrayList<WBESet> wbeSets = new java.util.ArrayList<WBESet>(); // of type Working
 	

@@ -50,14 +50,27 @@
 		<unjar src="${lib.dir }/jfreechart-1.0.0/lib/jcommon-1.0.0.jar"
 				       dest="${build.dir}">
 				</unjar>
-		 <jar destfile="${dist.dir }/${name}-${DSTAMP}.jar">
+		<mkdir dir="${dist.dir }/${src.dir}"/>
+		<mkdir dir="${dist.dir }/${src.dir}/${src.dir}"/>
+		<copydir src="${src.dir}"
+		         dest="${dist.dir }/${src.dir}/${src.dir}"
+			     excludes="${src.dir}/test/**Chart**.java"
+				forceoverwrite = "true"
+			       
+		  />
+		 
+		 <jar destfile="${dist.dir }/${name}.jar">
 		    <fileset dir="${build.dir}"/>
+		 	<fileset dir="${dist.dir }/${src.dir}"/>
 		    <manifest>
 		        <attribute name="Main-Class" value="view.MainWindow"/>
 		        <attribute name="Built-By" value="${user.name}"/>
 		    </manifest>
 
 		  </jar>
+		<delete includeemptydirs="true">
+		    <fileset  dir="${dist.dir }" includes="**/*" excludes="**/**2db**"/>
+		  </delete>
 	</target>
 
 	<target

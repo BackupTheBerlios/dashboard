@@ -10,7 +10,7 @@ import org.jfree.data.gantt.TaskSeries;
 import org.jfree.data.gantt.TaskSeriesCollection;
 import org.jfree.data.time.SimpleTimePeriod;
 
-import control.PlannableControl;
+import control.ControlPlannable;
 import control.Utils;
 import entity.WorkBreakDownElement;
 
@@ -31,7 +31,7 @@ public class PlannableView extends javax.swing.JPanel {
 	 * Created on 26 janvier 2006, 03:05
 	 */
 
-	private PlannableControl plannableC;
+	private ControlPlannable plannableC;
 
 	// Variables declaration - do not modify
 	private javax.swing.JButton bResUsg;
@@ -129,7 +129,7 @@ public class PlannableView extends javax.swing.JPanel {
 	// End of variables declaration
 
 	/** Creates new form PlannableView */
-	public PlannableView(PlannableControl p) {
+	public PlannableView(ControlPlannable p) {
 		plannableC = p;
 		initComponents();
 		updateTextFields();
@@ -533,7 +533,7 @@ public class PlannableView extends javax.swing.JPanel {
 			System.out.println(e.getMessage());
 		}
 
-		f.getContentPane().add(new PlannableView(new PlannableControl(wbe1)));
+		f.getContentPane().add(new PlannableView(new ControlPlannable(wbe1)));
 		f.setVisible(true);
 	}
 

@@ -13,16 +13,14 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
 import control.ConsolidationHandler;
-import control.EnvironmentControl;
-import control.PlannableControl;
+import control.ControlEnvironment;
+import control.ControlPlannable;
 import control.ProjectControl;
-import entity.Plannable;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -39,12 +37,12 @@ import test.TestEntity;
  */
 public class MainWindow extends javax.swing.JFrame {
     
-	private EnvironmentControl envC;
+	private ControlEnvironment envC;
 	
     
     
     /** Creates new form MainWindow */
-    public MainWindow(EnvironmentControl pEnvC) {
+    public MainWindow(ControlEnvironment pEnvC) {
     	envC = pEnvC;
         initComponents();
         updateProjectList();
@@ -265,7 +263,7 @@ public class MainWindow extends javax.swing.JFrame {
     	int index = jList1.getSelectedIndex();
 		if(index >= 0)
 		{
-			ViewProjectVariation test = new ViewProjectVariation("group",envC.getProjects().get(index)) ;
+			new ViewProjectVariation("group",envC.getProjects().get(index)) ;
 		}
     	//
     }
@@ -437,7 +435,7 @@ public class MainWindow extends javax.swing.JFrame {
 				Activity a = (Activity)obj;
 				infoPanel.removeAll();
 				infoPanel.add(
-						new PlannableView(new PlannableControl(a)),
+						new PlannableView(new ControlPlannable(a)),
 						java.awt.BorderLayout.CENTER
 				);
 				infoPanel.updateUI();
@@ -448,7 +446,7 @@ public class MainWindow extends javax.swing.JFrame {
 				WorkBreakDownElement w = (WorkBreakDownElement)obj;
 				infoPanel.removeAll();
 				infoPanel.add(
-						new PlannableView(new PlannableControl(w)),
+						new PlannableView(new ControlPlannable(w)),
 						java.awt.BorderLayout.CENTER
 				);
 				infoPanel.updateUI();
@@ -522,7 +520,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
     	
-        new MainWindow(new EnvironmentControl(TestEntity.createEnvironment())).setVisible(true);
+        new MainWindow(new ControlEnvironment(TestEntity.createEnvironment())).setVisible(true);
     }
     
    

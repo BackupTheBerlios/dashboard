@@ -1,4 +1,5 @@
 package test;
+import entity.WBESet;
 import entity.WorkBreakDownElement;
 import entity.Working;
 
@@ -192,28 +193,75 @@ public class WorkBreakDownElementTest extends TestCase {
 	 * Test method for 'entity.WorkBreakDownElement.setWorkings(ArrayList<Working>)'
 	 */
 	public void testSetWorkings() {
-			
+		WorkBreakDownElement w = new WorkBreakDownElement ();
+		Working w1 = new Working("w1","working1",8.0) ;
+		Working w2 = new Working("w2","working2",10.0) ;
+		Working w3 = new Working("w3","working3",5.5) ;
+		ArrayList<Working> l = new ArrayList<Working>() ;
+		l.add(w1) ;
+		l.add(w2) ;
+		l.add(w3) ;
+		w.setWorkings(l);
+		assertEquals(l,w.getWorkings()); 
 	}
 
 	/*
 	 * Test method for 'entity.WorkBreakDownElement.findWorkingById(String)'
 	 */
 	public void testFindWorkingById() {
-
+		WorkBreakDownElement w = new WorkBreakDownElement ();
+		Working w1 = new Working("w1","working1",8.0) ;
+		Working w2 = new Working("w2","working2",10.0) ;
+		Working w3 = new Working("w3","working3",5.5) ;
+		ArrayList<Working> l = new ArrayList<Working>() ;
+		l.add(w1) ;
+		l.add(w2) ;
+		l.add(w3) ;
+		w.setWorkings(l);
+		
+		try
+		{
+			assertEquals(w2,w.findWorkingById("w2")) ;
+		}		
+		catch(Exception e)
+		{}
+		
+		try
+		{
+			w.findWorkingById("w4") ;
+			fail("L'exception 'Unknown Working Id!' n'a pas été levé !") ;
+		}
+		catch(Exception e)
+		{}
 	}
 
 	/*
 	 * Test method for 'entity.WorkBreakDownElement.getWbeSets()'
 	 */
 	public void testGetWbeSets() {
-
+		WorkBreakDownElement w = new WorkBreakDownElement ();
+		WBESet wbe1 = new WBESet("1","wbeset1") ;
+		WBESet wbe2 = new WBESet("2","wbeset2") ;
+		ArrayList<WBESet> l = new ArrayList<WBESet>() ;
+		l.add(wbe1) ;
+		l.add(wbe2) ;
+		w.setWbeSets(l) ;
+		assertEquals(l,w.getWbeSets()) ;
+		
 	}
 
 	/*
 	 * Test method for 'entity.WorkBreakDownElement.setWbeSets(ArrayList<WBESet>)'
 	 */
 	public void testSetWbeSets() {
-
+		WorkBreakDownElement w = new WorkBreakDownElement ();
+		WBESet wbe1 = new WBESet("1","wbeset1") ;
+		WBESet wbe2 = new WBESet("2","wbeset2") ;
+		ArrayList<WBESet> l = new ArrayList<WBESet>() ;
+		l.add(wbe1) ;
+		l.add(wbe2) ;
+		w.setWbeSets(l) ;
+		assertEquals(l,w.getWbeSets()) ;
 	}
 
 	/*

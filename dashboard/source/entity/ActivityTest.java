@@ -11,11 +11,11 @@ public class ActivityTest extends TestCase {
 	 */
 	public void testGetPrevWorkAmount() {
 	Activity A=new Activity("0","A2");
-	java.util.ArrayList<Activity> test=new java.util.ArrayList();
+	java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 	Activity A1=new Activity("1","A1");
 	WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 	WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-	java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+	java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 	work.add(w);
 	work.add(w2);
 	A1.setWbes(work);
@@ -37,11 +37,11 @@ public class ActivityTest extends TestCase {
 	 */
 	public void testGetRealWorkAmount() {
 		Activity A=new Activity("0","A2");
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 		WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w);
 		work.add(w2);
 		A1.setWbes(work);
@@ -62,11 +62,11 @@ public class ActivityTest extends TestCase {
 	 */
 	public void testGetRealStartDate() {
 		Activity A=new Activity("0","A2");
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 		WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w);
 		work.add(w2);
 		A1.setWbes(work);
@@ -87,11 +87,11 @@ public class ActivityTest extends TestCase {
 	 */
 	public void testGetRealEndDate() {
 		Activity A=new Activity("0","A2");
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 		WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w);
 		work.add(w2);
 		A1.setWbes(work);
@@ -112,11 +112,11 @@ public class ActivityTest extends TestCase {
 	 */
 	public void testGetPrevStartDate() {
 		Activity A=new Activity("0","A2");
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 		WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w);
 		work.add(w2);
 		A1.setWbes(work);
@@ -137,11 +137,11 @@ public class ActivityTest extends TestCase {
 	 */
 	public void testGetPrevEndDate() {
 		Activity A=new Activity("0","A2");
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 		WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w);
 		work.add(w2);
 		A1.setWbes(work);
@@ -219,7 +219,7 @@ public class ActivityTest extends TestCase {
 	 */
 	public void testGetSubActivities() {
 		Activity A=new Activity("0","A2");
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		Activity A2=new Activity("2","A2");
 		Activity A3=new Activity("3","A3");
@@ -235,7 +235,7 @@ public class ActivityTest extends TestCase {
 	 */
 	public void testSetSubActivities() {
 		Activity A=new Activity("0","A2");
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		Activity A2=new Activity("2","A2");
 		Activity A3=new Activity("3","A3");
@@ -254,7 +254,7 @@ public class ActivityTest extends TestCase {
 		Activity A=new Activity("0","A2");
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 		WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w);
 		work.add(w2);
 		A.setWbes(work);
@@ -269,7 +269,7 @@ public class ActivityTest extends TestCase {
 		Activity A=new Activity("0","A2");
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 		WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w);
 		work.add(w2);
 		A.setWbes(work);
@@ -282,7 +282,7 @@ public class ActivityTest extends TestCase {
 	public void testFindActivityById() {
 
 		Activity A=new Activity("0","A2");
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		Activity A2=new Activity("2","A2");
 		Activity A3=new Activity("3","A3");
@@ -319,7 +319,7 @@ public class ActivityTest extends TestCase {
 		Activity A=new Activity("0","A2");
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 		WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w);
 		work.add(w2);
 		A.setWbes(work);
@@ -351,11 +351,11 @@ public class ActivityTest extends TestCase {
 	 */
 	public void testGetWbesRecursive() {
 		Activity A=new Activity("0","A");
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
 		WorkBreakDownElement w2 = new WorkBreakDownElement ("testId2","testName2",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),10.01);
-		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList();
+		java.util.ArrayList<WorkBreakDownElement> work=new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w);
 		work.add(w2);
 		A1.setWbes(work);

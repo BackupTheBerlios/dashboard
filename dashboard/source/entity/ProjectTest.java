@@ -14,7 +14,7 @@ public class ProjectTest extends TestCase {
 		assertTrue(p.getId()=="idA");
 		assertTrue(p.getName()=="nom");
 		assertTrue(p.getPrevBudget()==100.0);
-		assertTrue(p.getRealBudget()==200.0;)
+		assertTrue(p.getRealBudget()==200.0);
 	}
 
 	/*
@@ -70,7 +70,7 @@ public class ProjectTest extends TestCase {
 		WBESet tmp2= new WBESet("kjhkjh", "tgfhgf");
 		tmp2.add(w);
 		tmp2.add(w2);
-		java.util.ArrayList<WBESet> work=new java.util.ArrayList();
+		java.util.ArrayList<WBESet> work=new java.util.ArrayList<WBESet>();
 		work.add(tmp);
 		work.add(tmp2);
 		p.setWbeSets(work);
@@ -90,7 +90,7 @@ public class ProjectTest extends TestCase {
 		WBESet tmp2= new WBESet("kjhkjh", "tgfhgf");
 		tmp2.add(w);
 		tmp2.add(w2);
-		java.util.ArrayList<WBESet> work=new java.util.ArrayList();
+		java.util.ArrayList<WBESet> work=new java.util.ArrayList<WBESet>();
 		work.add(tmp);
 		work.add(tmp2);
 		p.setWbeSets(work);
@@ -145,7 +145,7 @@ public class ProjectTest extends TestCase {
 		WBESet tmp2= new WBESet("WBE2", "WBE2");
 		tmp2.add(w);
 		tmp2.add(w2);
-		java.util.ArrayList<WBESet> work=new java.util.ArrayList();
+		java.util.ArrayList<WBESet> work=new java.util.ArrayList<WBESet>();
 		work.add(tmp);
 		work.add(tmp2);
 		p.setWbeSets(work);
@@ -211,7 +211,7 @@ public class ProjectTest extends TestCase {
 	 */
 	public void testGetImportNumbers() {
 		Project p= new Project("ida", "nom", 1000.0, 2000.0);
-		java.util.ArrayList<Activity> test=new java.util.ArrayList();
+		java.util.ArrayList<Activity> test=new java.util.ArrayList<Activity>();
 		Activity A1=new Activity("1","A1");
 		Activity A2=new Activity("2","A2");
 		Activity A3=new Activity("3","A3");

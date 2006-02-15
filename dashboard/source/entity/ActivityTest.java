@@ -201,7 +201,7 @@ public class ActivityTest extends TestCase {
 		
 		Activity test= new Activity("2","essai");
 		test.setId("3");
-		assertTrue("essai"==test.getId());
+		assertTrue("3"==test.getId());
 	}
 
 	/*

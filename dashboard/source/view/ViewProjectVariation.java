@@ -1,20 +1,36 @@
 package view;
-
-import javax.swing.* ;
-
-import java.awt.* ;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-import org.jfree.chart.*;
-import org.jfree.chart.plot.*;
-import org.jfree.data.category.*;
-import org.jfree.chart.axis.*;
-import org.jfree.chart.renderer.category.*;
+import java.util.Vector;
 
-import control.C_ObjVariation;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.WindowConstants;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import test.TestEntity;
+
+import control.ControlEnvironment;
 import control.objVariation;
-import entity.Project;
 
 
 
@@ -31,18 +47,16 @@ public class ViewProjectVariation extends JFrame
 	private static final long serialVersionUID = 1L;
 	private Vector<objVariation> vect; 
 	private String params;
-	private Project Pj;
 	
-	public	ViewProjectVariation(final String param, Project pp)
+	public	ViewProjectVariation(final String param)
 	{
-		super("Project Variation for "+pp.getId());
+		super("Project Variation for "+param);
 		
-		Pj=pp;
+		
 		params=param;
 		 
-		/*
-		if (Pj.getId().equals("2DB"))
-		{	
+		
+		 	
 		objVariation obj11 = new objVariation("It1",16,17,"Tankoano Olivier","tt",2);
 		vect.add(obj11) ;
 		
@@ -72,43 +86,13 @@ public class ViewProjectVariation extends JFrame
 		
 		objVariation objSum2 = new objVariation("It2",102,89,"group","gr",2);
 		vect.add(objSum2) ; 
-		}
-		else {// PSI
-			objVariation obj11 = new objVariation("It1",16,19,"Conde Mickael","tt",2);
-			vect.add(obj11) ;
-			
-			objVariation obj12 = new objVariation("It1",16,16,"Kanaye Kurvin","aa",2);
-			vect.add(obj12) ;
-			
-			objVariation obj13 = new objVariation("It1",20,21,"Badaoui Kassem","bb",2);
-			vect.add(obj13) ;
-			
-			objVariation obj14 = new objVariation("It1",16,15,"Avetisian Gohar","kk",2);
-			vect.add(obj14) ;
-			
-			objVariation objSum1 = new objVariation("It1",68,71,"group","gr",2);
-			vect.add(objSum1) ;
-			
-			objVariation obj21 = new objVariation("It2",24,28,"Conde Mickael","tt",2);
-			vect.add(obj21) ;
-			
-			objVariation obj22 = new objVariation("It2",24,21,"Kanaye Kurvin","aa",2);
-			vect.add(obj22) ;
-			
-			objVariation obj23 = new objVariation("It2",30,22,"Badaoui Kassem","bb",2);
-			vect.add(obj23) ;
-			
-			objVariation obj24 = new objVariation("It2",24,20,"Avetisian Gohar","kk",2);
-			vect.add(obj24) ;
-			
-			objVariation objSum2 = new objVariation("It2",102,91,"group","gr",2);
-			vect.add(objSum2) ; 
-		}
-		 */
+		
+		
+		/*
 		C_ObjVariation var = new C_ObjVariation(pp);
 		 
 		vect=var.getDataVariation();
-		
+		*/
 		//JDesktopPane jdp = new JDesktopPane();
 		//Container container = new Container(;)
 		Container container = this.getContentPane() ;
@@ -120,12 +104,14 @@ public class ViewProjectVariation extends JFrame
 		
 	    Vector<String> data = new Vector<String>();
 	    data.add("group");
+	    data.add("Tankoano Olivier");
+	    /*
 	    int i=0;
 	    for(i=0;i<var.getAllRessources().size();i++)
 	    {
 	    	data.add(var.getAllRessources().get(i).getName());
 	    }
-	    
+	    */
 	    final JComboBox comboRessource = new JComboBox(data);
 	    comboRessource.setSelectedItem(params);
 	    
@@ -181,11 +167,11 @@ public class ViewProjectVariation extends JFrame
 		ChartPanel p = new ChartPanel(chart) ;
 		
 		container.add(p,BorderLayout.CENTER) ;
-		
+	
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setSize(400,400) ;
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		 this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 
+		this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 
 		this.setVisible(true);
 
 	}
@@ -193,7 +179,7 @@ public class ViewProjectVariation extends JFrame
 	public void refresh(String p)
 	{
 	 
-    	ViewProjectVariation test = new ViewProjectVariation(p,Pj ) ;
+    	ViewProjectVariation t = new ViewProjectVariation(p) ;
     	 
 	}
 	public DefaultCategoryDataset extractDataSet(Vector<objVariation> vect,String params)
@@ -216,9 +202,9 @@ public class ViewProjectVariation extends JFrame
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args)
-	{
-		//ViewProjectVariation test = new ViewProjectVariation("group",Pj) ;
-	}
-
+ 
+	 public static void main(String args[]) {
+	    	
+		 ViewProjectVariation t = new ViewProjectVariation("group") ;
+	    }
 }

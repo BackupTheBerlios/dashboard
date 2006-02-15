@@ -14,7 +14,7 @@ public class Working {
 	
 	
 	/**
-	 * <p>Represents the workamount that will be used to estimate workBreakdownElement consommation </p>
+	 * <p>Represents the workamount that will be used to estimate workBreakdownElement amount </p>
 	 */
 	private Double workAmount = 0.0; 
 	
@@ -24,7 +24,7 @@ public class Working {
 	private String id = null;
 	
 	/**
-	 * <p>Represents the working name </p>
+	 * <p>Represents the working description </p>
 	 */
 	private String description = null;
 	
@@ -33,7 +33,7 @@ public class Working {
 	// associations
 	
 	/**
-	 * <p>Represents Resource link to access to the associate resource </p>
+	 * <p>Represents Resource link to access to the associated resource </p>
 	 * 
 	 * @link Resource
 	 */
@@ -50,7 +50,6 @@ public class Working {
 	 * @param workBreakDownElement
 	 */
 	public Working(String pid, String pdescription, Double pworkAmount, Resource presource) {
-		// TODO Auto-generated constructor stub
 		this.id = pid;
 		this.description = pdescription;
 		this.workAmount = pworkAmount;
@@ -59,7 +58,6 @@ public class Working {
 
 
 	/**
-	 * <p>Constructor taken 3 parameters the String id, the String name and the Double workAmount  </p>
 	 * @param pid the workAmount 
 	 * @param pname the Working identificator
 	 * @param pworkAmount the Working name

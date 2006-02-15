@@ -14,10 +14,13 @@ public class WBESet {
 	
 	///////////////////////////////////////
 	// attributes
+	/**
+	 * <p>Represente l'identifiant permettant de caractériser de façon unique tout ensemble de tâches</p>
+	 */
 	private String id;
 	
 	/**
-	 * <p>Represents ...</p>
+	 * <p>Represente le nom du groupe (caractéristique à afficher</p>
 	 */
 	private String name; 
 	
@@ -25,11 +28,11 @@ public class WBESet {
 	// associations
 	
 	/**
-	 * <p></p>
+	 * <p>Collection de tâches(WorkBreakDownElement) permettant de référencer les tâches du groupe</p>
 	 * 
-	 * @poseidon-type WorkBreakDowElement
 	 */
 	private java.util.Collection<WorkBreakDownElement> workBreakDowElements = new java.util.ArrayList<WorkBreakDownElement>(); // of type WorkBreakDowElement
+	
 	
 	/**
 	 * @param id
@@ -94,8 +97,7 @@ public class WBESet {
 		return workBreakDowElements;
 	}
 
-	public void setWorkBreakDowElements(
-			java.util.Collection<WorkBreakDownElement> workBreakDowElements) {
+	public void setWorkBreakDowElements(java.util.Collection<WorkBreakDownElement> workBreakDowElements) {
 		this.workBreakDowElements = workBreakDowElements;
 	}
 	

@@ -35,14 +35,14 @@ import test.TestEntity;
  *
  * @author  Oli
  */
-public class MainWindow extends javax.swing.JFrame {
+public class ViewMain extends javax.swing.JFrame {
     
 	private ControlEnvironment envC;
 	
     
     
-    /** Creates new form MainWindow */
-    public MainWindow(ControlEnvironment pEnvC) {
+    /** Creates new form ViewMain */
+    public ViewMain(ControlEnvironment pEnvC) {
     	envC = pEnvC;
         initComponents();
         updateProjectList();
@@ -404,7 +404,7 @@ public class MainWindow extends javax.swing.JFrame {
 		int index = jList1.getSelectedIndex();
 		if(index >= 0)
 		{
-			updateProjectTree(envC.getProjects().get(index));
+			updateProjectTree(envC.getControlProjects().get(index));
 		}
 	}
     
@@ -424,7 +424,7 @@ public class MainWindow extends javax.swing.JFrame {
 				Project p = (Project)obj;
 				infoPanel.removeAll();
 				infoPanel.add(
-						getProjectView(new ProjectControl(p)),
+						new ViewProject(new ProjectControl(p)),
 						java.awt.BorderLayout.CENTER
 				);
 				infoPanel.updateUI();
@@ -435,7 +435,7 @@ public class MainWindow extends javax.swing.JFrame {
 				Activity a = (Activity)obj;
 				infoPanel.removeAll();
 				infoPanel.add(
-						new PlannableView(new ControlPlannable(a)),
+						new ViewPlannable(new ControlPlannable(a)),
 						java.awt.BorderLayout.CENTER
 				);
 				infoPanel.updateUI();
@@ -446,7 +446,7 @@ public class MainWindow extends javax.swing.JFrame {
 				WorkBreakDownElement w = (WorkBreakDownElement)obj;
 				infoPanel.removeAll();
 				infoPanel.add(
-						new PlannableView(new ControlPlannable(w)),
+						new ViewPlannable(new ControlPlannable(w)),
 						java.awt.BorderLayout.CENTER
 				);
 				infoPanel.updateUI();
@@ -457,62 +457,6 @@ public class MainWindow extends javax.swing.JFrame {
     
 	
 	
-	private JPanel getProjectView(ProjectControl pc)
-	{
-		JLabel label = new JLabel("Avancement du projet : 2DB");
-    	JPanel jPanel2=new JPanel();
-    	jPanel2.setLayout(new BorderLayout());
-    	label.setMaximumSize(label.getPreferredSize());
-    	jPanel2.add(label,BorderLayout.NORTH);
-		JProgressBar Jbar=new JProgressBar(1,99);
-		Jbar.setForeground(Color.red);
-		Jbar.setValue(((int)Double.doubleToLongBits(pc.getTps())));
-		Jbar.setMaximumSize(Jbar.getPreferredSize());
-		JPanel jPanel3=new JPanel();
-		jPanel3.setLayout(new BorderLayout());
-		JPanel jPanel4=new JPanel();
-		JLabel label2 = new JLabel("Avancement :");
-		jPanel4.add(label2);
-		jPanel4.add(Jbar);
-		jPanel3.add(jPanel4,BorderLayout.NORTH);
-		JProgressBar Jbar2=new JProgressBar();
-		Jbar2.setMaximumSize(Jbar2.getPreferredSize());
-		Jbar2.setForeground(Color.GREEN);
-		Jbar2.setValue(((int)Double.doubleToLongBits(pc.getBudget())));
-		JPanel jPanel5=new JPanel();
-		JLabel label3 = new JLabel("Budget :");
-		jPanel5.add(label3);
-		jPanel5.add(Jbar2);
-		JPanel jPanel6=new JPanel();
-		Object[][] donnees = {{"Budget", pc.getEstimation()[1], pc.getRealisation()[1]},
-							{"Time", pc.getEstimation()[0], pc.getRealisation()[0]}}; 
-		String[] nomsColonnes = {"b", "Prevision", "Realization"};  
-		JTable table = new JTable(donnees, nomsColonnes);
-		jPanel6.add(table);
-		
-		jPanel3.add(jPanel5,BorderLayout.WEST);
-		jPanel2.add(jPanel6,BorderLayout.CENTER);
-		jPanel2.add(jPanel3,BorderLayout.WEST);
-				
-	/* Panel avec les 3 boutons */	 
-		 JPanel jPanel_bouton=new JPanel();
-		 jPanel_bouton.setLayout(new FlowLayout());  
-		 JButton Biteration = new JButton("Itération");
-		 JButton Bactivite = new JButton("Activité");
-		 JButton Bressources = new JButton("Ressources");
-		 
-		 Biteration.setPreferredSize(Bressources.getPreferredSize());
-		 Bactivite.setPreferredSize(Bressources.getPreferredSize());
-		 Bressources.setPreferredSize(Bressources.getPreferredSize());
-		 
-		 jPanel_bouton.add(Biteration);
-		 jPanel_bouton.add(Bactivite);
-		 jPanel_bouton.add(Bressources);
-		 jPanel2.add(jPanel_bouton,BorderLayout.SOUTH);
-		 jPanel_bouton.setVisible(true);
-	/* Fin Panel 3 boutons*/
-		return jPanel2;		
-	}
 	
 	
     /**
@@ -520,7 +464,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
     	
-        new MainWindow(new ControlEnvironment(TestEntity.createEnvironment())).setVisible(true);
+        new ViewMain(new ControlEnvironment(TestEntity.createEnvironment())).setVisible(true);
     }
     
    

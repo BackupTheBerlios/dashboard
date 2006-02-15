@@ -51,7 +51,7 @@ public class ControlEnvironment
 	 * of projects in "env" member 
 	 * @return list of ControlProject obects from the list of projects in "env" member	  
 	**/
-	public ArrayList<ControlProject> getProjectControls() {
+	public ArrayList<ControlProject> getControlProjects() {
 		ArrayList<ControlProject> l = new ArrayList<ControlProject>();
 		for(Project p: env.getProjects())
 		{
@@ -64,19 +64,18 @@ public class ControlEnvironment
 	
 	/**
 	 * @author Olivier TANKOANO
-	 * creates a list of ControlWBESet obects from the list
-	 * of WBESets in "env" member 
-	 * @return list of ControlWBESet obects from the list of WBESets in "env" member	  
+	 * creates a list of ConsolidationHandler obects from the list
+	 * of projects in "env" member 
+	 * @return list of ConsolidationHandler obects from the list of projects in "env" member	  
 	**/
-	public ArrayList<WBESet> getWbeSetControls() {
-		ArrayList<ControlWBESet> l = new ArrayList<ControlWBESet>();
-		for(WBESet w: env.getWbeSets())
+	public ArrayList<ConsolidationHandler> getConsolidationHandlers() {
+		ArrayList<ConsolidationHandler> l = new ArrayList<ConsolidationHandler>();
+		for(Project p: env.getProjects())
 		{
-			l.add(new ControlWBESet(w));	
+			l.add(new ConsolidationHandler(p));	
 		}
-		return l;		
+		return l;
 	}
-
 
 	
 }

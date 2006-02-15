@@ -54,7 +54,7 @@ public class ActivityTest extends TestCase {
 		test.add(A3);
 		A.setSubActivities(test);
 		//63.36=3*10.01+3*11.11
-		assertTrue(63.36==A.getRealWorkAmount());
+		assertTrue(63.36==java.lang.Math.round(A.getRealWorkAmount()*100)*0.01);
 	}
 
 	/*
@@ -79,7 +79,7 @@ public class ActivityTest extends TestCase {
 		test.add(A3);
 		A.setSubActivities(test);
 		//63.36=3*10.01+3*11.11
-		assertTrue(new Date(2006, 10, 10)==A.getRealStartDate());
+		assertTrue(new Date(2006, 10, 10).equals(A.getRealStartDate()));
 	}
 
 	/*
@@ -104,7 +104,7 @@ public class ActivityTest extends TestCase {
 		test.add(A3);
 		A.setSubActivities(test);
 		//63.36=3*10.01+3*11.11
-		assertTrue(new Date(2006, 9, 9)==A.getRealEndDate());
+		assertTrue(new Date(2006, 9, 9).equals(A.getRealEndDate()));
 	}
 
 	/*
@@ -129,7 +129,7 @@ public class ActivityTest extends TestCase {
 		test.add(A3);
 		A.setSubActivities(test);
 		//63.36=3*10.01+3*11.11
-		assertTrue(new Date(2006, 12, 12)==A.getPrevStartDate());
+		assertTrue(new Date(2006, 12, 12).equals(A.getPrevStartDate()));
 	}
 
 	/*
@@ -154,7 +154,7 @@ public class ActivityTest extends TestCase {
 		test.add(A3);
 		A.setSubActivities(test);
 		//63.36=3*10.01+3*11.11
-		assertTrue(new Date(2006, 11, 11)==A.getPrevEndDate());
+		assertTrue(new Date(2006, 11, 11).equals(A.getPrevEndDate()));
 	}
 
 	/*

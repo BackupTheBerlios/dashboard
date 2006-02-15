@@ -4,6 +4,7 @@ import entity.WorkBreakDownElement;
 import entity.Working;
 
 import java.util.*;
+
 import junit.framework.TestCase;
 
 public class WorkBreakDownElementTest extends TestCase {
@@ -30,7 +31,8 @@ public class WorkBreakDownElementTest extends TestCase {
 	 */
 	public void testGetRealStartDate() {
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
-		assertTrue(w.getRealStartDate()==new Date(2006, 10, 10));
+		
+		assertTrue(new Date(2006,10,10).equals(w.getRealStartDate()));
 
 	}
 
@@ -39,7 +41,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	 */
 	public void testGetRealEndDate() {
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
-		assertTrue(w.getRealStartDate()==new Date(2006,9, 9));
+		assertTrue(new Date(2006,9,9).equals(w.getRealEndDate()));
 
 	}
 
@@ -48,7 +50,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	 */
 	public void testGetPrevStartDate() {
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
-		assertTrue(w.getPrevStartDate()==new Date(2006,12, 12));
+		assertTrue(new Date(2005,12, 12).equals(w.getPrevStartDate()));
 
 	}
 
@@ -57,7 +59,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	 */
 	public void testGetPrevEndDate() {
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
-		assertTrue(w.getPrevEndDate()==new Date(2006,11, 11));
+		assertTrue(new Date(2006,11, 11).equals(w.getPrevEndDate()));
 
 	}
 
@@ -84,7 +86,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	 */
 	public void testWorkBreakDownElementStringStringDateDateDoubleDateDateDouble() {
 		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
-		assertTrue(w.getId()=="testId" && w.getName()=="testName" && w.getPrevEndDate()==new Date(2006,11, 11)&& w.getPrevStartDate()==new Date(2006,12, 12) && w.getRealStartDate()==new Date(2006,9, 9) && w.getRealStartDate()==new Date(2006, 10, 10) && w.getRealWorkAmount()==11.11 && w.getPrevWorkAmount()==12.12); 
+		assertTrue("testId".equals(w.getId()) && "testName".equals(w.getName()) && new Date(2006,11, 11).equals(w.getPrevEndDate()) && new Date(2005,12, 12).equals(w.getPrevStartDate())&& new Date(2006,10, 10).equals(w.getRealStartDate())&& new Date(2006, 9, 9).equals(w.getRealEndDate()) && w.getRealWorkAmount()==11.11 && w.getPrevWorkAmount()==12.12); 
 		
 	}
 
@@ -92,7 +94,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	 * Test method for 'entity.WorkBreakDownElement.WorkBreakDownElement()'
 	 */
 	public void testWorkBreakDownElement() {
-		WorkBreakDownElement w = new WorkBreakDownElement ("testId","testName",new Date(2005, 12, 12),new Date(2006, 11, 11),12.12,new Date(2006, 10, 10),new Date(2006, 9, 9),11.11);
+		WorkBreakDownElement w = new WorkBreakDownElement ();
 		assertTrue(w.getId()==null && w.getName()==null && w.getPrevEndDate()==null && w.getPrevStartDate()==null && w.getRealStartDate()==null && w.getRealStartDate()==null && w.getRealWorkAmount()==null && w.getPrevWorkAmount()==null); 
 		
 	}
@@ -103,7 +105,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	public void testSetId() {
 		WorkBreakDownElement w = new WorkBreakDownElement ();
 		w.setId("toto");
-		assertTrue(w.getId()==null); 
+		assertTrue(w.getId()=="toto"); 
 		
 
 	}
@@ -124,7 +126,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	public void testSetPrevEndDate() {
 		WorkBreakDownElement w = new WorkBreakDownElement ();
 		w.setPrevEndDate(new Date(2006,12, 12));
-		assertTrue(w.getPrevEndDate()==new Date(2006,12, 12)); 
+		assertTrue(w.getPrevEndDate().equals(new Date(2006,12, 12))); 
 
 	}
 
@@ -134,7 +136,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	public void testSetPrevStartDate() {
 		WorkBreakDownElement w = new WorkBreakDownElement ();
 		w.setPrevStartDate(new Date(2006,12, 12));
-		assertTrue(w.getPrevStartDate()==new Date(2006,12, 12)); 
+		assertTrue(w.getPrevStartDate().equals(new Date(2006,12, 12))); 
 
 	}
 
@@ -154,7 +156,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	public void testSetRealEndDate() {
 		WorkBreakDownElement w = new WorkBreakDownElement ();
 		w.setRealEndDate(new Date(2006,12, 12));
-		assertTrue(w.getRealEndDate()==new Date(2006,12, 12)); 
+		assertTrue(w.getRealEndDate().equals(new Date(2006,12, 12))); 
 	}
 
 	/*
@@ -163,7 +165,7 @@ public class WorkBreakDownElementTest extends TestCase {
 	public void testSetRealStartDate() {
 		WorkBreakDownElement w = new WorkBreakDownElement ();
 		w.setRealStartDate(new Date(2006,12, 12));
-		assertTrue(w.getRealStartDate()==new Date(2006,12, 12)); 
+		assertTrue(w.getRealStartDate().equals(new Date(2006,12, 12))); 
 
 	}
 

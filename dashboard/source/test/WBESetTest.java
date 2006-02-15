@@ -108,7 +108,7 @@ public class WBESetTest extends TestCase {
 		w.add(w2);
 		java.util.Collection<WorkBreakDownElement> work = new java.util.ArrayList<WorkBreakDownElement>();
 		work.add(w2);
-		assertTrue(w.getWorkBreakDowElements()==work);
+		assertEquals(w.getWorkBreakDowElements(),work);
 		
 		
 	}

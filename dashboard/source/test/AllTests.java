@@ -8,7 +8,8 @@ public class AllTests  {
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Test for test");
 		//$JUnit-BEGIN$
-		suite.addTestSuite(JUnitRectangleTest.class);
+		suite.addTestSuite(WorkBreakDownElementTest.class);
+		suite.addTestSuite(WBESetTest.class);
 		//$JUnit-END$
 		return suite;
 	}

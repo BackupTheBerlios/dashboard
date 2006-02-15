@@ -183,12 +183,16 @@ public class WorkBreakDownElementTest extends TestCase {
 	 * Test method for 'entity.WorkBreakDownElement.getWorkings()'
 	 */
 	public void testGetWorkings() {
-		/* en cours
 		WorkBreakDownElement w = new WorkBreakDownElement ();
-		java.util.ArrayList<Working> workings = new java.util.ArrayList<Working>();
-		w.setRealWorkAmount(10.2);
-		assertTrue(getWorkings()==10.2); 
-		*/
+		Working w1 = new Working("w1","working1",8.0) ;
+		Working w2 = new Working("w2","working2",10.0) ;
+		Working w3 = new Working("w3","working3",5.5) ;
+		ArrayList<Working> l = new ArrayList<Working>() ;
+		l.add(w1) ;
+		l.add(w2) ;
+		l.add(w3) ;
+		w.setWorkings(l);
+		assertEquals(l,w.getWorkings()); 
 	}
 
 	/*
@@ -264,13 +268,6 @@ public class WorkBreakDownElementTest extends TestCase {
 		l.add(wbe2) ;
 		w.setWbeSets(l) ;
 		assertEquals(l,w.getWbeSets()) ;
-	}
-
-	/*
-	 * Test method for 'entity.Plannable.toString()'
-	 */
-	public void testToString() {
-
 	}
 
 }

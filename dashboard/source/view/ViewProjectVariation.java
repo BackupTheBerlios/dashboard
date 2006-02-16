@@ -26,6 +26,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 import test.TestEntity;
 
@@ -51,6 +52,9 @@ public class ViewProjectVariation extends JFrame
 	private String params;
 	private C_ObjVariation var;
 	private static ControlProject cp;
+	private ChartPanel p;
+	private ChartPanel p1;
+	private Container container; 
 	
 	public	ViewProjectVariation(final String param,ControlProject nameP)
 	{
@@ -60,45 +64,12 @@ public class ViewProjectVariation extends JFrame
 		params=param;
 		cp=nameP; 
 		
-		/* 	
-		objVariation obj11 = new objVariation("It1",16,17,"Tankoano Olivier","tt",2);
-		vect.add(obj11) ;
-		
-		objVariation obj12 = new objVariation("It1",16,15,"Allogo Etienne","aa",2);
-		vect.add(obj12) ;
-		
-		objVariation obj13 = new objVariation("It1",20,22,"Heidy Baubant","bb",2);
-		vect.add(obj13) ;
-		
-		objVariation obj14 = new objVariation("It1",16,15,"Guenatri Kamil","kk",2);
-		vect.add(obj14) ;
-		
-		objVariation objSum1 = new objVariation("It1",68,69,"group","gr",2);
-		vect.add(objSum1) ;
-		
-		objVariation obj21 = new objVariation("It2",24,20,"Tankoano Olivier","tt",2);
-		vect.add(obj21) ;
-		
-		objVariation obj22 = new objVariation("It2",24,21,"Allogo Etienne","aa",2);
-		vect.add(obj22) ;
-		
-		objVariation obj23 = new objVariation("It2",30,26,"Heidy Baubant","bb",2);
-		vect.add(obj23) ;
-		
-		objVariation obj24 = new objVariation("It2",24,22,"Guenatri Kamil","kk",2);
-		vect.add(obj24) ;
-		
-		objVariation objSum2 = new objVariation("It2",102,89,"group","gr",2);
-		vect.add(objSum2) ; 
-		*/
-		
-		
 		var = new C_ObjVariation(cp.getP());
 		vect=var.getDataVariation();
 		
 		//JDesktopPane jdp = new JDesktopPane();
 		//Container container = new Container(;)
-		Container container = this.getContentPane() ;
+		container = this.getContentPane() ;
 		container.setLayout(new BorderLayout());
 		
 		//Panel contenant les boutons de paramétrage du graphique
@@ -133,21 +104,46 @@ public class ViewProjectVariation extends JFrame
                         });
 	    
 	    JRadioButton rbtIteration= new JRadioButton("By iteration");
-	    JRadioButton rbtSemaine= new JRadioButton("By week");
+	    JRadioButton rbtAllProject= new JRadioButton("For all project");
+	    
+	    //masque bar chart
+	    rbtAllProject.addActionListener(new ActionListener ()
+                {
+	    			public void actionPerformed (ActionEvent ev)
+	    			{
+	    				p.setVisible(false);
+	    				comboRessource.setVisible(false);
+	    				container.add(p1,BorderLayout.CENTER) ;
+	    				p1.setVisible(true);
+	    			}
+                });
+	    
+	    // masque pie chart
+	    rbtIteration.addActionListener(new ActionListener ()
+                {
+	    			public void actionPerformed (ActionEvent ev)
+	    			{
+	    				p.setVisible(true);
+	    				comboRessource.setVisible(true);
+	    				container.add(p,BorderLayout.CENTER) ;
+	    				p1.setVisible(false);
+	    			}
+                });
+	    
 	    ButtonGroup group = new ButtonGroup() ;
 	    rbtIteration.setSelected(true) ;
 	    group.add(rbtIteration) ;
-	    group.add(rbtSemaine) ;
+	    group.add(rbtAllProject) ;
 	    JPanel panneauRadio = new JPanel() ;
 	    panneauRadio.setLayout(new GridLayout(2,1)) ;
 	    panneauRadio.add(rbtIteration) ;
-	    panneauRadio.add(rbtSemaine) ;
+	    panneauRadio.add(rbtAllProject) ;
 	    haut.add(panneauRadio) ;
 	    
 	    container.add(haut,BorderLayout.SOUTH) ;
 		
 		
-		// Partie concernant la création du graphique
+		// Partie concernant la création du graphique du bar chart 
 		DefaultCategoryDataset dataset = this.extractDataSet(vect,params) ;
 		JFreeChart chart = ChartFactory.createBarChart("Project Variation"  ,"Iterations","Hours",dataset,PlotOrientation.VERTICAL,true,false,false);
 		
@@ -166,11 +162,16 @@ public class ViewProjectVariation extends JFrame
 		plo.setRenderer(br) ;
 		
 		chart = new JFreeChart("Project Variation for " + params , plo) ;
-		
-		ChartPanel p = new ChartPanel(chart) ;
-		
+		p = new ChartPanel(chart) ;
 		container.add(p,BorderLayout.CENTER) ;
-	
+
+		// pie chart 
+		DefaultPieDataset pieData = this.extractPieDataSet(vect,params) ;
+		JFreeChart chart1 = ChartFactory.createPieChart3D("Project Variation for " +params ,pieData,true,false,false);
+		p1 = new ChartPanel(chart1) ;
+		
+		
+		
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setSize(400,400) ;
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -185,7 +186,7 @@ public class ViewProjectVariation extends JFrame
     	ViewProjectVariation t = new ViewProjectVariation(p,cp) ;
     	 
 	}
-	public DefaultCategoryDataset extractDataSet(Vector<objVariation> vect,String params)
+	public DefaultCategoryDataset extractDataSet(Vector<objVariation> vect,String param)
 	{
 		DefaultCategoryDataset dcd = new DefaultCategoryDataset();
 		int vectorLength = vect.size() ;
@@ -193,7 +194,7 @@ public class ViewProjectVariation extends JFrame
 		for (int i=0 ; i<vectorLength ; i++)
 		{
 			ov = vect.get(i) ;
-			if(ov.getRessource().equals(params))
+			if(ov.getRessource().equals(param))
 			{	
 				dcd.addValue(ov.getTempsEstime(),"Estimé",ov.getIteration()) ;
 				dcd.addValue(ov.getTempsReel(),"Réel",ov.getIteration()) ;
@@ -202,6 +203,32 @@ public class ViewProjectVariation extends JFrame
 		return dcd ;
 	}
 	
+	public DefaultPieDataset extractPieDataSet(Vector<objVariation> vect,String param)
+	{
+		DefaultPieDataset dpd = new DefaultPieDataset();
+		int vectorLength = vect.size();
+		objVariation ov;
+		double reel=0.0;
+		double estime=0.0;
+		
+		for(int i=0;i<vectorLength;i++)
+		{
+			ov = vect.get(i);
+			//System.out.println(ov.getIdRessource() + "-" +ov.getRessource()+"-"+ov.getIteration()+"-" + ov.getTempsEstime() );
+			//System.out.println(ov.getIdRessource()"-"+param);
+			if(ov.getRessource().equals(param))
+			{
+				reel+=ov.getTempsReel();
+				estime+=ov.getTempsEstime();
+			}
+		}
+		
+		
+		dpd.setValue("Estimé",estime);
+		dpd.setValue("Réel",reel);
+		
+		return dpd;
+	}
 	/**
 	 * @param args
 	 */

@@ -29,7 +29,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import test.TestEntity;
 
+import control.C_ObjVariation;
 import control.ControlEnvironment;
+import control.ControlProject;
 import control.objVariation;
 
 
@@ -47,16 +49,18 @@ public class ViewProjectVariation extends JFrame
 	private static final long serialVersionUID = 1L;
 	private Vector<objVariation> vect; 
 	private String params;
+	private C_ObjVariation var;
+	private static ControlProject cp;
 	
-	public	ViewProjectVariation(final String param)
+	public	ViewProjectVariation(final String param,ControlProject nameP)
 	{
-		super("Project Variation for "+param);
+		super("Project Variation for "+nameP.getP().getName());
 		
 		
 		params=param;
-		 
+		cp=nameP; 
 		
-		 	
+		/* 	
 		objVariation obj11 = new objVariation("It1",16,17,"Tankoano Olivier","tt",2);
 		vect.add(obj11) ;
 		
@@ -86,13 +90,12 @@ public class ViewProjectVariation extends JFrame
 		
 		objVariation objSum2 = new objVariation("It2",102,89,"group","gr",2);
 		vect.add(objSum2) ; 
-		
-		
-		/*
-		C_ObjVariation var = new C_ObjVariation(pp);
-		 
-		vect=var.getDataVariation();
 		*/
+		
+		
+		var = new C_ObjVariation(cp.getP());
+		vect=var.getDataVariation();
+		
 		//JDesktopPane jdp = new JDesktopPane();
 		//Container container = new Container(;)
 		Container container = this.getContentPane() ;
@@ -104,14 +107,14 @@ public class ViewProjectVariation extends JFrame
 		
 	    Vector<String> data = new Vector<String>();
 	    data.add("group");
-	    data.add("Tankoano Olivier");
-	    /*
+	    //data.add("Tankoano Olivier");
+	   
 	    int i=0;
 	    for(i=0;i<var.getAllRessources().size();i++)
 	    {
 	    	data.add(var.getAllRessources().get(i).getName());
 	    }
-	    */
+	
 	    final JComboBox comboRessource = new JComboBox(data);
 	    comboRessource.setSelectedItem(params);
 	    
@@ -179,7 +182,7 @@ public class ViewProjectVariation extends JFrame
 	public void refresh(String p)
 	{
 	 
-    	ViewProjectVariation t = new ViewProjectVariation(p) ;
+    	ViewProjectVariation t = new ViewProjectVariation(p,cp) ;
     	 
 	}
 	public DefaultCategoryDataset extractDataSet(Vector<objVariation> vect,String params)
@@ -204,7 +207,8 @@ public class ViewProjectVariation extends JFrame
 	 */
  
 	 public static void main(String args[]) {
-	    	
-		 ViewProjectVariation t = new ViewProjectVariation("group") ;
+	    
+		 ControlEnvironment envC= new ControlEnvironment(TestEntity.createEnvironment()); 
+		 ViewProjectVariation t = new ViewProjectVariation("group",envC.getControlProjects().get(0)) ;
 	    }
 }

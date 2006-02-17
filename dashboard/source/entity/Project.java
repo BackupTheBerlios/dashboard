@@ -42,10 +42,13 @@ public class Project extends Activity {
 	 */
 	private java.util.ArrayList<Resource> resources = new java.util.ArrayList<Resource>();
 
-
-
+	/*
+	 * Cette variable sert de compteur d'étape.
+	 * Elle est à sauvegardé dans le fichier 2DB et à incrémenter à chaque import.
+	 */
+	private int progress = 0;
 	
-	
+
 	/**
 	 * @param id
 	 * @param name
@@ -189,6 +192,15 @@ public class Project extends Activity {
 		}
 		return res;
 	}
+	
+	public int getProgress() {
+		return progress;
+	}
+
+	public void setProgress(int progress) {
+		this.progress = progress;
+	}
+
 	
 } // end Project
 

@@ -12,7 +12,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
-import control.ConsolidationHandler;
+import control.ControlConsolidation;
 import control.ControlEnvironment;
 import control.ControlPlannable;
 import control.ProjectControl;
@@ -244,8 +244,8 @@ public class ViewMain extends javax.swing.JFrame {
     	int index = jList1.getSelectedIndex();
 		if(index >= 0)
 		{			
-			ConsolidationHandler controler = new ConsolidationHandler(envC.getProjects().get(index));
-	        new ConsolidationView(controler);
+			ControlConsolidation controler = new ControlConsolidation(envC.getProjects().get(index));
+	        new ViewConsolidation(controler);
 		}
     	        
     }

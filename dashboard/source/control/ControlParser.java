@@ -19,7 +19,7 @@ import entity.Resource;
 import entity.WorkBreakDownElement;
 import entity.Working;
 
-public class ParserHandler extends DefaultHandler{
+public class ControlParser extends DefaultHandler{
 	
 	private Project project =  null;
 	private Activity activity = null;
@@ -38,7 +38,7 @@ public class ParserHandler extends DefaultHandler{
  
    
    // simple constructeur
-   public ParserHandler(){
+   public ControlParser(){
       super();	
       
    }
@@ -256,7 +256,7 @@ public class ParserHandler extends DefaultHandler{
 			
          // lecture d'un fichier XML avec un DefaultHandler
          File fichier = new File("./source/control/ExempleSAX.xml");
-         DefaultHandler gestionnaire = new ParserHandler();
+         DefaultHandler gestionnaire = new ControlParser();
          parseur.parse(fichier, gestionnaire);
 		
       }catch(ParserConfigurationException pce){

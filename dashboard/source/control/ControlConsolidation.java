@@ -2,10 +2,12 @@
 package control;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 
-import entity.*;
+import entity.Project;
+import entity.WBESet;
+import entity.WorkBreakDownElement;
+import entity.Working;
 
 /**
  * <p>Classe permettant de fournir au vues(fenetres), les donnees necessaires a leur construction....</p>
@@ -14,7 +16,7 @@ import entity.*;
  * @author étienne ALLOGO
  *
  */
-public class ConsolidationHandler {
+public class ControlConsolidation {
 	
 	/**
 	 * <p>Methode permettant de generer les indicateurs pour la vue ByResourceView.</p>
@@ -28,7 +30,7 @@ public class ConsolidationHandler {
 	private HashMap<String,WBESet> collectionOfWbeSets = new HashMap<String, WBESet>();
 	private String projectName;
 	
-	public ConsolidationHandler(Project projet) {
+	public ControlConsolidation(Project projet) {
 		
 		super();
 		this.projectName = projet.getName();
@@ -53,7 +55,11 @@ public class ConsolidationHandler {
 		
 	}
 
-    public Collection<IndicatorState> getChargeByResources(String wbesetId) {  
+    public ControlConsolidation(ControlProject project) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Collection<IndicatorState> getChargeByResources(String wbesetId) {  
     	
     	WBESet groupeActivite = collectionOfWbeSets.get(wbesetId);
     	//Map contenant les id et les charges pour chaque resource

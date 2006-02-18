@@ -64,17 +64,23 @@ public class ControlEnvironment
 	
 	/**
 	 * @author Olivier TANKOANO
-	 * creates a list of ConsolidationHandler obects from the list
+	 * creates a list of ControlConsolidation obects from the list
 	 * of projects in "env" member 
-	 * @return list of ConsolidationHandler obects from the list of projects in "env" member	  
+	 * @return list of ControlConsolidation obects from the list of projects in "env" member	  
 	**/
-	public ArrayList<ConsolidationHandler> getConsolidationHandlers() {
-		ArrayList<ConsolidationHandler> l = new ArrayList<ConsolidationHandler>();
+	public ArrayList<ControlConsolidation> getConsolidationHandlers() {
+		ArrayList<ControlConsolidation> l = new ArrayList<ControlConsolidation>();
 		for(Project p: env.getProjects())
 		{
-			l.add(new ConsolidationHandler(p));	
+			l.add(new ControlConsolidation(p));	
 		}
 		return l;
+	}
+
+
+	public ArrayList<ControlProject> getProjects() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

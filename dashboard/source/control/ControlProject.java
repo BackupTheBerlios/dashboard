@@ -216,17 +216,14 @@ public class ControlProject {
 	}
 	
 	public Date getNextEtapeStartDate(){
-		return null;
 		
 	}
 	
 	public Date getProjectPrevEndDate(){
-		return null;
 		
 	}
 	
 	public Date getProjectRealEndDate(){
-		return null;
 		
 	}
 }

@@ -21,11 +21,11 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultIntervalCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
-import control.ConsolidationHandler;
+import control.ControlConsolidation;
 import control.IndicatorState;
 
 
-public class ConsolidationView extends javax.swing.JFrame  {
+public class ViewConsolidation extends javax.swing.JFrame  {
 	
 	
 	/**
@@ -33,7 +33,7 @@ public class ConsolidationView extends javax.swing.JFrame  {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	ConsolidationHandler controller;
+	ControlConsolidation controller;
 	
 	JTree arbreMenu;
 	
@@ -69,7 +69,7 @@ public class ConsolidationView extends javax.swing.JFrame  {
 		}
 	}
 
-	public ConsolidationView(ConsolidationHandler controller) throws HeadlessException {
+	public ViewConsolidation(ControlConsolidation controller) throws HeadlessException {
 		super();
 		this.controller = controller;
 		

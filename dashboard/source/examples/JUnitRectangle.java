@@ -1,4 +1,4 @@
-package test;
+package examples;
 
 public class JUnitRectangle {
 

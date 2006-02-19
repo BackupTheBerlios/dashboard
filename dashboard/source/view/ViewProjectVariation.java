@@ -28,12 +28,12 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
-import test.TestEntity;
 
 import control.C_ObjVariation;
 import control.ControlEnvironment;
 import control.ControlProject;
 import control.objVariation;
+import examples.TestEntity;
 
 
 

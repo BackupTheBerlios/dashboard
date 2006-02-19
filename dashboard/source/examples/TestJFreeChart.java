@@ -1,4 +1,4 @@
-package test;
+package examples;
 
 import javax.swing.*;
 import java.util.*;

@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 import java.util.Date;
 import control.ControlPlannable;
+import control.Utils;
 import entity.Plannable;
 	
 public class ControlPlannableTest extends TestCase {
@@ -51,7 +52,7 @@ public class ControlPlannableTest extends TestCase {
 			public  Double getRealWorkAmount(){return (10001.0);}
 			public  Date getPrevStartDate(){
 				int jour=2,mois=10,annee=105;
-				Date d = new Date(jour,mois,annee);
+				Date d = new Date(annee,mois,jour);
 				return (d);}
 			public  Date getRealStartDate(){
 				int jour=1,mois=10,annee=105;
@@ -74,7 +75,7 @@ public class ControlPlannableTest extends TestCase {
 			public  Double getRealWorkAmount(){return (1.0);}
 			public  Date getPrevStartDate(){
 				int jour=2,mois=10,annee=105;
-				Date d = new Date(jour,mois,annee);
+				Date d = new Date(annee,mois,jour);
 				return (d);}
 			public  Date getRealStartDate(){
 				int jour=2,mois=10,annee=105;
@@ -100,7 +101,7 @@ public class ControlPlannableTest extends TestCase {
 		assertTrue(plannableC1.getWorkAmountOffset() == 0.0);
 		assertTrue(plannableC2.getWorkAmountOffset() == -1.0);
 		assertTrue(plannableC3.getWorkAmountOffset() == 1.0);
-		assertTrue(plannableC3.getWorkAmountOffset() == 0.9);
+		assertTrue(plannableC4.getWorkAmountOffset() == 0.9);
 	}
 
 	/*@author Alexandre SIMONNET
@@ -148,8 +149,8 @@ public class ControlPlannableTest extends TestCase {
 	 */
 	public void testGetGlobalOffsetPrct() {
 		assertTrue(plannableC1.getGlobalOffsetPrct() == null);
-		assertTrue(plannableC2.getGlobalOffsetPrct() == (3/26)*100);
-		assertTrue(plannableC3.getGlobalOffsetPrct() == (-1/8)*100);
+		assertTrue(plannableC2.getGlobalOffsetPrct() == (3.0/26)*100);
+		assertTrue(plannableC3.getGlobalOffsetPrct() == (-1.0/8)*100);
 		assertTrue(plannableC4.getGlobalOffsetPrct() == 0);
 	}
 
@@ -168,8 +169,8 @@ public class ControlPlannableTest extends TestCase {
 	 */
 	public void testGetStartOffsetPrct() {
 		assertTrue(plannableC1.getStartOffsetPrct() == null);
-		assertTrue(plannableC2.getStartOffsetPrct() == (1/26)*100);
-		assertTrue(plannableC3.getStartOffsetPrct() == (-1/8)*100);
+		assertTrue(plannableC2.getStartOffsetPrct() == (1.0/26)*100);
+		assertTrue(plannableC3.getStartOffsetPrct() == (-1.0/8)*100);
 		assertTrue(plannableC4.getStartOffsetPrct() == 0);
 	}
 	
@@ -178,7 +179,7 @@ public class ControlPlannableTest extends TestCase {
 	 */
 	public void testGetDurationOffsetPrct() {
 		assertTrue(plannableC1.getDurationOffsetPrct() == null);
-		assertTrue(plannableC2.getDurationOffsetPrct() == (2/26)*100);
+		assertTrue(plannableC2.getDurationOffsetPrct() == (2.0/26)*100);
 		assertTrue(plannableC3.getDurationOffsetPrct() == 0);
 		assertTrue(plannableC4.getDurationOffsetPrct() == 0);
 

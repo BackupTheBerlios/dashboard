@@ -217,7 +217,7 @@ public class ControlPlannable
 	{
 		if((getGlobalOffset()!=null) && (getPrevDuration()!=null))
 		{
-			return getGlobalOffset().doubleValue() / getPrevDuration() *100;
+			return getGlobalOffset().doubleValue() / getPrevDuration() *100;			
 		}
 		else
 		{

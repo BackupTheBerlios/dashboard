@@ -183,14 +183,14 @@ public class ViewPlannable extends javax.swing.JPanel {
         startDatesPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
         startDatesPanel.setMinimumSize(new java.awt.Dimension(400, 20));
         startDatesPanel.setPreferredSize(new java.awt.Dimension(400, 20));
-        jLabel1.setText("Date d\u00e9but pr\u00e9visionnelle");
+        jLabel1.setText("Date début prévisionnelle");
         startDatesPanel.add(jLabel1);
 
         txtPrevStartDate.setEditable(false);
         txtPrevStartDate.setPreferredSize(new java.awt.Dimension(100, 20));
         startDatesPanel.add(txtPrevStartDate);
 
-        jLabel4.setText("Date d\u00e9but r\u00e9elle");
+        jLabel4.setText("Date début réelle");
         startDatesPanel.add(jLabel4);
 
         txtRealStartDate.setEditable(false);
@@ -205,7 +205,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         endDatesPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
         endDatesPanel.setMinimumSize(new java.awt.Dimension(400, 20));
         endDatesPanel.setPreferredSize(new java.awt.Dimension(400, 20));
-        jLabel2.setText("Date fin pr\u00e9visionnelle");
+        jLabel2.setText("Date fin prévisionnelle");
         endDatesPanel.add(jLabel2);
 
         txtPrevEndDate.setEditable(false);
@@ -213,7 +213,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         
         endDatesPanel.add(txtPrevEndDate);
 
-        jLabel3.setText("Date fin r\u00e9elle");
+        jLabel3.setText("Date fin réelle");
         endDatesPanel.add(jLabel3);
 
         txtRealEndDate.setEditable(false);
@@ -225,14 +225,14 @@ public class ViewPlannable extends javax.swing.JPanel {
         durationPanel.setLayout(new java.awt.GridLayout(1, 4, 2, 2));
 
         durationPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel15.setText("Dur\u00e9e pr\u00e9visionnelle");
+        jLabel15.setText("Durée prévisionnelle");
         durationPanel.add(jLabel15);
 
         txtPrevDuration.setEditable(false);
         txtPrevDuration.setPreferredSize(new java.awt.Dimension(100, 20));
         durationPanel.add(txtPrevDuration);
 
-        jLabel14.setText("Dur\u00e9e r\u00e9elle");
+        jLabel14.setText("Durée réelle");
         durationPanel.add(jLabel14);
 
         txtRealDuration.setEditable(false);
@@ -244,7 +244,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         startOffsetPanel.setLayout(new java.awt.GridLayout(1, 3, 2, 2));
 
         startOffsetPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel5.setText("D\u00e9calage de d\u00e9but");
+        jLabel5.setText("Décalage de début");
         startOffsetPanel.add(jLabel5);
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
@@ -274,7 +274,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         endOffsetPanel.setLayout(new java.awt.GridLayout(1, 3, 2, 2));
 
         endOffsetPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel11.setText("D\u00e9calage de fin");
+        jLabel11.setText("Décalage de fin");
         endOffsetPanel.add(jLabel11);
 
         jPanel10.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
@@ -304,7 +304,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         durationOffsetPanel.setLayout(new java.awt.GridLayout(1, 3, 2, 2));
 
         durationOffsetPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel8.setText("D\u00e9calage de dur\u00e9e");
+        jLabel8.setText("Décalage de durée");
         durationOffsetPanel.add(jLabel8);
 
         jPanel8.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
@@ -342,14 +342,14 @@ public class ViewPlannable extends javax.swing.JPanel {
         workPanel.setLayout(new java.awt.GridLayout(1, 4, 2, 2));
 
         workPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel16.setText("Charges pr\u00e9visionnelles");
+        jLabel16.setText("Charges prévisionnelles");
         workPanel.add(jLabel16);
 
         txtPrevWorkAmount.setEditable(false);
         txtPrevWorkAmount.setPreferredSize(new java.awt.Dimension(100, 20));
         workPanel.add(txtPrevWorkAmount);
 
-        jLabel17.setText("Charges r\u00e9elles");
+        jLabel17.setText("Charges réelles");
         workPanel.add(jLabel17);
 
         txtRealWorkAmount.setEditable(false);
@@ -363,7 +363,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 
         jPanel1.add(contentPanel, java.awt.BorderLayout.CENTER);
 
-        bResUsg.setText("Resource usage...");
+        bResUsg.setText("Utilisation des ressources...");
         bResUsg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bResUsgMouseClicked(evt);

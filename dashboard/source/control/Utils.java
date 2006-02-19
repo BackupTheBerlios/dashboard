@@ -25,8 +25,9 @@ public class Utils {
 	
 	
 	public static Long subDates(Date d1, Date d2)
-	{	long l1 = d1.getTime();
-		long l2 = d2.getTime();
+	{	
+		long l1 = d1.getTime();
+		long l2 = d2.getTime();		
 		long delta = l1-l2;
 		long millscdperday = 24*60*60*1000;
 		long res = (delta)/millscdperday;

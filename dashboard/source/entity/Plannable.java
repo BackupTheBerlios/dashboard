@@ -1,107 +1,90 @@
 package entity;
-/*
- * Java class "Plannable.java" generated from Poseidon for UML.
- * Poseidon for UML is developed by <A HREF="http://www.gentleware.com">Gentleware</A>.
- * Generated with <A HREF="http://jakarta.apache.org/velocity/">velocity</A> template engine.
- */
+
+
 import java.util.Date;
 
-
-/**
- * <p></p>
- */
-public abstract class Plannable {
-	
-	///////////////////////////////////////
-	// attributes
-	
 	
 	/**
-	 * <p>Represents ...</p>
-	 */
-	
-	///////////////////////////////////////
-	// operations
-	
-	
+	 * This class is the and abstract class that represents any task, activity
+	 * or set of activities that can be planned. 
+	**/
+	public abstract class Plannable {
+		
+		
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
+	 * @author Olivier TANKOANO
+	 * computes and returns the previsionnal work amount
+	 * @return the previsionnal work amount
+	**/
 	public abstract Double getPrevWorkAmount();
 	
+	
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
+	 * @author Olivier TANKOANO
+	 * computes and returns the real work amount
+	 * @return the real work amount
+	**/	
 	public abstract Double getRealWorkAmount();
 	
-	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
-	public abstract Date getRealStartDate();
+	
 	
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
+	 * @author Olivier TANKOANO
+	 * computes and returns the real end date 
+	 * @return the real end date 
+	**/
 	public abstract Date getRealEndDate();
 	
+	
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
+	 * @author Olivier TANKOANO
+	 * computes and returns the previsionnal start date 
+	 * @return the previsionnal start date 
+	**/
 	public abstract Date getPrevStartDate();
 	
 	
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
-	public abstract Date getPrevEndDate();
-
+	 * @author Olivier TANKOANO
+	 * computes and returns the real start date 
+	 * @return the real start date 
+	**/
+	public abstract Date getRealStartDate();
+	
+	
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
+	 * @author Olivier TANKOANO
+	 * computes and returns the previsionnal end date 
+	 * @return the previsionnal end date 
+	**/
+	public abstract Date getPrevEndDate();
+	
+	
+	/**
+	 * @author Olivier TANKOANO
+	 * computes and returns the name
+	 * @return the name
+	**/
 	public abstract String getName();
 	
-
+	
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
+	 * @author Olivier TANKOANO
+	 * computes and returns the id
+	 * @return the name
+	**/
 	public abstract String getId();
 	
 	
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
+	 * @author Olivier TANKOANO
+	 * constructs a String from the name and the id
+	 * @return a String from the name and the id
+	**/
 	public String toString()
 	{
 		return getId() + " - " + getName();
 	}
-	
 	
 	
 } // end Plannable

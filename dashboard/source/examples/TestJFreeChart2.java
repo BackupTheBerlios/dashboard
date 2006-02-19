@@ -1,28 +1,19 @@
-package test;
+package examples;
 import javax.swing.* ;
-import java.awt.* ;
-import java.awt.event.* ;
-import java.beans.PropertyVetoException ;
 import java.util.*;
 import java.text.*;
 
 import org.jfree.chart.*;
-import org.jfree.data.*;
-import org.jfree.data.xy.*;
-import org.jfree.data.gantt.*;
-import org.jfree.data.category.*;
-import org.jfree.data.time.*;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
-public class KamilChart  extends javax.swing.JFrame {
+public class TestJFreeChart2  extends javax.swing.JFrame {
     
     
-    private static Date makeDate(String sDate) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.parse(sDate);
-    }
     
     
-    public KamilChart() {
+    public TestJFreeChart2() {
         super("2DB") ;
         initGUI() ;
     }
@@ -43,23 +34,7 @@ public class KamilChart  extends javax.swing.JFrame {
      * @param args
      */    
     public static void main(String[] args) {
-        XYSeries series = new     XYSeries  ("Linux Users");
-        series.add(1995, 200);
-        series.add(1995, 300);
-        series.add(2010, 6520);
-        series.add(2020, 1230);
-        IntervalXYDataset dataset = new XYSeriesCollection(series);
-    	
-        JFreeChart chart = ChartFactory.createTimeSeriesChart( 
-    	"Linux Users",
-    	"Year",
-    	"Millions",
-    	dataset,
-    
-        true,
-        true,
-        false);
-    	/*
+       
         XYSeries series = new XYSeries("Linux Users");
         series.add(1995, 0.5);
         series.add(2000, 3.0);
@@ -76,8 +51,8 @@ public class KamilChart  extends javax.swing.JFrame {
         true,
         false,
         false);
-          */      
-        KamilChart inst = new KamilChart();
+                
+        TestJFreeChart2 inst = new TestJFreeChart2();
         ChartPanel p = new ChartPanel(chart);
         inst.getContentPane().add(p);
         inst.setVisible(true) ;

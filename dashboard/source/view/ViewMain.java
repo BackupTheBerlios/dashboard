@@ -15,7 +15,7 @@ import java.awt.Toolkit;
 import control.ControlConsolidation;
 import control.ControlEnvironment;
 import control.ControlPlannable;
-import control.ProjectControl;
+import control.ControlProject;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -29,8 +29,8 @@ import javax.swing.tree.TreePath;
 import entity.Activity;
 import entity.Project;
 import entity.WorkBreakDownElement;
+import examples.TestEntity;
 
-import test.TestEntity;
 /**
  *
  * @author  Oli
@@ -94,7 +94,7 @@ public class ViewMain extends javax.swing.JFrame {
         leftPanel.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         projectListPanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setText("Projects");
+        jLabel1.setText("Projets");
         projectListPanel.add(jLabel1, java.awt.BorderLayout.NORTH);
 
         jList1.setPreferredSize(new java.awt.Dimension(0, 100));
@@ -110,7 +110,7 @@ public class ViewMain extends javax.swing.JFrame {
 
         treePanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setText("Project structure");
+        jLabel2.setText("Structure de projet");
         treePanel.add(jLabel2, java.awt.BorderLayout.NORTH);
 
         jTree1.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
@@ -131,8 +131,8 @@ public class ViewMain extends javax.swing.JFrame {
 
         getContentPane().add(contentPane, java.awt.BorderLayout.CENTER);
 
-        fileMenu.setText("File");
-        newMenu.setText("New...");
+        fileMenu.setText("Fichier");
+        newMenu.setText("Nouveau...");
         newMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newMenuActionPerformed(evt);
@@ -141,7 +141,7 @@ public class ViewMain extends javax.swing.JFrame {
 
         fileMenu.add(newMenu);
 
-        openMenu.setText("Open...");
+        openMenu.setText("Ouvrir...");
         openMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 openMenuActionPerformed(evt);
@@ -150,7 +150,7 @@ public class ViewMain extends javax.swing.JFrame {
 
         fileMenu.add(openMenu);
 
-        saveMenu.setText("Save");
+        saveMenu.setText("Enregistrer");
         saveMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveMenuActionPerformed(evt);
@@ -159,7 +159,7 @@ public class ViewMain extends javax.swing.JFrame {
 
         fileMenu.add(saveMenu);
 
-        saveAsMenu.setText("Save As...");
+        saveAsMenu.setText("Enregistrer sous...");
         saveAsMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveAsMenuActionPerformed(evt);
@@ -170,7 +170,7 @@ public class ViewMain extends javax.swing.JFrame {
 
         fileMenu.add(jSeparator1);
 
-        importPSIMenu.setText("import PSI...");
+        importPSIMenu.setText("importer PSI...");
         importPSIMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 importPSIMenuActionPerformed(evt);
@@ -181,7 +181,7 @@ public class ViewMain extends javax.swing.JFrame {
 
         fileMenu.add(jSeparator2);
 
-        quitMenu.setText("Quit");
+        quitMenu.setText("Quitter");
         quitMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quitMenuActionPerformed(evt);
@@ -192,14 +192,14 @@ public class ViewMain extends javax.swing.JFrame {
 
         jMenuBar2.add(fileMenu);
 
-        projectMenu.setText("Project");
+        projectMenu.setText("Projet");
         projectMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projectMenuActionPerformed(evt);
             }
         });
 
-        indicsMenu.setText("Indicators...");
+        indicsMenu.setText("Indicateurs...");
         indicsMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 indicsMenuActionPerformed(evt);
@@ -218,8 +218,8 @@ public class ViewMain extends javax.swing.JFrame {
 
         jMenuBar2.add(projectMenu);
 
-        helpMenu.setText("Help");
-        helpContMenu.setText("Contents");
+        helpMenu.setText("Aide");
+        helpContMenu.setText("Contenu");
         helpContMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 helpContMenuActionPerformed(evt);
@@ -263,7 +263,7 @@ public class ViewMain extends javax.swing.JFrame {
     	int index = jList1.getSelectedIndex();
 		if(index >= 0)
 		{
-			new ViewProjectVariation("group",envC.getProjects().get(index)) ;
+			new ViewProjectVariation("group",envC.getControlProjects().get(index)) ;
 		}
     	//
     }
@@ -343,9 +343,9 @@ public class ViewMain extends javax.swing.JFrame {
     
     
     
-    private void updateProjectTree(Project p)
+    private void updateProjectTree(ControlProject cp)
 	{
-    	if(p == null)
+    	if(cp == null)
 		{			
 			DefaultMutableTreeNode root = new DefaultMutableTreeNode("[Select a project]") ;
 			DefaultTreeModel lModel= new DefaultTreeModel(root);
@@ -353,10 +353,10 @@ public class ViewMain extends javax.swing.JFrame {
 		}
 		else
 		{			
-			DefaultMutableTreeNode root = new DefaultMutableTreeNode("Project " + p.getName());
-			root.setUserObject(p);
+			DefaultMutableTreeNode root = new DefaultMutableTreeNode("Project " + cp.getName());
+			root.setUserObject(cp);
 			int i;
-			java.util.Collection<Activity> lAcs = p.getSubActivities();
+			java.util.Collection<Activity> lAcs = cp.getSubActivities();
 			for(i=0; i<lAcs.size(); i++)
 			{
 				Activity lAc = (Activity)lAcs.toArray()[i];
@@ -424,7 +424,7 @@ public class ViewMain extends javax.swing.JFrame {
 				Project p = (Project)obj;
 				infoPanel.removeAll();
 				infoPanel.add(
-						new ViewProject(new ProjectControl(p)),
+						new ViewProject(new ControlProject(p)),
 						java.awt.BorderLayout.CENTER
 				);
 				infoPanel.updateUI();

@@ -9,6 +9,7 @@ public class AllTests  {
 		TestSuite suite = new TestSuite("Test for test");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(WorkBreakDownElementTest.class);
+		suite.addTestSuite(ControlPlannableTest.class);
 		suite.addTestSuite(WBESetTest.class);
 		//$JUnit-END$
 		return suite;

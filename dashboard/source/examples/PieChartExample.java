@@ -1,4 +1,4 @@
-package test;
+package examples;
 
 // Import the Swing classes
 import java.awt.BorderLayout;

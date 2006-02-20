@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import control.ControlConsolidation;
 import control.ControlEnvironment;
@@ -244,7 +245,7 @@ public class ViewMain extends javax.swing.JFrame {
     	int index = jList1.getSelectedIndex();
 		if(index >= 0)
 		{			
-			ControlConsolidation controler = new ControlConsolidation(envC.getProjects().get(index));
+			ControlConsolidation controler = new ControlConsolidation(envC.getControlProjects().get(index));
 	        new ViewConsolidation(controler);
 		}
     	        
@@ -353,51 +354,13 @@ public class ViewMain extends javax.swing.JFrame {
 		}
 		else
 		{			
-			DefaultMutableTreeNode root = new DefaultMutableTreeNode("Project " + cp.getName());
-			root.setUserObject(cp);
-			int i;
-			java.util.Collection<Activity> lAcs = cp.getSubActivities();
-			for(i=0; i<lAcs.size(); i++)
-			{
-				Activity lAc = (Activity)lAcs.toArray()[i];
-				DefaultMutableTreeNode lAcNode = new DefaultMutableTreeNode("Activity " + lAc.getName()) ;
-				lAcNode.setUserObject(lAc);
-				updateActivityNode(lAcNode, lAc);
-				root.add(lAcNode);
-			}
-			DefaultTreeModel lModel= new DefaultTreeModel(root);
-			jTree1.setModel(lModel);
+			jTree1.setModel(cp.getTreeModel());
 		}		
 	}
     
 	
-		
-	private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc) 
-	{
-		int i;
-		java.util.Collection<Activity> lAcs = pAc.getSubActivities();
-		for (i = 0; i < lAcs.size(); i++) {
-			Activity lAc = (Activity) lAcs.toArray()[i];
-			DefaultMutableTreeNode lAcNode = new DefaultMutableTreeNode(
-					"Activity " + lAc.getName());
-			lAcNode.setUserObject(lAc);
-			updateActivityNode(lAcNode, lAc);
-			pNode.add(lAcNode);
-		}
-
-		java.util.Collection<WorkBreakDownElement> lWBEs = pAc.getWbes();
-		for (i = 0; i < lWBEs.size(); i++) {
-			WorkBreakDownElement lWBE = (WorkBreakDownElement) lWBEs.toArray()[i];
-			DefaultMutableTreeNode lWBENode = new DefaultMutableTreeNode("WBE "
-					+ lWBE.getName());
-			lWBENode.setUserObject(lWBE);
-			pNode.add(lWBENode);
-		}
-
-	}
-	
-		
-	
+    
+    	
 	
 	private void showSelectedProject(javax.swing.event.ListSelectionEvent evt)
 	{

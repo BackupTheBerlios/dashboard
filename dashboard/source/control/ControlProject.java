@@ -1,7 +1,12 @@
 package control;
 
 import entity.*;
+
 import java.util.*;
+
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 
 public class ControlProject {
 	
@@ -217,4 +222,56 @@ public class ControlProject {
 		Date d= new Date();
 		return d;
 	}
+	
+	
+	
+	
+	public TreeModel getTreeModel()
+    {
+    	DefaultMutableTreeNode root = new DefaultMutableTreeNode("Project " + p.getName());
+		root.setUserObject(p);
+		int i;
+		ArrayList<Activity> lAcs = p.getSubActivities();
+		for(i=0; i<lAcs.size(); i++)
+		{
+			Activity lAc = lAcs.get(i);
+			DefaultMutableTreeNode lAcNode = new DefaultMutableTreeNode("Activity " + lAc.getName()) ;
+			lAcNode.setUserObject(lAc);
+			updateActivityNode(lAcNode, lAc);
+			root.add(lAcNode);
+		}
+		DefaultTreeModel lModel= new DefaultTreeModel(root);
+		return lModel;
+		
+    }
+    
+    
+    
+		
+	private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc) 
+	{
+		int i;
+		ArrayList<Activity> lAcs = pAc.getSubActivities();
+		for (i = 0; i < lAcs.size(); i++) {
+			Activity lAc = lAcs.get(i);
+			DefaultMutableTreeNode lAcNode = new DefaultMutableTreeNode(
+					"Activity " + lAc.getName());
+			lAcNode.setUserObject(lAc);
+			updateActivityNode(lAcNode, lAc);
+			pNode.add(lAcNode);
+		}
+
+		ArrayList<WorkBreakDownElement> lWBEs = pAc.getWbes();
+		for (i = 0; i < lWBEs.size(); i++) {
+			WorkBreakDownElement lWBE = lWBEs.get(i);
+			DefaultMutableTreeNode lWBENode = new DefaultMutableTreeNode("WBE "
+					+ lWBE.getName());
+			lWBENode.setUserObject(lWBE);
+			pNode.add(lWBENode);
+		}
+
+	}
+	
+		
+
 }

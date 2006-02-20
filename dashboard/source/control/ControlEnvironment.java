@@ -1,5 +1,10 @@
 package control;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import entity.Environment;
@@ -78,9 +83,39 @@ public class ControlEnvironment
 	}
 
 
-	public ArrayList<ControlProject> getProjects() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+	/**
+	 * @author Olivier TANKOANO
+	 * saves the underlying Environment object into a file
+	 * @param <filename> the name of the file that will be written on the disk
+	 * @exception IOException is thrown if the file cannot be written	 	  
+	**/
+	public void saveFile(String fileName)		throws IOException 
+	{
+		FileOutputStream out;
+		out = new FileOutputStream(fileName + ".2db");
+		ObjectOutputStream s = new ObjectOutputStream(out);
+		s.writeObject(env);
+		s.flush();
+		out.close();
+	}
+	
+	
+	/**
+	 * @author Olivier TANKOANO
+	 * loads a file into the underlying Environment object
+	 * @param <filename> the name of the file
+	 * @exception ClassNotFoundException is thrown if the file is not found	 	  
+	 * @exception IOException is thrown if the file cannot be written
+	**/
+	public void loadFile(String fileName)		throws ClassNotFoundException, IOException 
+	{
+		FileInputStream in;
+		in = new FileInputStream(fileName + ".2db");
+		ObjectInputStream s = new ObjectInputStream(in);
+		env = (Environment) s.readObject();
+		in.close();
 	}
 
 	

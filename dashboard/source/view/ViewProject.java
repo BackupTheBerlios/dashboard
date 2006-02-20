@@ -14,7 +14,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
-import control.ProjectControl;
+import control.ControlProject;
 
 /* Cette classe permet d'obtenir une vision globale sur l'avancement du projet
  *  en ayant actuellement 3 principaux indicateurs:	
@@ -30,25 +30,25 @@ public class ViewProject extends javax.swing.JPanel{
 	 * Référence vers le controlleur du projet, afin de récupérer
 	 * les indicateurs
 	 */
-	ProjectControl pc;
+	ControlProject cp;
 
-	public ViewProject(ProjectControl pc) {
+	public ViewProject(ControlProject cp) {
 		super();
 		// TODO Auto-generated constructor stub
-		this.pc = pc;
+		this.cp = cp;
 		fillPanel();
 	}
 	
 	
 	private void fillPanel()
 	{
-		JLabel label = new JLabel("Avancement du projet :" + pc.getNameP());
+		JLabel label = new JLabel("Avancement du projet :" + cp.getNameP());
     	this.setLayout(new BorderLayout());
     	label.setMaximumSize(label.getPreferredSize());
     	this.add(label,BorderLayout.NORTH);
 		JProgressBar Jbar=new JProgressBar(1,99);
 		Jbar.setForeground(Color.red);
-		Jbar.setValue(((int)Double.doubleToLongBits(pc.getTps())));
+		Jbar.setValue(((int)Double.doubleToLongBits(cp.getTps())));
 		Jbar.setMaximumSize(Jbar.getPreferredSize());
 		JPanel jPanel3=new JPanel();
 		jPanel3.setLayout(new BorderLayout());
@@ -60,14 +60,14 @@ public class ViewProject extends javax.swing.JPanel{
 		JProgressBar Jbar2=new JProgressBar();
 		Jbar2.setMaximumSize(Jbar2.getPreferredSize());
 		Jbar2.setForeground(Color.GREEN);
-		Jbar2.setValue(((int)Double.doubleToLongBits(pc.getBudget())));
+		Jbar2.setValue(((int)Double.doubleToLongBits(cp.getBudget())));
 		JPanel jPanel5=new JPanel();
 		JLabel label3 = new JLabel("Budget :");
 		jPanel5.add(label3);
 		jPanel5.add(Jbar2);
 		JPanel jPanel6=new JPanel();
-		Object[][] donnees = {{"Budget", pc.getEstimation()[1], pc.getRealisation()[1]},
-							{"Time", pc.getEstimation()[0], pc.getRealisation()[0]}}; 
+		Object[][] donnees = {{"Budget", cp.getEstimation()[1], cp.getRealisation()[1]},
+							{"Time", cp.getEstimation()[0], cp.getRealisation()[0]}}; 
 		String[] nomsColonnes = {"b", "Prevision", "Realization"};  
 		JTable table = new JTable(donnees, nomsColonnes);
 		jPanel6.add(table);

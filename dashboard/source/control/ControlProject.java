@@ -2,7 +2,6 @@ package control;
 
 import entity.*;
 import java.util.*;
-import java.lang.Math; 
 
 public class ControlProject {
 	
@@ -27,9 +26,9 @@ public class ControlProject {
 	private int etapeProgress = p.getProgress();
 		
 	//Ces tableaux contiennent les données en therme de charges: estmimée/consommée 
-	private double projectTime[] = new double [2];
+	private double projectTime[] = new double [2];//projectTime[1] renvoie le tps total consommé sur le projet
 	private double budget[] = new double [2];
-		//On donne ici un vision du projet à partir de différente moyenne
+		//On donne ici un vision du projet à partir de différentes moyennes: estmimée/consommée 
 	private double etapesTime [] = new double [2];
 	private double ressourcesTime [] = new double [2];
 	private double activitiesTime [] = new double [2];
@@ -128,28 +127,17 @@ public class ControlProject {
 	 */
 	public double EtapeIndicator(){
 		
-		return moyE;
+		return (this.projectTime[1]/p.getProgress());
 	}
 	
 	public double RessourcesIndicator(){
 		
-		double total=0;
-		ArrayList<Resource> r = p.getResources();
-		int numberR = r.size();
-		
-		for(int i=0;i<=numberR;i++){
-			Collection<Working> cwr = r.get(i).getWorkings();
-				for(int j=0;j<=cwr.size();j++){
-					//Working wr = ;
-				}
-				
-		}
-		return moyR;
+		return (this.projectTime[1]/p.getResources().size());
 	}
 	
 	public double ActivitiesIndicator(){
 		
-		return moyA;
+		return(this.projectTime[1]/p.getSubActivities().size());
 	}
 	
 	/*
@@ -216,14 +204,17 @@ public class ControlProject {
 	}
 	
 	public Date getNextEtapeStartDate(){
-		
+		Date d= new Date();
+		return d;
 	}
 	
 	public Date getProjectPrevEndDate(){
-		
+		Date d= new Date();
+		return d;
 	}
 	
 	public Date getProjectRealEndDate(){
-		
+		Date d= new Date();
+		return d;
 	}
 }

@@ -33,9 +33,9 @@ public class ViewSave extends JFileChooser{
 		int returnVal =this.showSaveDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 		       System.out.println("You chose to save this file: " +
-		            this.getSelectedFile().getName());
+		            this.getSelectedFile().getPath());
 		       
-		       		ControlSave cs = new ControlSave(selectedCp.getProject(),this.getSelectedFile().getName());
+		       		ControlSave cs = new ControlSave(selectedCp.getProject(),this.getSelectedFile().getPath());
 		    }
 		 
 	}

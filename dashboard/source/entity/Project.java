@@ -1,5 +1,6 @@
 package entity ;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 
@@ -7,11 +8,16 @@ import java.util.Iterator;
  * <p>
  * </p>
  */
-public class Project extends Activity {
+public class Project extends Activity implements Serializable {
 	
 	// /////////////////////////////////////
 	// attributes
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * <p>
 	 * Represents ...
@@ -171,6 +177,7 @@ public class Project extends Activity {
 	 */
 	public Double getRealBudget() {
 		return realBudget;
+		
 	}
 
 
@@ -201,7 +208,7 @@ public class Project extends Activity {
 		this.progress = progress;
 	}
 
-	
+
 } // end Project
 
 

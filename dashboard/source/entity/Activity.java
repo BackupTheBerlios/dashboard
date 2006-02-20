@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -13,10 +14,15 @@ import java.util.Iterator;
  * <p>
  * </p>
  */
-public class Activity extends Plannable {
+public class Activity extends Plannable implements Serializable{
 
 	// /////////////////////////////////////
 	// attributes
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * <p>

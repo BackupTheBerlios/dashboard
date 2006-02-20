@@ -1,5 +1,7 @@
 package entity;
 
+import java.io.Serializable;
+
 /*
  * Java class "WBESet.java" generated from Poseidon for UML.
  * Poseidon for UML is developed by <A HREF="http://www.gentleware.com">Gentleware</A>.
@@ -10,8 +12,13 @@ package entity;
 /**
  * <p></p>
  */
-public class WBESet {
+public class WBESet implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	///////////////////////////////////////
 	// attributes
 	/**

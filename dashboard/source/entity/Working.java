@@ -1,5 +1,7 @@
 package entity;
 
+import java.io.Serializable;
+
 
 
 /**
@@ -7,12 +9,17 @@ package entity;
  * @docRoot dashboard
  */
 
-public class Working {
+public class Working implements Serializable{
 	
 	///////////////////////////////////////
 	// attributes
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * <p>Represents the workamount that will be used to estimate workBreakdownElement amount </p>
 	 */

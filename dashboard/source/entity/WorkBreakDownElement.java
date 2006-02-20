@@ -1,6 +1,7 @@
 
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -10,8 +11,13 @@ import java.util.Iterator;
  * @docRoot dashboard
  */
 
-public class WorkBreakDownElement extends Plannable {
+public class WorkBreakDownElement extends Plannable implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	///////////////////////////////////////
 	// attributes
 	

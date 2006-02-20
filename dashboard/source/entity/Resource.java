@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -14,12 +15,16 @@ import java.util.Iterator;
 /**
  * <p></p>
  */
-public class Resource {
+public class Resource implements Serializable{
 	
 	///////////////////////////////////////
 	// attributes
 	///////////////////////////////////////
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7095723143386445175L;
 	private String id;
 	/**
 	 * <p>Represents ...</p>

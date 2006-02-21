@@ -28,9 +28,9 @@ public class ControlProject {
 	 */
 	private Project p ;
 	private String nameP;
-	private int etapeProgress = p.getProgress();
+	private int etapeProgress ;
 		
-	//Ces tableaux contiennent les données en therme de charges: estmimée/consommée 
+	//Ces tableaux contiennent les données en terme de charges: estmimée/consommée 
 	private double projectTime[] = new double [2];//projectTime[1] renvoie le tps total consommé sur le projet
 	private double budget[] = new double [2];
 		//On donne ici un vision du projet à partir de différentes moyennes: estmimée/consommée 
@@ -45,6 +45,8 @@ public class ControlProject {
 		super();
 		// TODO Auto-generated constructor stub
 		this.p = p;
+		
+		etapeProgress= p.getProgress();
 		
 		//Récupération du nom du projet
 		this.nameP=this.p.getName();

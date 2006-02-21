@@ -385,7 +385,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 	{
 		if(plannableC.getName() != null)
 		{
-			txtTitle.setText(plannableC.getName());
+			txtTitle.setText(plannableC.toString());
 		}
 		else
 		{			
@@ -564,7 +564,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         dataset.addValue(plannableC.getPrevWorkAmount(), series1, category1);
         dataset.addValue(plannableC.getRealWorkAmount(), series2, category1);
         
-		JFreeChart chart = ChartFactory.createBarChart3D("",
+		JFreeChart chart = ChartFactory.createBarChart("",
                 "",
                 "",
                 dataset,

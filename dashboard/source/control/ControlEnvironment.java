@@ -125,13 +125,30 @@ public class ControlEnvironment
 		lastFileName = fileName;
 	}
 
+	
+	
 
 	/**
+	 * @author Olivier TANKOANO
 	 * @return Returns the lastFileName.
 	 */
 	public String getLastFileName() {
 		return lastFileName;
 	}
 
+	
+	
+	
+	
+	public void reset()
+	{
+		env = new Environment();
+	}
+	
+	
+	public void createNewProject()
+	{
+		env.getProjects().add(new Project());
+	}
 	
 }

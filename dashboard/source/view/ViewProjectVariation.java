@@ -58,13 +58,13 @@ public class ViewProjectVariation extends JFrame
 	
 	public	ViewProjectVariation(final String param,ControlProject nameP)
 	{
-		super("Project Variation for "+nameP.getP().getName());
+		super("Project Variation for "+nameP.getProject().getName());
 		
 		
 		params=param;
 		cp=nameP; 
 		
-		var = new C_ObjVariation(cp.getP());
+		var = new C_ObjVariation(cp.getProject());
 		vect=var.getDataVariation();
 		
 		//JDesktopPane jdp = new JDesktopPane();

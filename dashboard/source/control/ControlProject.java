@@ -15,13 +15,13 @@ public class ControlProject {
 	 * d'indicateurs afin d'alerter l'utilisateur.
 	 * Elles seront utilisées dans la fonction "alerteIndicator"
 	 */
-	static double Max = 0;
-	static double Min1Project = -5;
-	static double Min2Project = -10;
-	static double Min1Budget = -2;
-	static double Min2Budget = -6;
-	static double Min1Moy = -2;
-	static double Min2Moy = -5;
+	public static double Max = 0;
+	public static double Min1Project = -5;
+	public static double Min2Project = -10;
+	public static double Min1Budget = -2;
+	public static double Min2Budget = -6;
+	public static double Min1Moy = -2;
+	public static double Min2Moy = -5;
 	/*
 	 * Référence vers le projet, afin de récupérer les données 
 	 * nécessaires aux calculs des indicateurs

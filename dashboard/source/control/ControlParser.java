@@ -429,11 +429,11 @@ public class ControlParser extends DefaultHandler{
 		   			break;
 		   			
 		   		case WBE_AMOUNT_REAL:
-		   			wbe.setPrevWorkAmount(new Double(temp));
+		   			wbe.setRealWorkAmount(new Double(temp));
 		   			break;
 		   			
 		   		case WBE_AMOUNT_PREVISION:
-		   			wbe.setRealWorkAmount(new Double(temp));
+		   			wbe.setPrevWorkAmount(new Double(temp));
 		   			break;
 		   			
 		   		case RESOURCE:
@@ -489,10 +489,26 @@ public class ControlParser extends DefaultHandler{
    public static void main(String[] args){
       try{
          
-         ControlParser cp = new ControlParser(examples.TestEntity.createPSITestProject());
+         ControlParser cp = new ControlParser(new Project());
          cp.parse();
-         ControlConsolidation conso = new ControlConsolidation(cp.project);
-         new ViewConsolidation(conso);
+         
+         
+         for(Activity a : cp.project.getSubActivities()){
+        	 System.out.println("\n\tactivity  : " + a.getName() +  " : "  + a.getId());
+        	 for(WorkBreakDownElement w : a.getWbes()){
+        		 System.out.println("\n\t\twbe : " + w.getName() +  " : "  + w.getId());
+        		 
+        		 System.out.println("\n\t\t\tprev start date : " + w.getPrevStartDate());
+        		 System.out.println("\n\t\t\tprev end  date  : " + w.getPrevEndDate());        		 
+        		 System.out.println("\n\t\t\treal start date : " + w.getRealStartDate());
+        		 System.out.println("\n\t\t\treal end date   : " + w.getRealEndDate());
+        		 System.out.println("\n\t\t\tprev amount     : " + w.getPrevWorkAmount());
+        		 System.out.println("\n\t\t\treal amount     : " + w.getRealWorkAmount());
+        	 }
+        	 
+        	 
+         }
+         
 		
       }catch(ParserConfigurationException pce){
          System.out.println("Erreur de configuration du parseur");

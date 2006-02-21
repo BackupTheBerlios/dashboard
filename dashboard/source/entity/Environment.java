@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Environment 
+public class Environment  implements Serializable
 {
 	/**
 	 * <p>

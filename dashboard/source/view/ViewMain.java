@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import control.ControlConsolidation;
@@ -20,6 +21,7 @@ import control.ControlProject;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
@@ -274,16 +276,39 @@ public class ViewMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void saveAsMenuActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void saveAsMenuActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+    	ViewPersistance v= new ViewPersistance(envC);
+    	v.callSave();
     }
 
-    private void saveMenuActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void saveMenuActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        if(envC.getLastFileName() == null)
+        {
+        	ViewPersistance v= new ViewPersistance(envC);
+        	v.callSave();       	
+        }
+        else
+        {
+        	try
+        	{
+        		envC.saveFile(envC.getLastFileName());
+        	}
+        	catch(IOException e)
+        	{
+        		JOptionPane.showMessageDialog(this,"Erreur lors de l'écriture sur le disque!");
+        	}
+        }
     }
 
     private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    	ViewPersistance v= new ViewPersistance(envC);
+    	if(v.callLoad())
+    	{
+	    	updateProjectList();
+	        updateProjectTree(null);
+    	}
     }
 
     private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {

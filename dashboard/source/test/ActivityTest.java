@@ -1,6 +1,9 @@
-package entity;
+package test;
 
 import java.util.Date;
+
+import entity.Activity;
+import entity.WorkBreakDownElement;
 
 import junit.framework.TestCase;
 

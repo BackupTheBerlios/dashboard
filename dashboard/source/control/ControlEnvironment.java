@@ -20,7 +20,7 @@ public class ControlEnvironment
 {
 
 	private Environment env;// object to manage through
-	
+	private String lastFileName;
 	
 	/**
 	 * @author Olivier TANKOANO
@@ -30,6 +30,7 @@ public class ControlEnvironment
 	**/
 	public ControlEnvironment(Environment penv) {
 		this.env = penv;
+		lastFileName = null;
 	}
 
 
@@ -94,11 +95,16 @@ public class ControlEnvironment
 	public void saveFile(String fileName)		throws IOException 
 	{
 		FileOutputStream out;
-		out = new FileOutputStream(fileName + ".2db");
+		if(!Utils.getFileNameExtension(fileName).equalsIgnoreCase("ddb"))
+		{			
+			fileName = fileName + ".ddb";
+		}
+		out = new FileOutputStream(fileName);
 		ObjectOutputStream s = new ObjectOutputStream(out);
 		s.writeObject(env);
 		s.flush();
 		out.close();
+		lastFileName = fileName;
 	}
 	
 	
@@ -112,10 +118,19 @@ public class ControlEnvironment
 	public void loadFile(String fileName)		throws ClassNotFoundException, IOException 
 	{
 		FileInputStream in;
-		in = new FileInputStream(fileName + ".2db");
+		in = new FileInputStream(fileName);
 		ObjectInputStream s = new ObjectInputStream(in);
 		env = (Environment) s.readObject();
 		in.close();
+		lastFileName = fileName;
+	}
+
+
+	/**
+	 * @return Returns the lastFileName.
+	 */
+	public String getLastFileName() {
+		return lastFileName;
 	}
 
 	

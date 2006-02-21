@@ -1,5 +1,6 @@
 package control;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -38,5 +39,21 @@ public class Utils {
 	{
 		return doubleFormat.format(d);
 	}
+	
+	
+	
+
+	public static String getFileNameExtension(String s) 
+	{
+        String ext = null;
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 &&  i < s.length() - 1) 
+        {
+            ext = s.substring(i+1).toLowerCase();
+        }
+        return ext;
+    }
+	
 	
 }

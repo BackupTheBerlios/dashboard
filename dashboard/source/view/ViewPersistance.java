@@ -22,7 +22,7 @@ public class ViewPersistance extends JFileChooser
 		    	return true;
 		    }
 
-		    String extension = getExtension(f);
+		    String extension = Utils.getFileNameExtension(f.getName());
 		    if (extension != null) 
 		    {
 				if (extension.equalsIgnoreCase(new String("ddb")))
@@ -63,22 +63,10 @@ public class ViewPersistance extends JFileChooser
 
 	
 	
-	private static String getExtension(File f) {
-        String ext = null;
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
-
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
-        }
-        return ext;
-    }
 	
 	
 	
-	
-	
-	public void callSave()
+	public boolean callSave()
 	{
 		int returnVal = this.showSaveDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) 
@@ -86,12 +74,15 @@ public class ViewPersistance extends JFileChooser
 			try 
 			{
 				cEnv.saveFile(this.getSelectedFile().getPath());
+				return true;
 			} 
 			catch (IOException e) 
 			{
-				JOptionPane.showMessageDialog(this,"Erreur d'écriture sur le disque!");
+				JOptionPane.showMessageDialog(this,"Erreur lors de l'écriture sur le disque!");
+				return false;
 			}
 		}
+		return false;
 	}
 	
 	
@@ -100,7 +91,7 @@ public class ViewPersistance extends JFileChooser
 	
 	
 	
-	public void callLoad()
+	public boolean callLoad()
 	{
 		int returnVal = this.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) 
@@ -108,16 +99,20 @@ public class ViewPersistance extends JFileChooser
 			try 
 			{
 				cEnv.loadFile(this.getSelectedFile().getPath());
+				return true;
 			} 
 			catch (ClassNotFoundException e) 
 			{
 				JOptionPane.showMessageDialog(this,"Fichier non trouvé!");
+				return false;
 			}
 			catch (IOException e) 
 			{
-				JOptionPane.showMessageDialog(this,"Erreur de lecture sur le disque!");
+				JOptionPane.showMessageDialog(this,"Erreur lors de la lecture sur le disque!");
+				return false;
 			} 			
 		}
+		return false;
 	}
 
 	

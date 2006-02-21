@@ -11,12 +11,7 @@ public class Environment
 	 */
 	private ArrayList<Project> projects = new ArrayList<Project>();
 	
-	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 */
-	private ArrayList<WBESet> wbeSets= new ArrayList<WBESet>();
+
 	
 	
 	
@@ -39,22 +34,5 @@ public class Environment
 
 
 
-
-	/**
-	 * @return Returns the wbeSets.
-	 */
-	public ArrayList<WBESet> getWbeSets() {
-		return wbeSets;
-	}
-
-
-
-
-	/**
-	 * @param wbeSets The wbeSets to set.
-	 */
-	public void setWbeSets(ArrayList<WBESet> wbeSets) {
-		this.wbeSets = wbeSets;
-	}
 
 }

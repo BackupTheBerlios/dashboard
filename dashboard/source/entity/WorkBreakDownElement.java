@@ -212,11 +212,12 @@ public class WorkBreakDownElement extends Plannable implements Serializable{
 	 * @return Returns the realWorkAmount.
 	 */
 	public Double getRealWorkAmount() {
-		Double workingsAmount = this.getRealWorkAmountOfKnownWorkings();
-		if(this.realWorkAmount == null || this.realWorkAmount < workingsAmount ){
-			this.realWorkAmount = workingsAmount;
+		
+		if(this.realWorkAmount == null  ){
+			return this.getRealWorkAmountOfKnownWorkings();
 		}
 		return this.realWorkAmount;
+		
 	}
 	
 	public Double getRealWorkAmountOfKnownWorkings(){

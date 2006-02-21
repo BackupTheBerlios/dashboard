@@ -11,24 +11,25 @@ import entity.*;
  * @author Kamil Guenatri
  *
  */
-public class C_ObjVariation {
+public class ControlObjVariation {
 
 	 private Project p;
 	 ArrayList<Resource> allRessources ; // of type WorkBreakDownElement 
 	 int [] allLevels;
 	
 	 
-	 public C_ObjVariation(Project pp)
-	 {
+ 
+	 
+	 
+	 public ControlObjVariation(Project pp) {
+		// TODO Auto-generated constructor stub
 		 p=pp;
 		 allRessources= p.getResources();
 		 allLevels=p.getImportNumbers();
-		
-		 //allWBE=null;
-	 }
-	 
-	 
-	 private java.util.Collection<WorkBreakDownElement> extractWBEFromActivity(Activity a)
+	}
+
+
+	private java.util.Collection<WorkBreakDownElement> extractWBEFromActivity(Activity a)
 	 {		 
 		return a.getWbes();		 	
 	 }
@@ -45,7 +46,7 @@ public class C_ObjVariation {
 		 
 		 longVect =(nbrRs+1)*nbrLv;
 		 
-		 System.out.println("rs "+allRessources.get(0).getName() );
+		 //System.out.println("rs "+allRessources.get(0).getName() );
 		 for(i=0;i<longVect;i++)
 		 {
 			 objVariation obj= new objVariation("",0.0,0.0,"","",0);

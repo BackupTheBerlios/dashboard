@@ -28,7 +28,11 @@ public class ControlProject {
 	 */
 	private Project p ;
 	private String nameP;
-	private int etapeProgress ;
+ 
+	private int etapeProgress  ;
+ 
+ 
+ 
 		
 	//Ces tableaux contiennent les données en terme de charges: estmimée/consommée 
 	private double projectTime[] = new double [2];//projectTime[1] renvoie le tps total consommé sur le projet
@@ -45,9 +49,9 @@ public class ControlProject {
 		super();
 		// TODO Auto-generated constructor stub
 		this.p = p;
-		
-		etapeProgress= p.getProgress();
-		
+ 
+		etapeProgress=p.getProgress();
+ 
 		//Récupération du nom du projet
 		this.nameP=this.p.getName();
 		
@@ -132,21 +136,30 @@ public class ControlProject {
 	/*
 	 * Les 3 procahines fonctions permettent d'obtenir le tps moyen pour chacune des rubriques
 	 */
+	/*
 	public double EtapeIndicator(){
 		
+<<<<<<< ControlProject.java
+	//	return moyE;
+=======
 		return (this.projectTime[1]/p.getProgress());
+>>>>>>> 1.7
 	}
-	
+	*/
 	public double RessourcesIndicator(){
 		
 		return (this.projectTime[1]/p.getResources().size());
 	}
-	
+	/*
 	public double ActivitiesIndicator(){
 		
+<<<<<<< ControlProject.java
+		//return moyA;
+=======
 		return(this.projectTime[1]/p.getSubActivities().size());
+>>>>>>> 1.7
 	}
-	
+	*/
 	/*
 	 * Les 2 fonctions suivantes permettent de calculer des indicateurs sur le projet
 	 * à partir des estimations et des consommations
@@ -209,7 +222,7 @@ public class ControlProject {
 		
 		return(p.getResources().size());
 	}
-	
+	/*
 	public Date getNextEtapeStartDate(){
 		Date d= new Date();
 		return d;
@@ -249,8 +262,9 @@ public class ControlProject {
 		DefaultTreeModel lModel= new DefaultTreeModel(root);
 		return lModel;
 		
-    }
-    
+
+	} 
+ 
     
     
 	/**
@@ -284,5 +298,6 @@ public class ControlProject {
 	}
 	
 		
+
 
 }

@@ -49,7 +49,7 @@ public class ViewProject extends javax.swing.JPanel{
 		
 		JPanel Paneltable=new JPanel();
 		Object[][] donnees = {{"", "Estimé", "Consommé","Unité","Difference","Indicateur"},{"Temps", cp.getProjectTime()[0], cp.getProjectTime()[1],"H",cp.projectIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]),""},{"Budget", cp.getBudget()[0], cp.getBudget()[1],"€",cp.projectIndicator(cp.getBudget()[0],cp.getBudget()[1]),""},
-				{"Moyenne", cp.getProjectTime()[0], cp.getProjectTime()[1],"€",cp.projectIndicator(cp.getBudget()[0],cp.getBudget()[1]),""}}; 
+				{"Moyenne", "", "","","","",""},{"Etapes", "", "","","","",""},{"Ressources", "", "","","","",""},{"Activités", "", "","","","",""}}; 
 		String[] nomsColonnes = {"b", "Estimé", "Consommé","Unité","Difference","Indicateur"};  
 		JTable table = new JTable(donnees, nomsColonnes);
 		table.setEnabled(false);

@@ -49,7 +49,7 @@ public class ViewMain extends javax.swing.JFrame {
         updateProjectList();
         updateProjectTree(null);
         
-        this.setSize(800,600); 
+        this.setSize(900,700); 
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 	 
         

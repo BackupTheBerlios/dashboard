@@ -35,8 +35,14 @@ public class ControlConsolidation {
 		super();
 		this.projectName = projet.getName();
 		
-		Collection<WorkBreakDownElement> works =  projet.getWbesRecursive();
+		for(WBESet wset :projet.getWbeSets()){
+			collectionOfWbeSets.put(wset.getId(),wset);
+		}
 		
+	/*
+		Collection<WorkBreakDownElement> works =  projet.getWbesRecursive();
+	
+			
 		WBESet temp = null;
 		WorkBreakDownElement tempwbe = null;
 		for(WorkBreakDownElement wbe :  works){
@@ -52,6 +58,7 @@ public class ControlConsolidation {
 
 			}
 		}
+	*/
 		
 	}
 
@@ -83,6 +90,7 @@ public class ControlConsolidation {
     					indicatorStatesHashMap.get(idResource).plusValue(working.getWorkAmount());
     				}
     				else{
+    					if(working.getWorkAmount() != null && working.getWorkAmount() != 0.0 ){
     					//on crée le nouvel indicateur et on l'initialise les valeurs
     					tempIndicState = new IndicatorState();
     					tempIndicState.setName(working.getResource().getName());
@@ -91,6 +99,7 @@ public class ControlConsolidation {
     					
     					//on le rajoute à la Map
     					indicatorStatesHashMap.put(idResource,tempIndicState);
+    					}
     				}
     			}
 
@@ -113,7 +122,7 @@ public Collection<IndicatorState> getChargeByWbeSet(String idResource) {
 		
 		//Pour chaque working contenu dans le workBreakDownElemnt 
 		for(WorkBreakDownElement wbe : wbeSet.getWorkBreakDowElements()){
-//			Pour chaque working contenu dans le workBreakDownElemnt 
+			//Pour chaque working contenu dans le workBreakDownElemnt 
     		for(Working working : wbe.getWorkings() ){
     			
     			//on verifie s'il ya une ressource attachée
@@ -157,6 +166,7 @@ public Collection<IndicatorState> getChargeByWbeSet(String idResource) {
     			//on crée le nouvel indicateur et on l'initialise les valeurs
 				
     			tempIndicState.plusValue(wbe.getRealWorkAmount());
+
     			
 
     		}

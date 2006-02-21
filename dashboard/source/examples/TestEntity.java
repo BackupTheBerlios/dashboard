@@ -13,16 +13,13 @@ import control.*;
  */
 public class TestEntity {
 
-	private static WBESet wsDocs = new WBESet("wsDocs", "documents");
-	private static WBESet wsGes = new WBESet("wsGes", "gestion de projet");
+
 	
 	/**
 	 * @param args
 	 */
 	public static Environment createEnvironment() {
 		Environment env = new Environment();
-		env.getWbeSets().add(wsDocs);
-		env.getWbeSets().add(wsGes);
 		env.getProjects().add(create2DBTestProject());
 		env.getProjects().add(createPSITestProject());
 		return env;
@@ -35,17 +32,21 @@ public class TestEntity {
 	 * @param args
 	 */
 	public static Project create2DBTestProject() {
+		WBESet wsDocs = new WBESet("wsDocs", "documents");
+		WBESet wsGes = new WBESet("wsGes", "gestion de projet");
 		// project creation
 		Project project = new Project("2DB", "Decisionnal dashbord",400000.0,3500000.0);
+		project.getWbeSets().add(wsDocs);
+		project.getWbeSets().add(wsGes);
 
 		try {
 
 			// iterations creation
-			Activity it1 = new Activity("it1", "Itération 1");
+			Activity it1 = new Activity("1", "Itération 1");
 			project.getSubActivities().add(it1);
 			
 			
-			Activity it2 = new Activity("it2", "Itération 2");
+			Activity it2 = new Activity("2", "Itération 2");
 			project.getSubActivities().add(it2);
 			
 			
@@ -55,36 +56,36 @@ public class TestEntity {
 							.stringToDate("20-09-2005"), Utils
 							.stringToDate("05-10-2005"), new Double(15), Utils
 							.stringToDate("25-09-2005"), Utils
-							.stringToDate("12-10-2005"), new Double(30));
+							.stringToDate("12-10-2005"), null);
 			it1.getWbes().add(wbe1);
-			wsGes.add(wbe1);
+			wsGes.getWorkBreakDowElements().add(wbe1);
 			
 			WorkBreakDownElement wbe2 = new WorkBreakDownElement("wbe2",
 					"Recueillir les exigences", Utils
 							.stringToDate("05-10-2005"), Utils
 							.stringToDate("20-10-2005"), new Double(4), Utils
 							.stringToDate("12-10-2005"), Utils
-							.stringToDate("29-10-2005"), new Double(12)
+							.stringToDate("29-10-2005"), null
 
 			);
 			it1.getWbes().add(wbe2);
-			wsGes.add(wbe2);			
+			wsGes.getWorkBreakDowElements().add(wbe2);			
 			
 			WorkBreakDownElement wbe3 = new WorkBreakDownElement("wbe3",
 					"Rédiger les documents", Utils.stringToDate("20-10-2005"),
 					Utils.stringToDate("28-10-2005"), new Double(27), Utils
 							.stringToDate("29-10-2005"), Utils
-							.stringToDate("05-11-2005"), new Double(30)
+							.stringToDate("05-11-2005"), null
 
 			);
 			it1.getWbes().add(wbe3);
-			wsDocs.add(wbe3);
+			wsDocs.getWorkBreakDowElements().add(wbe3);
 			
 			WorkBreakDownElement wbe4 = new WorkBreakDownElement("wbe4",
 					"Coder un prototype", Utils.stringToDate("28-10-2005"),
 					Utils.stringToDate("20-11-2005"), new Double(50), Utils
 							.stringToDate("05-11-2005"), Utils
-							.stringToDate("25-11-2005"), new Double(15)
+							.stringToDate("25-11-2005"), null
 
 			);
 			it2.getWbes().add(wbe4);
@@ -94,11 +95,11 @@ public class TestEntity {
 							.stringToDate("20-11-2005"), Utils
 							.stringToDate("30-11-2005"), new Double(5), Utils
 							.stringToDate("25-11-2005"), Utils
-							.stringToDate("12-12-2005"), new Double(7)
+							.stringToDate("12-12-2005"), null
 
 			);
 			it2.getWbes().add(wbe5);
-			wsDocs.add(wbe5);
+			wsDocs.getWorkBreakDowElements().add(wbe5);
 			
 			
 			// resources creation
@@ -141,15 +142,19 @@ public class TestEntity {
 	}
 
 	public static Project createPSITestProject() {
+		WBESet wsDocs = new WBESet("wsDocs", "documents");
+		WBESet wsGes = new WBESet("wsGes", "gestion de projet");
 		// project creation
 		Project project = new Project("PSI", "projet PSI", 300000.0,500000.0);
+		project.getWbeSets().add(wsDocs);
+		project.getWbeSets().add(wsGes);
 
 		try {
 
 			// iterations creation
-			Activity it1 = new Activity("it1", "Itération 1");
+			Activity it1 = new Activity("1", "Itération 1");
 			project.getSubActivities().add(it1);
-			Activity it2 = new Activity("it2", "Itération 2");
+			Activity it2 = new Activity("2", "Itération 2");
 			project.getSubActivities().add(it2);
 
 			// wbes creation
@@ -158,37 +163,37 @@ public class TestEntity {
 							.stringToDate("25-09-2005"), Utils
 							.stringToDate("01-10-2005"), new Double(41), Utils
 							.stringToDate("26-09-2005"), Utils
-							.stringToDate("10-10-2005"), new Double(7));
+							.stringToDate("10-10-2005"), null);
 			it1.getWbes().add(wbe1);
 		
-			wsGes.add(wbe1);
+			wsGes.getWorkBreakDowElements().add(wbe1);
 			
 			WorkBreakDownElement wbe2 = new WorkBreakDownElement("wbe2",
 					"Recueillir les exigences", Utils
 							.stringToDate("01-10-2005"), Utils
 							.stringToDate("27-10-2005"), new Double(10), Utils
 							.stringToDate("10-10-2005"), Utils
-							.stringToDate("29-10-2005"), new Double(13)
+							.stringToDate("29-10-2005"), null
 
 			);
 			it1.getWbes().add(wbe2);
-			wsGes.add(wbe2);			
+			wsGes.getWorkBreakDowElements().add(wbe2);			
 			
 			WorkBreakDownElement wbe3 = new WorkBreakDownElement("wbe3",
 					"Rédiger les documents", Utils.stringToDate("27-10-2005"),
 					Utils.stringToDate("20-11-2005"), new Double(17), Utils
 							.stringToDate("29-10-2005"), Utils
-							.stringToDate("25-11-2005"), new Double(25)
+							.stringToDate("25-11-2005"), null
 
 			);
 			it1.getWbes().add(wbe3);
-			wsDocs.add(wbe3);
+			wsDocs.getWorkBreakDowElements().add(wbe3);
 			
 			WorkBreakDownElement wbe4 = new WorkBreakDownElement("wbe4",
 					"Coder un prototype", Utils.stringToDate("20-11-2005"),
 					Utils.stringToDate("29-11-2005"), new Double(1), Utils
 							.stringToDate("25-11-2005"), Utils
-							.stringToDate("29-11-2005"), new Double(35)
+							.stringToDate("29-11-2005"),null
 
 			);
 			it2.getWbes().add(wbe4);
@@ -198,11 +203,11 @@ public class TestEntity {
 							.stringToDate("29-11-2005"), Utils
 							.stringToDate("30-11-2005"), new Double(15), Utils
 							.stringToDate("29-11-2005"), Utils
-							.stringToDate("03-12-2005"), new Double(10)
+							.stringToDate("03-12-2005"), null
 
 			);
 			it2.getWbes().add(wbe5);
-			wsDocs.add(wbe5);
+			wsDocs.getWorkBreakDowElements().add(wbe5);
 			
 			// resources creation
 			Resource r1 = new Resource("r1", "Avetisian Gohar");

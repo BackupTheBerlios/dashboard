@@ -19,11 +19,11 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import test.TestEntity;
-import view.JtreeView;
 import view.ViewConsolidation;
 import entity.Activity;
 import entity.Project;
 import entity.Resource;
+import entity.WBESet;
 import entity.WorkBreakDownElement;
 import entity.Working;
 
@@ -86,13 +86,21 @@ public class ControlParser extends DefaultHandler{
 	      tempTypeBalise.intName = ControlParser.DDB;
 	      tempTypeBalise.type = ControlParser.TYPE_NODE;
 	      typeBalise.put("PSI-2DB",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.WSET;
+	      tempTypeBalise.type = ControlParser.TYPE_NODE;
+	      typeBalise.put("wbeset",tempTypeBalise);
 	}
 	
 	private WorkBreakDownElement wbe = null;
 	public Project project = null;
 	private Resource resource = null;
 	private Working working = null;
+	private WBESet wbeset = null;
+	
 	private boolean inWorking = false;
+	private boolean inWBE = false; 
 	private int baliseNiveauCourant = -1;
 	private String temp = new String("");
 	
@@ -108,6 +116,7 @@ public class ControlParser extends DefaultHandler{
 	static final int END_DATE_REAL = 7;
 	static final int RESOURCE = 8;
 	static final int DDB = 9;
+	static final int WSET = 10;
 	
 	static final int TYPE_TEXT = 0;
 	static final int TYPE_NODE = 1;
@@ -141,14 +150,20 @@ public class ControlParser extends DefaultHandler{
    }
     
    public static File loadSystemFile(){
-	   JFileChooser selecteur = new JFileChooser(); 
-	   Filters filtre = new Filters();
-	   selecteur.addChoosableFileFilter(filtre);
-	   selecteur.setAcceptAllFileFilterUsed(false);
-	   if(selecteur.showOpenDialog(null) ==  JFileChooser.APPROVE_OPTION) { 
-		   return selecteur.getSelectedFile(); 
-	   }
-	   return null;
+	   try{
+		   JFileChooser selecteur = new JFileChooser(); 
+		   Filters filtre = new Filters();
+		   selecteur.addChoosableFileFilter(filtre);
+		   selecteur.setAcceptAllFileFilterUsed(false);
+		   if(selecteur.showOpenDialog(null) ==  JFileChooser.APPROVE_OPTION) { 
+			   return selecteur.getSelectedFile(); 
+		   }
+	   
+	   	}
+	   	catch(Exception e){
+	   		return null;
+	   	}
+	   	return null;
    }
 
    //methode SAX de
@@ -207,7 +222,7 @@ public class ControlParser extends DefaultHandler{
 		   			break;
 		   			
 		   		case WORKBREAKDOWN:
-
+		   			inWBE = true;
 		   			id = attributes.getValue("id");
 		   			if(id == null )
 		   				throw new Exception("id wbe non précisé");
@@ -265,6 +280,31 @@ public class ControlParser extends DefaultHandler{
 	            	}
 	            	
 	            	break;
+	            	
+		   		case WSET:
+		   			id = attributes.getValue("id");
+	            	if(id == null )
+	             		throw new Exception("id wbeset non précisé");
+	            	if(inWBE){
+	            		wbeset = project.findWbeSetById(id);
+	            		if(wbe != null) {
+	            			wbeset.getWorkBreakDowElements().add(wbe);
+	            		}
+	            		
+	            	}
+	            	else{
+	            		
+	            		try {
+	            			wbeset = project.findWbeSetById(id);
+						} catch (Exception e) {
+							wbeset = new WBESet(id);
+				   			project.getWbeSets().add(wbeset);
+						}
+
+	            			
+	            	}
+	            	
+	            	break;
 		   		default:
 		   			
 		   			break;
@@ -297,6 +337,7 @@ public class ControlParser extends DefaultHandler{
 		   			activityHierrarchy.remove(0);	   			
 		   			break;
 		   		case WORKBREAKDOWN:
+		   			inWBE = false;
 		   			wbe = null;
 		   			break;
 		   		case WORKING:
@@ -315,12 +356,16 @@ public class ControlParser extends DefaultHandler{
 		   				case RESOURCE:
 		   					resource.setName(temp);
 		   					break;
+		   				
+		   				case WSET:
+		   					wbeset.setName(temp);
+		   					break;
 		   				default:
 		   					break;		   				
 		   			}
 		   			break;
 		   		case AMOUNT:
-		   			working.setWorkAmount(new Double(0.0));	
+		   			working.setWorkAmount(new Double(temp));	
 		   			break;
 		   			
 		   		case START_DATE_REAL:
@@ -343,6 +388,10 @@ public class ControlParser extends DefaultHandler{
 		   			
 		   		case RESOURCE:
 		   			resource = null;
+		   			break;
+		   			
+		   		case WSET:
+		   			wbeset = null;
 		   			break;
 		   			
 		   		default:
@@ -380,7 +429,8 @@ public class ControlParser extends DefaultHandler{
        // création d'un parseur SAX
        SAXParser parseur = null;
        parseur = fabrique.newSAXParser();
-       this.setFileWithFileSystem();
+      if(this.getFile() == null)
+    	  this.setFileWithFileSystem();
        parseur.parse(this.getFile(), this);
 
    }
@@ -389,7 +439,7 @@ public class ControlParser extends DefaultHandler{
    public static void main(String[] args){
       try{
          
-         ControlParser cp = new ControlParser(TestEntity.createPSITestProject());
+         ControlParser cp = new ControlParser(examples.TestEntity.createPSITestProject());
          cp.parse();
          ControlConsolidation conso = new ControlConsolidation(cp.project);
          new ViewConsolidation(conso);

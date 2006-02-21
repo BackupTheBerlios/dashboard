@@ -49,6 +49,13 @@ public class WBESet implements Serializable{
 		this.id = id;
 		this.name = name;
 	}
+	
+	/**
+	 * @param id
+	 */
+	public WBESet(String id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return Returns the id.
@@ -71,13 +78,7 @@ public class WBESet implements Serializable{
 		this.name = name;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.util.Collection#add(E)
-	 */
-	public void add(WorkBreakDownElement workBreakDownElement) {
-		workBreakDowElements.add(workBreakDownElement);
-		workBreakDownElement.getWbeSets().add(this);
-	}
+
 	
 	/* (non-Javadoc)
 	 * @see java.util.Collection#contains(java.lang.Object)

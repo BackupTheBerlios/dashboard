@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <PSI-2DB>
+	<wbeset id = "3">
+	 <name> test </name>
+	</wbeset>
 	<project id = "PSI">
 		<name>PSI 2DB</name>
 		<resource	id = "1">
@@ -17,13 +20,15 @@
 		</resource>
 		<activity id="1">
 			<name>  Itération 1 </name>
-			<workbreakdownelement id ="1">
+			<workbreakdownelement id ="1" set = "3">
 				<name>spécifier précisément le cas 14</name>
 				<datedebuteff> 15-01-2005 </datedebuteff>
 				<datefineff> 25-02-2005 </datefineff>
 				<working id= "23">
 					<name> detailler  le cas d' utilisation </name>
+					<amount> 25.3 </amount>
 					<resource	id = "4"/>
+					<resource	id = "3"/>
 				</working>
 			</workbreakdownelement>
 		</activity>

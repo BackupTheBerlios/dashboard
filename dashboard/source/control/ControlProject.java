@@ -136,30 +136,23 @@ public class ControlProject {
 	/*
 	 * Les 3 procahines fonctions permettent d'obtenir le tps moyen pour chacune des rubriques
 	 */
-	/*
+
 	public double EtapeIndicator(){
-		
-<<<<<<< ControlProject.java
-	//	return moyE;
-=======
+
 		return (this.projectTime[1]/p.getProgress());
->>>>>>> 1.7
+
 	}
-	*/
+
 	public double RessourcesIndicator(){
 		
 		return (this.projectTime[1]/p.getResources().size());
 	}
-	/*
+	
 	public double ActivitiesIndicator(){
-		
-<<<<<<< ControlProject.java
-		//return moyA;
-=======
+
 		return(this.projectTime[1]/p.getSubActivities().size());
->>>>>>> 1.7
 	}
-	*/
+	
 	/*
 	 * Les 2 fonctions suivantes permettent de calculer des indicateurs sur le projet
 	 * à partir des estimations et des consommations

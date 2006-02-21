@@ -222,7 +222,7 @@ public class ControlProject {
 		
 		return(p.getResources().size());
 	}
-	/*
+	
 	public Date getNextEtapeStartDate(){
 		Date d= new Date();
 		return d;

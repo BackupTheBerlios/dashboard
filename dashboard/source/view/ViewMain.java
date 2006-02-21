@@ -244,9 +244,10 @@ public class ViewMain extends javax.swing.JFrame {
     {
     	int index = jList1.getSelectedIndex();
 		if(index >= 0)
-		{			
+		{	
 			ControlConsolidation controler = new ControlConsolidation(envC.getControlProjects().get(index));
 	        new ViewConsolidation(controler);
+
 		}
     	        
     }

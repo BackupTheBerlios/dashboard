@@ -18,7 +18,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import test.TestEntity;
 import view.ViewConsolidation;
 import entity.Activity;
 import entity.Project;

@@ -33,7 +33,6 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
-import control.C_ObjVariation;
 import control.ControlEnvironment;
 import control.ControlProject;
 import control.objVariation;
@@ -90,4 +89,18 @@ private Container container;
 			}
 			return dpd;
 		}
+		
+		
+		public static void main(String args[]) 
+		{
+			HashMap<String,Double> map = new HashMap<String,Double>();
+			map.put("eric", 12.5);
+			map.put("jo", 18.7);
+			map.put("lysie", 5.0);
+			map.put("aline", 50.0);
+			ViewResourceUsage v = new ViewResourceUsage(map);
+			v.setVisible(true);
+		}
+			
+		
 	}

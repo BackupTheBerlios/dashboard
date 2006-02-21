@@ -22,13 +22,12 @@
 			<name>  Itération 1 </name>
 			<workbreakdownelement id ="1" set = "3">
 				<name>spécifier précisément le cas 14</name>
-				<datedebuteff> 15-01-2005 </datedebuteff>
-				<datefineff> 25-02-2005 </datefineff>
+
 				<working id= "23">
 					<name> detailler  le cas d' utilisation </name>
 					<amount> 25.3 </amount>
 					<resource	id = "4"/>
-					<resource	id = "3"/>
+					<wbeset	id = "3"/>
 				</working>
 			</workbreakdownelement>
 		</activity>

@@ -65,7 +65,7 @@ public class ViewConsolidation extends javax.swing.JFrame  {
 			return type;
 		}
 		public String toString() {
-			return name.toString();
+			return name;
 		}
 	}
 

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -62,19 +63,10 @@ public class ControlParser extends DefaultHandler{
 	      typeBalise.put("name",tempTypeBalise);
 	      
 	      tempTypeBalise = new BaliseType();
-	      tempTypeBalise.intName = ControlParser.AMOUNT;
+	      tempTypeBalise.intName = ControlParser.WORKING_AMOUNT;
 	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
 	      typeBalise.put("amount",tempTypeBalise);
 	      
-	      tempTypeBalise = new BaliseType();
-	      tempTypeBalise.intName = ControlParser.START_DATE_REAL;
-	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
-	      typeBalise.put("datedebuteff",tempTypeBalise);
-	      
-	      tempTypeBalise = new BaliseType();
-	      tempTypeBalise.intName = ControlParser.END_DATE_REAL;
-	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
-	      typeBalise.put("datefineff",tempTypeBalise);
 	      
 	      tempTypeBalise = new BaliseType();
 	      tempTypeBalise.intName = ControlParser.RESOURCE;
@@ -90,6 +82,36 @@ public class ControlParser extends DefaultHandler{
 	      tempTypeBalise.intName = ControlParser.WSET;
 	      tempTypeBalise.type = ControlParser.TYPE_NODE;
 	      typeBalise.put("wbeset",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.START_DATE_REAL;
+	      tempTypeBalise.type = ControlParser.TYPE_DATE;
+	      typeBalise.put("realstartdate",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.END_DATE_REAL;
+	      tempTypeBalise.type = ControlParser.TYPE_DATE;
+	      typeBalise.put("realenddate",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.START_DATE_PREVISION;
+	      tempTypeBalise.type = ControlParser.TYPE_DATE;
+	      typeBalise.put("prevstartdate",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.END_DATE_PREVISION;
+	      tempTypeBalise.type = ControlParser.TYPE_DATE;
+	      typeBalise.put("prevenddate",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.WBE_AMOUNT_REAL;
+	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
+	      typeBalise.put("realamount",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.WBE_AMOUNT_PREVISION;
+	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
+	      typeBalise.put("prevamount",tempTypeBalise);
 	}
 	
 	private WorkBreakDownElement wbe = null;
@@ -97,6 +119,7 @@ public class ControlParser extends DefaultHandler{
 	private Resource resource = null;
 	private Working working = null;
 	private WBESet wbeset = null;
+	private Date date = null; 
 	
 	private boolean inWorking = false;
 	private boolean inWBE = false; 
@@ -110,15 +133,20 @@ public class ControlParser extends DefaultHandler{
 	static final int WORKBREAKDOWN = 2;
 	static final int WORKING = 3;
 	static final int NAME = 4;
-	static final int AMOUNT = 5;
-	static final int START_DATE_REAL = 6;
-	static final int END_DATE_REAL = 7;
-	static final int RESOURCE = 8;
-	static final int DDB = 9;
-	static final int WSET = 10;
+	static final int WORKING_AMOUNT = 5;
+	static final int RESOURCE = 6;
+	static final int DDB = 7;
+	static final int WSET = 8;
+	static final int START_DATE_REAL = 9;
+	static final int START_DATE_PREVISION = 10;
+	static final int END_DATE_REAL = 11;
+	static final int END_DATE_PREVISION = 12;
+	static final int WBE_AMOUNT_REAL = 13;
+	static final int WBE_AMOUNT_PREVISION = 14;
 	
 	static final int TYPE_TEXT = 0;
 	static final int TYPE_NODE = 1;
+	static final int TYPE_DATE = 3;
 	
 	public class BaliseType{
 		public int intName;
@@ -221,7 +249,7 @@ public class ControlParser extends DefaultHandler{
 		   			break;
 		   			
 		   		case WORKBREAKDOWN:
-		   			inWBE = true;
+		   			
 		   			id = attributes.getValue("id");
 		   			if(id == null )
 		   				throw new Exception("id wbe non précisé");
@@ -330,6 +358,23 @@ public class ControlParser extends DefaultHandler{
                        String qName)
                 throws SAXException{
 	   try{
+		   switch(typeBalise.get(qName).type){
+		   
+		   	case TYPE_DATE:
+		   		date = null;
+		   		try {
+					date = Utils.stringToDate(temp);
+				} catch (ParseException e) {
+					date = null;
+					e.printStackTrace();
+				}
+		   		break;
+		   	default:
+		   		break;
+
+		   
+		   }
+		   
 		   switch(typeBalise.get(qName).intName){
 		   		case PROJECT:
 		   		case ACTIVITY:
@@ -363,26 +408,32 @@ public class ControlParser extends DefaultHandler{
 		   					break;		   				
 		   			}
 		   			break;
-		   		case AMOUNT:
+		   		case WORKING_AMOUNT:
 		   			working.setWorkAmount(new Double(temp));	
 		   			break;
 		   			
 		   		case START_DATE_REAL:
-		   			try {
-					wbe.setRealStartDate(Utils.stringToDate(temp));
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		   			wbe.setRealStartDate(date);
 		   			break;
 		   			
 		   		case END_DATE_REAL:
-		   			try {
-					wbe.setRealEndDate(Utils.stringToDate(temp));
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		   			wbe.setRealEndDate(date);
+		   			break;
+		   			
+		   		case START_DATE_PREVISION:
+		   			wbe.setPrevStartDate(date);
+		   			break;
+		   			
+		   		case END_DATE_PREVISION:
+		   			wbe.setPrevEndDate(date);
+		   			break;
+		   			
+		   		case WBE_AMOUNT_REAL:
+		   			wbe.setPrevWorkAmount(new Double(temp));
+		   			break;
+		   			
+		   		case WBE_AMOUNT_PREVISION:
+		   			wbe.setRealWorkAmount(new Double(temp));
 		   			break;
 		   			
 		   		case RESOURCE:

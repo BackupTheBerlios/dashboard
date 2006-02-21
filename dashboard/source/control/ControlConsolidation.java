@@ -1,8 +1,13 @@
 
 package control;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 import entity.Project;
 import entity.WBESet;
@@ -38,27 +43,7 @@ public class ControlConsolidation {
 		for(WBESet wset :projet.getWbeSets()){
 			collectionOfWbeSets.put(wset.getId(),wset);
 		}
-		
-	/*
-		Collection<WorkBreakDownElement> works =  projet.getWbesRecursive();
 	
-			
-		WBESet temp = null;
-		WorkBreakDownElement tempwbe = null;
-		for(WorkBreakDownElement wbe :  works){
-			 tempwbe = new WorkBreakDownElement(wbe.getId(), wbe.getName(), wbe.getPrevStartDate(), wbe.getPrevEndDate() , wbe.getPrevWorkAmount(),wbe.getRealStartDate(), wbe.getRealEndDate() , wbe.getRealWorkAmount());
-			 tempwbe.setWorkings(wbe.getWorkings());
-			for(WBESet wbeset:  wbe.getWbeSets() ){
-				if(! this.collectionOfWbeSets.containsKey(wbeset.getId())){
-					temp = new WBESet(wbeset.getId(), wbeset.getName());
-					this.collectionOfWbeSets.put(temp.getId() , temp);
-				}
-				
-				this.collectionOfWbeSets.get(wbeset.getId()).add(tempwbe);
-
-			}
-		}
-	*/
 		
 	}
 

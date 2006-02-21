@@ -83,7 +83,6 @@ public class ViewPlannable extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel startDatesPanel;
     private javax.swing.JPanel startOffsetPanel;
     private javax.swing.JPanel titlePanel;
@@ -158,7 +157,6 @@ public class ViewPlannable extends javax.swing.JPanel {
         txtDurationOffset2 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         daysChartPanel = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
         workPanel = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         txtPrevWorkAmount = new javax.swing.JTextField();
@@ -331,14 +329,9 @@ public class ViewPlannable extends javax.swing.JPanel {
 
         contentPanel.add(durationOffsetPanel);
 
-        daysChartPanel.setBackground(new java.awt.Color(255, 255, 255));
         contentPanel.add(daysChartPanel);
 
-        jSeparator1.setBorder(new javax.swing.border.CompoundBorder());
-        jSeparator1.setMaximumSize(new java.awt.Dimension(32767, 10));
-        jSeparator1.setPreferredSize(new java.awt.Dimension(0, 10));
-        contentPanel.add(jSeparator1);
-
+        
         workPanel.setLayout(new java.awt.GridLayout(1, 4, 2, 2));
 
         workPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
@@ -358,7 +351,6 @@ public class ViewPlannable extends javax.swing.JPanel {
 
         contentPanel.add(workPanel);
 
-        workChartPanel.setBackground(new java.awt.Color(255, 255, 255));
         contentPanel.add(workChartPanel);
 
         jPanel1.add(contentPanel, java.awt.BorderLayout.CENTER);
@@ -373,6 +365,8 @@ public class ViewPlannable extends javax.swing.JPanel {
         buttonsPanel.add(bResUsg);
 
         jPanel1.add(buttonsPanel, java.awt.BorderLayout.SOUTH);
+        this.setLayout(new java.awt.BorderLayout());
+        this.add(jPanel1, java.awt.BorderLayout.CENTER);
 
     }
     
@@ -545,9 +539,11 @@ public class ViewPlannable extends javax.swing.JPanel {
 		}
 		dataset.add(tsP);
 		dataset.add(tsR);
-		JFreeChart chart = ChartFactory.createGanttChart("", "", "Dates",
+		JFreeChart chart = ChartFactory.createGanttChart("", "", "",
 				dataset, true, false, false);
-		daysChartPanel.add( new ChartPanel(chart));
+		daysChartPanel.setLayout(new java.awt.BorderLayout());
+		daysChartPanel.add(java.awt.BorderLayout.CENTER,  new ChartPanel(chart));
+				
 	}
 	
 	
@@ -556,19 +552,19 @@ public class ViewPlannable extends javax.swing.JPanel {
 	private void updateWorkChart() 
 	{
 		// row keys...
-        String series1 = "First";
+		String series1 = "Prévision";
+		String series2 = "Réalisation";
         
         // column keys...
-        String category1 = "Prévision";
-        String category2 = "Réalisation";
+        String category1 = "";
         
         // create the dataset...
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         dataset.addValue(plannableC.getPrevWorkAmount(), series1, category1);
-        dataset.addValue(plannableC.getRealWorkAmount(), series1, category2);
+        dataset.addValue(plannableC.getRealWorkAmount(), series2, category1);
         
-		JFreeChart chart = ChartFactory.createBarChart3D("Charges",
+		JFreeChart chart = ChartFactory.createBarChart3D("",
                 "",
                 "",
                 dataset,
@@ -577,7 +573,9 @@ public class ViewPlannable extends javax.swing.JPanel {
                 true,
                 true
                );
-		workChartPanel.add( new ChartPanel(chart));
+		workChartPanel.setLayout(new java.awt.BorderLayout());
+		workChartPanel.add(java.awt.BorderLayout.CENTER,  new ChartPanel(chart));
+		
 	}
 	
 	

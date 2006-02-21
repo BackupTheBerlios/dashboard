@@ -98,7 +98,8 @@ private Container container;
 			map.put("jo", 18.7);
 			map.put("lysie", 5.0);
 			map.put("aline", 50.0);
-			ViewResourceUsage v = new ViewResourceUsage(map);			
+			ViewResourceUsage v = new ViewResourceUsage(map);
+			v.setVisible(true);
 		}
 			
 		

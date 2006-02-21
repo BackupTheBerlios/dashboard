@@ -11,10 +11,9 @@ import control.*;
  * @author étienne ALLOGO
  * 
  */
-public class TestEntity {
+public class TestEntity 
+{
 
-
-	
 	/**
 	 * @param args
 	 */
@@ -32,10 +31,14 @@ public class TestEntity {
 	 * @param args
 	 */
 	public static Project create2DBTestProject() {
-		WBESet wsDocs = new WBESet("wsDocs", "documents");
-		WBESet wsGes = new WBESet("wsGes", "gestion de projet");
 		// project creation
 		Project project = new Project("2DB", "Decisionnal dashbord",400000.0,3500000.0);
+
+		WBESet wsDocs = new WBESet("wsDocs", "documents");
+		WBESet wsGes = new WBESet("wsGes", "gestion de projet");
+		project.getWbeSets().add(wsDocs);
+		project.getWbeSets().add(wsGes);
+		
 		project.getWbeSets().add(wsDocs);
 		project.getWbeSets().add(wsGes);
 
@@ -141,14 +144,16 @@ public class TestEntity {
 		return project;
 	}
 
-	public static Project createPSITestProject() {
-		WBESet wsDocs = new WBESet("wsDocs", "documents");
-		WBESet wsGes = new WBESet("wsGes", "gestion de projet");
+	
+	
+	public static Project createPSITestProject() 
+	{
 		// project creation
 		Project project = new Project("PSI", "projet PSI", 300000.0,500000.0);
+		WBESet wsDocs = new WBESet("wsDocs", "documents");
+		WBESet wsGes = new WBESet("wsGes", "gestion de projet");
 		project.getWbeSets().add(wsDocs);
 		project.getWbeSets().add(wsGes);
-
 		try {
 
 			// iterations creation

@@ -227,7 +227,11 @@ public class ControlProject {
 	
 	
 	
-	
+	/**
+	 * @author Olivier TANKOANO
+	 * constructs a tree representing the internal structure of a Project object	  
+	 * @return a TreeModel object representing the internal structure of a Project	  
+	**/
 	public TreeModel getTreeModel()
     {
     	DefaultMutableTreeNode root = new DefaultMutableTreeNode("Project " + p.getName());
@@ -249,7 +253,12 @@ public class ControlProject {
     
     
     
-		
+	/**
+	 * @author Olivier TANKOANO
+	 * recursive function used to constructs a tree representing the internal 
+	 * structure of a Project object. This function is meant to be called by 
+	 * the getTreeModel() method to fill each node of the tree model.	  
+	**/	
 	private void updateActivityNode(DefaultMutableTreeNode pNode, Activity pAc) 
 	{
 		int i;

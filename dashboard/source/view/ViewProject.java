@@ -43,13 +43,18 @@ public class ViewProject extends javax.swing.JPanel{
 	private void fillPanel()
 	{
 		JPanel general=new JPanel();
-		general.setLayout(new GridLayout(6,1));
+		general.setLayout(new GridLayout(6,1,0,0));
 		JLabel label = new JLabel("Avancement du projet : " + cp.getNameP());
 		general.add(label);
 		
 		JPanel Paneltable=new JPanel();
-		Object[][] donnees = {{"", "Estimé", "Consommé","Unité","Difference","Indicateur"},{"Temps", cp.getProjectTime()[0], cp.getProjectTime()[1],"H",cp.indiceIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]),ControlProject.Max,ControlProject.Min1Project,ControlProject.Min2Project)},{"Budget", cp.getBudget()[0], cp.getBudget()[1],"€",cp.indiceIndicator(cp.getBudget()[0],cp.getBudget()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getBudget()[0],cp.getBudget()[1]),ControlProject.Max,ControlProject.Min1Budget,ControlProject.Min2Budget)},
-				{"Moyenne", "", "","","","",""},{"Etapes", "", "","","","",""},{"Ressources", "", "","","","",""},{"Activités", "", "","","","",""}}; 
+		Object[][] donnees = {{"", "Estimé", "Consommé","Unité","Difference","Indicateur"},
+				{"Temps", cp.getProjectTime()[0], cp.getProjectTime()[1],"H",cp.indiceIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]),ControlProject.Max,ControlProject.Min1Project,ControlProject.Min2Project)},
+				{"Budget", cp.getBudget()[0], cp.getBudget()[1],"€",cp.indiceIndicator(cp.getBudget()[0],cp.getBudget()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getBudget()[0],cp.getBudget()[1]),ControlProject.Max,ControlProject.Min1Budget,ControlProject.Min2Budget)},
+				{"Moyenne", "", "","","","",""},
+				{"Etapes",cp.getEtapesTime()[0], cp.getEtapesTime()[1],"H",cp.indiceIndicator(cp.getEtapesTime()[0],cp.getEtapesTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getEtapesTime()[0],cp.getEtapesTime()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)},
+				{"Ressources", cp.getRessourcesTime()[0], cp.getRessourcesTime()[0],"H",cp.indiceIndicator(cp.getRessourcesTime()[0],cp.getRessourcesTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getRessourcesTime()[0],cp.getRessourcesTime()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)},
+				{"Activités", cp.getActivities()[0], cp.getActivities()[0],"H",cp.indiceIndicator(cp.getActivities()[0],cp.getActivities()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getActivities()[0],cp.getActivities()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)}}; 
 		String[] nomsColonnes = {"b", "Estimé", "Consommé","Unité","Difference","Indicateur"};  
 		JTable table = new JTable(donnees, nomsColonnes);
 		table.setEnabled(false);
@@ -57,7 +62,7 @@ public class ViewProject extends javax.swing.JPanel{
 		general.add(Paneltable);
 		
 		JPanel Panelbarre=new JPanel();
-		Panelbarre.setLayout(new GridLayout(2,1));
+		Panelbarre.setLayout(new GridLayout(2,1,0,0));
 		JProgressBar Jbar=new JProgressBar(1,99);
 		Jbar.setForeground(Color.red);
 		Jbar.setValue(((int)Double.doubleToLongBits(cp.getProjectTime()[0])));

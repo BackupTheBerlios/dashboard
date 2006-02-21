@@ -85,6 +85,13 @@ import java.util.Date;
 	{
 		return getId() + " - " + getName();
 	}
+
+	
+	public boolean equals(Object other) {
+		
+		return (other.getClass()== this.getClass() ) && (this.getId() == ((Plannable) other).getId());
+	}
+	
 	
 	
 } // end Plannable

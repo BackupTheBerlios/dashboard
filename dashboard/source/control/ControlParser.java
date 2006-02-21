@@ -3,7 +3,13 @@ package control;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -12,8 +18,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import test.TestEntity;
+import view.JtreeView;
+import view.ViewConsolidation;
 import entity.Activity;
-import entity.Plannable;
 import entity.Project;
 import entity.Resource;
 import entity.WorkBreakDownElement;
@@ -21,27 +29,128 @@ import entity.Working;
 
 public class ControlParser extends DefaultHandler{
 	
-	private Project project =  null;
-	private Activity activity = null;
+	
+	private ArrayList<Activity> activityHierrarchy = new ArrayList<Activity>();
+	
+	private static HashMap<String, BaliseType> typeBalise = new  HashMap<String, BaliseType>();
+	
+	{ 
+	      BaliseType tempTypeBalise;
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.PROJECT;
+	      tempTypeBalise.type = ControlParser.TYPE_NODE;
+	      typeBalise.put("project",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.ACTIVITY;
+	      tempTypeBalise.type = ControlParser.TYPE_NODE;
+	      typeBalise.put("activity",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.WORKBREAKDOWN;
+	      tempTypeBalise.type = ControlParser.TYPE_NODE;
+	      typeBalise.put("workbreakdownelement",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.WORKING;
+	      tempTypeBalise.type = ControlParser.TYPE_NODE;
+	      typeBalise.put("working",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.NAME;
+	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
+	      typeBalise.put("name",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.AMOUNT;
+	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
+	      typeBalise.put("amount",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.START_DATE_REAL;
+	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
+	      typeBalise.put("datedebuteff",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.END_DATE_REAL;
+	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
+	      typeBalise.put("datefineff",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.RESOURCE;
+	      tempTypeBalise.type = ControlParser.TYPE_NODE;
+	      typeBalise.put("resource",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.DDB;
+	      tempTypeBalise.type = ControlParser.TYPE_NODE;
+	      typeBalise.put("PSI-2DB",tempTypeBalise);
+	}
+	
 	private WorkBreakDownElement wbe = null;
+	public Project project = null;
 	private Resource resource = null;
 	private Working working = null;
-	private boolean inName = false;
-	private boolean inAmount = false;
-	private boolean inDateDebutEff = false;
-	private boolean inDateFinEff = false;
-	private String baliseNiveauCourant = null;
-	private Plannable plannable = null;
+	private boolean inWorking = false;
+	private int baliseNiveauCourant = -1;
+	private String temp = new String("");
+	
+	
+	public File file;
+	static final int PROJECT = 0;
+	static final int ACTIVITY = 1;
+	static final int WORKBREAKDOWN = 2;
+	static final int WORKING = 3;
+	static final int NAME = 4;
+	static final int AMOUNT = 5;
+	static final int START_DATE_REAL = 6;
+	static final int END_DATE_REAL = 7;
+	static final int RESOURCE = 8;
+	static final int DDB = 9;
+	
+	static final int TYPE_TEXT = 0;
+	static final int TYPE_NODE = 1;
+	
+	public class BaliseType{
+		public int intName;
+		public int type;
+		public Object lastValue;
+		
+		
+	}
+
+	
 	
 
 	
- 
    
    // simple constructeur
-   public ControlParser(){
+   public ControlParser(Project p){
       super();	
+      /// temporaire normalement projet à importer
+      project  = p;
+      activityHierrarchy.add(0, project);
+
+  
       
    }
+   
+   public void setFileWithFileSystem(){
+	   file = ControlParser.loadSystemFile();
+   }
+    
+   public static File loadSystemFile(){
+	   JFileChooser selecteur = new JFileChooser(); 
+	   Filters filtre = new Filters();
+	   selecteur.addChoosableFileFilter(filtre);
+	   selecteur.setAcceptAllFileFilterUsed(false);
+	   if(selecteur.showOpenDialog(null) ==  JFileChooser.APPROVE_OPTION) { 
+		   return selecteur.getSelectedFile(); 
+	   }
+	   return null;
+   }
+
    //methode SAX de
    //détection de l'événement "ouverture de balise"
    public void startElement(String uri,
@@ -49,215 +158,241 @@ public class ControlParser extends DefaultHandler{
                          String qName,
                          Attributes attributes)
                   throws SAXException{
-      System.out.println(uri+" "+localName+" "+qName);
-      
-      if(qName.equals("project")){
-    	  baliseNiveauCourant = qName;
-    	  try{
-           	String id = attributes.getValue("id");
-           	if(id == null )
-           		throw new Exception("id projet non précisé");
-              project = new Project();
-              project.setId(id);
-              plannable = project;
-              System.out.println("project id: " + project.getId());
-           }catch(Exception e){
-           	//attribut manquant
-              throw new SAXException(e);
-           }
+	   
+	   	  String id = null;
+	   try{
+		   switch(typeBalise.get(qName).intName){
     	  
-      }
-      else if(qName.equals("activity")){
-    	 baliseNiveauCourant = qName; 
-         try{
-         	String id = attributes.getValue("id");
-         	if(id == null )
-           		throw new Exception("id activité non précisé");
-            activity = new Activity();
-            activity.setId(id);
-            plannable = activity;
-         }catch(Exception e){
-         	//attribut manquant
-            throw new SAXException(e);
-         }
-         
-      }
-      else if(qName.equals("workbreakdownelement")){
-    	  baliseNiveauCourant = qName;
-          try{
-          	String id = attributes.getValue("id");
-          	System.out.println("wbe id: " + id);
-          	if(id == null )
-           		throw new Exception("id wbe non précisé");
-          	wbe = new WorkBreakDownElement();
-          	wbe.setId(id);
-          	plannable = wbe;
-          }catch(Exception e){
-          	//attribut manquant
-             throw new SAXException(e);
-          }
-          
-      }
-      else if(qName.equals("working")){
-    	  baliseNiveauCourant = qName;
-          try{
-          	String id = attributes.getValue("id");
-          	if(id == null )
-           		throw new Exception("id working non précisé");
-          	working = new Working(id);
-          }catch(Exception e){
-          	//attribut manquant
-             throw new SAXException(e);
-          }
-          
-       }
-      else if(qName.equals("name")){
-         inName = true;	
-      }
-      else if(qName.equals("amount")){
-           inAmount = true;	
-       }
-      else if(qName.equals("datedebuteff")){
-          inDateDebutEff = true;	
-      }
-      else if(qName.equals("datefineff")){
-          inDateFinEff = true;	
-      }else if(qName.equals("resources")){
-          
-      }else if(qName.equals("working-resource")){
-    	  try{
-            	String id = attributes.getValue("id");
-            	if(id == null )
-             		throw new Exception("id working non précisé");
-            	working.setResource(project.findResourceById(id));
-            }catch(Exception e){
-            	//attribut manquant
-               throw new SAXException(e);
-            }
-      }else if(qName.equals("resource")){
-    	  baliseNiveauCourant = qName;
-          try{
-          	String id = attributes.getValue("id");
-          	System.out.println("resource id: " + id);
-          	if(id == null )
-           		throw new Exception("id resource non précisé");
-          	resource = new Resource(id);
-          }catch(Exception e){
-          	//attribut manquant
-             throw new SAXException(e);
-          }
-      }      
-      else{
-         //erreur, on peut lever une exception
-         throw new SAXException("Balise "+qName+" inconnue.");	
-      }
+		   		case PROJECT:
+		   			 id = attributes.getValue("id");
+           	
+		   			if(id == null )
+		   				throw new Exception("id projet non précisé");
+           	
+		   			if(activityHierrarchy.size() != 1)
+		   				throw new Exception("Erreur dans la hierrarchy");
+		   			
+		   			if(activityHierrarchy.get(0).getId() != null){
+		   				if(! (activityHierrarchy.get(0).getId().equals(id)))
+		   					throw new Exception("le fichier ne crorrespond pas au projet");
+		   			}
+		   			else{
+		   				activityHierrarchy.get(0).setId(id);
+		   			}
+		   			break;
+		   			
+		   		case ACTIVITY:
+    	  
+		   			Activity activity = null;
+
+		   			id = attributes.getValue("id");
+		   			if(id == null )
+		   				throw new Exception("id activité non précisé");
+		   			
+		   			for(Activity act : activityHierrarchy.get(0).getSubActivities()){
+		   				if(act != null && act.getId().equals(id)){
+		   					activity = act; 
+		   					break;
+		   				}
+		   			}
+		   			if(activity == null){
+		   				activity = new Activity();
+		   				activity.setId(id);
+		   				activityHierrarchy.get(0).getSubActivities().add(activity);
+		   			}
+            
+		   			
+		   			activityHierrarchy.add(0,activity);
+		   			
+		   			break;
+		   			
+		   		case WORKBREAKDOWN:
+
+		   			id = attributes.getValue("id");
+		   			if(id == null )
+		   				throw new Exception("id wbe non précisé");
+		   			for(WorkBreakDownElement w : activityHierrarchy.get(0).getWbes()){
+		   				if(w != null && w.getId().equals(id)){
+		   					wbe = w; 
+		   					break;
+		   				}
+		   			}
+		   			if(wbe == null){
+		   				wbe = new WorkBreakDownElement();
+			   			wbe.setId(id);
+			   			activityHierrarchy.get(0).getWbes().add(wbe);
+		   			}
+            
+		   			
+		   			
+		   			
+		   			break;
+		   			
+		   		case WORKING:
+		   			
+		   			inWorking = true;
+		   			for(Working w : wbe.getWorkings()){
+		   				if(w != null && w.getId().equals(id)){
+		   					working = w; 
+		   					break;
+		   				}
+		   			}
+		   			if(working == null){
+		   				working = new Working(id);
+			   			wbe.getWorkings().add(working);
+		   			}
+
+		   		
+		   			break;
+		   			
+		   		case RESOURCE:
+	            	id = attributes.getValue("id");
+	            	if(id == null )
+	             		throw new Exception("id working non précisé");
+	            	if(inWorking){
+	            		working.setResource(project.findResourceById(id));
+	            	}
+	            	else{
+	            		
+	            		try {
+							resource = project.findResourceById(id);
+						} catch (Exception e) {
+							resource = new Resource(id);
+				   			project.getResources().add(resource);
+						}
+
+	            			
+	            	}
+	            	
+	            	break;
+		   		default:
+		   			
+		   			break;
+		   }
+		   
+		   switch(typeBalise.get(qName).type){
+		   		case TYPE_NODE:
+		   			baliseNiveauCourant = typeBalise.get(qName).intName;
+		   			break;
+		   		default:
+		   			break;
+		   }
+   	  }
+	  catch(Exception e){
+		 e.printStackTrace();
+		  throw new SAXException("erreur dans ouverture de balise");
+	   }
+
+
    }
    //détection fin de balise
    public void endElement(String uri,
                        String localName,
                        String qName)
                 throws SAXException{
-      if(qName.equals("project")){
-      }else if(qName.equals("activity")){
-      	 project.getSubActivities().add(activity);
-      	 activity = null;
-
-      }else if(qName.equals("workbreakdownelement")){
-    	 activity.getWbes().add(wbe);
-         
-      }else if(qName.equals("working")){
-    	 wbe.getWorkings().add(working);
-         
-      }else if(qName.equals("resource")){
-	
-      }else if(qName.equals("working-resource")){
-	
-      }else if(qName.equals("resources")){
-	
-      }else if(qName.equals("name")){
-         inName = false;	
-      }else if(qName.equals("amount")){
-         inAmount = false;	
-      }else if(qName.equals("datedebuteff")){
-          inDateDebutEff = false;	
-      }
-      else if(qName.equals("datefineff")){
-          inDateFinEff = false;	
-      }else{
-         //erreur, on peut lever une exception
-         throw new SAXException("Balise "+qName+" inconnue.");	
-      }          	
+	   try{
+		   switch(typeBalise.get(qName).intName){
+		   		case PROJECT:
+		   		case ACTIVITY:
+		   			activityHierrarchy.remove(0);	   			
+		   			break;
+		   		case WORKBREAKDOWN:
+		   			wbe = null;
+		   			break;
+		   		case WORKING:
+		   			inWorking = false;
+		   			working = null;
+		   			break;
+		   		case NAME:
+		   			switch(baliseNiveauCourant){
+		   				case PROJECT:
+		   				case ACTIVITY:
+		   					activityHierrarchy.get(0).setName(temp);
+		   					break;
+		   				case WORKBREAKDOWN:
+		   					wbe.setName(temp);
+		   					break;
+		   				case RESOURCE:
+		   					resource.setName(temp);
+		   					break;
+		   				default:
+		   					break;		   				
+		   			}
+		   			break;
+		   		case AMOUNT:
+		   			working.setWorkAmount(new Double(0.0));	
+		   			break;
+		   			
+		   		case START_DATE_REAL:
+		   			try {
+					wbe.setRealStartDate(Utils.stringToDate(temp));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		   			break;
+		   			
+		   		case END_DATE_REAL:
+		   			try {
+					wbe.setRealEndDate(Utils.stringToDate(temp));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		   			break;
+		   			
+		   		case RESOURCE:
+		   			resource = null;
+		   			break;
+		   			
+		   		default:
+		   			break;
+		   }
+		   temp = "";
+	   }catch(Exception e){
+		   throw new SAXException();
+	   }
+    
    }
+   
    //détection de caractères
    public void characters(char[] ch,
                        int start,
                        int length)
                 throws SAXException{
-      String lecture = (new String(ch,start,length)).trim().replace('_',' ');
-      if(inName){
-    	 if(baliseNiveauCourant.equals("project")){
-    		 project.setName(lecture);	
-    	 }else if(baliseNiveauCourant.equals("activity")){
-    		 activity.setName(lecture);	
-      	 }else if(baliseNiveauCourant.equals("workbreakdownelement")){
-    		 wbe.setName(lecture);	
-      	 }else if(baliseNiveauCourant.equals("working")){
-    		 //working.setName(lecture);	
-      	 }else if(baliseNiveauCourant.equals("resource")){
-    		 resource.setName(lecture);	
-    		 project.getResources().add(resource);
-      	 }
-      }else if(inAmount){
-         working.setWorkAmount(new Double(lecture));	
-      }else if(inDateDebutEff){
-    	  try {
-		//	plannable.setDateDebutEff(dateFormat.parse(lecture)) ;
-			System.out.println(plannable.getRealStartDate() + " : ");
-			
-		} catch (Exception e) {
-			throw new SAXException(lecture+": mauvais format de date.");
-			
-		}	
-      }else if(inDateFinEff){
-    	  try {
-  			//plannable.setDateFinEff(dateFormat.parse(lecture)) ;
-  			System.out.println(plannable.getRealEndDate() + " : ");
-  			
-  		} catch (Exception e) {
-  			throw new SAXException(lecture+": mauvais format de date.");
-  			
-  		}	
-      }          	
+	   		 if(temp.length() != 0) temp += " ";
+	   		 temp += new String(ch,start,length).trim();
+	   	
+    	
    }
    //début du parsing
    public void startDocument() throws SAXException {
-   	  System.out.println("Début du parsing");
    }
    //fin du parsing
+   
    public void endDocument() throws SAXException {
-   	  System.out.println("Fin du parsing");
-   	  System.out.println("Resultats du parsing");
-   	  for(Activity a : project.getSubActivities()){
-   	     System.out.println(a);
-   	  }
-   	for(Resource r : project.getResources()){
-  	     System.out.println("\t" + r);
-  	  }
+   }
+   
+   public void parse() throws ParserConfigurationException, SAXException, IOException{
+	   // création d'une fabrique de parseurs SAX
+       SAXParserFactory fabrique = SAXParserFactory.newInstance();
+			
+       // création d'un parseur SAX
+       SAXParser parseur = null;
+       parseur = fabrique.newSAXParser();
+       this.setFileWithFileSystem();
+       parseur.parse(this.getFile(), this);
+
    }
    
    // test
    public static void main(String[] args){
       try{
-         // création d'une fabrique de parseurs SAX
-         SAXParserFactory fabrique = SAXParserFactory.newInstance();
-			
-         // création d'un parseur SAX
-         SAXParser parseur = fabrique.newSAXParser();
-			
-         // lecture d'un fichier XML avec un DefaultHandler
-         File fichier = new File("./source/control/ExempleSAX.xml");
-         DefaultHandler gestionnaire = new ControlParser();
-         parseur.parse(fichier, gestionnaire);
+         
+         ControlParser cp = new ControlParser(TestEntity.createPSITestProject());
+         cp.parse();
+         ControlConsolidation conso = new ControlConsolidation(cp.project);
+         new ViewConsolidation(conso);
 		
       }catch(ParserConfigurationException pce){
          System.out.println("Erreur de configuration du parseur");
@@ -270,5 +405,67 @@ public class ControlParser extends DefaultHandler{
          System.out.println("Erreur d'entrée/sortie");
          System.out.println("Lors de l'appel à parse()");
       }
-   }	
+   }
+
+public File getFile() {
+	return file;
+}
+
+public static class Filters extends FileFilter{
+	Vector<String> filters = new Vector<String>();
+	{
+		filters.add("xml");
+	}
+	
+	public boolean accept(File f) {
+
+	     if(f != null){
+			   if(f.isDirectory()){
+			      return true;
+			   }
+
+			   String extension = getExtension(f);
+			   if(extension != null && filters.contains(getExtension(f)) ){
+		          return true;
+			   };
+		 }
+		 return false;
+	}
+
+	public String getDescription() {
+		  String fullDescription = "";
+
+		
+		  // Construit la description a partir des extentions.
+
+		  if(filters.size() != 0){
+			  fullDescription += "(";
+			     int i = 0;
+			     for(String e:filters){
+			    	  if(i != 0){
+			    		  fullDescription += ", " ;
+			    	  }
+		              fullDescription += "." + e;
+		              i++;
+			     }
+               fullDescription += ")";
+		  }
+
+		  return fullDescription;
+	}
+	public String getExtension(File f)
+	{
+	   if(f != null)
+	  {
+	          String filename = f.getName();
+	          int i = filename.lastIndexOf('.');
+	          if(i>0 && i<filename.length()-1)
+	          {
+	                return filename.substring(i+1).toLowerCase();
+	          };
+	         }
+	         return null;
+	     }
+	   
+   }
 }

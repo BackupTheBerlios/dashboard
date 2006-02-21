@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project id = "44">
-	<resources>
+
+<PSI-2DB>
+	<project id = "PSI">
+		<name>PSI 2DB</name>
 		<resource	id = "1">
 			<name>  ALLOGO_Etienne </name>
 		</resource>
@@ -13,22 +15,27 @@
 		<resource	id = "4">
 			<name>  BAUBANT_Heidy </name>
 		</resource>
-	</resources>
-	
-	<activity id="1">
-		<name>Itération_1</name>
-		<workbreakdownelement id ="1">
-			<datedebuteff> 15-01-2005 </datedebuteff>
-			<datefineff> 25-02-2005 </datefineff>
-			<name>spécifier_précisément_le_cas_14</name>
-			<working id= "23">
-				<name> detailler_le_cas_d'_utilisation </name>
-				<amount>  15.97 </amount>
-				<working-resource id = "4"/>
-			</working>
-		</workbreakdownelement>
-	</activity>
-	<activity id="2">
-		<name>coder_le_cas_14</name>
-	</activity>
-</project>
+		<activity id="1">
+			<name>  Itération 1 </name>
+			<workbreakdownelement id ="1">
+				<name>spécifier précisément le cas 14</name>
+				<datedebuteff> 15-01-2005 </datedebuteff>
+				<datefineff> 25-02-2005 </datefineff>
+				<working id= "23">
+					<name> detailler  le cas d' utilisation </name>
+					<resource	id = "4"/>
+				</working>
+			</workbreakdownelement>
+		</activity>
+		<activity id="2">
+			<name>coder le cas 14</name>
+				
+			<activity id="76">
+				<name>coder le cas 16</name>
+				<activity id="86">
+					<name>valider le cas 16</name>
+				</activity>
+			</activity>
+		</activity>
+	</project>
+</PSI-2DB>

@@ -112,8 +112,8 @@ public class WorkBreakDownElement extends Plannable implements Serializable{
 	
 	public WorkBreakDownElement() {
 		// TODO Auto-generated constructor stub
-		this.id = null;
-		this.name = null;
+		this.id = "";
+		this.name = "";
 		this.prevStartDate = null;
 		this.prevEndDate = null;
 		this.prevWorkAmount = null;

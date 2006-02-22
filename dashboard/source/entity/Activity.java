@@ -67,8 +67,8 @@ public class Activity extends Plannable implements Serializable{
 	
 	public Activity() {
 		// TODO Auto-generated constructor stub
-		this.id = null;
-		this.name = null;
+		this.id = "";
+		this.name = "";
 	}
 
 	

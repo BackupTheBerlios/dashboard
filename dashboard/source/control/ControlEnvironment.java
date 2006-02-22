@@ -95,16 +95,20 @@ public class ControlEnvironment
 	public void saveFile(String fileName)		throws IOException 
 	{
 		FileOutputStream out;
-		if(!Utils.getFileNameExtension(fileName).equalsIgnoreCase("ddb"))
-		{			
-			fileName = fileName + ".ddb";
-		}
+		if(fileName != null){
+			
+			if(Utils.getFileNameExtension(fileName) == null || !Utils.getFileNameExtension(fileName).equalsIgnoreCase("ddb"))
+			{			
+				fileName = fileName + ".ddb";
+			}
+		
 		out = new FileOutputStream(fileName);
 		ObjectOutputStream s = new ObjectOutputStream(out);
 		s.writeObject(env);
 		s.flush();
 		out.close();
 		lastFileName = fileName;
+		}
 	}
 	
 	

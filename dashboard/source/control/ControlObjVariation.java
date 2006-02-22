@@ -140,7 +140,7 @@ public class ControlObjVariation {
 		 }
 		 for(i=0;i<res.size();i++)
 		 {
-			   System.out.println(res.get(i).getIteration()+"--"+res.get(i).getRessource()+"--"+res.get(i).getTempsReel());
+			  // System.out.println(res.get(i).getIteration()+"--"+res.get(i).getRessource()+"--"+res.get(i).getTempsReel());
 		 }
 		 return res;
 	 }

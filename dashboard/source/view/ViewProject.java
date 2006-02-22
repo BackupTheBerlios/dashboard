@@ -53,8 +53,8 @@ public class ViewProject extends javax.swing.JPanel{
 				{"Budget", cp.getBudget()[0], cp.getBudget()[1],"€",cp.indiceIndicator(cp.getBudget()[0],cp.getBudget()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getBudget()[0],cp.getBudget()[1]),ControlProject.Max,ControlProject.Min1Budget,ControlProject.Min2Budget)},
 				{"Moyenne", "", "","","","",""},
 				{"Etapes",cp.getEtapesTime()[0], cp.getEtapesTime()[1],"H",cp.indiceIndicator(cp.getEtapesTime()[0],cp.getEtapesTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getEtapesTime()[0],cp.getEtapesTime()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)},
-				{"Ressources", cp.getRessourcesTime()[0], cp.getRessourcesTime()[0],"H",cp.indiceIndicator(cp.getRessourcesTime()[0],cp.getRessourcesTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getRessourcesTime()[0],cp.getRessourcesTime()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)},
-				{"Activités", cp.getActivities()[0], cp.getActivities()[0],"H",cp.indiceIndicator(cp.getActivities()[0],cp.getActivities()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getActivities()[0],cp.getActivities()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)}}; 
+				{"Ressources", cp.getRessourcesTime()[0], cp.getRessourcesTime()[1],"H",cp.indiceIndicator(cp.getRessourcesTime()[0],cp.getRessourcesTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getRessourcesTime()[0],cp.getRessourcesTime()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)},
+				{"Activités", cp.getActivities()[0], cp.getActivities()[1],"H",cp.indiceIndicator(cp.getActivities()[0],cp.getActivities()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getActivities()[0],cp.getActivities()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)}}; 
 		String[] nomsColonnes = {"b", "Estimé", "Consommé","Unité","Difference","Indicateur"};  
 		JTable table = new JTable(donnees, nomsColonnes);
 		table.setEnabled(false);
@@ -65,20 +65,20 @@ public class ViewProject extends javax.swing.JPanel{
 		Panelbarre.setLayout(new GridLayout(2,1,0,0));
 		JProgressBar Jbar=new JProgressBar(1,99);
 		Jbar.setForeground(Color.red);
-		Jbar.setValue(((int)Double.doubleToLongBits(cp.getProjectTime()[0])));
+		Jbar.setValue(((int)Double.doubleToLongBits(cp.projectIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]))));
 		JLabel temps = new JLabel("Temps : ");
 		JPanel barre1=new JPanel();
-		JLabel pourcent1 = new JLabel(((int)Double.doubleToLongBits(cp.getProjectTime()[0]))+"%");
+		JLabel pourcent1 = new JLabel(((int)Double.doubleToLongBits(cp.projectIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1])))+"%");
 		barre1.add(temps);
 		barre1.add(Jbar);
 		barre1.add(pourcent1);
 		
 		JProgressBar Jbar2=new JProgressBar(1,99);
 		Jbar.setForeground(Color.green);
-		Jbar.setValue(((int)Double.doubleToLongBits(cp.getBudget()[0])));
+		Jbar.setValue(((int)Double.doubleToLongBits(cp.budgetIndicator(cp.getBudget()[0],cp.getBudget()[1]))));
 		JLabel budget = new JLabel("Budget : ");
 		JPanel barre2=new JPanel();
-		JLabel pourcent2 = new JLabel(((int)Double.doubleToLongBits(cp.getBudget()[0]))+"%");
+		JLabel pourcent2 = new JLabel(((int)Double.doubleToLongBits(cp.budgetIndicator(cp.getBudget()[0],cp.getBudget()[1])))+"%");
 		barre2.add(budget);
 		barre2.add(Jbar2);
 		barre2.add(pourcent2);

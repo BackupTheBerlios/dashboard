@@ -62,6 +62,10 @@ public class ControlProject {
 		this.projectTime[1]=p.getRealWorkAmount();
 		this.budget[1]=p.getRealBudget();
 		
+		this.EtapeIndicator();
+		this.RessourcesIndicator();
+		this.ActivitiesIndicator();
+		
 		
 	}
 	
@@ -137,20 +141,23 @@ public class ControlProject {
 	 * Les 3 procahines fonctions permettent d'obtenir le tps moyen pour chacune des rubriques
 	 */
 
-	public double EtapeIndicator(){
-
-		return (this.projectTime[1]/p.getProgress());
+	public void EtapeIndicator(){
+		
+		this.etapesTime[0] =(this.projectTime[0]/p.getProgress());
+		this.etapesTime[1] =(this.projectTime[1]/p.getProgress());
 
 	}
 
-	public double RessourcesIndicator(){
+	public void RessourcesIndicator(){
 		
-		return (this.projectTime[1]/p.getResources().size());
+		this.ressourcesTime[0]=(this.projectTime[0]/p.getResources().size());
+		this.ressourcesTime[1]=(this.projectTime[1]/p.getResources().size());
 	}
 	
-	public double ActivitiesIndicator(){
-
-		return(this.projectTime[1]/p.getSubActivities().size());
+	public void ActivitiesIndicator(){
+		
+		this.activitiesTime[0] = (this.projectTime[0]/p.getSubActivities().size());
+		this.activitiesTime[1] = (this.projectTime[1]/p.getSubActivities().size());
 	}
 	
 	/*
@@ -193,7 +200,14 @@ public class ControlProject {
 	 */
 	public double projectIndicator(double Testime, double Tconsomme ){
 		
-		return((Tconsomme*100)/Testime);
+		double pourcent = (Tconsomme*100)/Testime;
+		
+		if(pourcent>100)
+		{
+			pourcent = 100;
+		}
+		
+		return pourcent;
 	}
 	
 	/* Cette fonction permet de connaitre en pourcentage
@@ -201,7 +215,13 @@ public class ControlProject {
 	 */ 
 	public double budgetIndicator(double Bestime,double Bconsomme){
 		
-		return((Bconsomme*100)/Bestime);
+		double pourcent = (Bconsomme*100)/Bestime;
+		
+		if(pourcent>100)
+		{
+			pourcent = 100;
+		}
+		return(pourcent);
 	} 
 		
 	//Les fonctions suivantes permettent de récupérer des données à partir de calculs

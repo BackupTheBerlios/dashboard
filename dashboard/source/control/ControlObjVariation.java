@@ -88,7 +88,8 @@ public class ControlObjVariation {
 						 {
 							 
 							 int coord=(i*nbrRs)+j;
-							 String lev="iteration"+allLevels[i];
+							 String lev=act.get(i).getName(); 
+							 //String lev="iteration"+allLevels[i];
 							 double est=res.get(coord).getTempsEstime()+wbes.get(k).getPrevWorkAmount();
 							 double reel=res.get(coord).getTempsReel()+wbes.get(k).getRealWorkAmount();
 							 String rs=allRessources.get(j).getName();
@@ -130,7 +131,7 @@ public class ControlObjVariation {
 				 est+=res.get(xy).getTempsEstime();
 				 reel+=res.get(xy).getTempsReel();
 			 }
-			 res.get(coord).setIteration("iteration"+allLevels[i]);
+			 res.get(coord).setIteration(act.get(i).getName());
 			 res.get(coord).setTempsEstime(est);
 			 res.get(coord).setTempsReel(reel);
 			 res.get(coord).setRessource(rs);
@@ -139,7 +140,7 @@ public class ControlObjVariation {
 		 }
 		 for(i=0;i<res.size();i++)
 		 {
-			 // System.out.println(res.get(i).getIteration()+"--"+res.get(i).getIdRessource()+"--"+res.get(i).getTempsReel());
+			   System.out.println(res.get(i).getIteration()+"--"+res.get(i).getRessource()+"--"+res.get(i).getTempsReel());
 		 }
 		 return res;
 	 }

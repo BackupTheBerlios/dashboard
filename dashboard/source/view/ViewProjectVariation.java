@@ -29,10 +29,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 
-import control.C_ObjVariation;
-import control.ControlEnvironment;
-import control.ControlProject;
-import control.objVariation;
+import control.*;
 import examples.TestEntity;
 
 
@@ -50,7 +47,7 @@ public class ViewProjectVariation extends JFrame
 	private static final long serialVersionUID = 1L;
 	private Vector<objVariation> vect; 
 	private String params;
-	private C_ObjVariation var;
+	private ControlObjVariation var;
 	private static ControlProject cp;
 	private ChartPanel p;
 	private ChartPanel p1;
@@ -64,7 +61,7 @@ public class ViewProjectVariation extends JFrame
 		params=param;
 		cp=nameP; 
 		
-		var = new C_ObjVariation(cp.getProject());
+		var = new ControlObjVariation(cp.getProject());
 		vect=var.getDataVariation();
 		
 		//JDesktopPane jdp = new JDesktopPane();
@@ -149,7 +146,7 @@ public class ViewProjectVariation extends JFrame
 		
 		CategoryPlot plo = chart.getCategoryPlot() ;
 		NumberAxis timeAxis = new NumberAxis("Heures"); 
-		NumberTickUnit ntu = new NumberTickUnit(10);
+		NumberTickUnit ntu = new NumberTickUnit(100);
 		timeAxis.setTickUnit(ntu);
 		plo.setRangeAxis(timeAxis);
 		
@@ -234,8 +231,9 @@ public class ViewProjectVariation extends JFrame
 	 */
  
 	 public static void main(String args[]) {
-	    
+	 
 		 ControlEnvironment envC= new ControlEnvironment(TestEntity.createEnvironment()); 
-		 ViewProjectVariation t = new ViewProjectVariation("group",envC.getControlProjects().get(0)) ;
+		 ViewProjectVariation t = new ViewProjectVariation("group",envC.getControlProjects().get(1)) ;
+	 
 	    }
 }

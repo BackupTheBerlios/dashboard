@@ -29,9 +29,9 @@ public class ControlObjVariation {
 	}
 
 
-	private java.util.Collection<WorkBreakDownElement> extractWBEFromActivity(Activity a)
+	private ArrayList <WorkBreakDownElement> extractWBEFromActivity(Activity a)
 	 {		 
-		return a.getWbes();		 	
+		return ((ArrayList <WorkBreakDownElement>)a.getWbes());		 	
 	 }
 	 
 	 
@@ -52,39 +52,61 @@ public class ControlObjVariation {
 			 objVariation obj= new objVariation("",0.0,0.0,"","",0);
 			 res.add(obj);
 		 }
+		 //recuperer les activités
+		 ArrayList <Activity> act =  p.getSubActivities();
+		 /*ArrayList <WorkBreakDownElement>wbes = new java.util.ArrayList<WorkBreakDownElement>();
+		 for(k=0;k<act.size();k++)
+		 {
+			 ArrayList <WorkBreakDownElement> aux=extractWBEFromActivity(act.get(k));
+			 for(int x=0;x<aux.size();x++)
+			 {
+				 wbes.add(aux.get(x));
+				// system.out.println();
+			 }
+			 
+		 }*/
+		/* for(int x=0;x<wbes.size();x++)
+		 {
+			 //wbes.add(aux.get(x));
+			 System.out.println(wbes.get(x).getName());
+		 }*/
 		 for(i=0;i<allLevels.length;i++)// pour chaque level
 		 {
-			 //recuperer les activités
-			 ArrayList <Activity> act =  p.getSubActivities();
-			 java.util.Collection<WorkBreakDownElement> wbes = new java.util.ArrayList<WorkBreakDownElement>();
-			 for(k=0;k<act.size();k++)
-			 {
-				 wbes.addAll(extractWBEFromActivity(act.get(k)));
-			 }
+			 ArrayList <WorkBreakDownElement>wbes = new java.util.ArrayList<WorkBreakDownElement>();
+			 wbes=extractWBEFromActivity(act.get(i));
 			// ArrayList <WorkBreakDownElement> wbes=  aux ;
 			 for(j=0;j<allRessources.size();j++)// pour chaque ressource
 			 {
+				 
+				 
 				 for(k=0;k<wbes.size();k++)
 				 {
-					 ArrayList <Working> wk =  ((ArrayList<WorkBreakDownElement>) wbes).get(k).getWorkings() ;
+					 ArrayList <Working> wk =  wbes.get(k).getWorkings() ;
 					 for(l=0;l<wk.size();l++)
 					 {
 						 if(allRessources.get(j).getId().equals(wk.get(l).getResource().getId()))
 						 {
+							 
 							 int coord=(i*nbrRs)+j;
 							 String lev="iteration"+allLevels[i];
-							 double est=res.get(coord).getTempsEstime()+((ArrayList<WorkBreakDownElement>) wbes).get(k).getPrevWorkAmount();
-							 double reel=res.get(coord).getTempsReel()+((ArrayList<WorkBreakDownElement>) wbes).get(k).getRealWorkAmount();
+							 double est=res.get(coord).getTempsEstime()+wbes.get(k).getPrevWorkAmount();
+							 double reel=res.get(coord).getTempsReel()+wbes.get(k).getRealWorkAmount();
 							 String rs=allRessources.get(j).getName();
 							 String idRs=allRessources.get(j).getId();
 							 int numSem=0;//not implement for the moment
 							
+							 
 							 res.get(coord).setIteration(lev);
 							 res.get(coord).setTempsEstime(est);
 							 res.get(coord).setTempsReel(reel);
 							 res.get(coord).setRessource(rs);
 							 res.get(coord).setIdRessource(idRs);
 							 res.get(coord).setNumSemaine(numSem);
+							 /*
+							 if(allRessources.get(j).getId().equals("r1"))
+							 {
+								 System.out.println(lev + "-"+ est+);
+							 }*/
 						 }
 					 }// enf for l
 					  
@@ -108,12 +130,16 @@ public class ControlObjVariation {
 				 est+=res.get(xy).getTempsEstime();
 				 reel+=res.get(xy).getTempsReel();
 			 }
-			 res.get(coord).setIteration(lev);
+			 res.get(coord).setIteration("iteration"+allLevels[i]);
 			 res.get(coord).setTempsEstime(est);
 			 res.get(coord).setTempsReel(reel);
 			 res.get(coord).setRessource(rs);
 			 res.get(coord).setIdRessource(idRs);
 			 res.get(coord).setNumSemaine(numSem);
+		 }
+		 for(i=0;i<res.size();i++)
+		 {
+			 // System.out.println(res.get(i).getIteration()+"--"+res.get(i).getIdRessource()+"--"+res.get(i).getTempsReel());
 		 }
 		 return res;
 	 }

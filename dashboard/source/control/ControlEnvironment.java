@@ -148,7 +148,7 @@ public class ControlEnvironment
 	
 	public void createNewProject()
 	{
-		env.getProjects().add(new Project("","vide",null,null));
+		env.getProjects().add(new Project("","vide",0.0,0.0));
 	}
 	
 }

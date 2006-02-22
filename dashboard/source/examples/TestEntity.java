@@ -157,9 +157,9 @@ public class TestEntity
 		try {
 
 			// iterations creation
-			Activity it1 = new Activity("1", "Itération 1");
+			Activity it1 = new Activity("11", "Itération 1");
 			project.getSubActivities().add(it1);
-			Activity it2 = new Activity("2", "Itération 2");
+			Activity it2 = new Activity("12", "Itération 2");
 			project.getSubActivities().add(it2);
 
 			// wbes creation
@@ -168,7 +168,7 @@ public class TestEntity
 							.stringToDate("25-09-2005"), Utils
 							.stringToDate("01-10-2005"), new Double(41), Utils
 							.stringToDate("26-09-2005"), Utils
-							.stringToDate("10-10-2005"), null);
+							.stringToDate("10-10-2005"), 500.0);
 			it1.getWbes().add(wbe1);
 		
 			wsGes.getWorkBreakDowElements().add(wbe1);

@@ -386,7 +386,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 	{
 		if(plannableC.getName() != null)
 		{
-			txtTitle.setText(plannableC.toString());
+			txtTitle.setText("" + plannableC);
 		}
 		else
 		{			

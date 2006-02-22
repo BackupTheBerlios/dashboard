@@ -311,4 +311,8 @@ public class ControlPlannable
 		}		
 		return map2;
 	}
+	public String toString()
+	{
+		return getId() + " - " + getName();
+	}
 }

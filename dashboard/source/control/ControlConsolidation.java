@@ -1,13 +1,8 @@
 
 package control;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
 
 import entity.Project;
 import entity.WBESet;
@@ -38,8 +33,7 @@ public class ControlConsolidation {
 	public ControlConsolidation(Project projet) {
 		
 		super();
-		this.projectName = projet.getName();
-		
+		this.projectName = projet.getName();		
 		for(WBESet wset :projet.getWbeSets()){
 			collectionOfWbeSets.put(wset.getId(),wset);
 		}
@@ -48,7 +42,7 @@ public class ControlConsolidation {
 	}
 
     public ControlConsolidation(ControlProject project) {
-		// TODO Auto-generated constructor stub
+		this(project.getProject());
 	}
 
 	public Collection<IndicatorState> getChargeByResources(String wbesetId) {  
@@ -58,6 +52,10 @@ public class ControlConsolidation {
     	HashMap<String, IndicatorState> indicatorStatesHashMap = new HashMap<String, IndicatorState>();
     	String idResource = null;
     	IndicatorState tempIndicState = null;
+    	IndicatorState other = new IndicatorState();
+    	
+    	other.setName("other");
+    	other.setId("other");
     	
     	//Pour chaque workBreakDownElemnt du WBEset
     	for( WorkBreakDownElement wbe : groupeActivite.getWorkBreakDowElements()){
@@ -85,10 +83,24 @@ public class ControlConsolidation {
     					//on le rajoute à la Map
     					indicatorStatesHashMap.put(idResource,tempIndicState);
     					}
+    					
     				}
     			}
 
     		}
+    		/*
+    		if(wbe.getRealWorkAmount() >  wbe.getRealWorkAmountOfKnownWorkings()){
+				//on crée le nouvel indicateur et on l'initialise les valeurs
+				other.plusValue(wbe.getRealWorkAmount() -  wbe.getRealWorkAmountOfKnownWorkings());
+				
+				
+			}
+    	}
+    	
+    	if(other.getValue() > 0.0 )
+    		//on le rajoute à la Map
+				indicatorStatesHashMap.put(idResource,other);
+		*/
     	}
     	
     	return indicatorStatesHashMap.values(); //collection d'indicateur state

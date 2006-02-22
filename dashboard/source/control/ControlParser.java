@@ -19,7 +19,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import view.ViewConsolidation;
 import entity.Activity;
 import entity.Project;
 import entity.Resource;
@@ -162,11 +161,14 @@ public class ControlParser extends DefaultHandler{
 	
    
    // simple constructeur
-   public ControlParser(Project p){
+   public ControlParser(Project p) throws ParserConfigurationException, SAXException, IOException{
       super();	
       /// temporaire normalement projet à importer
       project  = p;
+      if(project == null)
+    	  project = new Project();
       activityHierrarchy.add(0, project);
+      this.parse();
 
   
       
@@ -177,20 +179,17 @@ public class ControlParser extends DefaultHandler{
    }
     
    public static File loadSystemFile(){
-	   try{
+	   
 		   JFileChooser selecteur = new JFileChooser(); 
 		   Filters filtre = new Filters();
 		   selecteur.addChoosableFileFilter(filtre);
 		   selecteur.setAcceptAllFileFilterUsed(false);
+		   
 		   if(selecteur.showOpenDialog(null) ==  JFileChooser.APPROVE_OPTION) { 
 			   return selecteur.getSelectedFile(); 
 		   }
-	   
-	   	}
-	   	catch(Exception e){
-	   		return null;
-	   	}
-	   	return null;
+		   return null;
+	  
    }
 
    //methode SAX de
@@ -202,21 +201,21 @@ public class ControlParser extends DefaultHandler{
                   throws SAXException{
 	   
 	   	  String id = null;
-	   try{
+	   
 		   switch(typeBalise.get(qName).intName){
     	  
 		   		case PROJECT:
 		   			 id = attributes.getValue("id");
            	
 		   			if(id == null )
-		   				throw new Exception("id projet non précisé");
+		   				throw new SAXException("id projet non précisé");
            	
 		   			if(activityHierrarchy.size() != 1)
-		   				throw new Exception("Erreur dans la hierrarchy");
+		   				throw new SAXException("Erreur dans la hierrarchy");
 		   			
-		   			if(activityHierrarchy.get(0).getId() != null){
+		   			if(activityHierrarchy.get(0).getId() != null && !activityHierrarchy.get(0).getId().equals("")){
 		   				if(! (activityHierrarchy.get(0).getId().equals(id)))
-		   					throw new Exception("le fichier ne crorrespond pas au projet");
+		   					throw new SAXException("le fichier ne crorrespond pas au projet");
 		   			}
 		   			else{
 		   				activityHierrarchy.get(0).setId(id);
@@ -229,7 +228,7 @@ public class ControlParser extends DefaultHandler{
 
 		   			id = attributes.getValue("id");
 		   			if(id == null )
-		   				throw new Exception("id activité non précisé");
+		   				throw new SAXException("id activité non précisé");
 		   			
 		   			for(Activity act : activityHierrarchy.get(0).getSubActivities()){
 		   				if(act != null && act.getId().equals(id)){
@@ -249,10 +248,10 @@ public class ControlParser extends DefaultHandler{
 		   			break;
 		   			
 		   		case WORKBREAKDOWN:
-		   			
+		   			inWBE = true;
 		   			id = attributes.getValue("id");
 		   			if(id == null )
-		   				throw new Exception("id wbe non précisé");
+		   				throw new SAXException("id wbe non précisé");
 		   			for(WorkBreakDownElement w : activityHierrarchy.get(0).getWbes()){
 		   				if(w != null && w.getId().equals(id)){
 		   					wbe = w; 
@@ -274,7 +273,7 @@ public class ControlParser extends DefaultHandler{
 		   			
 		   			inWorking = true;
 		   			for(Working w : wbe.getWorkings()){
-		   				if(w != null && w.getId().equals(id)){
+		   				if(w != null && w.getId() != null && w.getId().equals(id)){
 		   					working = w; 
 		   					break;
 		   				}
@@ -290,9 +289,14 @@ public class ControlParser extends DefaultHandler{
 		   		case RESOURCE:
 	            	id = attributes.getValue("id");
 	            	if(id == null )
-	             		throw new Exception("id working non précisé");
+	             		throw new SAXException("id working non précisé");
 	            	if(inWorking){
-	            		working.setResource(project.findResourceById(id));
+	            		try {
+							working.setResource(project.findResourceById(id));
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 	            	}
 	            	else{
 	            		
@@ -311,9 +315,14 @@ public class ControlParser extends DefaultHandler{
 		   		case WSET:
 		   			id = attributes.getValue("id");
 	            	if(id == null )
-	             		throw new Exception("id wbeset non précisé");
+	             		throw new SAXException("id wbeset non précisé");
 	            	if(inWBE){
-	            		wbeset = project.findWbeSetById(id);
+	            		try {
+							wbeset = project.findWbeSetById(id);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 	            		if(wbe != null) {
 	            			wbeset.getWorkBreakDowElements().add(wbe);
 	            		}
@@ -344,11 +353,7 @@ public class ControlParser extends DefaultHandler{
 		   		default:
 		   			break;
 		   }
-   	  }
-	  catch(Exception e){
-		 e.printStackTrace();
-		  throw new SAXException("erreur dans ouverture de balise");
-	   }
+ 
 
 
    }
@@ -357,7 +362,7 @@ public class ControlParser extends DefaultHandler{
                        String localName,
                        String qName)
                 throws SAXException{
-	   try{
+
 		   switch(typeBalise.get(qName).type){
 		   
 		   	case TYPE_DATE:
@@ -366,7 +371,7 @@ public class ControlParser extends DefaultHandler{
 					date = Utils.stringToDate(temp);
 				} catch (ParseException e) {
 					date = null;
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 		   		break;
 		   	default:
@@ -413,19 +418,19 @@ public class ControlParser extends DefaultHandler{
 		   			break;
 		   			
 		   		case START_DATE_REAL:
-		   			wbe.setRealStartDate(date);
+		   			if(date != null)wbe.setRealStartDate(date);
 		   			break;
 		   			
 		   		case END_DATE_REAL:
-		   			wbe.setRealEndDate(date);
+		   			if(date != null)wbe.setRealEndDate(date);
 		   			break;
 		   			
 		   		case START_DATE_PREVISION:
-		   			wbe.setPrevStartDate(date);
+		   			if(date != null)wbe.setPrevStartDate(date);
 		   			break;
 		   			
 		   		case END_DATE_PREVISION:
-		   			wbe.setPrevEndDate(date);
+		   			if(date != null)wbe.setPrevEndDate(date);
 		   			break;
 		   			
 		   		case WBE_AMOUNT_REAL:
@@ -448,10 +453,7 @@ public class ControlParser extends DefaultHandler{
 		   			break;
 		   }
 		   temp = "";
-	   }catch(Exception e){
-		   throw new SAXException();
-	   }
-    
+
    }
    
    //détection de caractères
@@ -481,6 +483,7 @@ public class ControlParser extends DefaultHandler{
        parseur = fabrique.newSAXParser();
       if(this.getFile() == null)
     	  this.setFileWithFileSystem();
+      if(this.getFile() != null)
        parseur.parse(this.getFile(), this);
 
    }
@@ -489,9 +492,8 @@ public class ControlParser extends DefaultHandler{
    public static void main(String[] args){
       try{
          
-         ControlParser cp = new ControlParser(new Project());
-         cp.parse();
-         
+    	  ControlParser cp = new ControlParser(new Project());
+            
          
          for(Activity a : cp.project.getSubActivities()){
         	 System.out.println("\n\tactivity  : " + a.getName() +  " : "  + a.getId());

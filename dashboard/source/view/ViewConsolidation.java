@@ -188,22 +188,38 @@ public class ViewConsolidation extends javax.swing.JFrame  {
 	
 	private  DefaultPieDataset createResourceDataset(String idResource)
     {
-		
+		int i = 0;
 		DefaultPieDataset dataset = new DefaultPieDataset();
 		Collection<IndicatorState> dataIndicator = controller.getChargeByWbeSet(idResource);
 		for(IndicatorState indic : dataIndicator){
-			dataset.setValue(indic.getName(),indic.getValue());
+			 i = 2;
+			if(dataset.getIndex(indic.getName()) == -1 ){
+				dataset.setValue(indic.getName(),indic.getValue());
+			}else{
+				while(dataset.getIndex(indic.getName() + i ) != -1 ){
+					i++;
+				}
+				dataset.setValue(indic.getName() + i,indic.getValue());
+			}
 		}
         return dataset;
     }
 	
 	private  DefaultPieDataset createWbesetDataset(String idWbeset)
     {
-		
+		int i = 0;
 		DefaultPieDataset dataset = new DefaultPieDataset();
 		Collection<IndicatorState> dataIndicator = controller.getChargeByResources(idWbeset);
 		for(IndicatorState indic : dataIndicator){
-			dataset.setValue(indic.getName(),indic.getValue());
+			 	i = 2;
+				if(dataset.getIndex(indic.getName()) == -1 ){
+					dataset.setValue(indic.getName(),indic.getValue());
+				}else{
+					while(dataset.getIndex(indic.getName() + i ) != -1 ){
+						i++;
+					}
+					dataset.setValue(indic.getName() + i,indic.getValue());
+				}
 		}
         return dataset;
     }

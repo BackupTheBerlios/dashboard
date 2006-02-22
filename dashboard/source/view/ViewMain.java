@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import control.ControlConsolidation;
 import control.ControlEnvironment;
+import control.ControlParser;
 import control.ControlPlannable;
 import control.ControlProject;
 
@@ -28,6 +29,9 @@ import javax.swing.JTable;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 import entity.Activity;
 import entity.Project;
@@ -341,7 +345,25 @@ public class ViewMain extends javax.swing.JFrame {
     }
 
     private void importPSIMenuActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    	int index = jList1.getSelectedIndex();
+		if(index >= 0){
+			try {
+				new ControlParser(envC.getControlProjects().get(index).getProject());
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			updateProjectList();
+	        updateProjectTree(envC.getControlProjects().get(index));
+	        updateInfoPanel();
+		}
+		
     }
     
     /** Exit the Application */

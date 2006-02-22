@@ -1,8 +1,10 @@
 package control;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import entity.Plannable;
+import entity.Resource;
 
 
 /**
@@ -290,5 +292,23 @@ public class ControlPlannable
 	**/
 	public String getId() {
 		return plannable.getId();
+	}
+
+
+	/**
+	 * @author Olivier TANKOANO
+	 * converts <Resource, Double> map to <String, Double> map using the name
+	 * of the resources
+	 * @return <String, Double> showing resources usage	  
+	**/
+	public HashMap<String, Double> getResourcesUsage() 
+	{
+		HashMap<Resource, Double> map1 = plannable.getResourcesUsage();
+		HashMap<String, Double> map2 = new HashMap<String, Double>();
+		for(Resource r: map1.keySet())
+		{
+			map2.put(r.getName(), map1.get(r));
+		}		
+		return map2;
 	}
 }

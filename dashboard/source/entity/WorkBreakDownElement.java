@@ -3,6 +3,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 
 
@@ -280,6 +281,30 @@ public class WorkBreakDownElement extends Plannable implements Serializable{
 	 */
 	public void setWbeSets(java.util.ArrayList<WBESet> wbeSets) {
 		this.wbeSets = wbeSets;
+	}
+
+
+	/**
+	 * @param override from Plannable
+	 */
+	public HashMap<Resource,Double> getResourcesUsage() 
+	{
+		HashMap<Resource,Double> map = new HashMap<Resource,Double>();
+		for(Working wk: workings)
+		{
+			if(map.containsKey(wk.getResource()))
+			{
+				Double d = map.get(wk.getResource());
+				map.remove(wk.getResource());
+				double dAdd = d.doubleValue() + wk.getWorkAmount().doubleValue();
+				map.put(wk.getResource(),new Double(dAdd));
+			}
+			else
+			{
+				map.put(wk.getResource(), wk.getWorkAmount());
+			}
+		}
+		return map;
 	}
 	
 } // end WorkBreakDowElement

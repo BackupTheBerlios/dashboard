@@ -375,7 +375,8 @@ public class ViewPlannable extends javax.swing.JPanel {
     
     
 	private void bResUsgMouseClicked(java.awt.event.MouseEvent evt) {
-		// TODO add your handling code here:
+		ViewResourceUsage v = new ViewResourceUsage(plannableC.getResourcesUsage());
+		v.setVisible(true);
 	}
 
 	

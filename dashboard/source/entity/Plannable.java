@@ -2,6 +2,7 @@ package entity;
 
 
 import java.util.Date;
+import java.util.HashMap;
 
 	
 	/**
@@ -60,6 +61,17 @@ import java.util.Date;
 	public abstract Date getPrevEndDate();
 	
 	
+	
+	/**
+	 * @author Olivier TANKOANO
+	 * computes and returns a map containing each resource that have worked 
+	 * on this object with its corresponding work amount.
+	 * @return the resources usage map. 
+	**/
+	public abstract HashMap<Resource,Double> getResourcesUsage();
+	
+	
+	
 	/**
 	 * @author Olivier TANKOANO
 	 * computes and returns the name
@@ -86,6 +98,9 @@ import java.util.Date;
 		return getId() + " - " + getName();
 	}
 
+	
+	
+	
 	
 	public boolean equals(Object other) {
 		

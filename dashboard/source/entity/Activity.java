@@ -1,7 +1,9 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /*
@@ -349,5 +351,48 @@ public class Activity extends Plannable implements Serializable{
 		}
 		return l;
 	}	
+	
+	
+	
+	/**
+	 * @param override from Plannable
+	 */
+	public HashMap<Resource,Double> getResourcesUsage() 
+	{
+		HashMap<Resource,Double> map = new HashMap<Resource,Double>();
+		
+		//gather all sub resourceUsage map
+		ArrayList<HashMap<Resource,Double>> subMaps = new ArrayList<HashMap<Resource,Double>>(); 
+		for(Activity ac: subActivities)
+		{
+			subMaps.add(ac.getResourcesUsage());
+		}
+		for(WorkBreakDownElement wbe: wbes)
+		{
+			subMaps.add(wbe.getResourcesUsage());
+		}
+		
+		//process sub maps
+		for(HashMap<Resource,Double> subMap: subMaps)
+		{
+			for(Resource r: subMap.keySet())
+			{
+				if(map.containsKey(r))
+				{
+					Double d = map.get(r);
+					map.remove(r);
+					double dAdd = d.doubleValue() + subMap.get(r).doubleValue();
+					map.put(r,new Double(dAdd));
+				}
+				else
+				{
+					map.put(r, subMap.get(r));
+				}
+			}
+		}
+		
+		return map;
+	}
+
 } // end Activity
 

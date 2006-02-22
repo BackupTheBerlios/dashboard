@@ -26,7 +26,7 @@ private Container container;
 	{
 		/* 'map' contient les couples nom-charge_de_travail à afficher*/
 		
-			super("Utilisation des ressources");
+			super("Charges par ressource");
 			
 			container = this.getContentPane() ;
 			container.setLayout(new BorderLayout());

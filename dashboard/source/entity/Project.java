@@ -77,7 +77,7 @@ public class Project extends Activity implements Serializable {
 	 * @param name
 	 */
 	public Project() {
-		super(null, null);
+		super();
 		// TODO Auto-generated constructor stub
 	}
 	

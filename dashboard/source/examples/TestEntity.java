@@ -112,7 +112,7 @@ public class TestEntity
 			project.getResources().add(r2);
 			Resource r3 = new Resource("r3", "Heidy Baubant");
 			project.getResources().add(r3);
-			Resource r4 = new Resource("r4", "Allogo Etienne");
+			Resource r4 = new Resource("r4", "Guenatri Kamil");
 			project.getResources().add(r4);
 
 			// workings creation
@@ -168,7 +168,7 @@ public class TestEntity
 							.stringToDate("25-09-2005"), Utils
 							.stringToDate("01-10-2005"), new Double(41), Utils
 							.stringToDate("26-09-2005"), Utils
-							.stringToDate("10-10-2005"), 500.0);
+							.stringToDate("10-10-2005"), null);
 			it1.getWbes().add(wbe1);
 		
 			wsGes.getWorkBreakDowElements().add(wbe1);

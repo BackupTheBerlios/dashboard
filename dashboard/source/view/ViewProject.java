@@ -65,20 +65,20 @@ public class ViewProject extends javax.swing.JPanel{
 		Panelbarre.setLayout(new GridLayout(2,1,0,0));
 		JProgressBar Jbar=new JProgressBar(1,99);
 		Jbar.setForeground(Color.red);
-		Jbar.setValue(((int)Double.doubleToLongBits(cp.projectIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]))));
+		Jbar.setValue(((int)(cp.projectIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]))));
 		JLabel temps = new JLabel("Temps : ");
 		JPanel barre1=new JPanel();
-		JLabel pourcent1 = new JLabel(((int)Double.doubleToLongBits(cp.projectIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1])))+"%");
+		JLabel pourcent1 = new JLabel(((int)(cp.projectIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1])))+"%");
 		barre1.add(temps);
 		barre1.add(Jbar);
 		barre1.add(pourcent1);
 		
 		JProgressBar Jbar2=new JProgressBar(1,99);
-		Jbar.setForeground(Color.green);
-		Jbar.setValue(((int)Double.doubleToLongBits(cp.budgetIndicator(cp.getBudget()[0],cp.getBudget()[1]))));
+		Jbar2.setForeground(Color.green);
+		Jbar2.setValue(((int)(cp.budgetIndicator(cp.getBudget()[0],cp.getBudget()[1]))));
 		JLabel budget = new JLabel("Budget : ");
 		JPanel barre2=new JPanel();
-		JLabel pourcent2 = new JLabel(((int)Double.doubleToLongBits(cp.budgetIndicator(cp.getBudget()[0],cp.getBudget()[1])))+"%");
+		JLabel pourcent2 = new JLabel((int)cp.budgetIndicator(cp.getBudget()[0],cp.getBudget()[1])+"%");
 		barre2.add(budget);
 		barre2.add(Jbar2);
 		barre2.add(pourcent2);

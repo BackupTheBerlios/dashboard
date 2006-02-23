@@ -60,7 +60,8 @@ public class Working implements Serializable{
 		this.id = pid;
 		this.description = pdescription;
 		this.workAmount = pworkAmount;
-		this.resource = presource;		
+		this.resource = presource;	
+		this.resource.addWorking(this);
 	}
 
 
@@ -136,6 +137,7 @@ public class Working implements Serializable{
 	 */
 	public void setResource(Resource presource) {
 		this.resource = presource;
+		this.resource.addWorking(this);
 	}
 	
 	

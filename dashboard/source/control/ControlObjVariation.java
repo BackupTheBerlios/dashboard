@@ -31,7 +31,7 @@ public class ControlObjVariation {
 
 	private ArrayList <WorkBreakDownElement> extractWBEFromActivity(Activity a)
 	 {		 
-		return ((ArrayList <WorkBreakDownElement>)a.getWbes());		 	
+		return ((ArrayList <WorkBreakDownElement>)a.getWbesRecursive());		 	
 	 }
 	 
 	 

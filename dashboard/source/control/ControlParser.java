@@ -111,6 +111,16 @@ public class ControlParser extends DefaultHandler{
 	      tempTypeBalise.intName = ControlParser.WBE_AMOUNT_PREVISION;
 	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
 	      typeBalise.put("prevamount",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.PROJECT_BUDGET_PREVISION;
+	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
+	      typeBalise.put("prevbudget",tempTypeBalise);
+	      
+	      tempTypeBalise = new BaliseType();
+	      tempTypeBalise.intName = ControlParser.PROJECT_BUDGET_REAL;
+	      tempTypeBalise.type = ControlParser.TYPE_TEXT;
+	      typeBalise.put("realbudget",tempTypeBalise);
 	}
 	
 	private WorkBreakDownElement wbe = null;
@@ -142,6 +152,8 @@ public class ControlParser extends DefaultHandler{
 	static final int END_DATE_PREVISION = 12;
 	static final int WBE_AMOUNT_REAL = 13;
 	static final int WBE_AMOUNT_PREVISION = 14;
+	static final int PROJECT_BUDGET_PREVISION = 15;
+	static final int PROJECT_BUDGET_REAL = 16;
 	
 	static final int TYPE_TEXT = 0;
 	static final int TYPE_NODE = 1;
@@ -439,6 +451,17 @@ public class ControlParser extends DefaultHandler{
 		   			
 		   		case WBE_AMOUNT_PREVISION:
 		   			wbe.setPrevWorkAmount(new Double(temp));
+		   			
+		   			break;
+		   			
+		   		case PROJECT_BUDGET_PREVISION:
+		   			project.setPrevBudget(new Double(temp));
+		   			
+		   			break;
+		   			
+		   		case PROJECT_BUDGET_REAL:
+		   			project.setRealBudget(new Double(temp));
+		   			
 		   			break;
 		   			
 		   		case RESOURCE:
@@ -485,6 +508,9 @@ public class ControlParser extends DefaultHandler{
     	  this.setFileWithFileSystem();
       if(this.getFile() != null)
        parseur.parse(this.getFile(), this);
+       
+      if(this.project != null)
+    	  this.project.setProgress(this.project.getProgress() + 1) ;
 
    }
    
@@ -494,7 +520,8 @@ public class ControlParser extends DefaultHandler{
          
     	  ControlParser cp = new ControlParser(new Project());
             
-         
+    	  System.out.println("\nreel " + cp.project.getRealBudget() );
+ 		 System.out.println("\nestimé " + cp.project.getPrevBudget() );   
          for(Activity a : cp.project.getSubActivities()){
         	 System.out.println("\n\tactivity  : " + a.getName() +  " : "  + a.getId());
         	 for(WorkBreakDownElement w : a.getWbes()){

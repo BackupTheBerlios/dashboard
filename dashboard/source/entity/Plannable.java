@@ -95,7 +95,7 @@ import java.util.HashMap;
 	**/
 	public String toString()
 	{
-		return getId() + " - " + getName();
+		return  getName();
 	}
 
 	

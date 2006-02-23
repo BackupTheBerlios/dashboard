@@ -97,7 +97,7 @@ public class Resource implements Serializable{
 	 * @see java.util.Collection#add(E)
 	 */
 	public boolean addWorking(Working pworking) {
-		pworking.setResource(this);
+		//pworking.setResource(this);
 		return workings.add(pworking);
 	}
 	

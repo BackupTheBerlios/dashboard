@@ -55,7 +55,7 @@ public class ViewProjectVariation extends JFrame
 	
 	public	ViewProjectVariation(final String param,ControlProject nameP)
 	{
-		super("Project Variation for "+nameP.getProject().getName());
+		super("Variation sur le projet pour "+nameP.getProject().getName());
 		
 		
 		params=param;
@@ -100,8 +100,8 @@ public class ViewProjectVariation extends JFrame
                             }
                         });
 	    
-	    JRadioButton rbtIteration= new JRadioButton("By iteration");
-	    JRadioButton rbtAllProject= new JRadioButton("For all project");
+	    JRadioButton rbtIteration= new JRadioButton("Par étape");
+	    JRadioButton rbtAllProject= new JRadioButton("Pour tout le projet");
 	    
 	    //masque bar chart
 	    rbtAllProject.addActionListener(new ActionListener ()
@@ -158,13 +158,20 @@ public class ViewProjectVariation extends JFrame
 		br.setItemMargin(0) ;		
 		plo.setRenderer(br) ;
 		
-		chart = new JFreeChart("Project Variation for " + params , plo) ;
+		if(params.equals("group"))
+		{
+			chart = new JFreeChart("Variation sur le projet pour le groupe" , plo) ;
+		}
+		else
+		{
+			chart = new JFreeChart("Variation sur le projet pour " +params, plo) ;	
+		}
 		p = new ChartPanel(chart) ;
 		container.add(p,BorderLayout.CENTER) ;
 
 		// pie chart 
 		DefaultPieDataset pieData = this.extractPieDataSet(vect,params) ;
-		JFreeChart chart1 = ChartFactory.createPieChart3D("Project Variation for " +params ,pieData,true,false,false);
+		JFreeChart chart1 = ChartFactory.createPieChart3D("Variation sur le projet pour " +params ,pieData,true,false,false);
 		p1 = new ChartPanel(chart1) ;
 		
 		

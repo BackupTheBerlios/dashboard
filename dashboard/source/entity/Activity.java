@@ -337,17 +337,12 @@ public class Activity extends Plannable implements Serializable{
 	
 	public java.util.ArrayList<WorkBreakDownElement> getWbesRecursive()
 	{
-		java.util.ArrayList<WorkBreakDownElement> l = wbes;
+		java.util.ArrayList<WorkBreakDownElement> l = new java.util.ArrayList<WorkBreakDownElement>();
+		l.addAll(this.getWbes());
 		for(Activity ac:subActivities)
 		{
 			java.util.ArrayList<WorkBreakDownElement> subL = ac.getWbesRecursive();
-			for(WorkBreakDownElement w:subL)
-			{
-				if(!l.contains(w))
-				{
-					l.add(w);
-				}
-			}
+			l.addAll(subL );
 		}
 		return l;
 	}	

@@ -23,10 +23,12 @@
 	<javac
 	srcdir="${src.dir}"
 	destdir="${build.dir}">
+		<exclude name="**/*Test*"/>
 		<classpath>
 		<pathelement path="${build.dir}" />
 		<fileset dir="${lib.dir }">
-		<include name="**/**.jar"/>
+			<include name="**/**.jar"/>
+		
 		</fileset>
 		</classpath>
 	</javac>
@@ -63,7 +65,7 @@
 		    <fileset dir="${build.dir}"/>
 		 	<fileset dir="${dist.dir }/${src.dir}"/>
 		    <manifest>
-		        <attribute name="Main-Class" value="view.MainWindow"/>
+		        <attribute name="Main-Class" value="main.Application"/>
 		        <attribute name="Built-By" value="${user.name}"/>
 		    </manifest>
 
@@ -78,7 +80,7 @@
 	depends="dist"
 	description="Start up application">
 
-	<java jar="${dist.dir }/${name}-${DSTAMP}.jar"
+	<java jar="${dist.dir }/${name}.jar"
 	fork="true" >
 
 	</java>

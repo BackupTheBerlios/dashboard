@@ -5,8 +5,11 @@ import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.util.Collection;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.WindowConstants;
 import javax.swing.event.TreeSelectionEvent;
@@ -36,8 +39,9 @@ public class ViewConsolidation extends javax.swing.JFrame  {
 	ControlConsolidation controller;
 	
 	JTree arbreMenu;
-	
+
 	ChartPanel panelGraphic;
+
 	
 	public class TreeObjectElement{
 		String name;
@@ -77,7 +81,7 @@ public class ViewConsolidation extends javax.swing.JFrame  {
 		DefaultMutableTreeNode noeudFils;
 		DefaultMutableTreeNode racine;
 		
-		this.setTitle("consolidation sur le projet" + controller.getProjectName());
+		this.setTitle("consolidation sur le projet " + controller.getProjectName());
 		
 		//construction du JTree
 		TreeObjectElement etiquette = new TreeObjectElement(controller.getProjectName(), TreeObjectElement.TYPE_PROJECT ,controller.getProjectName());
@@ -141,8 +145,9 @@ public class ViewConsolidation extends javax.swing.JFrame  {
 			                    	        	 break;
 			                    	      
 			                    	   }
+			                    	   
 			                    	   panelGraphic.setChart(chart);
-	                    	        	 
+			                    
 			                    	   
 			                    	   
 			                       }
@@ -153,6 +158,7 @@ public class ViewConsolidation extends javax.swing.JFrame  {
 
 		//construction du chartPanel
 	   this.panelGraphic = new ChartPanel(this.createProjectChart());
+	  
 	 
 	  JScrollPane scrollPane = new JScrollPane(this.arbreMenu);
 	 	   this.getContentPane().add(new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane, this.panelGraphic));
@@ -189,18 +195,22 @@ public class ViewConsolidation extends javax.swing.JFrame  {
 	private  DefaultPieDataset createResourceDataset(String idResource)
     {
 		int i = 0;
-		DefaultPieDataset dataset = new DefaultPieDataset();
+		DefaultPieDataset dataset = null;
 		Collection<IndicatorState> dataIndicator = controller.getChargeByWbeSet(idResource);
 		for(IndicatorState indic : dataIndicator){
 			 i = 2;
-			if(dataset.getIndex(indic.getName()) == -1 ){
-				dataset.setValue(indic.getName(),indic.getValue());
-			}else{
-				while(dataset.getIndex(indic.getName() + i ) != -1 ){
-					i++;
+			if(indic.getValue() != null && indic.getValue() != 0.0){
+				if(dataset == null) dataset = new DefaultPieDataset();
+				if(dataset.getIndex(indic.getName()) == -1 ){
+					dataset.setValue(indic.getName(),indic.getValue());
+				}else{
+					while(dataset.getIndex(indic.getName() + i ) != -1 ){
+						i++;
+					}
+					dataset.setValue(indic.getName() + i,indic.getValue());
 				}
-				dataset.setValue(indic.getName() + i,indic.getValue());
 			}
+			
 		}
         return dataset;
     }
@@ -208,10 +218,12 @@ public class ViewConsolidation extends javax.swing.JFrame  {
 	private  DefaultPieDataset createWbesetDataset(String idWbeset)
     {
 		int i = 0;
-		DefaultPieDataset dataset = new DefaultPieDataset();
+		DefaultPieDataset dataset = null;
 		Collection<IndicatorState> dataIndicator = controller.getChargeByResources(idWbeset);
 		for(IndicatorState indic : dataIndicator){
 			 	i = 2;
+			 	if(indic.getValue() != null && indic.getValue() != 0.0)
+			 	if(dataset == null) dataset = new DefaultPieDataset();
 				if(dataset.getIndex(indic.getName()) == -1 ){
 					dataset.setValue(indic.getName(),indic.getValue());
 				}else{
@@ -278,17 +290,24 @@ public class ViewConsolidation extends javax.swing.JFrame  {
 	
 	private  JFreeChart createResourceChart(String idResource, String nameResource)
     {
-			
-        JFreeChart jfreechart = ChartFactory.createPieChart3D("Répartition des charges pour la resource : " + nameResource, this.createResourceDataset(idResource), true, false, false);
-        jfreechart.setBackgroundPaint(Color.WHITE);
+		DefaultPieDataset dataset = this.createResourceDataset(idResource);
+		JFreeChart jfreechart = null;
+		if(dataset != null){
+			jfreechart = ChartFactory.createPieChart3D("Répartition des charges pour la resource : " + nameResource, dataset, true, false, false);
+	        jfreechart.setBackgroundPaint(Color.WHITE);
+		}
+        
         return jfreechart;
     }
 	
 	private  JFreeChart createWbesetChart(String idWbeSet, String nameWbeSet)
     {
-			
-        JFreeChart jfreechart = ChartFactory.createPieChart3D("Répartition des charges pour le groupe d'activité : " + nameWbeSet, this.createWbesetDataset(idWbeSet), true, false, false);
-        jfreechart.setBackgroundPaint(Color.WHITE);
+		DefaultPieDataset dataset = this.createWbesetDataset(idWbeSet);
+		JFreeChart jfreechart = null;
+		if(dataset != null){
+			jfreechart = ChartFactory.createPieChart3D("Répartition des charges pour le groupe d'activité : " + nameWbeSet, dataset, true, false, false);
+			jfreechart.setBackgroundPaint(Color.WHITE);
+		}
         return jfreechart;
     }
 	

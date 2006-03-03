@@ -25,7 +25,7 @@ public class ControlPlannableTest extends TestCase {
 			public  String getName(){return ("");}
 			public  String getId(){return ("");}
 			});
-		plannableC2 = new ControlPlannable(new Plannable (){
+		plannableC2 = new ControlPlannable(new Plannable ()){
 			public  Double getPrevWorkAmount(){return (100001.0);}
 			public  Double getRealWorkAmount(){return (100000.0);}
 			public  Date getPrevStartDate(){

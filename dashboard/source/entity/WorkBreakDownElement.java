@@ -64,14 +64,6 @@ public class WorkBreakDownElement extends Plannable implements Serializable{
 	/**
 	 * <p>Represents ...</p>
 	 */
-	private Double realWorkAmount;
-	
-	
-
-
-	/**
-	 * <p>Represents ...</p>
-	 */
 	private Double prevWorkAmount;
 	
 	///////////////////////////////////////
@@ -106,7 +98,6 @@ public class WorkBreakDownElement extends Plannable implements Serializable{
 		this.prevEndDate = prevEndDate;
 		this.prevWorkAmount = prevWorkAmount;
 		this.realStartDate = realStartDate;
-		this.realWorkAmount = realWorkAmount;
 		this.realEndDate = realEndDate;
 	}
 	
@@ -119,7 +110,6 @@ public class WorkBreakDownElement extends Plannable implements Serializable{
 		this.prevEndDate = null;
 		this.prevWorkAmount = null;
 		this.realStartDate = null;
-		this.realWorkAmount = null;
 		this.realEndDate = null;
 	}
 	
@@ -213,11 +203,9 @@ public class WorkBreakDownElement extends Plannable implements Serializable{
 	 * @return Returns the realWorkAmount.
 	 */
 	public Double getRealWorkAmount() {
-		
-		if(this.realWorkAmount == null  ){
+
 			return this.getRealWorkAmountOfKnownWorkings();
-		}
-		return this.realWorkAmount;
+
 		
 	}
 	
@@ -235,7 +223,6 @@ public class WorkBreakDownElement extends Plannable implements Serializable{
 	 * @param realWorkAmount The realWorkAmount to set.
 	 */
 	public void setRealWorkAmount(Double realWorkAmount) {
-		this.realWorkAmount = realWorkAmount;
 	}
 	/**
 	 * @return Returns the workings.

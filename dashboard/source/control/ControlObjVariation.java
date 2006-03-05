@@ -1,4 +1,4 @@
-package control;
+		package control;
 
  
 import java.util.ArrayList;
@@ -54,22 +54,7 @@ public class ControlObjVariation {
 		 }
 		 //recuperer les activités
 		 ArrayList <Activity> act =  p.getSubActivities();
-		 /*ArrayList <WorkBreakDownElement>wbes = new java.util.ArrayList<WorkBreakDownElement>();
-		 for(k=0;k<act.size();k++)
-		 {
-			 ArrayList <WorkBreakDownElement> aux=extractWBEFromActivity(act.get(k));
-			 for(int x=0;x<aux.size();x++)
-			 {
-				 wbes.add(aux.get(x));
-				// system.out.println();
-			 }
-			 
-		 }*/
-		/* for(int x=0;x<wbes.size();x++)
-		 {
-			 //wbes.add(aux.get(x));
-			 System.out.println(wbes.get(x).getName());
-		 }*/
+		 
 		 for(i=0;i<allLevels.length;i++)// pour chaque level
 		 {
 			 ArrayList <WorkBreakDownElement>wbes = new java.util.ArrayList<WorkBreakDownElement>();
@@ -90,8 +75,8 @@ public class ControlObjVariation {
 							 int coord=(i*nbrRs)+j;
 							 String lev=act.get(i).getName(); 
 							 //String lev="iteration"+allLevels[i];
-							 double est=res.get(coord).getTempsEstime()+wbes.get(k).getPrevWorkAmount();
-							 double reel=res.get(coord).getTempsReel()+wbes.get(k).getRealWorkAmount();
+							 double est=res.get(coord).getTempsEstime()+(wbes.get(k).getPrevWorkAmount()/wk.size());
+							 double reel=res.get(coord).getTempsReel()+wk.get(l).getWorkAmount();
 							 String rs=allRessources.get(j).getName();
 							 String idRs=allRessources.get(j).getId();
 							 int numSem=0;//not implement for the moment
@@ -102,7 +87,7 @@ public class ControlObjVariation {
 							 res.get(coord).setTempsReel(reel);
 							 res.get(coord).setRessource(rs);
 							 res.get(coord).setIdRessource(idRs);
-							 res.get(coord).setNumSemaine(numSem);
+							 res.get(coord).setNbTaches(numSem);
 							 /*
 							 if(allRessources.get(j).getId().equals("r1"))
 							 {
@@ -136,15 +121,55 @@ public class ControlObjVariation {
 			 res.get(coord).setTempsReel(reel);
 			 res.get(coord).setRessource(rs);
 			 res.get(coord).setIdRessource(idRs);
-			 res.get(coord).setNumSemaine(numSem);
+			 res.get(coord).setNbTaches(numSem);
 		 }
-		 for(i=0;i<res.size();i++)
-		 {
-			  // System.out.println(res.get(i).getIteration()+"--"+res.get(i).getRessource()+"--"+res.get(i).getTempsReel());
-		 }
+		 
 		 return res;
 	 }
 
+	 public Vector <objVariation> getRessourcesVariation()
+	 {
+		 Vector <objVariation> res = new Vector<objVariation>() ;
+		 int i,j,k,l;
+		 for(i=0;i<allRessources.size();i++)
+		 {
+			 objVariation obj= new objVariation("",0.0,0.0,allRessources.get(i).getName(),allRessources.get(i).getId(),0);
+			 res.add(obj);
+		 }
+		 
+		 ArrayList <Activity> act =  p.getSubActivities();
+		 
+		 for(i=0;i<allLevels.length;i++)
+		 {
+			 ArrayList <WorkBreakDownElement>wbes = new java.util.ArrayList<WorkBreakDownElement>();
+			 wbes=extractWBEFromActivity(act.get(i));
+			 
+			 for(j=0;j<allRessources.size();j++)// pour chaque ressource
+			 {
+				 
+				 
+				 for(k=0;k<wbes.size();k++)
+				 {
+					 ArrayList <Working> wk =  wbes.get(k).getWorkings() ;
+					 for(l=0;l<wk.size();l++)
+					 {
+						 if(allRessources.get(j).getId().equals(wk.get(l).getResource().getId()))
+						 {
+							 int nb=res.get(j).getNbTaches()+1;
+							 double reel=res.get(j).getTempsReel()+wk.get(l).getWorkAmount();
+							 
+							 res.get(j).setNbTaches(nb);
+							 res.get(j).setTempsReel(reel);
+						 }
+					 }// enf for l
+					  
+				 } //end for k
+			 }// end for j
+		 }
+		 
+		 
+		 return res;
+	 }
 
 	public ArrayList<Resource> getAllRessources() {
 		return allRessources;

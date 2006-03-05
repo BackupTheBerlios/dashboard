@@ -7,7 +7,7 @@ public class objVariation
 	private double tempsReel ;
 	private String ressource ;
 	private String idRessource; 
-	private int	numSemaine ;
+	private int	nbTaches ;
 	
 	public objVariation(String it, double estim, double reel, String ress,String id, int num)
 	{
@@ -16,7 +16,7 @@ public class objVariation
 		this.tempsReel = reel ;
 		this.ressource = ress ;
 		this.idRessource=id;
-		this.numSemaine = num ;
+		this.nbTaches = num ;
 	}
 	
 	public String getIteration()
@@ -39,11 +39,16 @@ public class objVariation
 		return this.ressource ;
 	}
 	
-	public int getNumSemaine()
-	{
-		return this.numSemaine ;
-	}
+ 
 	
+	public int getNbTaches() {
+		return nbTaches;
+	}
+
+	public void setNbTaches(int nbTaches) {
+		this.nbTaches = nbTaches;
+	}
+
 	public void setIteration(String it)
 	{
 		this.iteration = it ;
@@ -64,10 +69,7 @@ public class objVariation
 		this.ressource = ress ;
 	}
 	
-	public void setNumSemaine(int num)
-	{
-		this.numSemaine = num ;
-	}
+	 
 
 	public String getIdRessource() {
 		return idRessource;

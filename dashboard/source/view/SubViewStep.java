@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -27,6 +29,7 @@ import entity.Project;
 
 public class SubViewStep extends JFrame{
 	
+	private static final String BORDERLAYOUT = null;
 	private ControlProject cp;
 	private JPanel milieu=new JPanel();
 	private JPanel bas=new JPanel();
@@ -34,12 +37,15 @@ public class SubViewStep extends JFrame{
 	private ArrayList activites;
 
 	public SubViewStep(ControlProject cp) {
+			
+			
 			super("Itérations pour le projet : "+cp.getNameP());
 			this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+			this.setSize(500,500);
 			this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 
 			this.setVisible(true);
-			this.setLayout(new GridLayout(3,1,0,0));
+			this.setLayout(new BorderLayout());
 			JLabel labelCombo=new JLabel("Choississez une itération : ");
 			Project p=cp.getProject();
 			this.activites=p.getSubActivities();
@@ -57,14 +63,44 @@ public class SubViewStep extends JFrame{
 			JPanel PanelHaut = new JPanel();
 			PanelHaut.add(labelCombo);
 			PanelHaut.add(combo);
-			this.add(PanelHaut);
-			this.setLayout(new GridLayout(4,1,0,0));
+			this.add(PanelHaut,BorderLayout.NORTH);
+			this.milieu.setLayout(new GridLayout(4,1,0,0));
 			Activity a = (Activity) this.activites.get(0);
-			JLabel label=new JLabel(a.getName());
+			ControlPlannable cpa=new ControlPlannable(a);
+			HashMap<String,Double> map=cpa.getResourcesUsage();		
+			JLabel label=new JLabel("Nombre de ressources : "+map.size());
+			JLabel label2=new JLabel("Temps estimés : "+cpa.getPrevDuration());
+			JLabel label3=new JLabel("Temps consommé : "+cpa.getRealDuration());
+			JLabel label4=new JLabel("Avancement : ");
 			this.milieu.add(label);
-			this.add(milieu);
-			this.add(bas);
+			this.milieu.add(label2);
+			this.milieu.add(label3);
+			this.milieu.add(label4);
+			this.milieu.setMaximumSize(new Dimension(10,10));
+			TaskSeriesCollection dataset = new TaskSeriesCollection();
+			TaskSeries tsR = new TaskSeries("Realization");
+			TaskSeries tsP = new TaskSeries("Prevision");
+			try {
+				tsP.add(new Task("", new SimpleTimePeriod(cpa
+						.getPrevStartDate(), cpa.getPrevEndDate())));
+				tsR.add(new Task("", new SimpleTimePeriod(cpa
+						.getRealStartDate(), cpa.getRealEndDate())));
+
+			} catch (Exception e) {
+				assert true;
+			}
+			dataset.add(tsP);
+			dataset.add(tsR);
+			JFreeChart chart = ChartFactory.createGanttChart("", "", "",
+					dataset, true, false, false);
+			JPanel daysChartPanel=new JPanel();
+			daysChartPanel.setLayout(new java.awt.BorderLayout());
+			daysChartPanel.add(java.awt.BorderLayout.CENTER,  new ChartPanel(chart));
+			this.bas.add(daysChartPanel);
+			this.add(milieu,BorderLayout.CENTER);
+			this.add(bas,BorderLayout.SOUTH);
 			this.pack();
+			this.setResizable(false);
 	}
 	
 	private void MajCombo()

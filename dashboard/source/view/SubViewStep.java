@@ -1,15 +1,11 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -29,7 +25,7 @@ import entity.Project;
 
 public class SubViewStep extends JFrame{
 	
-	private static final String BORDERLAYOUT = null;
+	
 	private ControlProject cp;
 	private JPanel milieu=new JPanel();
 	private JPanel bas=new JPanel();

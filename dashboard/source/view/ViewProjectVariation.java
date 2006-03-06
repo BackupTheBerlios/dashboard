@@ -62,6 +62,7 @@ public class ViewProjectVariation extends JFrame
 		cp=nameP; 
 		
 		var = new ControlObjVariation(cp.getProject());
+		vect=var.getRessourcesVariation();
 		vect=var.getDataVariation();
 		
 		//JDesktopPane jdp = new JDesktopPane();
@@ -218,7 +219,7 @@ public class ViewProjectVariation extends JFrame
 		for(int i=0;i<vectorLength;i++)
 		{
 			ov = vect.get(i);
-			//System.out.println(ov.getIdRessource() + "-" +ov.getRessource()+"-"+ov.getIteration()+"-" + ov.getTempsEstime() );
+			// System.out.println(ov.getIdRessource() + "-" +ov.getRessource()+"-"+ov.getIteration()+"-" + ov.getTempsReel() );
 			//System.out.println(ov.getIdRessource()"-"+param);
 			if(ov.getRessource().equals(param))
 			{
@@ -239,8 +240,8 @@ public class ViewProjectVariation extends JFrame
  
 	 public static void main(String args[]) {
 	 
-		 ControlEnvironment envC= new ControlEnvironment(TestEntity.createEnvironment()); 
-		 ViewProjectVariation t = new ViewProjectVariation("group",envC.getControlProjects().get(1)) ;
+		// ControlEnvironment envC= new ControlEnvironment(TestEntity.createEnvironment()); 
+		 // ViewProjectVariation t = new ViewProjectVariation("group",envC.getControlProjects().get(1)) ;
 	 
 	    }
 }

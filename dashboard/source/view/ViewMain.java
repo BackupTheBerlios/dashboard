@@ -87,11 +87,14 @@ public class ViewMain extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         quitMenu = new javax.swing.JMenuItem();
         projectMenu = new javax.swing.JMenu();
-        indicsMenu = new javax.swing.JMenuItem();
+        indicsMenu = new javax.swing.JMenu();
+        variationMenu = new javax.swing.JMenuItem();
+        ressourceMenu = new javax.swing.JMenuItem();
         consoMenu = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         helpContMenu = new javax.swing.JMenuItem();
-
+        
+        
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 exitForm(evt);
@@ -212,15 +215,27 @@ public class ViewMain extends javax.swing.JFrame {
 
         
         
-        indicsMenu.setText("Indicateurs...");
-        indicsMenu.addActionListener(new java.awt.event.ActionListener() {
+        indicsMenu.setText("Indicateurs");
+        
+        variationMenu.setText("Variation sur le projet");
+        variationMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                indicsMenuActionPerformed(evt);
+            	variationMenuActionPerformed(evt);
             }
         });
-
+        
+        ressourceMenu.setText("Ressources");
+        ressourceMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	ressourceMenuActionPerformed(evt);
+            }
+        });
+        
         projectMenu.add(indicsMenu);
-
+        
+        indicsMenu.add(variationMenu);
+        indicsMenu.add(ressourceMenu);
+        
         consoMenu.setText("Consolidation...");
         consoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,14 +287,23 @@ public class ViewMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void indicsMenuActionPerformed(java.awt.event.ActionEvent evt) {
-    	
+    private void ressourceMenuActionPerformed(java.awt.event.ActionEvent evt) {
+    	 
+    	int index = jList1.getSelectedIndex();
+		if(index >= 0)
+		{
+			new ViewAllRessource(envC.getControlProjects().get(index)) ;
+		}
+    }
+    
+    private void variationMenuActionPerformed(java.awt.event.ActionEvent evt) {
+    	 
     	int index = jList1.getSelectedIndex();
 		if(index >= 0)
 		{
 			new ViewProjectVariation("group",envC.getControlProjects().get(index)) ;
 		}
-    	//
+    	 
     }
 
     private void quitMenuActionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,7 +403,7 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem helpContMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem importPSIMenu;
-    private javax.swing.JMenuItem indicsMenu;
+    private javax.swing.JMenu indicsMenu;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -397,6 +421,8 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveAsMenu;
     private javax.swing.JMenuItem saveMenu;
     private javax.swing.JPanel treePanel;
+    private javax.swing.JMenuItem variationMenu;
+    private javax.swing.JMenuItem ressourceMenu;
     // End of variables declaration
     
     

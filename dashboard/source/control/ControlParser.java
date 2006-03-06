@@ -353,8 +353,7 @@ public class ControlParser extends DefaultHandler{
 	            	}
 	            	
 	            	break;
-		   		default:
-		   			
+		   		default: 
 		   			break;
 		   }
 		   

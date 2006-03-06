@@ -107,8 +107,26 @@ public class ViewProject extends javax.swing.JPanel{
 		 JPanel jPanel_bouton=new JPanel();
 		 jPanel_bouton.setLayout(new FlowLayout());  
 		 JButton Biteration = new JButton("Itération");
+		 Biteration.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	            	SubViewStep fenetre;
+	            	fenetre= new SubViewStep(cp);
+	            }
+	        });
 		 JButton Bactivite = new JButton("Activité");
+		 Bactivite.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	            	SubViewActivity fenetre;
+	            	fenetre= new SubViewActivity(cp);
+	            }
+	        });
 		 JButton Bressources = new JButton("Ressources");
+		 Bressources.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	            	SubViewRessources fenetre;
+	            	fenetre= new SubViewRessources();
+	            }
+	        });
 		 Biteration.setPreferredSize(Bressources.getPreferredSize());
 		 Bactivite.setPreferredSize(Bressources.getPreferredSize());
 		 Bressources.setPreferredSize(Bressources.getPreferredSize());

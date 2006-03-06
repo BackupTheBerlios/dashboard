@@ -34,7 +34,10 @@ public class ControlObjVariation {
 		return a.getWbesRecursive();		 	
 	 }
 	 
-	 
+	/**
+	 *  fonction qui calcul pour chaque etape du projet, ressource et pour tout le groupe
+	 *  le total des charges estimé et réel
+	 */
 	 public Vector <objVariation> getDataVariation()
 	 {
 		 int i,j,k,l,longVect ;
@@ -126,7 +129,10 @@ public class ControlObjVariation {
 		 
 		 return res;
 	 }
-
+	 /**
+	  *fonction qui calcul pour chaque ressource la somme des réalisations et le nombre de taches
+	  *auquel il participe
+	  */
 	 public Vector <objVariation> getRessourcesVariation()
 	 {
 		 Vector <objVariation> res = new Vector<objVariation>() ;

@@ -57,7 +57,7 @@ public class ViewHelp extends JFrame implements HyperlinkListener
 	    // Ajout du listener de clic sur lien
 	    viewer.addHyperlinkListener (this);
 	    this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		this.setSize(400,400) ;
+		this.setSize(500,500) ;
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 
 		this.setVisible(true);
@@ -169,7 +169,7 @@ public class ViewHelp extends JFrame implements HyperlinkListener
 	  public static void main (String [] args)
 	  {
 	    JFrame viewerFrame = new ViewHelp ("http://www.loc.gov/rr/international/portals.html");
-	    viewerFrame.setSize (400, 300);
+	    //viewerFrame.setSize (400, 300);
 	    viewerFrame.setVisible(true);
 	  }
 				

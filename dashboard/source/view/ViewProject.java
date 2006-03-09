@@ -43,9 +43,10 @@ public class ViewProject extends javax.swing.JPanel{
 	private void fillPanel()
 	{
 		JPanel general=new JPanel();
-		general.setLayout(new GridLayout(6,1,0,0));
+		general.setLayout(new BorderLayout());
 		JLabel label = new JLabel("Avancement du projet : " + cp.getNameP());
-		general.add(label);
+		label.setFont(new Font("Ms-tahoma",Font.BOLD,18));
+		general.add(label,BorderLayout.NORTH);
 		
 		JPanel Paneltable=new JPanel();
 		Object[][] donnees = {{"", "Estimé", "Consommé","Unité","Difference","Indicateur"},
@@ -59,7 +60,9 @@ public class ViewProject extends javax.swing.JPanel{
 		JTable table = new JTable(donnees, nomsColonnes);
 		table.setEnabled(false);
 		Paneltable.add(table);
-		general.add(Paneltable);
+		
+		JPanel PanelMilieu=new JPanel();
+		PanelMilieu.setLayout(new GridLayout(2,1,0,0));
 		
 		JPanel Panelbarre=new JPanel();
 		Panelbarre.setLayout(new GridLayout(2,1,0,0));
@@ -84,23 +87,25 @@ public class ViewProject extends javax.swing.JPanel{
 		barre2.add(pourcent2);
 		
 		Panelbarre.add(barre1);
-		Panelbarre.add(barre2);		
-		general.add(Panelbarre);
+		Panelbarre.add(barre2);
+		PanelMilieu.add(Paneltable);
+		PanelMilieu.add(Panelbarre);
+		general.add(PanelMilieu,BorderLayout.CENTER);
 		
 		JLabel projet = new JLabel("Le projet en chiffre : ");
-		general.add(projet);
+		projet.setFont(new Font("Ms-tahoma",Font.BOLD,15));
 		
 		JPanel PanelChiffre=new JPanel();
-		PanelChiffre.setLayout(new GridLayout(4,1));
+		PanelChiffre.setLayout(new GridLayout(5,1));
 		JLabel ressource = new JLabel("Nombre de ressource : "+cp.getRessourcesNumber());
 		JLabel etape = new JLabel("Début de la prochaine étape : "+cp.getNextEtapeStartDate());
 		JLabel fin = new JLabel("Date de fin prévue : "+cp.getProjectPrevEndDate());
 		JLabel finr = new JLabel("Date de fin ré-estimée : "+cp.getProjectRealEndDate());
+		PanelChiffre.add(projet);
 		PanelChiffre.add(ressource);
 		PanelChiffre.add(etape);
 		PanelChiffre.add(fin);
 		PanelChiffre.add(finr);
-		general.add(PanelChiffre);
 		
 		
 		 /* Panel avec les 3 boutons */	 
@@ -124,7 +129,7 @@ public class ViewProject extends javax.swing.JPanel{
 		 Bressources.addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	            	SubViewRessources fenetre;
-	            	fenetre= new SubViewRessources();
+	            	fenetre= new SubViewRessources(cp);
 	            }
 	        });
 		 Biteration.setPreferredSize(Bressources.getPreferredSize());
@@ -136,58 +141,13 @@ public class ViewProject extends javax.swing.JPanel{
 		 jPanel_bouton.add(Bressources);
 		 /* Fin Panel 3 boutons*/
 		 
-		 general.add(jPanel_bouton);
-		
-		
-    	/*this.setLayout(new BorderLayout());
-    	label.setMaximumSize(label.getPreferredSize());
-    	this.add(label,BorderLayout.NORTH);
-				Jbar.setMaximumSize(Jbar.getPreferredSize());
-		JPanel jPanel3=new JPanel();
-		jPanel3.setLayout(new BorderLayout());
-		JPanel jPanel4=new JPanel();
-		JLabel label2 = new JLabel("Avancement :");
-		jPanel4.add(label2);
-		jPanel4.add(Jbar);
-		jPanel3.add(jPanel4,BorderLayout.NORTH);
-		JProgressBar Jbar2=new JProgressBar();
-		Jbar2.setMaximumSize(Jbar2.getPreferredSize());
-		Jbar2.setForeground(Color.GREEN);
-		Jbar2.setValue(((int)Double.doubleToLongBits(cp.getBudget()[0])));
-		JPanel jPanel5=new JPanel();
-		JLabel label3 = new JLabel("Budget :");
-		jPanel5.add(label3);
-		jPanel5.add(Jbar2);
-		JPanel jPanel6=new JPanel();
-		
-		
-		jPanel6.add(table);
-		
-		jPanel3.add(jPanel5,BorderLayout.WEST);
-		this.add(jPanel6,BorderLayout.CENTER);
-		this.add(jPanel3,BorderLayout.WEST);
-				
-		 /* Panel avec les 3 boutons *//*	 
-		 JPanel jPanel_bouton=new JPanel();
-		 jPanel_bouton.setLayout(new FlowLayout());  
-		 JButton Biteration = new JButton("Itération");
-		 JButton Bactivite = new JButton("Activité");
-		 JButton Bressources = new JButton("Ressources");*/
-	/* Fin Panel 3 boutons*/
-		 /*
-		 Biteration.setPreferredSize(Bressources.getPreferredSize());
-		 Bactivite.setPreferredSize(Bressources.getPreferredSize());
-		 Bressources.setPreferredSize(Bressources.getPreferredSize());
+		 JPanel jPanelbas=new JPanel();
+		 jPanelbas.setLayout(new GridLayout(2,1,0,0));
+		 jPanelbas.add(PanelChiffre);
+		 jPanelbas.add(jPanel_bouton);
 		 
-		 jPanel_bouton.add(Biteration);
-		 jPanel_bouton.add(Bactivite);
-		 jPanel_bouton.add(Bressources);
-		 this.add(general,BorderLayout.SOUTH);
-		 jPanel_bouton.setVisible(true);*/
-		this.add(general);
-		 
-		 
-	
+		 general.add(jPanelbas,BorderLayout.SOUTH);
+		this.add(general);	
 		
 	}
 	

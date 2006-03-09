@@ -47,7 +47,7 @@ public class SubViewActivity extends JFrame{
 		this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 
 		this.setVisible(true);
 		this.setLayout(new BorderLayout());
-		JLabel labelCombo=new JLabel("Choississez une itération : ");
+		JLabel labelCombo=new JLabel("Choississez une activité : ");
 		Project p=cp.getProject();
 		this.activites=p.getSubActivities();
 		this.v= new Vector();
@@ -77,7 +77,11 @@ public class SubViewActivity extends JFrame{
 		JLabel label=new JLabel("Ressources : "+map.size());
 		JLabel label2=new JLabel("Temps estimés : "+cpa.getPrevDuration());
 		JLabel label3=new JLabel("Temps consommé : "+cpa.getRealDuration());
+		
+		//Indicateur
 		JLabel label4=new JLabel("Avancement : ");
+		
+		
 		this.milieu.add(label);
 		this.milieu.add(label2);
 		this.milieu.add(label3);

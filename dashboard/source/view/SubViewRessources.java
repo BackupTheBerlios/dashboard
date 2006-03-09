@@ -4,18 +4,31 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
+import control.ControlPlannable;
 import control.ControlProject;
+import entity.Activity;
 import entity.Project;
+import entity.Resource;
+import entity.WorkBreakDownElement;
+import entity.Working;
 
 public class SubViewRessources  extends JFrame {
 	
 	private JComboBox combo;
 	private ArrayList ressources;
 	private JPanel bas=new JPanel();
+	private ArrayList activites;
+	private ArrayList sousActivite;
+	private Project p;
 	
 
 	public SubViewRessources(ControlProject cp){
@@ -25,7 +38,7 @@ public class SubViewRessources  extends JFrame {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 
 		this.setLayout(new BorderLayout());
-		Project p = cp.getProject();
+		this.p = cp.getProject();
 		this.ressources=p.getResources();
 		Vector v= new Vector();
 		for(int i =0 ;i<ressources.size();i++)
@@ -43,23 +56,129 @@ public class SubViewRessources  extends JFrame {
 		haut.add(labelCombo);
 		haut.add(combo);		
 		this.add(haut,BorderLayout.NORTH);
-		Object[][] donnees = {{"Activités", "Estimé", "Consommé","Difference","Indicateur"},
-				{ cp.getProjectTime()[0], cp.getProjectTime()[1],cp.indiceIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getProjectTime()[0],cp.getProjectTime()[1]),ControlProject.Max,ControlProject.Min1Project,ControlProject.Min2Project)},
-				{ cp.getBudget()[0], cp.getBudget()[1],cp.indiceIndicator(cp.getBudget()[0],cp.getBudget()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getBudget()[0],cp.getBudget()[1]),ControlProject.Max,ControlProject.Min1Budget,ControlProject.Min2Budget)},
-				{cp.getEtapesTime()[0], cp.getEtapesTime()[1],cp.indiceIndicator(cp.getEtapesTime()[0],cp.getEtapesTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getEtapesTime()[0],cp.getEtapesTime()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)},
-				{ cp.getRessourcesTime()[0], cp.getRessourcesTime()[1],cp.indiceIndicator(cp.getRessourcesTime()[0],cp.getRessourcesTime()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getRessourcesTime()[0],cp.getRessourcesTime()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)},
-				{ cp.getActivities()[0], cp.getActivities()[1],cp.indiceIndicator(cp.getActivities()[0],cp.getActivities()[1]),cp.alerteIndicator(cp.indiceIndicator(cp.getActivities()[0],cp.getActivities()[1]),ControlProject.Max,ControlProject.Min1Moy,ControlProject.Min2Moy)}};
-		String[] nomsColonnes = {"Activités", "Estimé", "Consommé","Unité","Difference","Indicateur"};  
+		Object[][] donnees= new Object[((Resource)ressources.get(0)).workinsSize()+2][5];	
+		String[] nomsColonnes = {"Activités", "Estimé", "Consommé","Difference","Indicateur"};
+		donnees[0][0]="Activités";
+		donnees[0][1]= "Estimé";
+		donnees[0][2]="Consommé";
+		donnees[0][3]="Difference";
+		donnees[0][4]="Indicateur";
+		float estime=0;
+		float conso=0;
+		float diff=0;
+		this.activites=p.getSubActivities();
+		int l=1;
+		for(int j=0;j<this.activites.size();j++)
+		{
+			
+			this.sousActivite=((Activity)activites.get(j)).getWbesRecursive();
+			for(int m =0 ;m<this.sousActivite.size();m++)
+			{			
+				ControlPlannable cpa=new ControlPlannable((WorkBreakDownElement)this.sousActivite.get(m));
+				HashMap<String,Double> map=cpa.getResourcesUsage();
+				Set listKey=map.keySet();
+				Iterator k = listKey.iterator();
+				String key = new String();
+				while (k.hasNext())
+				{	
+					key=(String)k.next();
+					if(key==((Resource)ressources.get(0)).getName())
+					{
+						donnees[l][0]=((WorkBreakDownElement)this.sousActivite.get(m)).getName();
+						donnees[l][1]=cpa.getPrevDuration();
+						donnees[l][2]=cpa.getRealDuration();
+						donnees[l][3]=cpa.getPrevDuration()-cpa.getRealDuration();
+						
+						//Indicateur
+						donnees[l][4]="";
+						
+						estime+=cpa.getPrevDuration();
+						conso+=cpa.getRealDuration();
+						diff+=cpa.getPrevDuration()-cpa.getRealDuration();
+						
+						l++;
+						System.out.println(l);
+					}
+				}
+				
+			}
+		}
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][0]="Total";
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][1]=estime;
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][2]=conso;
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][3]=diff;
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][4]="";
+		
 		JTable table = new JTable(donnees, nomsColonnes);
+		table.getColumnModel().getColumn(0).setPreferredWidth(200); 
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		this.bas.add(table);
-		this.add(bas,BorderLayout.SOUTH);
+		this.add(bas,BorderLayout.CENTER);
 		this.setVisible(true);
 		this.pack();
 		
 	}
 	private void MajCombo()
 	{
+		int i=this.combo.getSelectedIndex();
+		this.bas.removeAll();
+		Object[][] donnees= new Object[((Resource)ressources.get(i)).workinsSize()+2][5];	
+		String[] nomsColonnes = {"Activités", "Estimé", "Consommé","Difference","Indicateur"};
+		donnees[0][0]="Activités";
+		donnees[0][1]= "Estimé";
+		donnees[0][2]="Consommé";
+		donnees[0][3]="Difference";
+		donnees[0][4]="Indicateur";
+		float estime=0;
+		float conso=0;
+		float diff=0;
+		this.activites=p.getSubActivities();
+		int l=1;
+		for(int j=0;j<this.activites.size();j++)
+		{
+			
+			this.sousActivite=((Activity)activites.get(j)).getWbesRecursive();
+			for(int m =0 ;m<this.sousActivite.size();m++)
+			{			
+				ControlPlannable cpa=new ControlPlannable((WorkBreakDownElement)this.sousActivite.get(m));
+				HashMap<String,Double> map=cpa.getResourcesUsage();
+				Set listKey=map.keySet();
+				Iterator k = listKey.iterator();
+				String key = new String();
+				while (k.hasNext())
+				{	
+					key=(String)k.next();
+					if(key==((Resource)ressources.get(i)).getName())
+					{
+						donnees[l][0]=((WorkBreakDownElement)this.sousActivite.get(m)).getName();
+						donnees[l][1]=cpa.getPrevDuration();
+						donnees[l][2]=cpa.getRealDuration();
+						donnees[l][3]=cpa.getPrevDuration()-cpa.getRealDuration();
+						
+						//Indicateur
+						donnees[l][4]="";
+						
+						estime+=cpa.getPrevDuration();
+						conso+=cpa.getRealDuration();
+						diff+=cpa.getPrevDuration()-cpa.getRealDuration();						
+						l++;
+					}
+				}
+				
+			}
+		}
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][0]="Total";
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][1]=estime;
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][2]=conso;
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][3]=diff;
+		donnees[((Resource)ressources.get(0)).workinsSize()+1][4]="";
 		
+		JTable table = new JTable(donnees, nomsColonnes);
+		table.getColumnModel().getColumn(0).setPreferredWidth(200); 
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		this.bas.add(table);
+		this.bas.updateUI();
+		this.pack();
 	}
 	
 }

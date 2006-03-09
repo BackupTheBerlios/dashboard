@@ -67,7 +67,10 @@ public class SubViewStep extends JFrame{
 			JLabel label=new JLabel("Nombre de ressources : "+map.size());
 			JLabel label2=new JLabel("Temps estimés : "+cpa.getPrevDuration());
 			JLabel label3=new JLabel("Temps consommé : "+cpa.getRealDuration());
+			
+			//Indicateur
 			JLabel label4=new JLabel("Avancement : ");
+			
 			this.milieu.add(label);
 			this.milieu.add(label2);
 			this.milieu.add(label3);

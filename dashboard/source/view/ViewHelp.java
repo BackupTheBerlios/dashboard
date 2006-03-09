@@ -1,17 +1,17 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
-
+import java.util.ArrayList;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.WindowConstants;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLDocument;
@@ -20,40 +20,124 @@ import javax.swing.text.html.HTMLFrameHyperlinkEvent;
 
 public class ViewHelp extends JFrame implements HyperlinkListener
 {
-	private HTMLDocument docHtml;
+	
+	  // Composant Swing permettant de visualiser un document
+	  JEditorPane viewer       = new JEditorPane ();
+	  private ArrayList<String> docsHTML;
+	  private int pageActuel;
+	  private int nbPageEnMemoire;
+	  private javax.swing.JButton bPrecedent;
+	  private javax.swing.JButton bSuivant;
+	  private javax.swing.JButton bHome;
+	  //	 Zone scrollée au centre avec le document    
+	  private JScrollPane scrollPane = new JScrollPane (viewer);
+	  private Container container;
+	  private JToolBar BarredeNavigation;
+	  
 	public ViewHelp(String docHTML){
 		super("Aide 2DB");
-		loadPage(docHTML);
-		 // Construction de l'Interface Graphique
 
-	    // Zone scrollée au centre avec le document    
-	    JScrollPane scrollPane = new JScrollPane (viewer);
-	    // Ajout des composants à la fenêtre
-	    getContentPane ().add (scrollPane, BorderLayout.CENTER);
-	    
+
+		container = this.getContentPane() ;
+		container.setLayout(new BorderLayout());
+		
+		docsHTML=new ArrayList<String>();
+		pageActuel=0;
+		docsHTML.add(pageActuel,docHTML);
+		nbPageEnMemoire=1;
+		
+		loadPage(docHTML);
+		init();
+		
+		container.add (BarredeNavigation, BorderLayout.NORTH);
+	    container.add (scrollPane, BorderLayout.CENTER);
 	    // Mode non editable pour recevoir les clics sur les 
 	    // liens hypertexte
 	    viewer.setEditable (false);
 	    // Ajout du listener de clic sur lien
 	    viewer.addHyperlinkListener (this);
+	    this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		this.setSize(400,400) ;
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 
+		this.setVisible(true);
+	} 
+	 
+	private void init()
+	{		
+			BarredeNavigation = new JToolBar();
+	    	bPrecedent = new javax.swing.JButton("Précédent");
+		    bSuivant = new javax.swing.JButton("Suivant");
+		    bHome = new javax.swing.JButton("Home");
+		    
+		    bPrecedent.setEnabled(false);
+		    bSuivant.setEnabled(false);
+		    BarredeNavigation.add(bPrecedent);
+		    BarredeNavigation.add(bSuivant);
+		    BarredeNavigation.addSeparator();
+		    BarredeNavigation.add(bHome);
+		    
+		    bPrecedent.addMouseListener(new java.awt.event.MouseAdapter() {
+	            public void mouseClicked(java.awt.event.MouseEvent evt) {
+	                bPrecedentMouseClicked();
+	            }
+	        });
+		    bSuivant.addMouseListener(new java.awt.event.MouseAdapter() {
+	            public void mouseClicked(java.awt.event.MouseEvent evt) {
+	                bSuivantMouseClicked();
+	            }
+	        });
+		    bHome.addMouseListener(new java.awt.event.MouseAdapter() {
+	            public void mouseClicked(java.awt.event.MouseEvent evt) {
+	                bHomeMouseClicked();
+	            }
+	        });
 	}
+	
+	private void bPrecedentMouseClicked(){
+		if (pageActuel>0){
+			pageActuel-=1;
+			loadPage(docsHTML.get(pageActuel));
+			bSuivant.setEnabled(true);
+			if (pageActuel==0)
+			{
+				bPrecedent.setEnabled(false);
+			}
+			}		
 		
-//	 Classe de fenêtre Swing permettant de visualiser un
-//	 document (HTML ou texte)
-	  // Composant Swing permettant de visualiser un document
-	  JEditorPane viewer       = new JEditorPane ();
-	  // Champ de saisie de l'URL à visualiser
-	  JTextField  urlTextField = new JTextField ();
-	 
-	 
-	 
+	}
+	
+	private void bSuivantMouseClicked(){
+		if (pageActuel<nbPageEnMemoire-1){
+			pageActuel+=1;
+			loadPage(docsHTML.get(pageActuel));
+			bPrecedent.setEnabled(true);
+			if (pageActuel==nbPageEnMemoire-1)
+				{
+				bSuivant.setEnabled(false);
+				}
+			}
+		
+	}
+	
+	private void bHomeMouseClicked(){
+		if (docsHTML.get(0)!=docsHTML.get(pageActuel)){
+		pageActuel+=1;
+		docsHTML.add(pageActuel,docsHTML.get(0));
+		nbPageEnMemoire+=1;		}
+		loadPage(docsHTML.get(pageActuel));
+	}
+	
 	  // Méthode appelée après un clic sur un lien hyper texte
 	  public void hyperlinkUpdate (HyperlinkEvent event) 
 	  {
 	    if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
 	    {
-	      // Modification du champ de saisie
-	      urlTextField.setText (event.getURL ().toString ());
+	      // Modification de l'url courant
+	    	pageActuel+=1;
+			docsHTML.add(pageActuel,event.getURL ().toString ());
+			nbPageEnMemoire+=1;
+			bPrecedent.setEnabled(true);
 	      if (event instanceof HTMLFrameHyperlinkEvent) 
 	      {
 	        // Evenement spécial en cas d'utilisation de Frame HTML
@@ -63,16 +147,10 @@ public class ViewHelp extends JFrame implements HyperlinkListener
 	      }
 	      else
 	        // Chargement de la page
-	        loadPage (urlTextField.getText ());
+	        loadPage (docsHTML.get(pageActuel));
 	    }
 	  }
-	 /*
-	  // Méthode appelée après une modification de la saisie
-	  public void actionPerformed (ActionEvent event)
-	  {
-	    loadPage (urlTextField.getText ());
-	  }
-	   */     
+	  
 	  public void loadPage (String urlText)
 	  {
 	    try 
@@ -90,7 +168,7 @@ public class ViewHelp extends JFrame implements HyperlinkListener
 
 	  public static void main (String [] args)
 	  {
-	    JFrame viewerFrame = new ViewHelp ("http://www.eteks.com/tips/tip5.html");
+	    JFrame viewerFrame = new ViewHelp ("http://www.loc.gov/rr/international/portals.html");
 	    viewerFrame.setSize (400, 300);
 	    viewerFrame.setVisible(true);
 	  }

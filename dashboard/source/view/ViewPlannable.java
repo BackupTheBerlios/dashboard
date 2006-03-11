@@ -12,8 +12,9 @@ import org.jfree.data.gantt.TaskSeries;
 import org.jfree.data.gantt.TaskSeriesCollection;
 import org.jfree.data.time.SimpleTimePeriod;
 
+import utils.Functions;
+
 import control.ControlPlannable;
-import control.Utils;
 import entity.WorkBreakDownElement;
 
 /**
@@ -50,7 +51,6 @@ public class ViewPlannable extends javax.swing.JPanel {
 	
 	
 //	 Variables declaration - do not modify
-    private javax.swing.JPanel workChartPanel;
     private javax.swing.JButton bResUsg;
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JPanel contentPanel;
@@ -68,7 +68,10 @@ public class ViewPlannable extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -79,13 +82,17 @@ public class ViewPlannable extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel startDatesPanel;
     private javax.swing.JPanel startOffsetPanel;
+    private javax.swing.JPanel startOffsetPanel1;
     private javax.swing.JPanel titlePanel;
+    private javax.swing.JTextField txtWorkAmountOffset;
     private javax.swing.JTextField txtDurationOffset;
     private javax.swing.JTextField txtDurationOffset2;
     private javax.swing.JTextField txtGlobalOffset;
@@ -101,6 +108,8 @@ public class ViewPlannable extends javax.swing.JPanel {
     private javax.swing.JTextField txtStartOffset;
     private javax.swing.JTextField txtStartOffset2;
     private javax.swing.JLabel txtTitle;
+    private javax.swing.JTextField txtWorkAmountOffsetPrct;
+    private javax.swing.JPanel workChartPanel;
     private javax.swing.JPanel workPanel;
     // End of variables declaration
 	
@@ -162,10 +171,17 @@ public class ViewPlannable extends javax.swing.JPanel {
         txtPrevWorkAmount = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         txtRealWorkAmount = new javax.swing.JTextField();
+        startOffsetPanel1 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        txtWorkAmountOffset = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        txtWorkAmountOffsetPrct = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
         workChartPanel = new javax.swing.JPanel();
         buttonsPanel = new javax.swing.JPanel();
         bResUsg = new javax.swing.JButton();
-
         
         jPanel1.setLayout(new java.awt.BorderLayout(2, 5));
 
@@ -181,14 +197,14 @@ public class ViewPlannable extends javax.swing.JPanel {
         startDatesPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
         startDatesPanel.setMinimumSize(new java.awt.Dimension(400, 20));
         startDatesPanel.setPreferredSize(new java.awt.Dimension(400, 20));
-        jLabel1.setText("Date début prévisionnelle");
+        jLabel1.setText("Date d\u00e9but pr\u00e9visionnelle");
         startDatesPanel.add(jLabel1);
 
         txtPrevStartDate.setEditable(false);
         txtPrevStartDate.setPreferredSize(new java.awt.Dimension(100, 20));
         startDatesPanel.add(txtPrevStartDate);
 
-        jLabel4.setText("Date début réelle");
+        jLabel4.setText("Date d\u00e9but r\u00e9elle");
         startDatesPanel.add(jLabel4);
 
         txtRealStartDate.setEditable(false);
@@ -203,7 +219,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         endDatesPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
         endDatesPanel.setMinimumSize(new java.awt.Dimension(400, 20));
         endDatesPanel.setPreferredSize(new java.awt.Dimension(400, 20));
-        jLabel2.setText("Date fin prévisionnelle");
+        jLabel2.setText("Date fin pr\u00e9visionnelle");
         endDatesPanel.add(jLabel2);
 
         txtPrevEndDate.setEditable(false);
@@ -211,7 +227,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         
         endDatesPanel.add(txtPrevEndDate);
 
-        jLabel3.setText("Date fin réelle");
+        jLabel3.setText("Date fin r\u00e9elle");
         endDatesPanel.add(jLabel3);
 
         txtRealEndDate.setEditable(false);
@@ -223,14 +239,14 @@ public class ViewPlannable extends javax.swing.JPanel {
         durationPanel.setLayout(new java.awt.GridLayout(1, 4, 2, 2));
 
         durationPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel15.setText("Durée prévisionnelle");
+        jLabel15.setText("Dur\u00e9e pr\u00e9visionnelle");
         durationPanel.add(jLabel15);
 
         txtPrevDuration.setEditable(false);
         txtPrevDuration.setPreferredSize(new java.awt.Dimension(100, 20));
         durationPanel.add(txtPrevDuration);
 
-        jLabel14.setText("Durée réelle");
+        jLabel14.setText("Dur\u00e9e r\u00e9elle");
         durationPanel.add(jLabel14);
 
         txtRealDuration.setEditable(false);
@@ -242,7 +258,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         startOffsetPanel.setLayout(new java.awt.GridLayout(1, 3, 2, 2));
 
         startOffsetPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel5.setText("Décalage de début");
+        jLabel5.setText("D\u00e9calage de d\u00e9but");
         startOffsetPanel.add(jLabel5);
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
@@ -272,7 +288,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         endOffsetPanel.setLayout(new java.awt.GridLayout(1, 3, 2, 2));
 
         endOffsetPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel11.setText("Décalage de fin");
+        jLabel11.setText("D\u00e9calage de fin");
         endOffsetPanel.add(jLabel11);
 
         jPanel10.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
@@ -302,7 +318,7 @@ public class ViewPlannable extends javax.swing.JPanel {
         durationOffsetPanel.setLayout(new java.awt.GridLayout(1, 3, 2, 2));
 
         durationOffsetPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel8.setText("Décalage de durée");
+        jLabel8.setText("D\u00e9calage de dur\u00e9e");
         durationOffsetPanel.add(jLabel8);
 
         jPanel8.setLayout(new java.awt.GridLayout(1, 2, 2, 2));
@@ -331,18 +347,17 @@ public class ViewPlannable extends javax.swing.JPanel {
 
         contentPanel.add(daysChartPanel);
 
-        
         workPanel.setLayout(new java.awt.GridLayout(1, 4, 2, 2));
 
         workPanel.setMaximumSize(new java.awt.Dimension(32767, 20));
-        jLabel16.setText("Charges prévisionnelles");
+        jLabel16.setText("Charges pr\u00e9visionnelles");
         workPanel.add(jLabel16);
 
         txtPrevWorkAmount.setEditable(false);
         txtPrevWorkAmount.setPreferredSize(new java.awt.Dimension(100, 20));
         workPanel.add(txtPrevWorkAmount);
 
-        jLabel17.setText("Charges réelles");
+        jLabel17.setText("Charges r\u00e9elles");
         workPanel.add(jLabel17);
 
         txtRealWorkAmount.setEditable(false);
@@ -351,11 +366,40 @@ public class ViewPlannable extends javax.swing.JPanel {
 
         contentPanel.add(workPanel);
 
+        startOffsetPanel1.setLayout(new java.awt.GridLayout());
+
+        startOffsetPanel1.setMaximumSize(new java.awt.Dimension(32767, 20));
+        jLabel18.setText("d\u00e9passements");
+        startOffsetPanel1.add(jLabel18);
+
+        jPanel3.setLayout(new java.awt.GridLayout());
+
+        txtWorkAmountOffset.setEditable(false);
+        txtWorkAmountOffset.setPreferredSize(new java.awt.Dimension(100, 20));
+        jPanel3.add(txtWorkAmountOffset);
+
+        jPanel3.add(jLabel19);
+
+        startOffsetPanel1.add(jPanel3);
+
+        jPanel12.setLayout(new java.awt.GridLayout());
+
+        txtWorkAmountOffsetPrct.setEditable(false);
+        txtWorkAmountOffsetPrct.setPreferredSize(new java.awt.Dimension(100, 20));
+        jPanel12.add(txtWorkAmountOffsetPrct);
+
+        jLabel20.setText("%");
+        jPanel12.add(jLabel20);
+
+        startOffsetPanel1.add(jPanel12);
+
+        contentPanel.add(startOffsetPanel1);
+
         contentPanel.add(workChartPanel);
 
         jPanel1.add(contentPanel, java.awt.BorderLayout.CENTER);
 
-        bResUsg.setText("Utilisation des ressources...");
+        bResUsg.setText("Resource usage...");
         bResUsg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bResUsgMouseClicked(evt);
@@ -395,7 +439,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 		
 		if(plannableC.getPrevStartDate() != null)
 		{
-			txtPrevStartDate.setText(Utils.dateToString(plannableC.getPrevStartDate()));
+			txtPrevStartDate.setText(Functions.dateToString(plannableC.getPrevStartDate()));
 		}
 		else
 		{			
@@ -404,7 +448,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 		
 		if(plannableC.getPrevEndDate() != null)
 		{
-			txtPrevEndDate.setText(Utils.dateToString(plannableC.getPrevEndDate()));
+			txtPrevEndDate.setText(Functions.dateToString(plannableC.getPrevEndDate()));
 		}
 		else
 		{			
@@ -413,7 +457,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 		
 		if(plannableC.getRealStartDate() != null)
 		{
-			txtRealStartDate.setText(Utils.dateToString(plannableC.getRealStartDate()));
+			txtRealStartDate.setText(Functions.dateToString(plannableC.getRealStartDate()));
 		}
 		else
 		{			
@@ -422,7 +466,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 		
 		if(plannableC.getRealEndDate() != null)
 		{
-			txtRealEndDate.setText(Utils.dateToString(plannableC.getRealEndDate()));
+			txtRealEndDate.setText(Functions.dateToString(plannableC.getRealEndDate()));
 		}
 		else
 		{			
@@ -476,7 +520,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 		
 		if(plannableC.getStartOffsetPrct() != null)
 		{
-			txtStartOffset2.setText(Utils.doubleToString(plannableC.getStartOffsetPrct()));
+			txtStartOffset2.setText(Functions.doubleToString(plannableC.getStartOffsetPrct()));
 		}
 		else
 		{			
@@ -485,7 +529,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 		
 		if(plannableC.getDurationOffsetPrct() != null)
 		{
-			txtDurationOffset2.setText(Utils.doubleToString(plannableC.getDurationOffsetPrct()));
+			txtDurationOffset2.setText(Functions.doubleToString(plannableC.getDurationOffsetPrct()));
 		}
 		else
 		{			
@@ -494,7 +538,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 		
 		if(plannableC.getGlobalOffsetPrct() != null)
 		{
-			txtGlobalOffset2.setText(Utils.doubleToString(plannableC.getGlobalOffsetPrct()));
+			txtGlobalOffset2.setText(Functions.doubleToString(plannableC.getGlobalOffsetPrct()));
 		}
 		else
 		{			
@@ -517,6 +561,24 @@ public class ViewPlannable extends javax.swing.JPanel {
 		else
 		{			
 			txtRealWorkAmount.setText("n/a");
+		}
+		
+		if(plannableC.getWorkAmountOffset() != null)
+		{
+			txtWorkAmountOffset.setText(plannableC.getWorkAmountOffset().toString());
+		}
+		else
+		{			
+			txtWorkAmountOffset.setText("n/a");
+		}
+		
+		if(plannableC.getWorkAmountOffsetPrct() != null)
+		{
+			txtWorkAmountOffsetPrct.setText(plannableC.getWorkAmountOffsetPrct().toString());
+		}
+		else
+		{			
+			txtWorkAmountOffsetPrct.setText("n/a");
 		}
 	}	
 	
@@ -590,10 +652,10 @@ public class ViewPlannable extends javax.swing.JPanel {
 		WorkBreakDownElement wbe1 = null;
 		try {
 			wbe1 = new WorkBreakDownElement("wbe1",
-					"Mettre en place le projet", Utils
-							.stringToDate("01-09-2005"), Utils
-							.stringToDate("20-09-2005"), new Double(15), Utils
-							.stringToDate("05-09-2005"), Utils
+					"Mettre en place le projet", Functions
+							.stringToDate("01-09-2005"), Functions
+							.stringToDate("20-09-2005"), new Double(15), Functions
+							.stringToDate("05-09-2005"), Functions
 							.stringToDate("15-09-2005"), new Double(16));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

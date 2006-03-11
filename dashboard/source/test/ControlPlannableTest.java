@@ -3,9 +3,11 @@ package test;
 import junit.framework.TestCase;
 
 import java.util.Date;
+import java.util.HashMap;
+
 import control.ControlPlannable;
-import control.Utils;
 import entity.Plannable;
+import entity.Resource;
 	
 public class ControlPlannableTest extends TestCase {
 		private ControlPlannable plannableC1;
@@ -24,8 +26,13 @@ public class ControlPlannableTest extends TestCase {
 			public  Date getPrevEndDate(){return (null);}
 			public  String getName(){return ("");}
 			public  String getId(){return ("");}
+			@Override
+			public HashMap<Resource, Double> getResourcesUsage() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 			});
-		plannableC2 = new ControlPlannable(new Plannable ()){
+		plannableC2 = new ControlPlannable(new Plannable (){
 			public  Double getPrevWorkAmount(){return (100001.0);}
 			public  Double getRealWorkAmount(){return (100000.0);}
 			public  Date getPrevStartDate(){
@@ -46,7 +53,12 @@ public class ControlPlannableTest extends TestCase {
 				return (d);}
 			public  String getName(){return ("p2");}
 			public  String getId(){return ("p2");}
-			});
+			@Override
+			public HashMap<Resource, Double> getResourcesUsage() {
+				// TODO Auto-generated method stub
+				return null;
+			}			
+		});
 		plannableC3 = new ControlPlannable(new Plannable (){
 			public  Double getPrevWorkAmount(){return (10000.0);}
 			public  Double getRealWorkAmount(){return (10001.0);}
@@ -69,6 +81,11 @@ public class ControlPlannableTest extends TestCase {
 				return (d);}
 			public  String getName(){return ("p3");}
 			public  String getId(){return ("p3");}
+			@Override
+			public HashMap<Resource, Double> getResourcesUsage() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 			});
 		plannableC4 = new ControlPlannable(new Plannable (){
 			public  Double getPrevWorkAmount(){return (0.1);}
@@ -92,6 +109,11 @@ public class ControlPlannableTest extends TestCase {
 				return (d);}
 			public  String getName(){return ("p4");}
 			public  String getId(){return ("p4");}
+			@Override
+			public HashMap<Resource, Double> getResourcesUsage() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 			});
 	}
 	/*@author Alexandre SIMONNET

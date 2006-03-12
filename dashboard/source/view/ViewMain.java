@@ -200,7 +200,7 @@ public class ViewMain extends javax.swing.JFrame {
         projectMenu.add(newProjectMenu);
         
         
-        importPSIMenu.setText("importer PSI...");
+        importPSIMenu.setText("Import une étape...");
         importPSIMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 importPSIMenuActionPerformed(evt);
@@ -369,6 +369,7 @@ public class ViewMain extends javax.swing.JFrame {
     }
 
     private void importPSIMenuActionPerformed(java.awt.event.ActionEvent evt) {
+    	/*
     	int index = jList1.getSelectedIndex();
 		if(index >= 0){
 			try {
@@ -387,7 +388,7 @@ public class ViewMain extends javax.swing.JFrame {
 	        updateProjectTree(envC.getControlProjects().get(index));
 	        updateInfoPanel();
 		}
-		
+		*/
     }
     
     /** Exit the Application */

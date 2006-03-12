@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -18,11 +19,15 @@ import org.jfree.chart.JFreeChart;
 
 import org.jfree.data.general.DefaultPieDataset;
 
+import utils.Pair;
+
 public class ViewResourceUsage extends JFrame
 {
+	
 private ChartPanel p;
-private Container container; 
-	public ViewResourceUsage(HashMap<String,Double> map)
+private Container container;
+
+	public ViewResourceUsage(String title, ArrayList<Pair<String, Double>> map)
 	{
 		/* 'map' contient les couples nom-charge_de_travail à afficher*/
 		
@@ -39,44 +44,34 @@ private Container container;
 			this.setSize(400,400) ;
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 			this.setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2); 
-			this.setVisible(true);
-			p.setVisible(true); 
-			container.add(p,BorderLayout.CENTER) ;
-			
-			
+			container.add(p,BorderLayout.CENTER) ;			
 		}
 		
-		/*public void refresh(String p)
-		{
-		 
-	    	ViewProjectVariation t = new ViewProjectVariation(p,cp) ;
-	    	 
-		}*/
-		public DefaultPieDataset extractPieDataSet(HashMap<String,Double> map)
+		
+	
+		public DefaultPieDataset extractPieDataSet(ArrayList<Pair<String, Double>> map)
 		{
 			DefaultPieDataset dpd = new DefaultPieDataset();
 			
-			Set listKey=map.keySet();
-			Iterator i = listKey.iterator();
-			String key = new String();
-			while (i.hasNext())
-			{	key=(String)i.next();
-				System.out.println(key + " - " + map.get(key));
-				
-				dpd.setValue(key,map.get(key));
+			for(Pair<String, Double> pair: map)
+			{				
+				String key = pair.getFirst();
+				Double value = pair.getSecond();
+				dpd.setValue(key,value);
 			}
 			return dpd;
 		}
 		
 		
+		
 		public static void main(String args[]) 
 		{
-			HashMap<String,Double> map = new HashMap<String,Double>();
-			map.put("eric", 12.5);
-			map.put("jo", 18.7);
-			map.put("lysie", 5.0);
-			map.put("aline", 50.0);
-			ViewResourceUsage v = new ViewResourceUsage(map);
+			ArrayList<Pair<String, Double>> map = new ArrayList<Pair<String, Double>>();
+			map.add(new Pair<String, Double>("eric", 12.5));
+			map.add(new Pair<String, Double>("jo", 18.7));
+			map.add(new Pair<String, Double>("lysie", 5.0));
+			map.add(new Pair<String, Double>("aline", 50.0));
+			ViewResourceUsage v = new ViewResourceUsage("activité i", map);
 			v.setVisible(true);
 		}
 			

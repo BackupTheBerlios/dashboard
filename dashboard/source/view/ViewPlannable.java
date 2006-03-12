@@ -399,7 +399,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 
         jPanel1.add(contentPanel, java.awt.BorderLayout.CENTER);
 
-        bResUsg.setText("Resource usage...");
+        bResUsg.setText("Utilisation des ressources...");
         bResUsg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bResUsgMouseClicked(evt);
@@ -419,7 +419,7 @@ public class ViewPlannable extends javax.swing.JPanel {
     
     
 	private void bResUsgMouseClicked(java.awt.event.MouseEvent evt) {
-		ViewResourceUsage v = new ViewResourceUsage(plannableC.getResourcesUsage());
+		ViewResourceUsage v = new ViewResourceUsage(plannableC.getName(), plannableC.getResourcesUsage());
 		v.setVisible(true);
 	}
 
@@ -574,7 +574,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 		
 		if(plannableC.getWorkAmountOffsetPrct() != null)
 		{
-			txtWorkAmountOffsetPrct.setText(plannableC.getWorkAmountOffsetPrct().toString());
+			txtWorkAmountOffsetPrct.setText(Functions.doubleToString(plannableC.getWorkAmountOffsetPrct()));
 		}
 		else
 		{			

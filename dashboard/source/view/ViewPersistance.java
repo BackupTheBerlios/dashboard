@@ -7,6 +7,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
+import utils.Functions;
+
 import control.*;
 import examples.TestEntity;
 
@@ -22,7 +24,7 @@ public class ViewPersistance extends JFileChooser
 		    	return true;
 		    }
 
-		    String extension = Utils.getFileNameExtension(f.getName());
+		    String extension = Functions.getFileNameExtension(f.getName());
 		    if (extension != null) 
 		    {
 				if (extension.equalsIgnoreCase(new String("ddb")))

@@ -1,7 +1,11 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
+import utils.Functions;
+import utils.Pair;
 
 import entity.Plannable;
 import entity.Resource;
@@ -98,10 +102,37 @@ public class ControlPlannable
 	 * @author Olivier TANKOANO
 	 * computes the difference between the real work amount and the
 	 * previsionnal work amount read from "plannable" member
-	 * @return plannable.getRealWorkAmount() - plannable.getPrevWorkAmount()	 *    
+	 * @return plannable.getRealWorkAmount() - plannable.getPrevWorkAmount() or null
+	 * if any is null    
 	**/
 	public Double getWorkAmountOffset() {
-		return plannable.getRealWorkAmount() - plannable.getPrevWorkAmount();
+		if((plannable.getRealWorkAmount()!=null) && (plannable.getPrevWorkAmount()!=null))
+		{
+			return plannable.getRealWorkAmount() - plannable.getPrevWorkAmount();
+		}
+		else
+		{			
+			return null;
+		}
+		
+	}
+	
+	
+	
+	/**
+	 * @author Olivier TANKOANO
+	 * percentage version of getWorkAmountOffset()
+	 * @return (plannable.getRealWorkAmount() - plannable.getPrevWorkAmount())/plannable.getPrevWorkAmount() * 100 or null 	     
+	**/
+	public Double getWorkAmountOffsetPrct() {
+		if(getWorkAmountOffset()!=null)
+		{
+			return getWorkAmountOffset() / getPrevWorkAmount() * 100;
+		}
+		else
+		{			
+			return null;
+		}
 	}
 	
 	
@@ -118,7 +149,7 @@ public class ControlPlannable
 	{
 		if((plannable.getRealStartDate()!=null) && (plannable.getPrevStartDate()!=null))
 		{
-			return Utils.subDates(plannable.getRealStartDate(),plannable.getPrevStartDate());
+			return Functions.subDates(plannable.getRealStartDate(),plannable.getPrevStartDate());
 		}
 		else
 		{			
@@ -159,7 +190,7 @@ public class ControlPlannable
 	{
 		if((plannable.getRealEndDate()!=null) && (plannable.getPrevEndDate()!=null))
 		{
-			return Utils.subDates(plannable.getRealEndDate(),plannable.getPrevEndDate());
+			return Functions.subDates(plannable.getRealEndDate(),plannable.getPrevEndDate());
 		}
 		else
 		{
@@ -241,7 +272,7 @@ public class ControlPlannable
 	{
 		if((plannable.getRealEndDate()!=null) && (plannable.getRealStartDate()!=null))
 		{
-			return Utils.subDates(plannable.getRealEndDate(),plannable.getRealStartDate());
+			return Functions.subDates(plannable.getRealEndDate(),plannable.getRealStartDate());
 		}
 		else
 		{
@@ -262,7 +293,7 @@ public class ControlPlannable
 	{
 		if((plannable.getPrevEndDate()!=null) && (plannable.getPrevStartDate()!=null))
 		{
-			return Utils.subDates(plannable.getPrevEndDate(),plannable.getPrevStartDate());
+			return Functions.subDates(plannable.getPrevEndDate(),plannable.getPrevStartDate());
 		}
 		else
 		{
@@ -301,18 +332,22 @@ public class ControlPlannable
 	 * of the resources
 	 * @return <String, Double> showing resources usage	  
 	**/
-	public HashMap<String, Double> getResourcesUsage() 
+	public ArrayList<Pair<String, Double>> getResourcesUsage() 
 	{
 		HashMap<Resource, Double> map1 = plannable.getResourcesUsage();
-		HashMap<String, Double> map2 = new HashMap<String, Double>();
+		ArrayList<Pair<String, Double>> map2 = new ArrayList<Pair<String, Double>>();
 		for(Resource r: map1.keySet())
 		{
-			map2.put(r.getName(), map1.get(r));
+			map2.add(new Pair<String, Double>(r.getName(), map1.get(r)));
 		}		
 		return map2;
 	}
+	
+	
+	
+	
 	public String toString()
 	{
-		return getId() + " - " + getName();
+		return getName();
 	}
 }

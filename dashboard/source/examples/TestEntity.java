@@ -1,5 +1,6 @@
 package examples;
 
+import utils.Functions;
 import entity.*;
 import control.*;
 
@@ -55,19 +56,19 @@ public class TestEntity
 			
 			// wbes creation
 			WorkBreakDownElement wbe1 = new WorkBreakDownElement("wbe1",
-					"Mettre en place le projet", Utils
-							.stringToDate("20-09-2005"), Utils
-							.stringToDate("05-10-2005"), new Double(15), Utils
-							.stringToDate("25-09-2005"), Utils
+					"Mettre en place le projet", Functions
+							.stringToDate("20-09-2005"), Functions
+							.stringToDate("05-10-2005"), new Double(15), Functions
+							.stringToDate("25-09-2005"), Functions
 							.stringToDate("12-10-2005"), null);
 			it1.getWbes().add(wbe1);
 			wsGes.getWorkBreakDowElements().add(wbe1);
 			
 			WorkBreakDownElement wbe2 = new WorkBreakDownElement("wbe2",
-					"Recueillir les exigences", Utils
-							.stringToDate("05-10-2005"), Utils
-							.stringToDate("20-10-2005"), new Double(4), Utils
-							.stringToDate("12-10-2005"), Utils
+					"Recueillir les exigences", Functions
+							.stringToDate("05-10-2005"), Functions
+							.stringToDate("20-10-2005"), new Double(4), Functions
+							.stringToDate("12-10-2005"), Functions
 							.stringToDate("29-10-2005"), null
 
 			);
@@ -75,9 +76,9 @@ public class TestEntity
 			wsGes.getWorkBreakDowElements().add(wbe2);			
 			
 			WorkBreakDownElement wbe3 = new WorkBreakDownElement("wbe3",
-					"Rédiger les documents", Utils.stringToDate("20-10-2005"),
-					Utils.stringToDate("28-10-2005"), new Double(27), Utils
-							.stringToDate("29-10-2005"), Utils
+					"Rédiger les documents", Functions.stringToDate("20-10-2005"),
+					Functions.stringToDate("28-10-2005"), new Double(27), Functions
+							.stringToDate("29-10-2005"), Functions
 							.stringToDate("05-11-2005"), null
 
 			);
@@ -85,19 +86,19 @@ public class TestEntity
 			wsDocs.getWorkBreakDowElements().add(wbe3);
 			
 			WorkBreakDownElement wbe4 = new WorkBreakDownElement("wbe4",
-					"Coder un prototype", Utils.stringToDate("28-10-2005"),
-					Utils.stringToDate("20-11-2005"), new Double(50), Utils
-							.stringToDate("05-11-2005"), Utils
+					"Coder un prototype", Functions.stringToDate("28-10-2005"),
+					Functions.stringToDate("20-11-2005"), new Double(50), Functions
+							.stringToDate("05-11-2005"), Functions
 							.stringToDate("25-11-2005"), null
 
 			);
 			it2.getWbes().add(wbe4);
 			
 			WorkBreakDownElement wbe5 = new WorkBreakDownElement("wbe5",
-					"Mettre à jour les documents", Utils
-							.stringToDate("20-11-2005"), Utils
-							.stringToDate("30-11-2005"), new Double(5), Utils
-							.stringToDate("25-11-2005"), Utils
+					"Mettre à jour les documents", Functions
+							.stringToDate("20-11-2005"), Functions
+							.stringToDate("30-11-2005"), new Double(5), Functions
+							.stringToDate("25-11-2005"), Functions
 							.stringToDate("12-12-2005"), null
 
 			);
@@ -164,20 +165,20 @@ public class TestEntity
 
 			// wbes creation
 			WorkBreakDownElement wbe1 = new WorkBreakDownElement("wbe1",
-					"Mettre en place le projet", Utils
-							.stringToDate("25-09-2005"), Utils
-							.stringToDate("01-10-2005"), new Double(41), Utils
-							.stringToDate("26-09-2005"), Utils
+					"Mettre en place le projet", Functions
+							.stringToDate("25-09-2005"), Functions
+							.stringToDate("01-10-2005"), new Double(41), Functions
+							.stringToDate("26-09-2005"), Functions
 							.stringToDate("10-10-2005"), null);
 			it1.getWbes().add(wbe1);
 		
 			wsGes.getWorkBreakDowElements().add(wbe1);
 			
 			WorkBreakDownElement wbe2 = new WorkBreakDownElement("wbe2",
-					"Recueillir les exigences", Utils
-							.stringToDate("01-10-2005"), Utils
-							.stringToDate("27-10-2005"), new Double(10), Utils
-							.stringToDate("10-10-2005"), Utils
+					"Recueillir les exigences", Functions
+							.stringToDate("01-10-2005"), Functions
+							.stringToDate("27-10-2005"), new Double(10), Functions
+							.stringToDate("10-10-2005"), Functions
 							.stringToDate("29-10-2005"), null
 
 			);
@@ -185,9 +186,9 @@ public class TestEntity
 			wsGes.getWorkBreakDowElements().add(wbe2);			
 			
 			WorkBreakDownElement wbe3 = new WorkBreakDownElement("wbe3",
-					"Rédiger les documents", Utils.stringToDate("27-10-2005"),
-					Utils.stringToDate("20-11-2005"), new Double(17), Utils
-							.stringToDate("29-10-2005"), Utils
+					"Rédiger les documents", Functions.stringToDate("27-10-2005"),
+					Functions.stringToDate("20-11-2005"), new Double(17), Functions
+							.stringToDate("29-10-2005"), Functions
 							.stringToDate("25-11-2005"), null
 
 			);
@@ -195,19 +196,19 @@ public class TestEntity
 			wsDocs.getWorkBreakDowElements().add(wbe3);
 			
 			WorkBreakDownElement wbe4 = new WorkBreakDownElement("wbe4",
-					"Coder un prototype", Utils.stringToDate("20-11-2005"),
-					Utils.stringToDate("29-11-2005"), new Double(1), Utils
-							.stringToDate("25-11-2005"), Utils
+					"Coder un prototype", Functions.stringToDate("20-11-2005"),
+					Functions.stringToDate("29-11-2005"), new Double(1), Functions
+							.stringToDate("25-11-2005"), Functions
 							.stringToDate("29-11-2005"),null
 
 			);
 			it2.getWbes().add(wbe4);
 			
 			WorkBreakDownElement wbe5 = new WorkBreakDownElement("wbe5",
-					"Mettre à jour les documents", Utils
-							.stringToDate("29-11-2005"), Utils
-							.stringToDate("30-11-2005"), new Double(15), Utils
-							.stringToDate("29-11-2005"), Utils
+					"Mettre à jour les documents", Functions
+							.stringToDate("29-11-2005"), Functions
+							.stringToDate("30-11-2005"), new Double(15), Functions
+							.stringToDate("29-11-2005"), Functions
 							.stringToDate("03-12-2005"), null
 
 			);

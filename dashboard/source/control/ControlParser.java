@@ -18,6 +18,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import utils.Functions;
+
 import entity.Activity;
 import entity.Project;
 import entity.Resource;
@@ -219,6 +221,219 @@ public class ControlParser extends DefaultHandler{
 	}
 	
 
+<<<<<<< ControlParser.java
+	
+   
+   // simple constructeur
+   public ControlParser(Project p) throws ParserConfigurationException, SAXException, IOException{
+      super();	
+      /// temporaire normalement projet à importer
+      project  = p;
+      if(project == null)
+    	  project = new Project();
+      activityHierrarchy.add(0, project);
+      this.parse();
+
+  
+      
+   }
+   
+   public void setFileWithFileSystem(){
+	   file = ControlParser.loadSystemFile();
+   }
+    
+   public static File loadSystemFile(){
+	   
+		   JFileChooser selecteur = new JFileChooser(); 
+		   Filters filtre = new Filters();
+		   selecteur.addChoosableFileFilter(filtre);
+		   selecteur.setAcceptAllFileFilterUsed(false);
+		   
+		   if(selecteur.showOpenDialog(null) ==  JFileChooser.APPROVE_OPTION) { 
+			   return selecteur.getSelectedFile(); 
+		   }
+		   return null;
+	  
+   }
+
+   //methode SAX de
+   //détection de l'événement "ouverture de balise"
+   public void startElement(String uri,
+                         String localName,
+                         String qName,
+                         Attributes attributes)
+                  throws SAXException{
+	   
+	   	  String id = null;
+	   
+		   switch(typeBalise.get(qName).intName){
+    	  
+		   		case PROJECT:
+		   			 id = attributes.getValue("id");
+           	
+		   			if(id == null )
+		   				throw new SAXException("id projet non précisé");
+           	
+		   			if(activityHierrarchy.size() != 1)
+		   				throw new SAXException("Erreur dans la hierrarchy");
+		   			
+		   			if(activityHierrarchy.get(0).getId() != null && !activityHierrarchy.get(0).getId().equals("")){
+		   				if(! (activityHierrarchy.get(0).getId().equals(id)))
+		   					throw new SAXException("le fichier ne crorrespond pas au projet");
+		   			}
+		   			else{
+		   				activityHierrarchy.get(0).setId(id);
+		   			}
+		   			break;
+		   			
+		   		case ACTIVITY:
+    	  
+		   			Activity activity = null;
+
+		   			id = attributes.getValue("id");
+		   			if(id == null )
+		   				throw new SAXException("id activité non précisé");
+		   			
+		   			for(Activity act : activityHierrarchy.get(0).getSubActivities()){
+		   				if(act != null && act.getId().equals(id)){
+		   					activity = act; 
+		   					break;
+		   				}
+		   			}
+		   			if(activity == null){
+		   				activity = new Activity();
+		   				activity.setId(id);
+		   				activityHierrarchy.get(0).getSubActivities().add(activity);
+		   			}
+            
+		   			
+		   			activityHierrarchy.add(0,activity);
+		   			
+		   			break;
+		   			
+		   		case WORKBREAKDOWN:
+		   			inWBE = true;
+		   			id = attributes.getValue("id");
+		   			if(id == null )
+		   				throw new SAXException("id wbe non précisé");
+		   			for(WorkBreakDownElement w : activityHierrarchy.get(0).getWbes()){
+		   				if(w != null && w.getId().equals(id)){
+		   					wbe = w; 
+		   					break;
+		   				}
+		   			}
+		   			if(wbe == null){
+		   				wbe = new WorkBreakDownElement();
+			   			wbe.setId(id);
+			   			activityHierrarchy.get(0).getWbes().add(wbe);
+		   			}
+            
+		   			
+		   			
+		   			
+		   			break;
+		   			
+		   		case WORKING:
+		   			
+		   			inWorking = true;
+		   			for(Working w : wbe.getWorkings()){
+		   				if(w != null && w.getId() != null && w.getId().equals(id)){
+		   					working = w; 
+		   					break;
+		   				}
+		   			}
+		   			if(working == null){
+		   				working = new Working(id);
+			   			wbe.getWorkings().add(working);
+		   			}
+
+		   		
+		   			break;
+		   			
+		   		case RESOURCE:
+	            	id = attributes.getValue("id");
+	            	if(id == null )
+	             		throw new SAXException("id working non précisé");
+	            	if(inWorking){
+	            		try {
+							working.setResource(project.findResourceById(id));
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
+	            	else{
+	            		
+	            		try {
+							resource = project.findResourceById(id);
+						} catch (Exception e) {
+							resource = new Resource(id);
+				   			project.getResources().add(resource);
+						}
+
+	            			
+	            	}
+	            	
+	            	break;
+	            	
+		   		case WSET:
+		   			id = attributes.getValue("id");
+	            	if(id == null )
+	             		throw new SAXException("id wbeset non précisé");
+	            	if(inWBE){
+	            		try {
+							wbeset = project.findWbeSetById(id);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            		if(wbe != null) {
+	            			wbeset.getWorkBreakDowElements().add(wbe);
+	            		}
+	            		
+	            	}
+	            	else{
+	            		
+	            		try {
+	            			wbeset = project.findWbeSetById(id);
+						} catch (Exception e) {
+							wbeset = new WBESet(id);
+				   			project.getWbeSets().add(wbeset);
+						}
+
+	            			
+	            	}
+	            	
+	            	break;
+		   		default: 
+		   			break;
+		   }
+		   
+		   switch(typeBalise.get(qName).type){
+		   		case TYPE_NODE:
+		   			baliseNiveauCourant = typeBalise.get(qName).intName;
+		   			break;
+		   		default:
+		   			break;
+		   }
+ 
+
+
+   }
+   //détection fin de balise
+   public void endElement(String uri,
+                       String localName,
+                       String qName)
+                throws SAXException{
+
+		   switch(typeBalise.get(qName).type){
+		   
+		   	case TYPE_DATE:
+		   		date = null;
+		   		try {
+					date = Functions.stringToDate(temp);
+				} catch (ParseException e) {
+=======
 	//methode SAX de
 	//détection de l'événement "ouverture de balise"
 	public void startElement(String uri,
@@ -406,6 +621,7 @@ public class ControlParser extends DefaultHandler{
 
 					date = Utils.stringToDate(temp);
 				} catch (Exception e) {
+>>>>>>> 1.10
 					date = null;
 					//e.printStackTrace();
 				}

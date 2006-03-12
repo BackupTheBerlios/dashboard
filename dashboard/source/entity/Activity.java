@@ -90,6 +90,7 @@ public class Activity extends Plannable implements Serializable{
 			res = subActivities.iterator().next().getPrevEndDate();
 			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 				Activity ac = it.next();
+				if(ac.getPrevEndDate() != null)
 				if (res.before(ac.getPrevEndDate())) {
 					res = ac.getPrevEndDate();
 				}
@@ -99,6 +100,7 @@ public class Activity extends Plannable implements Serializable{
 			res = wbes.iterator().next().getPrevEndDate();
 			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 				WorkBreakDownElement wbe = it.next();
+				if(wbe.getPrevEndDate() != null)
 				if (res.before(wbe.getPrevEndDate())) {
 					res = wbe.getPrevEndDate();
 				}
@@ -122,6 +124,7 @@ public class Activity extends Plannable implements Serializable{
 			res = subActivities.iterator().next().getPrevStartDate();
 			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 				Activity ac = it.next();
+				if(ac.getPrevStartDate() != null)
 				if (res.after(ac.getPrevStartDate())) {
 					res = ac.getPrevStartDate();
 				}
@@ -131,6 +134,7 @@ public class Activity extends Plannable implements Serializable{
 			res = wbes.iterator().next().getPrevStartDate();
 			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 				WorkBreakDownElement wbe = it.next();
+				if(wbe.getPrevStartDate() != null)
 				if (res.after(wbe.getPrevStartDate())) {
 					res = wbe.getPrevStartDate();
 				}
@@ -151,11 +155,13 @@ public class Activity extends Plannable implements Serializable{
 		double amount = 0;
 		for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 			Activity ac = it.next();
-			amount = amount + ac.getPrevWorkAmount();
+			if(ac.getPrevWorkAmount() != null)
+				amount = amount + ac.getPrevWorkAmount();
 		}
 		for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 			WorkBreakDownElement wbe = it.next();
-			amount = amount + wbe.getPrevWorkAmount();
+			if(wbe.getPrevWorkAmount() != null)
+				amount = amount + wbe.getPrevWorkAmount();
 		}
 		return new Double(amount);
 	}
@@ -174,6 +180,7 @@ public class Activity extends Plannable implements Serializable{
 			res = subActivities.iterator().next().getRealEndDate();
 			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 				Activity ac = it.next();
+				if(ac.getRealEndDate() != null)
 				if (res.before(ac.getRealEndDate())) {
 					res = ac.getRealEndDate();
 				}
@@ -183,6 +190,7 @@ public class Activity extends Plannable implements Serializable{
 			res = wbes.iterator().next().getRealEndDate();
 			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 				WorkBreakDownElement wbe = it.next();
+				if(wbe.getRealEndDate() != null)
 				if (res.before(wbe.getRealEndDate())) {
 					res = wbe.getRealEndDate();
 				}
@@ -206,6 +214,7 @@ public class Activity extends Plannable implements Serializable{
 			res = subActivities.iterator().next().getRealStartDate();
 			for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 				Activity ac = it.next();
+				if(ac.getRealStartDate() != null)
 				if (res.after(ac.getRealStartDate())) {
 					res = ac.getRealStartDate();
 				}
@@ -215,6 +224,7 @@ public class Activity extends Plannable implements Serializable{
 			res = wbes.iterator().next().getRealStartDate();
 			for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 				WorkBreakDownElement wbe = it.next();
+				if(wbe.getRealStartDate() != null)
 				if (res.after(wbe.getRealStartDate())) {
 					res = wbe.getRealStartDate();
 				}
@@ -235,15 +245,19 @@ public class Activity extends Plannable implements Serializable{
 		double amount = 0;
 		for (Iterator<Activity> it = subActivities.iterator(); it.hasNext();) {
 			Activity ac = it.next();
-			amount = amount + ac.getRealWorkAmount();
+			if(ac.getRealWorkAmount()!=null)
+				amount = amount + ac.getRealWorkAmount();
 		}
 		for (Iterator<WorkBreakDownElement> it = wbes.iterator(); it.hasNext();) {
 			WorkBreakDownElement wbe = it.next();
-			amount = amount + wbe.getRealWorkAmount();
+			if(wbe.getRealWorkAmount()!=null)
+				amount = amount + wbe.getRealWorkAmount();
 		}
 		return new Double(amount);
 	}
 
+	
+	
 	/**
 	 * @return Returns the id.
 	 */
@@ -289,13 +303,7 @@ public class Activity extends Plannable implements Serializable{
 		this.subActivities = subActivities;
 	}
 
-	/**
-	 * @return Returns the wbes.
-	 */
-	public java.util.ArrayList<WorkBreakDownElement> getWbes() {
-		return wbes;
-	}
-
+	
 	/**
 	 * @param wbes The wbes to set.
 	 */
@@ -303,6 +311,17 @@ public class Activity extends Plannable implements Serializable{
 		this.wbes = wbes;
 	}
 
+	
+
+	/**
+	 * @return Returns the wbes.
+	 */
+	public java.util.ArrayList<WorkBreakDownElement> getWbes() {
+		return wbes;
+	}
+	
+	
+	
 	/**
 	 * @param 
 	 */
@@ -334,6 +353,8 @@ public class Activity extends Plannable implements Serializable{
 		}
 		throw new Exception("Unknown WorkBreakDownElement Id!");
 	}
+	
+	
 	
 	public java.util.ArrayList<WorkBreakDownElement> getWbesRecursive()
 	{
@@ -388,6 +409,8 @@ public class Activity extends Plannable implements Serializable{
 		
 		return map;
 	}
+
+
 
 } // end Activity
 

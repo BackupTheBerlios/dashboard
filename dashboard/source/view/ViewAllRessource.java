@@ -76,7 +76,7 @@ public class ViewAllRessource extends JFrame
 		
 	  
 	    
-	    JRadioButton rbtTempsReel= new JRadioButton("Charge réel");
+	    JRadioButton rbtTempsReel= new JRadioButton("Charges réelles");
 	    JRadioButton rbtNbtaches= new JRadioButton("Nombre de taches");
 	    
 	    //masque  chart 
@@ -114,7 +114,7 @@ public class ViewAllRessource extends JFrame
 	    container.add(haut,BorderLayout.SOUTH) ;
 		
 	    DefaultPieDataset pieData = this.extractPieDataSet(vect,"tempsReel") ;
-		JFreeChart chart = ChartFactory.createPieChart3D("Charges réel pour chaque ressource" ,pieData,true,false,false);
+		JFreeChart chart = ChartFactory.createPieChart3D("Charges réelles pour chaque ressource" ,pieData,true,false,false);
 		p = new ChartPanel(chart) ;
 		container.add(p,BorderLayout.CENTER) ;
 

@@ -46,10 +46,42 @@ public class ViewMain extends javax.swing.JFrame {
     
 	private ControlEnvironment envC;
 	
+    // Variables declaration - do not modify
+	private javax.swing.JMenuItem consoMenu;
+	private javax.swing.JMenuItem compareMenu;
+    private javax.swing.JSplitPane contentPane;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem helpContMenu;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem importPSIMenu;
+    private javax.swing.JMenu indicsMenu;
+    private javax.swing.JPanel infoPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JList jList1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTree jTree1;
+    private javax.swing.JSplitPane leftPanel;
+    private javax.swing.JMenuItem newProjectMenu;
+    private javax.swing.JMenuItem openMenu;
+    private javax.swing.JPanel projectListPanel;
+    private javax.swing.JMenu projectMenu;
+    private javax.swing.JMenuItem quitMenu;
+    private javax.swing.JMenuItem saveAsMenu;
+    private javax.swing.JMenuItem saveMenu;
+    private javax.swing.JPanel treePanel;
+    private javax.swing.JMenuItem variationMenu;
+    private javax.swing.JMenuItem ressourceMenu;
+    // End of variables declaration
+    
     
     
     /** Creates new form ViewMain */
     public ViewMain(ControlEnvironment pEnvC) {
+    	super("2DB");
     	envC = pEnvC;
         initComponents();
         updateProjectList();
@@ -85,12 +117,14 @@ public class ViewMain extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         importPSIMenu = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         quitMenu = new javax.swing.JMenuItem();
         projectMenu = new javax.swing.JMenu();
         indicsMenu = new javax.swing.JMenu();
         variationMenu = new javax.swing.JMenuItem();
         ressourceMenu = new javax.swing.JMenuItem();
         consoMenu = new javax.swing.JMenuItem();
+        compareMenu = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         helpContMenu = new javax.swing.JMenuItem();
         
@@ -244,6 +278,19 @@ public class ViewMain extends javax.swing.JFrame {
         });
         projectMenu.add(consoMenu);
 
+        
+        projectMenu.add(jSeparator3);
+
+        
+        
+        compareMenu.setText("Comparer les projets...");
+        compareMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	compareMenuActionPerformed(evt);
+            }
+        });
+        projectMenu.add(compareMenu);
+
         jMenuBar2.add(projectMenu);
 
         helpMenu.setText("Aide");
@@ -279,12 +326,20 @@ public class ViewMain extends javax.swing.JFrame {
     	        
     }
     
+    
+    
+    private void compareMenuActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+    	new ViewCompareProjects(envC).setVisible(true);    	        
+    }
+    
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
         showSelectedProject(evt);
     }
 
-    private void helpContMenuActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void helpContMenuActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        new ViewHelp("http://www.loc.gov/rr/international/portals.html");
     }
 
     private void ressourceMenuActionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,7 +401,8 @@ public class ViewMain extends javax.swing.JFrame {
     	}
     }
 
-    private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {
+    private void newMenuActionPerformed(java.awt.event.ActionEvent evt) 
+    {
         envC.reset();
         updateProjectList();
         updateProjectTree(null);
@@ -395,36 +451,6 @@ public class ViewMain extends javax.swing.JFrame {
     private void exitForm(java.awt.event.WindowEvent evt) {
         System.exit(0);
     }
-    
-    
-    // Variables declaration - do not modify
-    private javax.swing.JMenuItem consoMenu;
-    private javax.swing.JSplitPane contentPane;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenuItem helpContMenu;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenuItem importPSIMenu;
-    private javax.swing.JMenu indicsMenu;
-    private javax.swing.JPanel infoPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList jList1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTree jTree1;
-    private javax.swing.JSplitPane leftPanel;
-    private javax.swing.JMenuItem newProjectMenu;
-    private javax.swing.JMenuItem openMenu;
-    private javax.swing.JPanel projectListPanel;
-    private javax.swing.JMenu projectMenu;
-    private javax.swing.JMenuItem quitMenu;
-    private javax.swing.JMenuItem saveAsMenu;
-    private javax.swing.JMenuItem saveMenu;
-    private javax.swing.JPanel treePanel;
-    private javax.swing.JMenuItem variationMenu;
-    private javax.swing.JMenuItem ressourceMenu;
-    // End of variables declaration
     
     
     

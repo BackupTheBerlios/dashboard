@@ -38,7 +38,7 @@ private Container container;
 			
 			// pie chart 
 			DefaultPieDataset pieData = this.extractPieDataSet(map) ;
-			JFreeChart chart = ChartFactory.createPieChart("Utilisation des ressources" ,pieData,true,false,false);
+			JFreeChart chart = ChartFactory.createPieChart(title ,pieData,true,false,false);
 			p = new ChartPanel(chart) ;
 			this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			this.setSize(400,400) ;

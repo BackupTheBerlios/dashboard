@@ -81,12 +81,6 @@ public class ViewCompareProjects extends JFrame
         criteriaCombo = new javax.swing.JComboBox();
         graphPanel = new javax.swing.JPanel();
 
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                exitForm(evt);
-            }
-        });
-
         jPanel1.setLayout(new java.awt.GridLayout(2, 1));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -51,6 +51,8 @@ public class ViewMain extends javax.swing.JFrame {
 	private javax.swing.JMenuItem compareMenu;
     private javax.swing.JSplitPane contentPane;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem warningSettingMenu;
+    private javax.swing.JMenu settingMenu;
     private javax.swing.JMenuItem helpContMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem importPSIMenu;
@@ -125,6 +127,8 @@ public class ViewMain extends javax.swing.JFrame {
         ressourceMenu = new javax.swing.JMenuItem();
         consoMenu = new javax.swing.JMenuItem();
         compareMenu = new javax.swing.JMenuItem();
+        settingMenu = new javax.swing.JMenu();
+        warningSettingMenu = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         helpContMenu = new javax.swing.JMenuItem();
         
@@ -290,9 +294,22 @@ public class ViewMain extends javax.swing.JFrame {
             }
         });
         projectMenu.add(compareMenu);
-
-        jMenuBar2.add(projectMenu);
-
+        
+        
+         jMenuBar2.add(projectMenu);
+        
+        warningSettingMenu.setText("Réglages des seuils d'alertes");
+        settingMenu.setText("Réglages");
+        
+        warningSettingMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	warningPropertiesMenuActionPerformed(evt);
+            }
+        });
+        settingMenu.add(warningSettingMenu);
+        jMenuBar2.add(settingMenu);
+        
+        
         helpMenu.setText("Aide");
         helpContMenu.setText("Sommaire");
         helpContMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -341,7 +358,10 @@ public class ViewMain extends javax.swing.JFrame {
     {
         new ViewHelp("http://www.loc.gov/rr/international/portals.html");
     }
-
+    private void warningPropertiesMenuActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        new ViewWarningProperties ();;
+    }
     private void ressourceMenuActionPerformed(java.awt.event.ActionEvent evt) {
     	 
     	int index = jList1.getSelectedIndex();

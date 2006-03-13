@@ -17,6 +17,8 @@ import org.jfree.data.gantt.TaskSeries;
 import org.jfree.data.gantt.TaskSeriesCollection;
 import org.jfree.data.time.SimpleTimePeriod;
 
+import utils.Pair;
+
 import control.ControlPlannable;
 import control.ControlProject;
 
@@ -63,7 +65,7 @@ public class SubViewStep extends JFrame{
 			this.milieu.setLayout(new GridLayout(4,1,0,0));
 			Activity a = (Activity) this.activites.get(0);
 			ControlPlannable cpa=new ControlPlannable(a);
-			HashMap<String,Double> map=cpa.getResourcesUsage();		
+			ArrayList<Pair<String,Double>> map=cpa.getResourcesUsage();		
 			JLabel label=new JLabel("Nombre de ressources : "+map.size());
 			JLabel label2=new JLabel("Temps estimés : "+cpa.getPrevDuration());
 			JLabel label3=new JLabel("Temps consommé : "+cpa.getRealDuration());
@@ -111,7 +113,7 @@ public class SubViewStep extends JFrame{
 		this.milieu.setLayout(new GridLayout(4,1,0,0));
 		Activity a = (Activity) this.activites.get(i);
 		ControlPlannable cp=new ControlPlannable(a);
-		HashMap<String,Double> map=cp.getResourcesUsage();		
+		ArrayList<Pair<String,Double>> map=cp.getResourcesUsage();		
 		JLabel label=new JLabel("Nombre de ressources : "+map.size());
 		JLabel label2=new JLabel("Temps estimés : "+cp.getPrevDuration());
 		JLabel label3=new JLabel("Temps consommé : "+cp.getRealDuration());

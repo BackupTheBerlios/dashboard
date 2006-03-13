@@ -13,6 +13,8 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import utils.Pair;
+
 import control.ControlPlannable;
 import control.ControlProject;
 import entity.Activity;
@@ -75,13 +77,11 @@ public class SubViewRessources  extends JFrame {
 			for(int m =0 ;m<this.sousActivite.size();m++)
 			{			
 				ControlPlannable cpa=new ControlPlannable((WorkBreakDownElement)this.sousActivite.get(m));
-				HashMap<String,Double> map=cpa.getResourcesUsage();
-				Set listKey=map.keySet();
-				Iterator k = listKey.iterator();
-				String key = new String();
-				while (k.hasNext())
-				{	
-					key=(String)k.next();
+				ArrayList<Pair<String,Double>> map=cpa.getResourcesUsage();
+				String key;
+				for(Pair<String, Double> pair: map)
+				{
+					key=pair.getFirst();
 					if(key==((Resource)ressources.get(0)).getName())
 					{
 						donnees[l][0]=((WorkBreakDownElement)this.sousActivite.get(m)).getName();
@@ -141,13 +141,11 @@ public class SubViewRessources  extends JFrame {
 			for(int m =0 ;m<this.sousActivite.size();m++)
 			{			
 				ControlPlannable cpa=new ControlPlannable((WorkBreakDownElement)this.sousActivite.get(m));
-				HashMap<String,Double> map=cpa.getResourcesUsage();
-				Set listKey=map.keySet();
-				Iterator k = listKey.iterator();
-				String key = new String();
-				while (k.hasNext())
-				{	
-					key=(String)k.next();
+				ArrayList<Pair<String,Double>> map=cpa.getResourcesUsage();
+				String key;
+				for(Pair<String, Double> pair: map)
+				{
+					key=pair.getFirst();
 					if(key==((Resource)ressources.get(i)).getName())
 					{
 						donnees[l][0]=((WorkBreakDownElement)this.sousActivite.get(m)).getName();

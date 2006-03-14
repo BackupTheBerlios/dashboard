@@ -1,6 +1,6 @@
 package view;
 
-import entity.WarningLimit;
+import entity.Environment;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -44,8 +44,8 @@ public class ViewWarningProperties extends JDialog{
 		this.setLayout(new BorderLayout());
 		
 		
-		this.field1.setText(""+WarningLimit.getMinLimit());
-		this.field2.setText(""+WarningLimit.getMaxLimit());
+		this.field1.setText(""+Environment.getMinLimit());
+		this.field2.setText(""+Environment.getMaxLimit());
 		centre.setLayout(new GridLayout (2,2));
 		centre.add(this.jLabel1);
 		centre.add(this.field1);
@@ -102,8 +102,8 @@ public class ViewWarningProperties extends JDialog{
 		    						      JOptionPane.WARNING_MESSAGE);
 		    					
 		    				}else{
-		    					WarningLimit.setMinLimit(Integer.parseInt(ViewWarningProperties.this.field1.getText()));
-		    					WarningLimit.setMaxLimit(Integer.parseInt(ViewWarningProperties.this.field2.getText()));
+		    					Environment.setMinLimit(Integer.parseInt(ViewWarningProperties.this.field1.getText()));
+		    					Environment.setMaxLimit(Integer.parseInt(ViewWarningProperties.this.field2.getText()));
 		    					ViewWarningProperties.this.dispose();
 		    				}
 		    			}

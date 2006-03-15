@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import utils.Pair;
+
 /*
  * Java class "Activity.java" generated from Poseidon for UML.
  * Poseidon for UML is developed by <A HREF="http://www.gentleware.com">Gentleware</A>.
@@ -368,6 +370,26 @@ public class Activity extends Plannable implements Serializable{
 		return l;
 	}	
 	
+	private java.util.ArrayList<Pair<String,Plannable>> getHierrarchyRecursive(String name )
+	{
+		java.util.ArrayList<Pair<String,Plannable>> l = new java.util.ArrayList<Pair<String,Plannable>>();
+		
+		for(Activity ac:subActivities)
+		{
+			l.add(new Pair<String,Plannable>(name+":" + ac.getName(), ac));
+			for(WorkBreakDownElement wbe: ac.getWbes()){
+				l.add(new Pair<String,Plannable> (name+ ":" + ac.getName() +":" + wbe.getName(), wbe));
+			}
+			if(ac.subActivities.size() > 0)
+				l.addAll( ac.getHierrarchyRecursive(name+":" + ac.getName()));
+			
+		}
+		return l;
+	}
+	
+	public java.util.ArrayList<Pair<String,Plannable>> getHierrarchyRecursive(){
+		return this.getHierrarchyRecursive(this.getName());
+	}
 	
 	
 	/**

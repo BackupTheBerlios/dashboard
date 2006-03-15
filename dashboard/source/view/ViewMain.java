@@ -445,7 +445,7 @@ public class ViewMain extends javax.swing.JFrame {
     }
 
     private void importPSIMenuActionPerformed(java.awt.event.ActionEvent evt) {
-    	/*
+    	
     	int index = jList1.getSelectedIndex();
 		if(index >= 0){
 			try {
@@ -459,12 +459,15 @@ public class ViewMain extends javax.swing.JFrame {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			updateProjectList();
 	        updateProjectTree(envC.getControlProjects().get(index));
 	        updateInfoPanel();
 		}
-		*/
+		
     }
     
     /** Exit the Application */

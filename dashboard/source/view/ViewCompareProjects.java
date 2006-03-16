@@ -1,11 +1,14 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -28,7 +31,7 @@ import control.ControlEnvironment;
 
 
 
-public class ViewCompareProjects extends JFrame
+public class ViewCompareProjects extends JDialog
 {
 	private ControlEnvironment cEnv;
 
@@ -54,9 +57,11 @@ public class ViewCompareProjects extends JFrame
     // End of gui variables declaration
     	
 	
-	
-	public ViewCompareProjects(ControlEnvironment pCEnv)
+
+
+	public ViewCompareProjects(ControlEnvironment pCEnv, JFrame parent)
 	{
+		super(parent, false);
 		cEnv = pCEnv;
 		initComponents();
 		fillCriteriaCombo();	
@@ -293,7 +298,8 @@ public class ViewCompareProjects extends JFrame
         new ViewCompareProjects(
         			new ControlEnvironment(
         					TestEntity.createEnvironment()
-        			)
+        			),
+        			null
         ).setVisible(true);
     }
     

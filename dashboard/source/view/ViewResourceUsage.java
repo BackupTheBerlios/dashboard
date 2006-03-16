@@ -3,12 +3,15 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Toolkit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import javax.swing.WindowConstants;
@@ -21,17 +24,17 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import utils.Pair;
 
-public class ViewResourceUsage extends JFrame
+public class ViewResourceUsage extends JDialog
 {
 	
 private ChartPanel p;
 private Container container;
 
-	public ViewResourceUsage(String title, ArrayList<Pair<String, Double>> map)
+	public ViewResourceUsage(String title, ArrayList<Pair<String, Double>> map, Frame parent)
 	{
 		/* 'map' contient les couples nom-charge_de_travail à afficher*/
 		
-			super("Charges par ressource");
+			super(parent, "Charges par ressource", false);
 			
 			container = this.getContentPane() ;
 			container.setLayout(new BorderLayout());
@@ -71,7 +74,7 @@ private Container container;
 			map.add(new Pair<String, Double>("jo", 18.7));
 			map.add(new Pair<String, Double>("lysie", 5.0));
 			map.add(new Pair<String, Double>("aline", 50.0));
-			ViewResourceUsage v = new ViewResourceUsage("activité i", map);
+			ViewResourceUsage v = new ViewResourceUsage("activité i", map, null);
 			v.setVisible(true);
 		}
 			

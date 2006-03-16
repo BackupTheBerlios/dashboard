@@ -530,10 +530,19 @@ public class ViewMain extends javax.swing.JFrame {
 			
 			if(obj instanceof Project)
 			{
+				/*
 				Project p = (Project)obj;
 				infoPanel.removeAll();
 				infoPanel.add(
 						new ViewProject(new ControlProject(p)),
+						java.awt.BorderLayout.CENTER
+				);
+				infoPanel.updateUI();
+				*/
+				Activity a = (Activity)obj;
+				infoPanel.removeAll();
+				infoPanel.add(
+						new ViewPlannable(new ControlPlannable(a), this),
 						java.awt.BorderLayout.CENTER
 				);
 				infoPanel.updateUI();

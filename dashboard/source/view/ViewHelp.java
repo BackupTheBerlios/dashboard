@@ -7,6 +7,8 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -18,7 +20,7 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLFrameHyperlinkEvent;
 
 
-public class ViewHelp extends JFrame implements HyperlinkListener
+public class ViewHelp extends JDialog implements HyperlinkListener
 {
 	
 	  // Composant Swing permettant de visualiser un document
@@ -34,8 +36,8 @@ public class ViewHelp extends JFrame implements HyperlinkListener
 	  private Container container;
 	  private JToolBar BarredeNavigation;
 	  
-	public ViewHelp(String docHTML){
-		super("Aide 2DB");
+	public ViewHelp(String docHTML, JFrame parent){
+		super(parent, "Aide 2DB", false);
 
 
 		container = this.getContentPane() ;
@@ -168,7 +170,7 @@ public class ViewHelp extends JFrame implements HyperlinkListener
 
 	  public static void main (String [] args)
 	  {
-	    JFrame viewerFrame = new ViewHelp ("http://www.loc.gov/rr/international/portals.html");
+		ViewHelp viewerFrame = new ViewHelp ("http://www.loc.gov/rr/international/portals.html", null);
 	    //viewerFrame.setSize (400, 300);
 	    viewerFrame.setVisible(true);
 	  }

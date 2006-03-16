@@ -35,12 +35,13 @@ public class ViewPlannable extends javax.swing.JPanel {
 	 */
 
 	private ControlPlannable plannableC;
-
+	private JFrame parent;
 	
 	
 	/** Creates new form PlannableView */
-    public ViewPlannable(ControlPlannable p) 
+    public ViewPlannable(ControlPlannable p, JFrame pParent) 
     {
+    	parent = pParent;
     	plannableC = p;
         initComponents();
         updateDaysChart();
@@ -419,7 +420,7 @@ public class ViewPlannable extends javax.swing.JPanel {
     
     
 	private void bResUsgMouseClicked(java.awt.event.MouseEvent evt) {
-		ViewResourceUsage v = new ViewResourceUsage(plannableC.getName(), plannableC.getResourcesUsage());
+		ViewResourceUsage v = new ViewResourceUsage(plannableC.getName(), plannableC.getResourcesUsage(), parent);
 		v.setVisible(true);
 	}
 
@@ -661,7 +662,7 @@ public class ViewPlannable extends javax.swing.JPanel {
 			System.out.println(e.getMessage());
 		}
 
-		f.getContentPane().add(new ViewPlannable(new ControlPlannable(wbe1)));
+		f.getContentPane().add(new ViewPlannable(new ControlPlannable(wbe1),f));
 		f.setVisible(true);
 	}
 

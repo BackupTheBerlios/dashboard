@@ -143,7 +143,7 @@ public class ViewProjectVariation extends JFrame
 		
 		// Partie concernant la création du graphique du bar chart 
 		DefaultCategoryDataset dataset = this.extractDataSet(vect,params) ;
-		JFreeChart chart = ChartFactory.createBarChart("Project Variation"  ,"Iterations","Hours",dataset,PlotOrientation.VERTICAL,true,false,false);
+		JFreeChart chart = ChartFactory.createBarChart("Project Variation"  ,"Etapes","Heures",dataset,PlotOrientation.VERTICAL,true,false,false);
 		
 		CategoryPlot plo = chart.getCategoryPlot() ;
 		NumberAxis timeAxis = new NumberAxis("Heures"); 

@@ -347,7 +347,7 @@ public class ViewMain extends javax.swing.JFrame {
     
     private void compareMenuActionPerformed(java.awt.event.ActionEvent evt) 
     {
-    	new ViewCompareProjects(envC).setVisible(true);    	        
+    	new ViewCompareProjects(envC,this).setVisible(true);    	
     }
     
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -356,7 +356,7 @@ public class ViewMain extends javax.swing.JFrame {
 
     private void helpContMenuActionPerformed(java.awt.event.ActionEvent evt) 
     {
-        new ViewHelp("http://www.loc.gov/rr/international/portals.html");
+        new ViewHelp("http://www.loc.gov/rr/international/portals.html", this);
     }
     private void warningPropertiesMenuActionPerformed(java.awt.event.ActionEvent evt) 
     {
@@ -544,7 +544,7 @@ public class ViewMain extends javax.swing.JFrame {
 				Activity a = (Activity)obj;
 				infoPanel.removeAll();
 				infoPanel.add(
-						new ViewPlannable(new ControlPlannable(a)),
+						new ViewPlannable(new ControlPlannable(a), this),
 						java.awt.BorderLayout.CENTER
 				);
 				infoPanel.updateUI();
@@ -555,7 +555,7 @@ public class ViewMain extends javax.swing.JFrame {
 				WorkBreakDownElement w = (WorkBreakDownElement)obj;
 				infoPanel.removeAll();
 				infoPanel.add(
-						new ViewPlannable(new ControlPlannable(w)),
+						new ViewPlannable(new ControlPlannable(w), this),
 						java.awt.BorderLayout.CENTER
 				);
 				infoPanel.updateUI();

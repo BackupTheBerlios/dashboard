@@ -1,4 +1,7 @@
 package control;
+
+import java.awt.Color;
+
 /*
  * Java class "IndicatorState.java" generated from Poseidon for UML.
  * Poseidon for UML is developed by <A HREF="http://www.gentleware.com">Gentleware</A>.
@@ -23,6 +26,9 @@ public class IndicatorState {
 	 */
 	private int led; 
 	
+	public static int GOOD = 0;
+	public static int MEDIUM = 1;
+	public static int BAD = 2;
 	/**
 	 * <p>Represents ...</p>
 	 */

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Environment  implements Serializable
 {
 	
-	private static int minLimit=25;
-	private static int maxLimit=70;
+	private static int minLimit= -20;
+	private static int maxLimit= 20;
 	
 	/**
 	 * <p>

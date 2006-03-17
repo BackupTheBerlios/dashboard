@@ -34,6 +34,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import entity.Activity;
+import entity.Environment;
 import entity.Project;
 import entity.WorkBreakDownElement;
 import examples.TestEntity;
@@ -77,6 +78,7 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JPanel treePanel;
     private javax.swing.JMenuItem variationMenu;
     private javax.swing.JMenuItem ressourceMenu;
+    private javax.swing.JMenuItem alertMenu;
     // End of variables declaration
     
     
@@ -125,6 +127,7 @@ public class ViewMain extends javax.swing.JFrame {
         indicsMenu = new javax.swing.JMenu();
         variationMenu = new javax.swing.JMenuItem();
         ressourceMenu = new javax.swing.JMenuItem();
+        alertMenu = new javax.swing.JMenuItem();
         consoMenu = new javax.swing.JMenuItem();
         compareMenu = new javax.swing.JMenuItem();
         settingMenu = new javax.swing.JMenu();
@@ -262,12 +265,20 @@ public class ViewMain extends javax.swing.JFrame {
             }
         });
         
+        alertMenu.setText("alertes");
+        alertMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	alertMenuActionPerformed(evt);
+            }
+        });
+        projectMenu.add(alertMenu);
         ressourceMenu.setText("Ressources");
         ressourceMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	ressourceMenuActionPerformed(evt);
             }
         });
+        
         
         projectMenu.add(indicsMenu);
         
@@ -306,6 +317,8 @@ public class ViewMain extends javax.swing.JFrame {
             	warningPropertiesMenuActionPerformed(evt);
             }
         });
+        
+        
         settingMenu.add(warningSettingMenu);
         jMenuBar2.add(settingMenu);
         
@@ -468,6 +481,13 @@ public class ViewMain extends javax.swing.JFrame {
 	        updateInfoPanel();
 		}
 		
+    }
+    
+    private void alertMenuActionPerformed(java.awt.event.ActionEvent evt){
+    	int index = jList1.getSelectedIndex();
+    	if(index>=0)
+    		new ViewAlertProject(envC.getControlProjects().get(index), ((double)Environment.getMinLimit())/100.0, ((double)Environment.getMaxLimit())/100.0);
+    	
     }
     
     /** Exit the Application */

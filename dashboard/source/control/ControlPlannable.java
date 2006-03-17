@@ -18,7 +18,7 @@ import entity.Resource;
 public class ControlPlannable 
 {
 
-	private Plannable plannable;;  // object to manage through
+	private Plannable plannable;  // object to manage through
 
 	
 	
@@ -30,6 +30,10 @@ public class ControlPlannable
 	**/
 	public ControlPlannable(Plannable p) {
 		this.plannable = p;
+	}
+	
+	public ControlPlannable(){
+		
 	}
 
 	
@@ -349,5 +353,10 @@ public class ControlPlannable
 	public String toString()
 	{
 		return getName();
+	}
+
+
+	public void setPlannable(Plannable plannable) {
+		this.plannable = plannable;
 	}
 }

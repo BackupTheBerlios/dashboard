@@ -67,11 +67,18 @@ public class ViewWarningProperties extends JDialog{
 		    				for(int i=0;i<ViewWarningProperties.this.field1.getText().length()&&numeric;i++)
 		    				{
 		    					numeric=Character.isDigit(ViewWarningProperties.this.field1.getText().charAt(i));
+		    					if(i == 0  ){
+		    						if(ViewWarningProperties.this.field1.getText().charAt(i) == '-')
+		    							numeric = true;
+		    						else 
+		    							numeric = false;
+		    					}
 		    				}
 		    				for(int i=0;i<ViewWarningProperties.this.field2.getText().length()&&numeric;i++)
 		    				{
 		 
 		    					numeric=Character.isDigit(ViewWarningProperties.this.field2.getText().charAt(i));
+		    					
 		    				}
 		    				
 		    				/* test if the JTextField contents are empty*/
@@ -79,13 +86,13 @@ public class ViewWarningProperties extends JDialog{
 		    				{
 		    					numeric=false;
 		    				}
-		    				/*test (0<content<100) */
-		    				if (numeric&&(Integer.parseInt(ViewWarningProperties.this.field1.getText())<0 ||
+		    				/*test (-100<content<100) */
+		    				if (numeric&&(Integer.parseInt(ViewWarningProperties.this.field1.getText())<-100 ||
 		    								Integer.parseInt(ViewWarningProperties.this.field1.getText())>100 ||
-		    								Integer.parseInt(ViewWarningProperties.this.field2.getText())<0||
+		    								Integer.parseInt(ViewWarningProperties.this.field2.getText())<-100||
 		    								Integer.parseInt(ViewWarningProperties.this.field2.getText())>100))
 		    				{
-		    					message+="- Les seuils doivent être compris entre 0 et 100%\n";
+		    					message+="- Les seuils doivent être compris entre [-100,0] et [0,100]%\n";
 		    				}
 		    				
 		    				/*test (min<max)*/

@@ -185,7 +185,7 @@ public class ControlParser extends DefaultHandler{
 	
 	
 	// simple constructeur
-	public ControlParser(Project p) throws SAXException, Exception{
+	public ControlParser(Project p) throws Exception {
 		super();	
 		/// temporaire normalement projet à importer
 		project  = p;
@@ -193,7 +193,7 @@ public class ControlParser extends DefaultHandler{
 			project = new Project();
 		activityHierrarchy.add(0, project);
 
-			this.parse();
+				this.parse();
 
 		
 		

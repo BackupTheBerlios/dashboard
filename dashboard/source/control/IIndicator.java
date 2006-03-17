@@ -10,7 +10,7 @@ package control;
 /**
  * <p></p>
  */
-public interface IIndicator {
+public abstract class IIndicator {
 	
 	///////////////////////////////////////
 	// operations
@@ -21,21 +21,25 @@ public interface IIndicator {
 	 * 
 	 * @return 
 	 */
-	public  Double getTresholdMax();
+	public abstract double getTresholdMax();
 	/**
 	 * <p>Does ...</p>
 	 * 
 	 * 
 	 * @return 
 	 */
-	public  Double getTresholdMin();
+	public abstract double getTresholdMin();
 	/**
 	 * <p>Does ...</p>
 	 * 
 	 * 
 	 * @return 
 	 */
-	public  IndicatorState compute();
+	
+
+	
+	
+	public  abstract IndicatorState compute();
 	
 } // end IIndicator
 

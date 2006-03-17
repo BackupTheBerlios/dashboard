@@ -117,25 +117,25 @@ public class TestEntity
 			project.getResources().add(r4);
 
 			// workings creation
-			Working w11 = new Working("w11", "", 20.0, r1);
+			Working w11 = new Working("w11", "", 0.0, r1);
 			wbe1.getWorkings().add(w11);
-			Working w12 = new Working("w12", "", 30.0, r2);
+			Working w12 = new Working("w12", "", 0.0, r2);
 			wbe1.getWorkings().add(w12);
-			Working w13 = new Working("w13", "", 5.0, r3);
+			Working w13 = new Working("w13", "", 0.0, r3);
 			wbe1.getWorkings().add(w13);
 
-			Working w21 = new Working("w21", "", 12.0, r4);
+			Working w21 = new Working("w21", "", 0.0, r4);
 			wbe2.getWorkings().add(w21);
-			Working w22 = new Working("w22", "", 42.0, r4);
+			Working w22 = new Working("w22", "", 0.0, r4);
 			wbe2.getWorkings().add(w22);
 
-			Working w31 = new Working("w31", "", 5.0, r1);
+			Working w31 = new Working("w31", "", 0.0, r1);
 			wbe3.getWorkings().add(w31);
 
-			Working w41 = new Working("w41", "", 55.0, r2);
+			Working w41 = new Working("w41", "", 0.0, r2);
 			wbe4.getWorkings().add(w41);
 
-			Working w51 = new Working("w51", "", 180.0, r3);
+			Working w51 = new Working("w51", "", 0.0, r3);
 			wbe5.getWorkings().add(w51);
 
 		} catch (Exception e) {

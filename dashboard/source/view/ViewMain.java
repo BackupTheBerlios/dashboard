@@ -6,26 +6,11 @@
 
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.io.IOException;
-import java.util.ArrayList;
 
-import control.ControlConsolidation;
-import control.ControlEnvironment;
-import control.ControlParser;
-import control.ControlPlannable;
-import control.ControlProject;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JTable;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -33,11 +18,15 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import control.ControlConsolidation;
+import control.ControlEnvironment;
+import control.ControlParser;
+import control.ControlPlannable;
+import control.ControlProject;
 import entity.Activity;
 import entity.Environment;
 import entity.Project;
 import entity.WorkBreakDownElement;
-import examples.TestEntity;
 
 /**
  *
@@ -601,15 +590,6 @@ public class ViewMain extends javax.swing.JFrame {
 	
 	
 	
-	
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-    	
-        new ViewMain(new ControlEnvironment(TestEntity.createEnvironment())).setVisible(true);
-    }
-    
    
     
 }

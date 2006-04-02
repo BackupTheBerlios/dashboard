@@ -8,9 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 import utils.Functions;
-
-import control.*;
-import examples.TestEntity;
+import control.ControlEnvironment;
 
 public class ViewPersistance extends JFileChooser 
 {
@@ -119,13 +117,5 @@ public class ViewPersistance extends JFileChooser
 
 	
 	
-	
-	public static void main(String[] args) 
-	{
-		ControlEnvironment envC = new ControlEnvironment(TestEntity.createEnvironment());
-		ViewPersistance v = new ViewPersistance(envC);	
-		v.callSave();
-		v.callLoad();
-	}
 
 }

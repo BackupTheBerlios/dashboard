@@ -2,7 +2,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -10,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -19,18 +17,11 @@ import javax.swing.WindowConstants;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.NumberTickUnit;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
-
-import control.*;
-import examples.TestEntity;
+import control.ControlObjVariation;
+import control.ControlProject;
+import control.objVariation;
 
 
 
@@ -159,14 +150,5 @@ public class ViewAllRessource extends JFrame
 		}
 		return dpd;
 	}
-	/**
-	 * @param args
-	 */
- 
-	 public static void main(String args[]) {
-	 
-		// ControlEnvironment envC= new ControlEnvironment(TestEntity.createEnvironment()); 
-		 // ViewProjectVariation t = new ViewProjectVariation("group",envC.getControlProjects().get(1)) ;
-	 
-	    }
+
 }

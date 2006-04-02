@@ -28,9 +28,9 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
-
-import control.*;
-import examples.TestEntity;
+import control.ControlObjVariation;
+import control.ControlProject;
+import control.objVariation;
 
 
 
@@ -234,14 +234,5 @@ public class ViewProjectVariation extends JFrame
 		
 		return dpd;
 	}
-	/**
-	 * @param args
-	 */
- 
-	 public static void main(String args[]) {
-	 
-		// ControlEnvironment envC= new ControlEnvironment(TestEntity.createEnvironment()); 
-		 // ViewProjectVariation t = new ViewProjectVariation("group",envC.getControlProjects().get(1)) ;
-	 
-	    }
+
 }

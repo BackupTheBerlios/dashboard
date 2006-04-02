@@ -54,12 +54,27 @@
 				</unjar>
 		<mkdir dir="${dist.dir }/${src.dir}"/>
 		<mkdir dir="${dist.dir }/${src.dir}/${src.dir}"/>
-		<copydir src="${src.dir}"
-		         dest="${dist.dir }/${src.dir}/${src.dir}"
-			     excludes="${src.dir}/test/**Chart**.java"
-				forceoverwrite = "true"
-			       
-		  />
+		<mkdir dir="${dist.dir }/${src.dir}/${src.dir}/control"/>
+		<copy todir="${dist.dir }/${src.dir}/${src.dir}/control">
+		    <fileset dir="${src.dir}/control"/>
+		 </copy>
+		<mkdir dir="${dist.dir }/${src.dir}/${src.dir}/entity"/>
+		<copy todir="${dist.dir }/${src.dir}/${src.dir}/entity">
+			<fileset dir="${src.dir}/entity"/>
+		</copy>
+		<mkdir dir="${dist.dir }/${src.dir}/${src.dir}/main"/>
+		<copy todir="${dist.dir }/${src.dir}/${src.dir}/main">
+			<fileset dir="${src.dir}/main"/>
+		</copy>
+		<mkdir dir="${dist.dir }/${src.dir}/${src.dir}/utils"/>
+		<copy todir="${dist.dir }/${src.dir}/${src.dir}/utils">
+			<fileset dir="${src.dir}/utils"/>
+		</copy>
+		<mkdir dir="${dist.dir }/${src.dir}/${src.dir}/view"/>
+		<copy todir="${dist.dir }/${src.dir}/${src.dir}/view">
+				<fileset dir="${src.dir}/view"/>
+		</copy>
+
 		 
 		 <jar destfile="${dist.dir }/${name}.jar">
 		    <fileset dir="${build.dir}"/>

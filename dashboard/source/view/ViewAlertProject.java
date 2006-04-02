@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.text.NumberFormat;
 import java.util.Vector;
@@ -17,17 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.ScrollPaneLayout;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
+import utils.Pair;
 import control.ControlAlert;
 import control.ControlProject;
-import control.IIndicator;
 import control.IndicatorState;
-
-import utils.Pair;
-import examples.TestEntity;
 
 public class ViewAlertProject {
 	
@@ -40,15 +33,12 @@ public class ViewAlertProject {
 		
 		jTable.getColumnModel().getColumn(1).setMaxWidth(70);
 
-		//jTable.getColumnModel().getColumn(2).setCellRenderer(custom);
 		jTable.getColumnModel().getColumn(2).setMaxWidth(70);
 		
 		jTable.getColumnModel().getColumn(3).setCellRenderer(new  PercentTableCellRenderer());
 		jTable.getColumnModel().getColumn(3).setWidth(200);
 		jTable.getColumnModel().getColumn(3).setMaxWidth(200);
-		//jTable.getColumnModel().getColumn(0).setMaxWidth(600);
-		
-		//jTable.setDefaultRenderer(IndicatorState.class ,);
+
 		jTable.setEnabled(false);
 		return JTable.createScrollPaneForTable(jTable);
 	}
@@ -63,13 +53,9 @@ public class ViewAlertProject {
 		JPanel panelCentral = new JPanel();
 		panelCentral.setLayout(new java.awt.BorderLayout(2, 5));
 		JLabel txtTitle = new JLabel("alerte sur le projet \""+ project.getNameP() + "\"" );
-        //titlePanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         titlePanel.add(txtTitle,BorderLayout.WEST);
 
         panelCentral.add(titlePanel, java.awt.BorderLayout.NORTH);
-	
-		
-	
 
 		JPanel panelAmount = new JPanel(new BorderLayout());
 		
@@ -110,13 +96,10 @@ public class ViewAlertProject {
 		
 		fenetre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre.getContentPane().setLayout(new BorderLayout());
-		//fenetre.add(panel, BorderLayout.NORTH);
-		//fenetre.add(panelAmount, BorderLayout.NORTH);
 		panelCentral.add(pane);
 		fenetre.add(panelCentral, BorderLayout.CENTER);
 		fenetre.setBackground(Color.WHITE);
 
-		//panel.add(label,BorderLayout.SOUTH );
 		
 		 fenetre.setSize(700,600); 
 	     Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -173,10 +156,5 @@ public class ViewAlertProject {
 	 
 	    }
 	}
-	public static void main (String argv []){
-		
-		new  ViewAlertProject(new ControlProject(TestEntity.create2DBTestProject()),null,null);
-		new  ViewAlertProject(new ControlProject(TestEntity.createPSITestProject()),null,null);
-	}
-
+	
 }

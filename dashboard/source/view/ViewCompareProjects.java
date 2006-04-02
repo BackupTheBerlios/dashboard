@@ -1,16 +1,12 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -23,8 +19,6 @@ import org.jfree.data.gantt.TaskSeriesCollection;
 import org.jfree.data.time.SimpleTimePeriod;
 
 import utils.Pair;
-
-import examples.TestEntity;
 import control.ControlEnvironment;
 
 
@@ -289,20 +283,6 @@ public class ViewCompareProjects extends JDialog
 	
 	
 	
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) 
-    {
-        new ViewCompareProjects(
-        			new ControlEnvironment(
-        					TestEntity.createEnvironment()
-        			),
-        			null
-        ).setVisible(true);
-    }
-    
 
 
 }
